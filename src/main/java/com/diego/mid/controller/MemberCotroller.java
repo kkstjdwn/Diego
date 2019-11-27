@@ -1,5 +1,5 @@
 package com.diego.mid.controller;
 
-public class aas {
+public class MemberCotroller {
 
 }
