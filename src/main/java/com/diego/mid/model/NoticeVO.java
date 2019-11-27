@@ -1,5 +1,5 @@
 package com.diego.mid.model;
 
-public class adav {
+public class NoticeVO {
 
 }
