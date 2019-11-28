@@ -2,3 +2,13 @@
 <!DOCTYPE configuration
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
+  
+  <configuration>
+  		<typeAliases>
+  			<typeAlias type="com.diego.mid.model.product.ProductVO" alias="ProductVO"/>
+  			<typeAlias type="com.diego.mid.model.product.CategoryVO" alias="CategoryVO"/>
+  		
+  		</typeAliases>
+  
+  
+  </configuration>
