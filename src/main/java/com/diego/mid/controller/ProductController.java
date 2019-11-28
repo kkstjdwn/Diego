@@ -34,6 +34,7 @@ public class ProductController {
 		if(result==1) {
 			msg="등록성공";
 		}
+		
 		mv.addObject("msg", msg);
 		mv.addObject("path", "productLiset");
 		mv.setViewName("common/common_result");
