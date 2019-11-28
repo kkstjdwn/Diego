@@ -1,5 +1,5 @@
 package com.diego.mid.util;
 
-public class awdac2 {
+public class ProductAASASDF {
 
 }
