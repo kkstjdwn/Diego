@@ -1,4 +1,4 @@
-package com.diego.mid.model;
+package com.diego.mid.model.admin;
 
 public class AdminVO {
 	private String admin_id;
