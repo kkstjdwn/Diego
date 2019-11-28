@@ -1,5 +1,5 @@
 package com.diego.mid.service;
 
-public class adaca2 {
+public class ServiceMember {
 
 }
