@@ -25,3 +25,5 @@ target/m2e-wtp/web-resources/META-INF/MANIFEST.MF
 
 target/m2e-wtp/web-resources/META-INF/maven/com.diego/mid/pom.properties
 
+src/main/resources/properties/diego.properties
+target/classes/properties/diego.properties
