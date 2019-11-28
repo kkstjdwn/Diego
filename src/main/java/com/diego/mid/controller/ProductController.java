@@ -44,7 +44,7 @@ public class ProductController {
 	}
 	//상품등록 끝
 
-	//상품종류선택 ajax
+	//상품종류(cat_ref)선택 ajax
 	@GetMapping("/selectCloth")
 	public void selectCloth(Model model, String kind)throws Exception {
 		if(kind.equals("100")) {
@@ -64,6 +64,6 @@ public class ProductController {
 
 	}
 
-
+//선택하게되면 스트링타입이나오지않나? 넣어야하는 타입은 int타입인데 벨류값으로  어떻게 지정해주나
 
 }
