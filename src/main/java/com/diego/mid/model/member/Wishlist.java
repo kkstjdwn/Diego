@@ -1,4 +1,4 @@
-package com.diego.mid.model;
+package com.diego.mid.model.member;
 
 public class Wishlist {
 	
