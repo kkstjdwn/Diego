@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+	<context:property-placeholder file-encoding="UTF-8" location="classpath:/properties/*.properties"/>
 	
 	<bean class="org.springframework.jdbc.datasource.DriverManagerDataSource" id="dataSource">
-			<property name="username" value="team"/>
-			<property name="password" value="team"/>
-			<property name="url" value="jdbc:oracle:thin:@211.238.142.44:1521:xe"/>
-			<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+			<property name="username" value="${diego.user}"/>
+			<property name="password" value="${diego.password}"/>
+			<property name="url" value="${diego.url}"/>
+			<property name="driverClassName" value="${diego.driver}"/>
 		</bean>
 		
 		<bean class="org.mybatis.spring.SqlSessionFactoryBean" id="sqlSessionFactoryBean">
