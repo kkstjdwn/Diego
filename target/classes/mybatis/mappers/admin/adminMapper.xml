@@ -2,7 +2,33 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  <mapper namespace="adminMapper">
-  
-  
-  </mapper>
+<mapper namespace="adminMapper">
+
+	<!-- adminJoin -->
+	<insert id="adminJoin" parameterType="AdminVO">
+		insert into admin values(#{admin_id}, #{admin_pw}, #{admin_name}, '9999')
+	</insert>
+	<!-- adminLogin -->
+	<select id="adminLogin" parameterType="AdminVO" resultType="AdminVO">
+		select * from admin where admin_id=#{admin_id} and admin_pw=#{admin_pw}
+	</select>
+	
+	
+	<!-- adminCheckId -->
+	<select id="adminCheckId" resultType="AdminVO"
+		parameterType="AdminVO">
+		select id from admin where admin_id=#{admin_id}
+	</select>
+
+	<!-- adminUpdate -->
+	<update id="adminUpdate" parameterType="AdminVO">
+		update admin set admin_pw=#{admin_pw}, admin_name=#{admin_name} where
+		admin_id=#{admin_id}
+	</update>
+	<!-- adminDelete -->
+	<delete id="adminDelete" parameterType="AdminVO">
+		delete admin where admin_id=#{admin_id}
+	</delete>
+
+
+</mapper>

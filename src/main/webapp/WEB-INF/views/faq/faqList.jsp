@@ -12,14 +12,14 @@
 }
 </style>
 
-<title>Notice List</title>
+<title>FAQ List</title>
 
 </head>
 <body>
 	<c:import url="../layout/nav.jsp" />
 	<div class="container">
-		<h1 class="title_n">Notice</h1>
-		<form id="frm" action="./noticeList">
+		<h1 class="title_n">FAQ</h1>
+		<form id="frm" action="./faqeList">
 			<input type="hidden" value="1" id="curPage" name="curPage">
 			<div class="form-group col-xs-2">
 				<select name="kind" class="form-control ">
@@ -42,9 +42,8 @@
 		<table class="table ">
 			<thead>
 				<tr>
-					<th class="th1">NUM</th>
+					<th class="th1">category</th>
 					<th class="th1">Title</th>
-					<th class="th1">Writer</th>
 					<th class="th1">Date</th>
 				</tr>
 			</thead>
@@ -52,13 +51,12 @@
 				<c:forEach items="${list}" var="dto" varStatus="st">
 					<!-- for문과 같은 효과  -->
 					<tr>
-						<td class="th1 num">${dto.not_num}</td>
+						<td class="th1 num">${dto.faq_cat}</td>
 						<td><c:catch>
 								<!-- try catch와 같이 예외 처리, notice에는 depth가 없으므로 -->
 								<c:forEach begin="1" end="${dto.depth}">--</c:forEach>
-							</c:catch> <a href="noticeSelect?not_num=${dto.not_num}">${dto.title}</a></td>
-						<td class="th1">${dto.admin_name}</td>
-						<td class="th1 date">${dto.not_date}</td>
+							</c:catch> <a href="faqSelect?faq_num=${dto.faq_num}">${dto.faq_title}</a></td>
+						<td class="th1 date">${dto.faq_date}</td>
 					</tr>
 				</c:forEach>
 			</tbody>
@@ -80,7 +78,7 @@
 			</ul>
 
 		</div>
-			<a class="btn btn-primary" href="./noticeWrite">Write</a>
+			<a class="btn btn-primary" href="./faqWrite">Write</a>
 	</div>
 
 	<script type="text/javascript">

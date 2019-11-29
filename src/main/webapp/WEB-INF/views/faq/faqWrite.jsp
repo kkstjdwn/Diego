@@ -5,30 +5,30 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>notice Write</title>
+<title>FAQ Write</title>
 <c:import url="../layout/bootStrap.jsp"/>
 </head>
 <body>
 	<c:import url="../layout/nav.jsp" />
 	<div class="container">
-		<h2>Notice Insert Page</h2>
-		<form action="./noticeWrite" method="post"> 
+		<h2>FAQ Insert Page</h2>
+		<form action="./faqWrite" method="post"> 
 			<div class="form-group">
 				<label for="title">Title : </label> <input type="text"
-					class="form-control" id="title" name="title">
+					class="form-control" id="title" name="faq_title">
 			</div>
 			<div class="form-group">
 				<label for="admin_id">admin_id : </label> <input type="text"
 					class="form-control" id="admin_id" name="admin_id" >
 			</div>
 			<div class="form-group">
-				<label for="admin_name">Writer : </label> <input type="text"
-					class="form-control" id="admin_name" name="admin_name" >
+				<label for="faq_cat">Category : </label> <input type="text"
+					class="form-control" id="faq_cat" name="faq_cat" >
 			</div>
 			<div class="form-group">
 				<label for="contents">Contents:</label>
 				<textarea class="form-control" rows="30" id="contents"
-					name="contents"></textarea>
+					name="faq_contents"></textarea>
 			</div>
 
 			<button type="submit" class="btn btn-default">Submit</button>

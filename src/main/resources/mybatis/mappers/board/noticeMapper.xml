@@ -57,7 +57,7 @@
 		#{admin_name}, #{contents}, sysdate)
 	</insert>
 	<!-- notice Delete -->
-	<delete id="noticeDelete" parameterType="Integer">
+	<delete id="noticeDelete" parameterType="NoticeVO">
 		delete notice where not_num=#{not_num}
 	</delete>
 	<!-- notice Update -->

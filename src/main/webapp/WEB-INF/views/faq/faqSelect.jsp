@@ -12,28 +12,28 @@
 <body>
 	<c:import url="../layout/nav.jsp" />
 	<div class="container" >
-	<h1 class="title_n">Notice</h1> 
+	<h1 class="title_n">FAQ</h1> 
 		<table class="table ">
 			<thead>
 				<tr>
-					<th class="th1">Title</th><th class="th1">Writer</th><th class="th1">Date</th>
+					<th class="th1">Category</th><th class="th1">Title</th><th class="th1">Date</th>
 				</tr>
 			</thead> 
 			<tbody> 
 				<tr>
-					<td id="title1">${dto.title}</td><td class="th1">${dto.admin_name}</td><td class="th1 date">${noticeVO.not_date}</td>
+					<td class="th1">${dto.faq_cat}</td><td id="title1">${dto.faq_title}</td><td class="th1 date">${dto.faq_date}</td>
 				</tr>
 				<tr>
-					<td colspan="4"><div class="con1">${dto.contents}</div></td>
+					<td colspan="4"><div class="con1">${dto.faq_contents}</div></td>
 				</tr>
 			</tbody>
 		</table>
 		
 		
-		<a href="noticeList" class="btn btn-primary">글목록</a>
+		<a href="faqList" class="btn btn-primary">글목록</a>
 		
-			<a class="btn btn-primary" href="noticeUpdate?not_num=${dto.not_num}">Update</a>
-			<a class="btn btn-danger" href="noticeDelete?not_num=${dto.not_num}">Delete</a>
+			<a class="btn btn-primary" href="faqUpdate?faq_num=${dto.faq_num}">Update</a>
+			<a class="btn btn-danger" href="faqDelete?faq_num=${dto.faq_num}">Delete</a>
 
 	</div>
 	

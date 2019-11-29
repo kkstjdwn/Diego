@@ -5,6 +5,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,7 +20,7 @@ import com.diego.mid.util.Pager;
 public class NoticeController {
 	@Inject
 	private NoticeService noticeService;
-	
+	//Noitce List
 	@RequestMapping("noticeList")
 	public ModelAndView noticeList(Pager pager)throws Exception{
 		ModelAndView mv = new ModelAndView();
@@ -29,7 +30,7 @@ public class NoticeController {
 		mv.setViewName("notice/noticeList");
 		return mv;
 	}
-	
+	//Notice Write
 	@GetMapping("noticeWrite")
 	public String noticeWrite()throws Exception{
 		
@@ -46,7 +47,7 @@ public class NoticeController {
 			mv.setViewName("redirect:./noticeList");
 		return mv;
 	}
-	
+	//NoticeSelect
 	@RequestMapping(value = "noticeSelect")
 	public ModelAndView noticeSelect(NoticeVO noticeVO)throws Exception{
 		ModelAndView mv = new ModelAndView();
@@ -56,4 +57,28 @@ public class NoticeController {
 		mv.setViewName("notice/noticeSelect");
 		return mv;
 	}
+	//Notice Delete
+	@RequestMapping("noticeDelete")
+	public ModelAndView noticeDelete(NoticeVO noticeVO)throws Exception{
+		noticeService.noticeDelete(noticeVO);
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("redirect:./noticeList");
+		return mv;
 	}
+	
+	//Notice Update
+	@GetMapping("noticeUpdate")
+	public String noticeUpdate(NoticeVO noticeVO, Model model)throws Exception{
+		noticeVO = noticeService.noticeSelect(noticeVO);
+		model.addAttribute("dto", noticeVO);
+		return "notice/noticeUpdate";
+	}
+	@PostMapping("noticeUpdate")
+	public ModelAndView noticeUpdate(NoticeVO noticeVO)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		noticeService.noticeUpdate(noticeVO);
+		mv.setViewName("redirect:./noticeList");
+		return mv;
+	}
+	
+}
