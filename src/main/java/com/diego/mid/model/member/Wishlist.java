@@ -2,21 +2,17 @@ package com.diego.mid.model.member;
 
 public class Wishlist {
 	
-	private String wishlist;
 	private Integer wish_num;
 	private String image;
-	private String product_info;
+	private String id;
+	private Integer pro_num;
+	private String pro_info;
 	private String price;
 	private String price_point;
 	private String delivery;
 	private String delivery_cost;
 	private String sum_price;
-	public String getWishlist() {
-		return wishlist;
-	}
-	public void setWishlist(String wishlist) {
-		this.wishlist = wishlist;
-	}
+	
 	public Integer getWish_num() {
 		return wish_num;
 	}
@@ -29,11 +25,23 @@ public class Wishlist {
 	public void setImage(String image) {
 		this.image = image;
 	}
-	public String getProduct_info() {
-		return product_info;
+	public String getId() {
+		return id;
 	}
-	public void setProduct_info(String product_info) {
-		this.product_info = product_info;
+	public void setId(String id) {
+		this.id = id;
+	}
+	public Integer getPro_num() {
+		return pro_num;
+	}
+	public void setPro_num(Integer pro_num) {
+		this.pro_num = pro_num;
+	}
+	public String getPro_info() {
+		return pro_info;
+	}
+	public void setPro_info(String pro_info) {
+		this.pro_info = pro_info;
 	}
 	public String getPrice() {
 		return price;
@@ -65,5 +73,7 @@ public class Wishlist {
 	public void setSum_price(String sum_price) {
 		this.sum_price = sum_price;
 	}
-
+	
+	
+	
 }

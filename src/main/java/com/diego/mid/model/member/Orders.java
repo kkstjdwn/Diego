@@ -3,20 +3,23 @@ package com.diego.mid.model.member;
 import java.sql.Date;
 
 public class Orders {
-	private String orders;
+	private Integer order_num;
 	private Date order_date;
 	private String image;
-	private Integer order_num;
-	private String product_info;
-	private Integer product_count;
+	private String id;
+	private Integer pro_num;
+	private String pro_info;
+	private Integer pro_count;
 	private String price;
 	private String order_result;
 	private String order_status;
-	public String getOrders() {
-		return orders;
+	
+	
+	public Integer getOrder_num() {
+		return order_num;
 	}
-	public void setOrders(String orders) {
-		this.orders = orders;
+	public void setOrder_num(Integer order_num) {
+		this.order_num = order_num;
 	}
 	public Date getOrder_date() {
 		return order_date;
@@ -30,23 +33,29 @@ public class Orders {
 	public void setImage(String image) {
 		this.image = image;
 	}
-	public Integer getOrder_num() {
-		return order_num;
+	public String getId() {
+		return id;
 	}
-	public void setOrder_num(Integer order_num) {
-		this.order_num = order_num;
+	public void setId(String id) {
+		this.id = id;
 	}
-	public String getProduct_info() {
-		return product_info;
+	public Integer getPro_num() {
+		return pro_num;
 	}
-	public void setProduct_info(String product_info) {
-		this.product_info = product_info;
+	public void setPro_num(Integer pro_num) {
+		this.pro_num = pro_num;
 	}
-	public Integer getProduct_count() {
-		return product_count;
+	public String getPro_info() {
+		return pro_info;
 	}
-	public void setProduct_count(Integer product_count) {
-		this.product_count = product_count;
+	public void setPro_info(String pro_info) {
+		this.pro_info = pro_info;
+	}
+	public Integer getPro_count() {
+		return pro_count;
+	}
+	public void setPro_count(Integer pro_count) {
+		this.pro_count = pro_count;
 	}
 	public String getPrice() {
 		return price;
@@ -66,5 +75,7 @@ public class Orders {
 	public void setOrder_status(String order_status) {
 		this.order_status = order_status;
 	}
+	
+	
 
 }

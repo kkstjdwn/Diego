@@ -2,4 +2,45 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  <mapper namespace="orderMapper"></mapper>
+  <mapper namespace="orderMapper">
+  
+  <insert id="orderInsert" parameterType="orders">
+  insert into orders (order_num, order_date, image, id, pro_num, pro_info, pro_count, price)
+  values(order_seq.nextval, sysdate, #{image}, #{id}, #{pro_num}, #{pro_info}, #{pro_count}, #{price})
+  </insert>
+  
+  <update id="orderUpdate" parameterType="orders">
+  
+  	update orders set pro_count = #{pro_count}, order_result = #{order_result}, order_status=#{order_status}
+  	where order_num = #{order_num}
+  
+  </update>
+  
+  <select id="orderSelect" parameterType="orders" resultType="orders">
+  	
+  	select * from orders where order_num = #{order_num}
+  
+  </select>
+  
+  <select id="orderMyList" parameterType="orders" resultType="orders">
+  
+  	select * from orders where id=#{id} order by order_num desc
+  
+  </select>
+  
+  <select id="orderList" resultType="orders">
+  
+  	select * from orders order by order_num desc
+  
+  </select>
+  
+  <delete id="orderDelete" parameterType="orders">
+  
+  	delete orders where order_num=#{order_num}
+  
+  </delete>
+  
+  
+  
+  
+  </mapper>

@@ -1,10 +1,10 @@
 package com.diego.mid.model.member;
 
-import java.util.Date;
+import java.sql.Date;
 import java.util.Calendar;
 
-
 public class MemberVO {
+	
 	private String id;
 
     private String pw;
@@ -35,7 +35,7 @@ public class MemberVO {
 
     private String lev;
 
-	public String getId() {
+    public String getId() {
 		return id;
 	}
 
@@ -178,5 +178,7 @@ public class MemberVO {
 	public void setLev(String lev) {
 		this.lev = lev;
 	}
+	
+
 
 }

@@ -2,4 +2,40 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  <mapper namespace="pointMapper"></mapper>
+  <mapper namespace="pointMapper">
+  
+  <insert id="pointInsert" parameterType="point">
+  
+  	insert into point(point_date, id, point_value, contents, total_point)
+  		values(sysdate, #{id}, #{point_value}, #{contents}, #{total_point})
+  	
+  </insert>
+  
+  <select id="pointSelect" parameterType="point" resultType="point">
+  	
+  	select * from point where id=#{id}
+  	
+  </select>
+  
+  <select id="pointMyList" parameterType="point" resultType="point">
+  	
+  	select * from point where id=#{id} order by point_date desc
+  
+  </select>
+  
+  <select id="pointList" resultType="point">
+  
+   select * from point order by point_date desc
+   
+  </select>
+  
+  <update id="pointUpdate" parameterType="point">
+  	
+  	update point set total_point=#{total_point} where id=#{id}
+  
+  </update>
+  
+  
+  
+  
+  </mapper>

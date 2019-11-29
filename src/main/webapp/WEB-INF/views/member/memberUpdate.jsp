@@ -9,7 +9,7 @@
 </head>
 <body>
 <c:import url="../layout/bootStrap.jsp"/>
-<form class="form-horizontal" action="memberUpdate" method="post">
+<form class="form-horizontal" action="memberUpdate" method="post" enctype="application/x-www-form-urlencoded">
   <div class="form-group">
     <label class="control-label col-sm-2" for="ID">ID</label>
     <div class="col-sm-10">
@@ -70,6 +70,7 @@
       <input type="text" class="form-control" id="ad_local" name="ad_local" >
     </div>
   </div>
+  
 <!--   <div class="form-group"> -->
 <!--    	<label class="control-label col-sm-2" for="@@@@@@">@@@@@@</label> -->
 <!--   		<div class="col-sm-10"> -->

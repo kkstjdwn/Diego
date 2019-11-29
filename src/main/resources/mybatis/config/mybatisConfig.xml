@@ -8,6 +8,10 @@
   		<typeAlias type="com.diego.mid.model.member.MemberVO" alias="memberVO"/>
   		<typeAlias type="java.lang.Integer" alias="Integer"/>
   		<typeAlias type="java.lang.String" alias="String"/>
+  		<typeAlias type="com.diego.mid.model.member.Coupon" alias="coupon"/>
+  		<typeAlias type="com.diego.mid.model.member.Orders" alias="orders"/>
+  		<typeAlias type="com.diego.mid.model.member.Point" alias="point"/>
+  		<typeAlias type="com.diego.mid.model.member.Wishlist" alias="wishlist"/>
   	</typeAliases>
   
   </configuration>

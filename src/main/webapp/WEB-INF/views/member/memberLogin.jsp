@@ -40,7 +40,7 @@
 			success : function(data) {
 				data = data.trim();
 				if (data == "1") {
-					location.href="/mid/member/memberUpdate";
+					location.href="/mid/diego";
 				}else{
 					alert("똑바로 치세요");
 				}
