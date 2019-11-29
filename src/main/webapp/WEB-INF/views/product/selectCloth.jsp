@@ -3,8 +3,11 @@
 
   <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<select>
-	<c:forEach items="${kind}" var="k">
-		<option>${k}</option>
+
+<select name="cat_ref">
+	<c:forEach items="${kind}" var="i" varStatus="v">
+		<option value="${result+v.count}" >${i}</option>
+	
 	</c:forEach>
 </select>
+

@@ -37,7 +37,7 @@ public class ProductController {
 		}
 
 		mv.addObject("msg", msg);
-		mv.addObject("path", "productLiset");
+		mv.addObject("path", "productList");
 		mv.setViewName("common/common_result");
 
 		return mv;
@@ -47,23 +47,37 @@ public class ProductController {
 	//상품종류(cat_ref)선택 ajax
 	@GetMapping("/selectCloth")
 	public void selectCloth(Model model, String kind)throws Exception {
-		if(kind.equals("100")) {
+		
+		
+		int result=Integer.parseInt( kind);
+		
+		if(result==100) {
 			String [] kinds = {"wallet","bag"};
 			model.addAttribute("kind", kinds);
+			model.addAttribute("result", result);	
 		}
-		else if(kind.equals("200")) {
+		else if(result==200) {
 			String [] kinds = {"face","body"};
 			model.addAttribute("kind", kinds);
-		}else if(kind.equals("300")) {
+			model.addAttribute("result", result);
+			
+		}else if(result==300) {
 			String [] kinds = {"tshirts","shirts","pants","suits"};
 			model.addAttribute("kind", kinds);
+			model.addAttribute("result", result);
 		}else {
 			String [] kinds = {"underwear"};
 			model.addAttribute("kind", kinds);
+			model.addAttribute("result", result);
+			
 		}
 
 	}
+	
+	@GetMapping(value = "productList")
+	private void productList()throws Exception {
+		
 
-//선택하게되면 스트링타입이나오지않나? 넣어야하는 타입은 int타입인데 벨류값으로  어떻게 지정해주나
+	} 
 
 }

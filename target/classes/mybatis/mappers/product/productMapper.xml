@@ -7,8 +7,8 @@
   
   <insert id="productInsert" parameterType="ProductVO">
   
-  		insert into product(pro_num, cat_ref, pro_name, pro_price, pro_count, pro_sale, pro_date, pro_contents, pro_warning, color, pro_size) 
-  		values(product_seq.nextval, #{cat_ref},#{pro_name}, #{pro_price}, #{pro_count},#{pro_sale},sysdate,#{pro_contents},#{pro_warning}, #{color}, #{pro_size})
+  		insert into product(pro_num, cat_ref, pro_name, pro_price, pro_count,  pro_date, pro_contents, pro_warning, color, pro_size) 
+  		values(product_seq.nextval, #{cat_ref},#{pro_name}, #{pro_price}, #{pro_count},sysdate,#{pro_contents},#{pro_warning}, #{color}, #{pro_size})
  	
  </insert>
   
