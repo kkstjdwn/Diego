@@ -48,19 +48,22 @@
 			<br>
 
 			<div class="form-group">
-				<label for="pro_name">Product Name:</label> <input type="text"
+				<label for="pro_name">Product Name:</label> 
+				<input type="text"
 					class="form-control" id="pro_name" name="pro_name"
 					placeholder="Product Name Enter">
 			</div>
 
 			<div class="form-group">
-				<label for="pro_price">Product Price:</label> <input type="text"
+				<label for="pro_price">Product Price:</label> 
+				<input type="text"
 					class="form-control" id="pro_price" name="pro_price"
 					placeholder="Product Price Enter">
 			</div>
 
 			<div class="form-group">
-				<label for="pro_count">Product Count:</label> <input type="text"
+				<label for="pro_count">Product Count:</label> 
+				<input type="text"
 					class="form-control" id="pro_count" name="pro_count"
 					placeholder="Product Count Enter">
 			</div>
@@ -80,7 +83,7 @@
 
 			<div class="form-group color" style="display: block">
 				<label for="color">Product Color:</label> 
-				<input type="color" id="color" name="color" placeholder="Product Color Enter" value="null">
+				<input type="color" id="color" name="color" placeholder="Product Color Enter" >
 
 			</div>
 
@@ -96,7 +99,12 @@
 				</select>
 
 			</div>
-
+			
+			<div class="form-group bag">
+				<label for="pro_warning">Product Warning:</label>
+				<textarea type="text" id="pro_warning" name="pro_warning"
+					placeholder="Product Warning Enter">입력하시오.</textarea>
+			</div>
 
 
 
@@ -159,16 +167,7 @@
 
 		});
 
-		// 	$("#kinds").change(function() {
-		// 		if($(this).val() == 101){
-		// 			$(".color").css("display", "block");
-		// 			$(".size").css("display", "none");
-		// 		}else if($(this).val() == 102){
-		// 			$(".color").css("display", "none");
-		// 			$(".size").css("display", "block");
-		// 		}
-
-		// 	});
+	
 
 		$("#options").on("change","#kinds", function() {
 			
@@ -176,6 +175,9 @@
 		});
 		
 		
+		
+		//color는 기본적으로 null값이 없기 때문에 input 컬러타입을 text로바꿔주자. 그럼 null가겟지? 빈칸이면
+				
 		
 	</script>
 
