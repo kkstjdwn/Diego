@@ -7,23 +7,36 @@
 	<sql id="bs">
 		<choose>
 			<when test="kind == 'kt'">
-				where title like '%'||#{search}||'%'
+				where faq_title like '%'||#{search}||'%'
 			</when>
 			<when test="kind == 'kw'">
 				where writer like '%'||#{search}||'%'
 			</when>
 			<when test="kind == 'kc'">
-				where contents like '%'||#{search}||'%'
+				where faq_contents like '%'||#{search}||'%'
 			</when>
 		</choose>
 	</sql>
 	<!-- FAQ List -->
-	<select id="faqList" parameterType="Pager" resultType="FAQVO">
-		select * from
+	<resultMap type="FAQVO" id="faqVOJ">
+		<id property="faq_num" column="faq_num"/>
+		<result property="admin_id" column="admin_id"/>
+		<result property="faq_title" column="faq_title"/>
+		<result property="faq_contents" column="faq_contents"/>
+		<result property="faq_date" column="faq_date"/>
+		<association property="faqCategoryVO" javaType="FAQCategoryVO">
+			<id property="fcat_code" column="fcat_code"/>
+			<result property="fcat_name" column="fcat_name"/>
+		</association>
+	</resultMap>
+	
+	<select id="faqList" parameterType="Pager" resultMap="faqVOJ">
+		select D.*,F.fcat_name from
 		(select N.*, rownum R from
 		(select * from faq
 		<include refid="bs"></include>
-		order by faq_num desc) N)
+		order by faq_num desc) N) D full outer join FAQCategory F
+		on D.fcat_code = F.fcat_code
 		where R between #{startRow} and #{lastRow}
 	</select>
 
@@ -43,7 +56,7 @@
 
 		insert into faq values
 		(#{admin_id}, #{faq_num}, #{faq_title},
-		#{faq_contents}, #{faq_cat}, sysdate)
+		#{faq_contents}, #{fcat_code}, sysdate)
 	</insert>
 
 	<!-- Select -->
@@ -62,8 +75,17 @@
 	<update id="faqUpdate" parameterType="FAQVO">
 		update faq set
 		faq_title=#{faq_title}, faq_contents=#{faq_contents},
-		faq_cat=#{faq_cat}, faq_date=sysdate
+		fcat_code=#{fcat_code}, faq_date=sysdate
 		where faq_num=#{faq_num}
 	</update>
+	
+	<!-- Category -->
+	<select id="category" resultType="FAQCategoryVO">
+		select * from FAQCategory
+	</select>
+	<!-- catgortSelect  -->
+	<select id="categorySelect" parameterType="FAQCategoryVO" resultType="FAQCategoryVO">
+		select * from FAQCategory where fcat_code=#{fcat_code}
+	</select>
 	
 </mapper>

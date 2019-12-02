@@ -20,8 +20,12 @@
 					class="form-control" id="faq_title" value="${dto.faq_title}" name="faq_title">
 			</div>
 			<div class="form-group">
-				<label for="faq_cat">Category : </label> <input type="text"
-					class="form-control" id="category" value="${dto.faq_cat}" name="faq_cat">
+				<label>Category</label> 
+				<select class="category" name="fcat_code">
+				<c:forEach var="category" items="${category}">
+					<option value="${category.fcat_code}">${category.fcat_name}</option>
+					</c:forEach>
+				</select> 
 			</div>
 			<div class="form-group">
 				<label for="contents">Contents:</label>

@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.diego.mid.model.board.FAQCategoryVO;
 import com.diego.mid.model.board.FAQVO;
 import com.diego.mid.util.Pager;
 
@@ -42,5 +43,15 @@ public class FAQDAO {
 	//count
 	public int faqCount(Pager pager)throws Exception{
 		return session.selectOne(NAMESPACE+"faqCount", pager);
+	}
+	
+	//category List
+	public List<FAQCategoryVO> category() throws Exception{
+		return session.selectList(NAMESPACE+"category");
+	}
+	
+	//category Select
+	public FAQCategoryVO categorySelect(FAQCategoryVO faqCategoryVO)throws Exception{
+		return session.selectOne(NAMESPACE+"categorySelect", faqCategoryVO);
 	}
 }

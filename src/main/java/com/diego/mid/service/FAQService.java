@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import com.diego.mid.dao.FAQDAO;
+import com.diego.mid.model.board.FAQCategoryVO;
 import com.diego.mid.model.board.FAQVO;
 import com.diego.mid.util.Pager;
 
@@ -36,6 +37,12 @@ public class FAQService {
 	public int faqDelete(FAQVO faqvo) throws Exception{
 		return faqdao.faqDelete(faqvo);
 	}
-	
-
+	//category List
+	public List<FAQCategoryVO> categoy()throws Exception{
+		return faqdao.category();
+	}
+	//category Select
+	public FAQCategoryVO categorySelect(FAQCategoryVO faqCategoryVO)throws Exception{
+		return  faqdao.categorySelect(faqCategoryVO);
+	}
 }

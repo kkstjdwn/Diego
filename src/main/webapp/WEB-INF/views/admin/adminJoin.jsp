@@ -19,7 +19,7 @@
 				<div class="col-sm-10">
 					<input type="text" class="form-control" id="admin_id"
 						placeholder="Enter id" name="admin_id">
-					<div id="checkIdResult"></div>
+					<span id="checkId" class="btn-primary input-group-addon ">중복확인</span>
 				</div>
 			</div>
 			<div class="form-group">
@@ -53,26 +53,12 @@
 
 </body>
 <script type="text/javascript">
-	var idCheck = false;
-	$("#admin_id").blur(function() {
-		var id = $(this).val();
-		$.post("./adminCheckId", {
-			id : id
-		}, function(data) {
-			data = data.trim();
-			if (data == 'pass') {
-				$("#checkIdResult").html('사용가능한 ID');
-				$("#checkIdResult").attr("class", "text-success");
-				idCheck = true;
-			} else {
-				$("#checkIdResult").html('중복된 ID');
-				$("#checkIdResult").attr("class", "text-danger");
-				idCheck = false;
-				$("#admin_id").val("");
-
-			}
+$("#checkId").click(
+		function() {
+			var admin_id = $("#admin_id").val();
+			window.open("./adminCheckId?admin_id=" + admin_id, "",
+					"width=500,height=300, left=400, top=200")
 		});
-	});
 
 	$(function() {
 		$("#alert-success").hide();

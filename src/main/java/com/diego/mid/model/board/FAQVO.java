@@ -8,8 +8,16 @@ public class FAQVO {
 	private Integer faq_num;
 	private String faq_title;
 	private String faq_contents;
-	private String faq_cat;
+	private Integer fcat_code;
 	private Date faq_date;
+	private FAQCategoryVO faqCategoryVO;
+
+	public FAQCategoryVO getFaqCategoryVO() {
+		return faqCategoryVO;
+	}
+	public void setFaqCategoryVO(FAQCategoryVO faqCategoryVO) {
+		this.faqCategoryVO = faqCategoryVO;
+	}
 	public String getAdmin_id() {
 		return admin_id;
 	}
@@ -34,11 +42,12 @@ public class FAQVO {
 	public void setFaq_contents(String faq_contents) {
 		this.faq_contents = faq_contents;
 	}
-	public String getFaq_cat() {
-		return faq_cat;
+	
+	public Integer getFcat_code() {
+		return fcat_code;
 	}
-	public void setFaq_cat(String faq_cat) {
-		this.faq_cat = faq_cat;
+	public void setFcat_code(Integer fcat_code) {
+		this.fcat_code = fcat_code;
 	}
 	public Date getFaq_date() {
 		return faq_date;

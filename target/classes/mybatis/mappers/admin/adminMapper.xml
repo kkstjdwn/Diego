@@ -17,7 +17,7 @@
 	<!-- adminCheckId -->
 	<select id="adminCheckId" resultType="AdminVO"
 		parameterType="AdminVO">
-		select id from admin where admin_id=#{admin_id}
+		select admin_id from admin where admin_id=#{admin_id}
 	</select>
 
 	<!-- adminUpdate -->

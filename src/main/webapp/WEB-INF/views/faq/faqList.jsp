@@ -19,7 +19,7 @@
 	<c:import url="../layout/nav.jsp" />
 	<div class="container">
 		<h1 class="title_n">FAQ</h1>
-		<form id="frm" action="./faqeList">
+		<form id="frm" action="./faqList">
 			<input type="hidden" value="1" id="curPage" name="curPage">
 			<div class="form-group col-xs-2">
 				<select name="kind" class="form-control ">
@@ -51,7 +51,7 @@
 				<c:forEach items="${list}" var="dto" varStatus="st">
 					<!-- for문과 같은 효과  -->
 					<tr>
-						<td class="th1 num">${dto.faq_cat}</td>
+						<td class="th1 num">${dto.faqCategoryVO.fcat_name}</td>
 						<td><c:catch>
 								<!-- try catch와 같이 예외 처리, notice에는 depth가 없으므로 -->
 								<c:forEach begin="1" end="${dto.depth}">--</c:forEach>

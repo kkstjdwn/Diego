@@ -21,7 +21,7 @@
 			</thead> 
 			<tbody> 
 				<tr>
-					<td class="th1">${dto.faq_cat}</td><td id="title1">${dto.faq_title}</td><td class="th1 date">${dto.faq_date}</td>
+					<td class="th1">${category.fcat_name}</td><td id="title1">${dto.faq_title}</td><td class="th1 date">${dto.faq_date}</td>
 				</tr>
 				<tr>
 					<td colspan="4"><div class="con1">${dto.faq_contents}</div></td>

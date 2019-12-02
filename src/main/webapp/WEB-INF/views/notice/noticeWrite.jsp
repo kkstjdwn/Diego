@@ -19,11 +19,11 @@
 			</div>
 			<div class="form-group">
 				<label for="admin_id">admin_id : </label> <input type="text"
-					class="form-control" id="admin_id" name="admin_id" >
+					class="form-control" id="admin_id" name="admin_id" readonly="readonly" value="${admin.admin_id}">
 			</div>
 			<div class="form-group">
 				<label for="admin_name">Writer : </label> <input type="text"
-					class="form-control" id="admin_name" name="admin_name" >
+					class="form-control" id="admin_name" name="admin_name" readonly="readonly" value="${admin.admin_name}">
 			</div>
 			<div class="form-group">
 				<label for="contents">Contents:</label>

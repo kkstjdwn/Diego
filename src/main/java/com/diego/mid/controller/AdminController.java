@@ -20,7 +20,7 @@ public class AdminController {
 	private AdminService adminService;
 	
 	//adminCheckId
-	@PostMapping("adminCheckId")
+	@GetMapping("adminCheckId")
 	public void adminCheckId(AdminVO adminVO, Model model)throws Exception{
 		adminVO = adminService.adminCheckId(adminVO);
 		String result="unpass";
@@ -83,8 +83,6 @@ public class AdminController {
 	
 	@PostMapping("adminUpdate")
 	public ModelAndView adminUpdate(AdminVO adminVO, HttpSession session )throws Exception{
-		System.out.println(adminVO.getAdmin_pw());
-		System.out.println(adminVO.getAdmin_id());
 		adminService.adminUpdate(adminVO);
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("admin", adminVO);

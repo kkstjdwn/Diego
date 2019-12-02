@@ -10,13 +10,17 @@ import javax.sql.DataSource;
 import org.apache.ibatis.session.SqlSession;
 import org.junit.Test;
 
+import com.diego.mid.dao.FAQDAO;
 import com.diego.mid.dao.NoticeDAO;
+import com.diego.mid.model.board.FAQVO;
 import com.diego.mid.model.board.NoticeVO;
 import com.diego.mid.util.Pager;
 
 public class boardTest extends TestAbstractCase {
 	@Inject
 	private NoticeDAO noticeDAO;
+	@Inject
+	private FAQDAO faqDAO;
 	@Inject
 	private DataSource datasource;
 	
@@ -64,11 +68,11 @@ public class boardTest extends TestAbstractCase {
 	}
 	
 	@Test
-	public void noticeList()throws Exception{
+	public void faqList()throws Exception{
 		Pager pager = new Pager();
 		pager.makeRow();
-		pager.makePage(noticeDAO.noticeCount(pager));
-		List<NoticeVO> ar= noticeDAO.noticeList(pager);
+		pager.makePage(faqDAO.faqCount(pager));
+		List<FAQVO> ar= faqDAO.faqList(pager);
 		
 		assertNotNull(ar);
 	}
