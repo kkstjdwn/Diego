@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import com.diego.mid.model.member.MemberVO;
+import com.diego.mid.model.member.Point;
+import com.diego.mid.service.MemberManageService;
 import com.diego.mid.service.MemberService;
 
 @Controller
@@ -17,6 +19,9 @@ import com.diego.mid.service.MemberService;
 public class MemberCotroller {
 	@Inject
 	private MemberService service;
+	
+	@Inject
+	private MemberManageService manageSevice;
 	
 	@GetMapping("memberInsert")
 	public void memberInsert() {
@@ -29,7 +34,14 @@ public class MemberCotroller {
 		int result = service.memberInsert(memberVO);
 		String msg = "0";
 		if (result>0) {
-			msg = "1";
+			Point point = new Point();
+			point.setId(memberVO.getId());
+			point.setPoint_value(5000);
+			point.setContents("가입축하 포인트");
+			result = manageSevice.pointInsert(point);
+			if (result > 0) {
+				msg = "1";
+			}
 		}
 		mv.addObject("msg", msg);
 		mv.setViewName("common/common_ajax_result");

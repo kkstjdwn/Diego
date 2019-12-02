@@ -48,12 +48,12 @@
 			success : function(data) {
 				data = data.trim();
 				alert("가입을 축하드립니다!");
-				location.href="/mid/";
+				location.href="/mid/diego";
 				}
 			});
 		});
 		
-	});
+	
 
 </script>
 

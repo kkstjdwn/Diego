@@ -1,18 +1,31 @@
 package com.diego.mid.model.member;
 
+import java.io.File;
+
+import org.springframework.web.multipart.MultipartFile;
+
 public class Wishlist {
 	
 	private Integer wish_num;
+	private MultipartFile fname;
 	private String image;
 	private String id;
 	private Integer pro_num;
 	private String pro_info;
-	private String price;
-	private String price_point;
+	private Integer price;
+	private Integer price_point;
 	private String delivery;
 	private String delivery_cost;
-	private String sum_price;
+	private Integer sum_price;
 	
+	
+
+	public MultipartFile getFname() {
+		return fname;
+	}
+	public void setFname(MultipartFile fname) {
+		this.fname = fname;
+	}
 	public Integer getWish_num() {
 		return wish_num;
 	}
@@ -43,16 +56,16 @@ public class Wishlist {
 	public void setPro_info(String pro_info) {
 		this.pro_info = pro_info;
 	}
-	public String getPrice() {
+	public Integer getPrice() {
 		return price;
 	}
-	public void setPrice(String price) {
+	public void setPrice(Integer price) {
 		this.price = price;
 	}
-	public String getPrice_point() {
+	public Integer getPrice_point() {
 		return price_point;
 	}
-	public void setPrice_point(String price_point) {
+	public void setPrice_point(Integer price_point) {
 		this.price_point = price_point;
 	}
 	public String getDelivery() {
@@ -67,10 +80,10 @@ public class Wishlist {
 	public void setDelivery_cost(String delivery_cost) {
 		this.delivery_cost = delivery_cost;
 	}
-	public String getSum_price() {
+	public Integer getSum_price() {
 		return sum_price;
 	}
-	public void setSum_price(String sum_price) {
+	public void setSum_price(Integer sum_price) {
 		this.sum_price = sum_price;
 	}
 	

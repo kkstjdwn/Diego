@@ -34,6 +34,14 @@ public class MemberManegeDAO {
 		return sql.delete(WISHLIST+"wishListDelete",wishlist);
 	}
 	
+	public Integer wishListGetSum(Wishlist wishlist) throws Exception{
+		return sql.selectOne(WISHLIST+"wishListGetSum",wishlist);
+	}
+	
+	public Integer wishListSetSum(Wishlist wishlist) throws Exception{
+		return sql.update(WISHLIST+"wishListSetSum",wishlist);
+	}
+	
 	public int orderInsert(Orders orders) throws Exception{
 		return sql.insert(ORDER+"orderInsert",orders);
 	}
@@ -59,7 +67,7 @@ public class MemberManegeDAO {
 	}
 	
 	public List<Point> pointMyList(Point point) throws Exception{
-		return sql.selectList(POINT+"pointMylist",point);
+		return sql.selectList(POINT+"pointMyList",point);
 	}
 	
 	public List<Point> pointList() throws Exception{
@@ -70,9 +78,6 @@ public class MemberManegeDAO {
 		return sql.selectOne(POINT+"pointSelect",point);
 	}
 	
-	public int pointUpdate(Point point) throws Exception{
-		return sql.update(POINT+"pointUpdate",point);
-	}
 	
 	public int couponInsert(Coupon coupon) throws Exception{
 		return sql.insert(COUPON+"couponInsert",coupon);

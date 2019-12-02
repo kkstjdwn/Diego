@@ -34,6 +34,9 @@ public class Point {
 		this.contents = contents;
 	}
 	public Integer getTotal_point() {
+		if (this.total_point == null) {
+			total_point = 0;
+		}
 		return total_point;
 	}
 	public void setTotal_point(Integer total_point) {

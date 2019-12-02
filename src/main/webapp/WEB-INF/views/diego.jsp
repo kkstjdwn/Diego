@@ -31,9 +31,9 @@
 	<br>
 	<br>
 	<h1>POINT</h1>
-	<a href="${pageContext.request.contextPath}/member/memberManage/pointInsert">PI</a>
+	<a href="${pageContext.request.contextPath}/member/memberManage/pointInsert" >PI</a>
 	<br>
-	<a href="${pageContext.request.contextPath}/member/memberManage/pointUpdate">PU</a>
+	<a href="${pageContext.request.contextPath}/member/memberManage/pointUse">PU</a>
 	<br>
 	<a href="${pageContext.request.contextPath}/member/memberManage/pointMyList">PML</a>
 	<br>

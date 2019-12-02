@@ -8,11 +8,13 @@ import org.junit.Test;
 
 import com.diego.mid.dao.MemberManegeDAO;
 import com.diego.mid.model.member.Coupon;
+import com.diego.mid.model.member.Point;
+import com.diego.mid.model.member.Wishlist;
 
 public class MemberManageTEST extends TestAbstractCase {
 	
 	@Inject
-	private MemberManegeDAO dao;
+	private MemberManegeDAO manegeDAO;
 
 	@Test
 	public void test() throws Exception{
@@ -34,8 +36,10 @@ public class MemberManageTEST extends TestAbstractCase {
 		
 		//assertEquals(1, dao.couponDelete(coupon));
 		
-		
-		
-	}
+		Wishlist wishlist = new Wishlist();
+		wishlist.setId("coo");
+		wishlist.setWish_num(7);
+		System.out.println(manegeDAO.wishListGetSum(wishlist));
+		}
 
 }

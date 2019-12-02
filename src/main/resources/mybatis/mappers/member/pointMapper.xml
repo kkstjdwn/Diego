@@ -13,7 +13,7 @@
   
   <select id="pointSelect" parameterType="point" resultType="point">
   	
-  	select * from point where id=#{id}
+  	select * from point where point_date = (select max(point_date) from point where id = #{id})
   	
   </select>
   
@@ -29,11 +29,7 @@
    
   </select>
   
-  <update id="pointUpdate" parameterType="point">
-  	
-  	update point set total_point=#{total_point} where id=#{id}
   
-  </update>
   
   
   
