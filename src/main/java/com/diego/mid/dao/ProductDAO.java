@@ -14,9 +14,18 @@ public class ProductDAO {
 
 	private static final String NAMESPACE="productMapper.";
 
+	//insert
 	public int productInsert(ProductVO productVO) throws Exception{
 
 		return sqlSession.insert(NAMESPACE+"productInsert", productVO);
 	}	
 
+	//delete
+	public int productDelete(ProductVO productVO)throws Exception{
+		
+		return sqlSession.delete(NAMESPACE+"productDelete", productVO);
+		
+	}
+	
+	
 }

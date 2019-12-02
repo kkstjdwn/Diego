@@ -7,7 +7,7 @@
   		<typeAliases>
   			<typeAlias type="com.diego.mid.model.product.ProductVO" alias="ProductVO"/>
   			<typeAlias type="com.diego.mid.model.product.CategoryVO" alias="CategoryVO"/>
-  		
+  			<typeAlias type="java.lang.Integer" alias="Integer"/>
   		</typeAliases>
   
   

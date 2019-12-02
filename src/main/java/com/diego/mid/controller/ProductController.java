@@ -72,8 +72,31 @@ public class ProductController {
 			
 		}
 
-	}
+	}//ajax끝
 	
+	
+	//상품삭제
+	@RequestMapping(value = "productDelete")
+	public ModelAndView productDelete(ProductVO productVO)throws Exception {
+		int result = productService.productDelete(productVO);
+		
+		ModelAndView mv= new ModelAndView();
+		
+		String msg="삭제 실패";
+		if(result== 1) {
+			msg="삭제 성공";
+		}
+		mv.addObject("msg", msg);
+		mv.addObject("path", "productList");
+		mv.setViewName("common/common_result");
+		
+		return mv;
+		
+	}//상품삭제 끝 
+	
+	
+	
+	//상품리스트
 	@GetMapping(value = "productList")
 	private void productList()throws Exception {
 		
