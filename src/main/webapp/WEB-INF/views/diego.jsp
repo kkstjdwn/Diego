@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Member Home</title>
 <style type="text/css">
 	*{
 	text-align: center;
@@ -44,8 +44,6 @@
 	<a href="${pageContext.request.contextPath}/member/memberManage/wishListInsert">WLI</a>
 	<br>
 	<a href="${pageContext.request.contextPath}/member/memberManage/wishListSelectList">WLSL</a>	
-	<br>
-	<a href="${pageContext.request.contextPath}/member/memberManage/wishListDelete">WLD</a>
 	<br>
 	<br>
 	<h1>ORDER</h1>
