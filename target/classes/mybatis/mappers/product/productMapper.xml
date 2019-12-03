@@ -18,7 +18,10 @@
   
   </delete>
   
-  
+  <!--list  -->
+  <select id="productList" parameterType="" resultType="">
+  	
+  </select>
   
   
   </mapper>
