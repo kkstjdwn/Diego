@@ -1,5 +1,7 @@
 package com.diego.mid.controller;
 
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
@@ -11,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.diego.mid.model.admin.AdminVO;
+import com.diego.mid.model.member.MemberVO;
 import com.diego.mid.service.AdminService;
+import com.diego.mid.util.Pager;
 
 @Controller
 @RequestMapping("/admin/**")
@@ -100,6 +104,33 @@ public class AdminController {
 		return "redirect:../";
 	}
 	
+	//MemberManage List
+	@GetMapping("memberList")
+	public ModelAndView memberList(Pager pager)throws Exception{
+		
+		
+		ModelAndView mv = new ModelAndView();
+		List<MemberVO> ar = adminService.memberList(pager);
+		mv.addObject("list", ar);
+		mv.addObject("pager", pager);
+		mv.setViewName("admin/memberList");
+		return mv;
+	} 
+	//memberUpdate
+	@GetMapping("memberUpdate")
+	public String memberUpdate(MemberVO memberVO, Model model)throws Exception{
+		memberVO = adminService.memberSelect(memberVO);
+		model.addAttribute("dto", memberVO);
+		return "admin/memberUpdate";
+	}
+	
+	@PostMapping("memberUpdate")
+	public ModelAndView memberUpdate(MemberVO memberVO)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		adminService.memberUpdate(memberVO);
+		mv.setViewName("redirect:./memberList");
+		return mv;
+	}
 	
 	
 	

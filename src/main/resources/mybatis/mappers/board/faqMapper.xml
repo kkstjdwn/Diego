@@ -9,9 +9,6 @@
 			<when test="kind == 'kt'">
 				where faq_title like '%'||#{search}||'%'
 			</when>
-			<when test="kind == 'kw'">
-				where writer like '%'||#{search}||'%'
-			</when>
 			<when test="kind == 'kc'">
 				where faq_contents like '%'||#{search}||'%'
 			</when>

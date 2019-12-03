@@ -1,11 +1,15 @@
 package com.diego.mid.service;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
 import com.diego.mid.dao.AdminDAO;
 import com.diego.mid.model.admin.AdminVO;
+import com.diego.mid.model.member.MemberVO;
+import com.diego.mid.util.Pager;
 
 @Service
 public class AdminService {
@@ -37,6 +41,21 @@ public class AdminService {
 	//Delete
 	public int adminDelete(AdminVO adminVO)throws Exception{
 		return adminDAO.adminDelete(adminVO);
+	}
+	
+	//MemberManage List
+	public List<MemberVO> memberList(Pager pager)throws Exception{
+		pager.makeRow();
+		pager.makePage(adminDAO.memberCount(pager));
+		return adminDAO.memberList(pager);
+	}
+	//member SelectOne
+	public MemberVO memberSelect(MemberVO memberVO)throws Exception{
+		return adminDAO.memberSelect(memberVO);
+	}
+	//member Update
+	public int memberUpdate(MemberVO memberVO)throws Exception{
+		return adminDAO.memberUpdate(memberVO);
 	}
 
 }

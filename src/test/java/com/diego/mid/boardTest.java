@@ -10,10 +10,12 @@ import javax.sql.DataSource;
 import org.apache.ibatis.session.SqlSession;
 import org.junit.Test;
 
+import com.diego.mid.dao.AdminDAO;
 import com.diego.mid.dao.FAQDAO;
 import com.diego.mid.dao.NoticeDAO;
 import com.diego.mid.model.board.FAQVO;
 import com.diego.mid.model.board.NoticeVO;
+import com.diego.mid.model.member.MemberVO;
 import com.diego.mid.util.Pager;
 
 public class boardTest extends TestAbstractCase {
@@ -23,6 +25,8 @@ public class boardTest extends TestAbstractCase {
 	private FAQDAO faqDAO;
 	@Inject
 	private DataSource datasource;
+	@Inject
+	private AdminDAO adminDAO;
 	
 	@Inject	
 	private SqlSession session;
@@ -68,12 +72,15 @@ public class boardTest extends TestAbstractCase {
 	}
 	
 	@Test
-	public void faqList()throws Exception{
+	public void memberList()throws Exception{
 		Pager pager = new Pager();
 		pager.makeRow();
-		pager.makePage(faqDAO.faqCount(pager));
-		List<FAQVO> ar= faqDAO.faqList(pager);
-		
+		pager.makePage(adminDAO.memberCount(pager));
+		List<MemberVO> ar= adminDAO.memberList(pager);
+		System.out.println(ar.size());
+		for (int i = 0; i < ar.size(); i++) {
+			ar.get(i).getPw();
+		}
 		assertNotNull(ar);
 	}
 	
