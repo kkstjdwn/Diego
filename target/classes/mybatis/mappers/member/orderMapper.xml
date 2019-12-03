@@ -5,13 +5,13 @@
   <mapper namespace="orderMapper">
   
   <insert id="orderInsert" parameterType="orders">
-  insert into orders (order_num, order_date, image, id, pro_num, pro_info, pro_count, price)
-  values(order_seq.nextval, sysdate, #{image}, #{id}, #{pro_num}, #{pro_info}, #{pro_count}, #{price})
+  insert into orders (order_num, order_date, image, id, pro_num, pro_info, pro_count, price, order_sum)
+  values(order_seq.nextval, sysdate, #{image}, #{id}, #{pro_num}, #{pro_info}, #{pro_count}, #{price}, #{order_sum})
   </insert>
   
   <update id="orderUpdate" parameterType="orders">
   
-  	update orders set pro_count = #{pro_count}, order_result = #{order_result}, order_status=#{order_status}
+  	update orders set pro_count = #{pro_count}, order_sum=#{order_sum}, order_result = #{order_result}, order_status=#{order_status}
   	where order_num = #{order_num}
   
   </update>
@@ -34,7 +34,7 @@
   
   </select>
   
-  <delete id="orderDelete" parameterType="orders">
+  <delete id="orderCancel" parameterType="orders">
   
   	delete orders where order_num=#{order_num}
   

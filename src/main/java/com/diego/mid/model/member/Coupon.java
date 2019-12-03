@@ -1,12 +1,16 @@
 package com.diego.mid.model.member;
 
+import java.sql.Date;
+
 public class Coupon {
 	private Integer coup_num;
 	private String id;
-	private String name;
+	private String coup_name;
 	private String discount;
-	private String deadline;
 	private double sales_value;
+	private Date coup_date;
+	private Date deadline;
+	private String use;
 	
 	
 	public Integer getCoup_num() {
@@ -21,11 +25,12 @@ public class Coupon {
 	public void setId(String id) {
 		this.id = id;
 	}
-	public String getName() {
-		return name;
+
+	public String getCoup_name() {
+		return coup_name;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setCoup_name(String coup_name) {
+		this.coup_name = coup_name;
 	}
 	public String getDiscount() {
 		return discount;
@@ -33,17 +38,29 @@ public class Coupon {
 	public void setDiscount(String discount) {
 		this.discount = discount;
 	}
-	public String getDeadline() {
-		return deadline;
-	}
-	public void setDeadline(String deadline) {
-		this.deadline = deadline;
-	}
 	public double getSales_value() {
 		return sales_value;
 	}
 	public void setSales_value(double sales_value) {
 		this.sales_value = sales_value;
+	}
+	public Date getCoup_date() {
+		return coup_date;
+	}
+	public void setCoup_date(Date coup_date) {
+		this.coup_date = coup_date;
+	}
+	public Date getDeadline() {
+		return deadline;
+	}
+	public void setDeadline(Date deadline) {
+		this.deadline = deadline;
+	}
+	public String getUse() {
+		return use;
+	}
+	public void setUse(String use) {
+		this.use = use;
 	}
 	
 	

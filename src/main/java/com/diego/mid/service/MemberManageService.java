@@ -24,7 +24,7 @@ public class MemberManageService {
 		if (wishlist.getFname()!=null) {
 			wishlist.setImage(saver.save(realPath, wishlist.getFname()));			
 		}
-		wishlist.setSum_price(dao.wishListGetSum(wishlist)+wishlist.getPrice());
+		
 		return dao.wishListInsert(wishlist);
 	}
 	
@@ -33,34 +33,36 @@ public class MemberManageService {
 	}
 	
 	public int wishListDelete(Wishlist wishlist)throws Exception{
-		
-		Integer setSum = dao.wishListGetSum(wishlist) - wishlist.getPrice();
-		
-		wishlist.setSum_price(setSum);
-		dao.wishListDelete(wishlist);
-		
-		return dao.wishListSetSum(wishlist);
-		
+		return dao.wishListDelete(wishlist);
 	}
 	
-	public int orderInsert(Orders orders) throws Exception{
-		return 0;
+	public int orderInsert(Orders orders,HttpSession session) throws Exception{
+		if (orders.getFname() !=null) {
+			orders.setImage(saver.save(session.getServletContext().getRealPath("/resources/product/orders"), orders.getFname()));
+		}
+		orders.setOrder_sum(orders.getPro_count()*orders.getPrice());
+		return dao.orderInsert(orders);
 	}
 	
 	public Orders orderSelect(Orders orders) throws Exception{
-		return null;
+		return dao.orderSelect(orders);
 	}
 	
 	public List<Orders> orderMyList(Orders orders) throws Exception{
-		return null;
+		return dao.orderMyList(orders);
 	}
 	
 	public List<Orders> orderList() throws Exception{
-		return null;
+		return dao.orderList();
 	}
 	
-	public int orderDelete(Orders orders) throws Exception{
-		return dao.orderDelete(orders);
+	public int orderCancel(Orders orders) throws Exception{
+		return dao.orderCancel(orders);
+	}
+	
+	public int orderUpdate(Orders orders) throws Exception{
+		orders.setOrder_sum(orders.getPro_count()*orders.getPrice());
+		return dao.orderUpdate(orders);
 	}
 	
 	
@@ -91,22 +93,33 @@ public class MemberManageService {
 	}
 	
 	public int couponInsert(Coupon coupon) throws Exception{
-		return 0;
+		double discount = Integer.parseInt(coupon.getDiscount());
+		coupon.setSales_value((100-discount)/100);
+		return dao.couponInsert(coupon);
 	}
 	
 	public Coupon couponSelect(Coupon coupon) throws Exception{
-		return null;
+		return dao.couponSelect(coupon);
 	}
 	
 	public List<Coupon> couponMyList(Coupon coupon) throws Exception{
-		return null;
+		return dao.couponMyList(coupon);
 	}
 	
 	public List<Coupon> couponList() throws Exception{
-		return null;
+		return dao.couponList();
 	}
 	
 	public int couponDelete(Coupon coupon) throws Exception{
-		return 0;
+		return dao.couponDelete(coupon);
+	}
+	
+	public int couponUse(Coupon coupon) throws Exception{
+		coupon.setUse("O");
+		return dao.couponUse(coupon);
+	}
+	public int couponCancel(Coupon coupon) throws Exception{
+		coupon.setUse("X");
+		return dao.couponUse(coupon);
 	}
 }

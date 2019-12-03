@@ -13,7 +13,7 @@
   <table class="table table-hover">
     <thead>
       <tr>
-        <th><input type="checkbox" id="checkAll">
+        <th><input type="checkbox" id="checkAll"></th>
         <th>ID</th>
         <th>상품번호</th>
         <th>상품정보</th>
@@ -31,7 +31,7 @@
         <td>${wish.id }</td>
         <td>${wish.pro_num }</td>
         <td>${wish.pro_info }</td>
-        <td><input type="hidden" class="del${i.index }" value="${wish.price }">${wish.price }원</td>
+        <td>${wish.price }원</td>
         <td>${wish.price_point } 포인트</td>
         <td>${wish.delivery }</td>
         <td>${wish.delivery_cost }원</td>
@@ -54,40 +54,16 @@
   <button type="button" id="wishDel" class="btn btn-danger">삭제</button>
 </div>
 <script type="text/javascript">
-var check = 0;
+var check = false;
 $("#checkAll").click(function() {
-	if (check%2 == 0) {
+	if (check == false) {
 	$(".wishCheck").prop("checked","true");
-	check = 1;		
+	check = true;
 	}else{
 		$(".wishCheck").prop("checked","");
-		check= 0;
+		check= false;
 	}
 });
-
-$("#wishDel").click(function() {
-	for (var i = 0; i < ${wishList.size()}; i++) {
-		if ($(".wish"+i).prop("checked") == true) {
-			$.ajax({
-				type	: "POST",
-				url		: "wishListDelete",
-				data	: {
-					id : "${member.id}",
-					wish_num : $(".wish"+i).val(),
-					price : $(".del"+i).val()
-				},
-				success	: function(data) {
-					if (data == 1) {
-					location.reload();
-					}else{
-						alert("다시 시도하세요.")
-					}
-				} 
-			});
-		}
-	}
-});
-
 
 $(".wishCheck").click(function() {
 	var all = 0;
@@ -97,12 +73,51 @@ $(".wishCheck").click(function() {
 		}
 	}
 	if (all == ${wishList.size()}) {
-		console.log(all);
 		$("#checkAll").prop("checked","true");
+		check = true;
 	}else{
 		$("#checkAll").prop("checked","");
+		check = false;
+		console.log(check);
 	}
 });
+
+$("#wishDel").click(function() {
+	
+jQuery.ajaxSettings.traditional = true;
+	
+		for (var i = 0; i < ${wishList.size()}; i++) {
+			
+			var num = new Array();
+			var index = 0;
+			for (var i = 0; i < ${wishList.size()}; i++) {
+				if ($(".wish"+i).prop("checked") == true) {
+				num[index] = $(".wish"+i).val();
+				index++;
+					}
+				} 
+			
+			}
+		
+		$.ajax({
+			type	: "POST",
+			url		: "wishListDelete",
+			data	: {
+				id : "${member.id}",
+				num : num
+				
+			},
+			success	: function(data) {
+				if (data == 1) {
+					location.reload();
+					}else{
+						alert("다시 시도하세요.")
+					}
+			}
+		});
+	
+});
+
 
 
 </script>

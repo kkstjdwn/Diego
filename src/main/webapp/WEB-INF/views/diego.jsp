@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -47,7 +47,7 @@
 	<br>
 	<br>
 	<h1>ORDER</h1>
-	<a href="${pageContext.request.contextPath}/member/memberManage/orderInser">OI</a>
+	<a href="${pageContext.request.contextPath}/member/memberManage/orderInsert">OI</a>
 	<br>
 	<a href="${pageContext.request.contextPath}/member/memberManage/orderSeleet">OS</a>
 	<br>
@@ -59,6 +59,8 @@
 	<br>
 	<br>
 	<h1>COUPON</h1>
+	<a href="${pageContext.request.contextPath}/member/memberManage/couponMaker">CM</a>
+	<br>
 	<a href="${pageContext.request.contextPath}/member/memberManage/couponInsert">CI</a>
 	<br>
 	<a href="${pageContext.request.contextPath}/member/memberManage/couponSelect">CS</a>

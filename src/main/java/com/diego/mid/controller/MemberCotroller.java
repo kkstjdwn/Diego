@@ -79,7 +79,6 @@ public class MemberCotroller {
 	public ModelAndView memberUpdate(MemberVO memberVO, HttpSession session) throws Exception{
 		
 		ModelAndView mv = new ModelAndView();
-		System.out.println("들어오니");
 		int result = service.memberUpdate(memberVO);
 		if (result>0) {
 			session.setAttribute("member", memberVO);

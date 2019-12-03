@@ -8,8 +8,7 @@
 </head>
 <body>
 <div class="container">
-  <h2>Hover Rows</h2>
-  <p>The .table-hover class enables a hover state on table rows:</p>            
+  <h2>Hover Rows</h2>            
   <table class="table table-hover">
     <thead>
       <tr>

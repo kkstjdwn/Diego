@@ -58,13 +58,18 @@ public class MemberManegeDAO {
 		return sql.selectList(ORDER+"orderList");
 	}
 	
-	public int orderDelete(Orders orders) throws Exception{
-		return sql.delete(ORDER+"orderDelete",orders);
+	public int orderCancel(Orders orders) throws Exception{
+		return sql.delete(ORDER+"orderCancel",orders);
+	}
+	
+	public int orderUpdate(Orders orders) throws Exception{
+		return sql.update(ORDER+"orderUpdate",orders);
 	}
 	
 	public int pointInsert(Point point) throws Exception{
 		return sql.insert(POINT+"pointInsert",point);
 	}
+	
 	
 	public List<Point> pointMyList(Point point) throws Exception{
 		return sql.selectList(POINT+"pointMyList",point);
@@ -97,6 +102,10 @@ public class MemberManegeDAO {
 	
 	public int couponDelete(Coupon coupon) throws Exception{
 		return sql.delete(COUPON+"couponDelete",coupon);
+	}
+	
+	public int couponUse(Coupon coupon) throws Exception{
+		return sql.update(COUPON+"couponUse",coupon);
 	}
 	
 	

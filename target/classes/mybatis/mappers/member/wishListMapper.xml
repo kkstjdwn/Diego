@@ -6,16 +6,10 @@
   
   <insert id="wishListInsert" parameterType="wishlist">
   	
-  	insert into wishlist(wish_num, image, id, pro_num, pro_info, price, price_point, delivery_cost,sum_price)
-  	values(wish_seq.nextval,#{image}, #{id}, #{pro_num}, #{pro_info}, #{price}, #{price_point}, #{delivery_cost},#{sum_price})
+  	insert into wishlist(wish_num, image, id, pro_num, pro_info, price, price_point, delivery_cost)
+  	values(wish_seq.nextval,#{image}, #{id}, #{pro_num}, #{pro_info}, #{price}, #{price_point}, #{delivery_cost})
   	
   </insert>
-  
-  <select id="wishListGetSum" parameterType="wishlist" resultType="Integer">
-  	
-  	select sum_price from wishlist where wish_num = (select max(wish_num) from wishlist where id = #{id})
-  	
-  </select>
   
   
   <select id="wishListSelectList" parameterType="wishlist" resultType="wishlist">
@@ -29,12 +23,6 @@
   	delete wishlist where wish_num = #{wish_num}
   
   </delete>
-  
-  <update id="wishListSetSum" parameterType="wishlist">
-  
-  update wishlist set sum_price = #{sum_price} where wish_num = (select max(wish_num) from wishlist where id=#{id})
-  
-  </update>
-  
+
   
   </mapper>

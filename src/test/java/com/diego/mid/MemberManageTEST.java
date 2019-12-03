@@ -21,10 +21,10 @@ public class MemberManageTEST extends TestAbstractCase {
 		Coupon coupon = new Coupon();
 		coupon.setCoup_num(2);
 		coupon.setId("coo");
-		coupon.setDeadline("19-12-29");
+		//coupon.setDeadline("19-12-29");
 		coupon.setDiscount("70%");
 		coupon.setSales_value(0.3);
-		coupon.setName("12월맞이");
+		//coupon.setName("12월맞이");
 //		for (int i = 0; i < 10; i++) {			
 //			assertEquals(1, dao.couponInsert(coupon));
 //			Thread.sleep(500);

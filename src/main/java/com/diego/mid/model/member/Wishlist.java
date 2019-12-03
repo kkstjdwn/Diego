@@ -16,7 +16,6 @@ public class Wishlist {
 	private Integer price_point;
 	private String delivery;
 	private String delivery_cost;
-	private Integer sum_price;
 	
 	
 
@@ -80,12 +79,7 @@ public class Wishlist {
 	public void setDelivery_cost(String delivery_cost) {
 		this.delivery_cost = delivery_cost;
 	}
-	public Integer getSum_price() {
-		return sum_price;
-	}
-	public void setSum_price(Integer sum_price) {
-		this.sum_price = sum_price;
-	}
+
 	
 	
 	

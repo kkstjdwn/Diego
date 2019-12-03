@@ -7,12 +7,12 @@
   	
   	<insert id="couponInsert" parameterType="coupon">
   	
-  		insert into coupon(coup_num,id,name,discount,deadline,sales_value)
-  			values(coupon_seq.nextval, #{id}, #{name}, #{discount}, #{deadline}, #{sales_value})
+  		insert into coupon(coup_num,id,coup_name,discount,deadline,sales_value,coup_date,use)
+  			values(coupon_seq.nextval, #{id}, #{coup_name}, #{discount}, '20/01/01', #{sales_value}, sysdate, 'X')
   	
   	</insert>
   	
-  	<select id="counponSelect" parameterType="coupon" resultType="coupon">
+  	<select id="couponSelect" parameterType="coupon" resultType="coupon">
   	
   		select * from coupon where coup_num = #{coup_num}
   		
@@ -20,16 +20,22 @@
   	
   	<select id="couponMyList" parameterType="coupon" resultType="coupon">
   	
-  		select * from coupon where id=#{id} order by coup_num desc
+  		select * from coupon where id=#{id} and use='X' order by coup_num desc
   	
   	</select>
   	
   	<select id="couponList" resultType="coupon">
-  		select * from coupon order by coup_num desc
+  		select * from coupon where id='admin' order by coup_num desc
   	</select>
   	
   	<delete id="couponDelete" parameterType="coupon">
   		delete coupon where coup_num = #{coup_num}
   	</delete>
+  	
+  	<update id="couponUse" parameterType="coupon">
+  		
+  		update coupon set use = #{use} where coup_num = #{coup_num}
+  		
+  	</update>
   
   </mapper>
