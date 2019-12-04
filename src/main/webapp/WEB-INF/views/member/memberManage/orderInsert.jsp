@@ -68,11 +68,13 @@
       <select class="form-control getSum" id="coupon">
       <option value="1">사용할 쿠폰을 선택하세요</option>
       <c:forEach items="${couponList }" var="coupon" varStatus="i">
-        <option value="${coupon.sales_value }">${coupon.coup_name } (${coupon.discount }%)</option>
+        <option id="${coupon.coup_num}" value="${coupon.sales_value}">${coupon.coup_name } (${coupon.discount }%)</option>
       </c:forEach>
       </select>
     </div>
   </div>
+  <!-- hidden   -->
+  <input type="hidden" name="coup_num" id="param">
   <div class="form-group">
     <label class="control-label col-sm-2">주문금액</label>
     <div class="col-sm-10">

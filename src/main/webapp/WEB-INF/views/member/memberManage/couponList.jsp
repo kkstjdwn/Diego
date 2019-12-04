@@ -70,10 +70,10 @@
 			success	: function(data) {
 				data = data.trim();
 				if (data == 1) {
-					alert("성공");
+					alert("발급 되었습니다.");
 					location.reload();
 				}else{
-					alert("실패");
+					alert("이미 발급 받으셨습니다.");
 				}
 			}
 		});

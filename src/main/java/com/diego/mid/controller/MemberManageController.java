@@ -317,7 +317,7 @@ public class MemberManageController {
 		ModelAndView mv = new ModelAndView();
 		String msg	 = "실패";
 		String path = "/mid/diego";
-		int result =service.couponInsert(coupon);
+		int result =service.couponMaker(coupon);
 		if (result > 0) {
 			msg = "성공";
 			path = "/mid/member/memberManage/couponList";
@@ -345,7 +345,18 @@ public class MemberManageController {
 		MemberVO vo = (MemberVO)session.getAttribute("member");
 		coupon = service.couponSelect(coupon);
 		coupon.setId(vo.getId());
-		mv.addObject("msg", service.couponInsert(coupon));
+		List<Coupon> ar = service.couponMyList(coupon);
+		boolean check = true;
+		for (Coupon coupon2 : ar) {
+			if (coupon2.getCoup_name().equals(coupon.getCoup_name())) {
+				check = false;
+			}
+		}
+		int msg = 0;
+		if (check) {
+			msg = service.couponInsert(coupon);
+		}
+		mv.addObject("msg", msg);
 		mv.setViewName("common/common_ajax_result");
 		return mv;
 	}

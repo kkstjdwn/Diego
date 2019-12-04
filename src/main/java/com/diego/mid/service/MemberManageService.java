@@ -92,6 +92,12 @@ public class MemberManageService {
 		return dao.pointSelect(point);
 	}
 	
+	public int couponMaker(Coupon coupon) throws Exception{
+		double discount = Integer.parseInt(coupon.getDiscount());
+		coupon.setSales_value((100-discount)/100);
+		return dao.couponInsert(coupon);
+	}
+	
 	public int couponInsert(Coupon coupon) throws Exception{
 		double discount = Integer.parseInt(coupon.getDiscount());
 		coupon.setSales_value((100-discount)/100);
