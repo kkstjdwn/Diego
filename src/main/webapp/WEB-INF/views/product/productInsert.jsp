@@ -18,10 +18,8 @@
 				<label for="cat_ref">Category Choice</label>
 			</div>
 
-			<div id="options">
-
-				<div class="form-grop" title="parent">
-
+		
+		
 					<div class="form-group">
 
 						<select id="cloth">
@@ -40,9 +38,9 @@
 						</select>
 					</div>
 
-				</div>
+				
 
-			</div>
+		
 
 			<!--한칸 띄우기 -->
 			<br>
@@ -56,7 +54,7 @@
 
 			<div class="form-group">
 				<label for="pro_price">Product Price:</label> 
-				<input type="text"
+				<input type="number"
 					class="form-control" id="pro_price" name="pro_price"
 					placeholder="Product Price Enter">
 			</div>
@@ -81,34 +79,33 @@
 			</div>
 
 
-			<div class="form-group color" style="display: block">
-				<label for="color">Product Color:</label> 
-				<input type="color" id="color" name="color" placeholder="Product Color Enter" >
-
-			</div>
-
-
-			<div class="form-group size" style="display: none">
-				<label for="pro_size">Product Size:</label> <select name="pro_size">
-					<option value="">사이즈를 선택하세요</option>
-					<option value="Small">Small</option>
-					
-					<option value="Medium">Medium</option>
-					<option value="Large">Large</option>
-					<option value="X-Large">X-Large</option>
-					<option value="XX-Large">XX-Large</option>
-				</select>
-
+			
+			<input type="button" class="btn btn-default" id="btnOp" value="Add Option">
+			
+			<div id="options">
+					<div class="form-group" title="parent" >
+						<div class="op">
+							<select class="option" name="opt1" id="opt1" title="opt1">
+								<option value="size">size</option>
+								<option value="color">color</option>
+								<option value="vital">필수옵션</option>
+							</select>
+						</div>
+				
+						<div class="op_val">
+							<select name="opt1_val" id="opt1_val">
+								<option value="Small">Small</option>
+								<option value="Medium">Medium</option>
+								<option value="Large">Large</option>
+								<option value="XLarge">XLarge</option>
+							</select>
+						</div>
+							
+					<button class="btn btn-danger" id="od">option delete</button>	
+				</div>
+				
 			</div>
 			
-			<div class="form-group bag">
-				<label for="pro_warning">Product Warning:</label>
-				<textarea type="text" id="pro_warning" name="pro_warning"
-					placeholder="Product Warning Enter">입력하시오.</textarea>
-			</div>
-
-
-
 
 			<button class="btn btn-primary px-3">상품 추가</button>
 
@@ -119,7 +116,13 @@
 
 	<script type="text/javascript">
 	<!------------------------------ AJAX 자바스크립트방식 ----------------------- -->
-		$("#cloth").change(function() {
+			var options=$('#options').html();
+			$('options').empty();
+			var count=0;
+			var index=0;
+	
+			//카테고리 ajax
+			$("#cloth").change(function() {
 
 			//1. XMLHttpRequest 객체 생성
 			var xmlhttp;
@@ -145,9 +148,9 @@
 
 			}
 
-			
-
 		});
+			
+			
 
 		//섬머노트
 		$("#pro_contents").summernote({
@@ -160,12 +163,59 @@
 
 		});
 
-	
-
-
 		
-		//color는 기본적으로 null값이 없기 때문에 input 컬러타입을 text로바꿔주자. 그럼 null가겟지? 빈칸이면
+		
+		//color는 기본적으로 null값이 없기 때문에 input 컬러타입을 text로바꿔주자. 그럼 null이 가겟지? 빈칸이면
+		
+		//필수옵션 추가
+		$('#btnOp').click(function() {
+			if(count<2){
+				$('#options').append(options);
 				
+				count++;
+			}else{
+				alert("3개이상금지");
+			}
+			
+		});		
+		
+		//필수옵션 삭제
+		$('#options').on("click","#od",function(){
+			
+			$(this).parents(".form-group").remove();
+			count--;
+			
+		});
+		
+		
+// 		//필수옵션 ajax
+// 	$('#opt1').change(function() {
+
+// 		var opt1 = $('#opt1').val();
+		
+// 		$.post("selectSize", {opt1: opt1} , function(data) {
+			
+// 			$('#')
+			
+// 		});
+		
+		
+		
+// 		$.ajax({
+// 			type : "get",
+// 			url   : "selectSize",
+// 			data : {
+// 				title : $('#opt1').prop('title'),
+// 				opt1 : $('#opt1').val()
+// 			}, 
+// 			success:function(data){
+// 				$('#opt1_val').html(data);
+				
+// 			}	
+
+//		});
+		
+		
 		
 	</script>
 
