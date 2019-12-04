@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   <mapper namespace="productMapper">
   
-  
+  <!--insert  -->
   <insert id="productInsert" parameterType="ProductVO">
   
   		insert into product(pro_num, cat_ref, pro_name, pro_price, pro_count,  pro_date, pro_contents, pro_warning, color, pro_size) 
@@ -12,6 +12,16 @@
  	
  </insert>
   
+  <!--delete  -->
+  <delete id="productDelete" parameterType="Integer">
+  		delete product where pro_num=#{pro_num}
+  
+  </delete>
+  
+  <!--list  -->
+  <select id="productList" parameterType="" resultType="">
+  	
+  </select>
   
   
   </mapper>

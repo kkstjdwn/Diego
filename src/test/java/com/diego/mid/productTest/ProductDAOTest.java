@@ -15,6 +15,7 @@ public class ProductDAOTest extends TestAbstractCase{
 	@Inject
 	private ProductDAO productDAO;
 		
+	//insert
 	@Test
 	public void productInsertTest()throws Exception {
 	
@@ -34,8 +35,22 @@ public class ProductDAOTest extends TestAbstractCase{
 			
 			int result = productDAO.productInsert(productVO);
 			
-			assertEquals(1, result);
+			assertEquals(1, result);//성공
 			
 	}
 
+	
+	//delete
+	//@Test
+	public void productDeleteTest()throws Exception {
+		
+		ProductVO productVO = new ProductVO();
+		
+		productVO.setPro_num(1);
+		
+		int result = productDAO.productDelete(productVO);
+		
+		assertEquals(1, result);
+		
+}
 }

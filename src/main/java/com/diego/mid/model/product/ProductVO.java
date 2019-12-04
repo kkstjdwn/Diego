@@ -15,6 +15,8 @@ public class ProductVO {
 	private String pro_warning;//상품 주의사항
 	private String color;//상품 컬러
 	private String pro_size;//상품사이즈
+	
+	
 	public Integer getPro_num() {
 		return pro_num;
 	}
