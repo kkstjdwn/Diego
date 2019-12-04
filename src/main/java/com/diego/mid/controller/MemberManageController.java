@@ -128,7 +128,7 @@ public class MemberManageController {
 		}
 		mv.addObject("result", msg);
 		mv.addObject("path", path);
-		mv.setViewName("common/common_result");
+		mv.setViewName("common/common_msg");
 		return mv;
 	}
 	
@@ -229,7 +229,7 @@ public class MemberManageController {
 		}
 		mv.addObject("result", msg);
 		mv.addObject("path", path);
-		mv.setViewName("common/common_result");
+		mv.setViewName("common/common_msg");
 		return mv;
 	}
 	
@@ -310,7 +310,7 @@ public class MemberManageController {
 		}
 		mv.addObject("result", msg);
 		mv.addObject("path", path);
-		mv.setViewName("common/common_result");
+		mv.setViewName("common/common_msg");
 		
 		
 		return mv;
@@ -357,7 +357,7 @@ public class MemberManageController {
 		}
 		mv.addObject("result", msg);
 		mv.addObject("path", path);
-		mv.setViewName("common/common_result");
+		mv.setViewName("common/common_msg");
 		
 		return mv;
 		
