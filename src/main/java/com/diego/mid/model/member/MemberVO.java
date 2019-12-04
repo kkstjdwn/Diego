@@ -127,13 +127,13 @@ public class MemberVO {
 	}
 
 	public Date getAd_birth() {
-		if (this.ad_birth== null) {
-			this.ad_birth = new Date(Calendar.getInstance().getTimeInMillis());
-			//ad_birth = (Date)Calendar.getInstance().getTime();
-		}
-		return ad_birth;
-	}
 
+	      if (this.ad_birth== null) {
+	         this.ad_birth = new Date(Calendar.getInstance().getTimeInMillis());
+	         
+	      }
+	      return ad_birth;
+	   }
 	public void setAd_birth(Date ad_birth) {
 		this.ad_birth = ad_birth;
 	}
