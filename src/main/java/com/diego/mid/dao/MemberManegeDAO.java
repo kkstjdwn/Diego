@@ -1,12 +1,9 @@
 package com.diego.mid.dao;
 
 import java.util.List;
-
 import javax.inject.Inject;
-
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
-
 import com.diego.mid.model.member.Coupon;
 import com.diego.mid.model.member.Orders;
 import com.diego.mid.model.member.Point;
@@ -40,6 +37,10 @@ public class MemberManegeDAO {
 	
 	public Integer wishListSetSum(Wishlist wishlist) throws Exception{
 		return sql.update(WISHLIST+"wishListSetSum",wishlist);
+	}
+	
+	public int getOrderNum() throws Exception{
+		return sql.selectOne(ORDER+"getOrderNum");
 	}
 	
 	public int orderInsert(Orders orders) throws Exception{
@@ -83,6 +84,9 @@ public class MemberManegeDAO {
 		return sql.selectOne(POINT+"pointSelect",point);
 	}
 	
+	public Point pointCalcel(Point point) throws Exception{
+		return sql.selectOne(POINT+"pointCancel",point);
+	}
 	
 	public int couponInsert(Coupon coupon) throws Exception{
 		return sql.insert(COUPON+"couponInsert",coupon);

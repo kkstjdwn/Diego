@@ -36,12 +36,17 @@ public class MemberManageService {
 		return dao.wishListDelete(wishlist);
 	}
 	
-	public int orderInsert(Orders orders,HttpSession session) throws Exception{
+	public Orders orderInsert(Orders orders,HttpSession session) throws Exception{
+		orders.setOrder_num(dao.getOrderNum());
 		if (orders.getFname() !=null) {
 			orders.setImage(saver.save(session.getServletContext().getRealPath("/resources/product/orders"), orders.getFname()));
 		}
 		orders.setOrder_sum(orders.getPro_count()*orders.getPrice());
-		return dao.orderInsert(orders);
+		int result = dao.orderInsert(orders); 
+		if (result > 0) {
+			return orders;
+		}
+		return null;
 	}
 	
 	public Orders orderSelect(Orders orders) throws Exception{
@@ -90,6 +95,10 @@ public class MemberManageService {
 	
 	public Point pointSelect(Point point) throws Exception{
 		return dao.pointSelect(point);
+	}
+	
+	public Point pointCancel(Point point) throws Exception{
+		return dao.pointCalcel(point);
 	}
 	
 	public int couponMaker(Coupon coupon) throws Exception{

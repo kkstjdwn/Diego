@@ -17,6 +17,7 @@ public class Orders {
 	private String order_result;
 	private String order_status;
 	private Integer order_sum;
+	private Integer coup_num;
 	
 	
 	public MultipartFile getFname() {
@@ -99,6 +100,12 @@ public class Orders {
 	}
 	public void setOrder_sum(Integer order_sum) {
 		this.order_sum = order_sum;
+	}
+	public Integer getCoup_num() {
+		return coup_num;
+	}
+	public void setCoup_num(Integer coup_num) {
+		this.coup_num = coup_num;
 	}
 	
 	

@@ -196,12 +196,34 @@ public class MemberManageController {
 	}
 	
 	@PostMapping("orderInsert")
-	public ModelAndView orderInsert(Orders orders,HttpSession session) throws Exception{
+	public ModelAndView orderInsert(Orders orders,HttpSession session,Coupon coupon, Point point) throws Exception{
 		ModelAndView mv = new ModelAndView();
-		int result = service.orderInsert(orders, session);
+		orders = service.orderInsert(orders, session);
+		point.setOrder_num(orders.getOrder_num());
+		point.setContents(orders.getPro_info());
+		
+		int result = 0;
+		int pInsert = service.pointInsert(point);
+		int cUse = service.couponUse(coupon);
+		
+		if (pInsert==1 && cUse == 1) {
+			result = 1;
+		}else if(pInsert == 1 && cUse != 1) {
+			cUse = service.couponCancel(coupon);
+		}else if (pInsert != 1 && cUse == 1) {
+			point.setContents("주문실패");
+			pInsert = service.pointUse(point);
+		}else {
+			cUse = service.couponCancel(coupon);
+			point.setContents("주문실패");
+			pInsert = service.pointUse(point);
+		}
+		
+		
 		String msg	 = "실패";
 		String path = "#";
 		if (result > 0) {
+			
 			msg = "성공";
 			path = "/mid/diego";
 		}
@@ -239,10 +261,21 @@ public class MemberManageController {
 	@PostMapping("orderCancel")
 	public ModelAndView orderCancel(Orders orders,HttpSession session) throws Exception{
 		ModelAndView mv = new ModelAndView();
+		Coupon coupon = new Coupon();
+		Point point = new Point();
 		int result=0;
 		MemberVO vo = (MemberVO)session.getAttribute("member");
+		orders = service.orderSelect(orders);
 		if (orders.getId().equals(vo.getId())) {
 			result = service.orderCancel(orders);
+		}
+		if (result > 0) {
+			coupon.setCoup_num(orders.getCoup_num());
+			result = service.couponCancel(coupon);
+			point.setOrder_num(orders.getOrder_num());
+			point = service.pointCancel(point);
+			point.setContents("주문 취소");
+			result = service.pointUse(point);
 		}
 		mv.addObject("msg", result);
 		mv.setViewName("common/common_ajax_result");

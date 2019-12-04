@@ -32,7 +32,8 @@
 		<div class="form-group">
 			<label class="control-label col-sm-2" for="total_point">total point</label>
 			<div class="col-sm-10">
-				<input type="text" class="form-control" id="total_point" value="${point.total_point }" readonly="readonly">
+				<input type="text" class="form-control" id="total_point" value="0" readonly="readonly">
+				<input type="hidden" class="form-control" id="order_num" value="999" name="order_num">
 			</div>
 		</div>
 		<div class="form-group">
@@ -52,7 +53,8 @@
 					id			:	$("#id").val(),
 					point_value	:	$("#point_value").val(),
 					contents 	:	$("#contents").val(),
-					total_point	:	$("#total_point").val()
+					total_point	:	$("#total_point").val(),
+					order_num	: 	$("#order_num").val()
 			},
 			success: function(data) {
 				data = data.trim();

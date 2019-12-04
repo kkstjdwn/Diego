@@ -8,6 +8,7 @@ public class Point {
 	private Date point_date;
 	private String contents;
 	private Integer total_point; 
+	private Integer order_num;
 	
 	public String getId() {
 		return id;
@@ -41,6 +42,12 @@ public class Point {
 	}
 	public void setTotal_point(Integer total_point) {
 		this.total_point = total_point;
+	}
+	public Integer getOrder_num() {
+		return order_num;
+	}
+	public void setOrder_num(Integer order_num) {
+		this.order_num = order_num;
 	}
 	
 }

@@ -53,13 +53,13 @@
     <div class="form-group">
     <label class="control-label col-sm-2" >보유 POINT</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" value="${point.total_point }" readonly="readonly">
+      <input type="text" class="form-control" value="${point.total_point }" readonly="readonly" id="total" name="total_point">
     </div>
   </div>
       <div class="form-group">
     <label class="control-label col-sm-2" for="point">사용 POINT</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control getSum" id="point" placeholder="사용할 포인트를 입력하세요" name="${point.point_value }">
+      <input type="text" class="form-control getSum" id="point" placeholder="사용할 포인트를 입력하세요" name="point_value">
     </div>
   </div>
     <div class="form-group">
@@ -68,17 +68,17 @@
       <select class="form-control getSum" id="coupon">
       <option value="1">사용할 쿠폰을 선택하세요</option>
       <c:forEach items="${couponList }" var="coupon" varStatus="i">
-        <option id="${coupon.coup_num}" value="${coupon.sales_value}">${coupon.coup_name } (${coupon.discount }%)</option>
+        <option value="${coupon.sales_value}" title="${coupon.coup_num }" class="opt">${coupon.coup_name } (${coupon.discount }%)</option>
       </c:forEach>
       </select>
     </div>
   </div>
-  <!-- hidden   -->
-  <input type="hidden" name="coup_num" id="param">
+  <!-- hidden 그룹 @@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+  <input type="hidden" value="" id="param" name="coup_num">
   <div class="form-group">
     <label class="control-label col-sm-2">주문금액</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" id="sum" placeholder="총 주문 금액" readonly="readonly">
+      <input type="text" class="form-control" id="sum" placeholder="총 주문 금액" readonly="readonly" value="50000">
     </div>
   </div>
   <div class="form-group">
@@ -88,10 +88,15 @@
   </div>
 </form>
 <script type="text/javascript">
+	var check = false;
 	$(".getSum").change(function () {
 		var point = 0;
-		if ($("#point").val() != "") {
-			point = $("#point").val();			
+		if ($("#point").val()*1 > $("#total").val()*1) {
+			alert("양심이 없으세요?");
+			$("#point").prop("value",0);
+			$("#point").focus();
+		}else{
+			point = $("#point").val();
 		}
 		var coupon = 1;
 		if ($("#coupon").val() != "") {
@@ -108,11 +113,22 @@
 			price = $("#price").val();
 		}
 		
+		if ((price*count-point)*coupon < 0) {
+			alert("안돼");
+			$("#sum").prop("value",price*count);
+		}else{
+			$("#sum").prop("value",price*count*coupon-point);
+		}
 		
-		console.log(point);
-		console.log(coupon);
-		$("#sum").prop("value",(price*count-point)*coupon);
-		
+	});
+	
+	
+	$("#coupon").change(function() {
+		$(".opt").each(function(f) {
+			if ($(this).prop("selected")) {
+				$("#param").prop("value",$(this).prop("title"));
+			}
+		});
 	});
 
 
