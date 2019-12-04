@@ -5,17 +5,19 @@
 <head>
 <meta charset="UTF-8">
 
-<title>ALERT</title>
+<title>Insert title here</title>
 </head>
 <body>
-<c:import url="../layout/bootStrap.jsp"/>
+
 <script type="text/javascript">
-	var result = "${result }";
-	var path = "${path }";
+		
+		
+	 alert('${msg}');
+	 location.href="${path}";
+		
+		
+		
+		</script>
 
-	alert(result);
-	location.href = path;
-
-</script>
 </body>
 </html>
