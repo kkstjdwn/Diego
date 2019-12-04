@@ -144,15 +144,7 @@
 
 			}
 
-			if ($(this).val() == 100) {
-				$(".color").css("display", "block");
-				$(".size").css("display", "none");
-
-			} else {
-				$(".color").css("display", "none");
-				$(".size").css("display", "none");
-
-			}
+			
 
 		});
 
@@ -169,12 +161,7 @@
 
 	
 
-		$("#options").on("change","#kinds", function() {
-			
-			alert($().val());
-		});
-		
-		
+
 		
 		//color는 기본적으로 null값이 없기 때문에 input 컬러타입을 text로바꿔주자. 그럼 null가겟지? 빈칸이면
 				

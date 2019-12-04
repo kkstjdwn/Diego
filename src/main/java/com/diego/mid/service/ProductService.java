@@ -20,9 +20,9 @@ public class ProductService {
 		
 	}
 	
-	//Delete
-	public  int productDelete(ProductVO productVO)throws Exception {
-		
-		return productDAO.productDelete(productVO);
-	}
+//	//Delete
+//	public  int productDelete(ProductVO productVO)throws Exception {
+//		
+//		return productDAO.productDelete(productVO);
+//	}
 }

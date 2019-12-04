@@ -13,7 +13,7 @@ public class sqlSessionTest extends TestAbstractCase {
 	@Inject
 	private SqlSession session;
 	
-	//@Test
+	@Test
 	public void test() {
 		assertNotNull(session);
 	}

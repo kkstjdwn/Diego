@@ -20,18 +20,20 @@ public class ProductDAOTest extends TestAbstractCase{
 	public void productInsertTest()throws Exception {
 	
 			ProductVO productVO = new ProductVO();
-			
+			System.out.println("@@TEST1@@");
 			
 			productVO.setCat_ref(301);
-			productVO.setColor("black");
-			productVO.setPro_contents("검은셔츠입니다.");
-			productVO.setPro_count(40);
-			productVO.setPro_name("린넨셔츠");
-			productVO.setPro_price("45000원");
-			productVO.setPro_sale(20);
-			productVO.setPro_size("95");
+			productVO.setPro_name("t1");
+			productVO.setPro_price(50);
+			productVO.setPro_count(50);
+			productVO.setPro_contents("test");
 			productVO.setPro_warning("드라이세탁만가능");
-			
+			productVO.setOpt1("t1");
+			productVO.setOpt1_val("t1");
+			productVO.setOpt2("t2");	
+			productVO.setOpt2_val("t2");
+			productVO.setOpt3("t3");
+			productVO.setOpt3_val("t3");
 			
 			int result = productDAO.productInsert(productVO);
 			
@@ -42,15 +44,15 @@ public class ProductDAOTest extends TestAbstractCase{
 	
 	//delete
 	//@Test
-	public void productDeleteTest()throws Exception {
-		
-		ProductVO productVO = new ProductVO();
-		
-		productVO.setPro_num(1);
-		
-		int result = productDAO.productDelete(productVO);
-		
-		assertEquals(1, result);
-		
-}
+//	
+//		public void productDeleteTest()throws Exception {
+//		
+//		ProductVO productVO = new ProductVO();
+//		
+//		productVO.setPro_num(1);
+//		
+//		int result = productDAO.productDelete(productVO);
+//		
+//		assertEquals(1, result);
+//}
 }

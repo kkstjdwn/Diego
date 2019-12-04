@@ -7,14 +7,18 @@ public class ProductVO {
 	private Integer pro_num;
 	private Integer cat_ref;//카테코리ref ex: 셔츠면 101 맨투맨이면 102
 	private String pro_name;//상품이름
-	private String pro_price;//상품가격
+	private Integer pro_price;//상품가격
 	private Integer pro_count;//상품재고량
 	private Integer pro_sale;//상품판매개수
 	private Date pro_date;//상품올린날짜
 	private String pro_contents;//상품 상세내용
 	private String pro_warning;//상품 주의사항
-	private String color;//상품 컬러
-	private String pro_size;//상품사이즈
+	private String opt1;//상품옵션1 추가하고싶을때마다 옵을 추가 최대 opt3까지
+	private String opt1_val;
+	private String opt2;
+	private String opt2_val;
+	private String opt3;
+	private String opt3_val;
 	
 	
 	public Integer getPro_num() {
@@ -23,17 +27,22 @@ public class ProductVO {
 	public void setPro_num(Integer pro_num) {
 		this.pro_num = pro_num;
 	}
-	
+	public Integer getCat_ref() {
+		return cat_ref;
+	}
+	public void setCat_ref(Integer cat_ref) {
+		this.cat_ref = cat_ref;
+	}
 	public String getPro_name() {
 		return pro_name;
 	}
 	public void setPro_name(String pro_name) {
 		this.pro_name = pro_name;
 	}
-	public String getPro_price() {
+	public Integer getPro_price() {
 		return pro_price;
 	}
-	public void setPro_price(String pro_price) {
+	public void setPro_price(Integer pro_price) {
 		this.pro_price = pro_price;
 	}
 	public Integer getPro_count() {
@@ -66,24 +75,44 @@ public class ProductVO {
 	public void setPro_warning(String pro_warning) {
 		this.pro_warning = pro_warning;
 	}
-	public String getColor() {
-		return color;
+	public String getOpt1() {
+		return opt1;
 	}
-	public void setColor(String color) {
-		this.color = color;
+	public void setOpt1(String opt1) {
+		this.opt1 = opt1;
 	}
-	public String getPro_size() {
-		return pro_size;
+	public String getOpt1_val() {
+		return opt1_val;
 	}
-	public void setPro_size(String pro_size) {
-		this.pro_size = pro_size;
+	public void setOpt1_val(String opt1_val) {
+		this.opt1_val = opt1_val;
 	}
-	public Integer getCat_ref() {
-		return cat_ref;
+	public String getOpt2() {
+		return opt2;
 	}
-	public void setCat_ref(Integer cat_ref) {
-		this.cat_ref = cat_ref;
+	public void setOpt2(String opt2) {
+		this.opt2 = opt2;
 	}
+	public String getOpt2_val() {
+		return opt2_val;
+	}
+	public void setOpt2_val(String opt2_val) {
+		this.opt2_val = opt2_val;
+	}
+	public String getOpt3() {
+		return opt3;
+	}
+	public void setOpt3(String opt3) {
+		this.opt3 = opt3;
+	}
+	public String getOpt3_val() {
+		return opt3_val;
+	}
+	public void setOpt3_val(String opt3_val) {
+		this.opt3_val = opt3_val;
+	}
+	
+	
 	
 	
 	
