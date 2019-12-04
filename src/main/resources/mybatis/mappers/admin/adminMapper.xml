@@ -69,5 +69,10 @@
 		email=#{email},mem_rank=#{mem_rank},ad_local=#{ad_local},lev=#{lev} 
 		where id=#{id}
 	</update>
+	<!-- member Delete -->
+	<delete id="memberDelete" parameterType="memberVO">
+		delete member where id=#{id}
+	</delete>
+		
 
 </mapper>

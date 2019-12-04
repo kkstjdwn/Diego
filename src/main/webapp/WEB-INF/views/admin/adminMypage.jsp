@@ -15,6 +15,10 @@
 	<p>이름 : ${dto.admin_name}</p>
 	<p>레벨 : ${dto.lev}</p>
 	
+	
+	
+	<a href="./delivery/deliveryList" class="btn btn-danger">배송관리 페이지</a>
+	<a href="./memberList" class="btn btn-primary">회원관리 페이지</a>
 	<a href="./adminUpdate" class="btn btn-primary">회원정보 수정</a>
 	<a href="./adminDelete" class="btn btn-danger">회원 탈퇴</a>
 

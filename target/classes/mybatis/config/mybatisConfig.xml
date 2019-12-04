@@ -13,6 +13,7 @@
   		<typeAlias type="com.diego.mid.model.board.NoticeVO" alias="NoticeVO"/>
   		<typeAlias type="com.diego.mid.model.board.FAQVO" alias="FAQVO"/>
   		<typeAlias type="com.diego.mid.model.admin.AdminVO" alias="AdminVO"/>
+  		<typeAlias type="com.diego.mid.model.admin.DeliveryVO" alias="DeliveryVO"/>
   		<typeAlias type="com.diego.mid.model.board.FAQCategoryVO" alias="FAQCategoryVO"/>
   	</typeAliases>
   </configuration>
