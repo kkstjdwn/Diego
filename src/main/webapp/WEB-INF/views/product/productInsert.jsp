@@ -85,19 +85,19 @@
 			<div id="options">
 					<div class="form-group" title="parent" >
 						<div class="op">
-							<select class="option" name="opt1" id="opt1" title="opt1">
+							<select  name="opt1" id="opt1" >
 								<option value="size">size</option>
 								<option value="color">color</option>
 								<option value="vital">필수옵션</option>
 							</select>
 						</div>
 				
-						<div class="op_val">
-							<select name="opt1_val" id="opt1_val">
-								<option value="Small">Small</option>
-								<option value="Medium">Medium</option>
-								<option value="Large">Large</option>
-								<option value="XLarge">XLarge</option>
+						<div id="opt1_val">
+							<select name="opt1_val" id="opt1_vals">
+								<option value="Small">S1</option>
+								<option value="Medium">M1</option>
+								<option value="Large">L1</option>
+								<option value="XLarge">XL1</option>
 							</select>
 						</div>
 							
@@ -105,8 +105,7 @@
 				</div>
 				
 			</div>
-			
-
+		
 			<button class="btn btn-primary px-3">상품 추가</button>
 
 		</form>
@@ -119,7 +118,7 @@
 			var options=$('#options').html();
 			$('options').empty();
 			var count=0;
-			var index=0;
+			var index=1;
 	
 			//카테고리 ajax
 			$("#cloth").change(function() {
@@ -171,7 +170,7 @@
 		$('#btnOp').click(function() {
 			if(count<2){
 				$('#options').append(options);
-				
+				$('#opt1').prop('name', "opt+count+1");
 				count++;
 			}else{
 				alert("3개이상금지");
@@ -188,7 +187,69 @@
 		});
 		
 		
-// 		//필수옵션 ajax
+		//필수옵션 ajax
+		$('#opt1').change(function() {
+			
+			$.ajax({
+				type : "GET",
+				url : "selectSize",
+				data:{
+					opt1 : $('#opt1').val()
+					
+				},
+				success : function(data) {
+					
+					$('#opt1_val').html(data);
+					
+					
+				}
+				
+			});
+			
+			$.ajax({
+				type : "GET",
+				url : "selectColor",
+				data:{
+					opt1 : $('#opt1').val()
+					
+				},
+				success : function(data) {
+					
+					$('#opt1_val').html(data);
+					
+					
+				}
+				
+			});
+			
+			$.ajax({
+				type : "GET",
+				url : "selectVital",
+				data:{
+					opt1 : $('#opt1').val()
+					
+				},
+				success : function(data) {
+					
+					$('#opt1_val').html(data);
+					
+					
+				}
+				
+			});
+			
+		});
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 // 	$('#opt1').change(function() {
 
 // 		var opt1 = $('#opt1').val();
@@ -214,6 +275,9 @@
 // 			}	
 
 //		});
+		
+		
+		
 		
 		
 		

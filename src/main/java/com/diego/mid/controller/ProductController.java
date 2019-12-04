@@ -74,26 +74,18 @@ public class ProductController {
 
 	}//ajax끝
 	
-	@PostMapping("/selectSize")
-	public ModelAndView selectOption(String opt1)throws Exception{
-		
+	@RequestMapping("/select**")
+	public ModelAndView selectOption(String opt1_val)throws Exception{
 		ModelAndView mv = new ModelAndView();
-		int num=0;
-		if(opt1=="size") {
-			String [] opt1_vals = {"small","medium","large","xLarge"};
-			mv.addObject("opt1_val", opt1_vals);
-			mv.addObject("num", 1);
-			mv.setViewName("product/selectSize");
 		
+		if(opt1_val =="size") {
+			String [] opt1_vals = {"small"," medium", "large","xLarge"};
+			mv.setViewName("./product/selectSize");
+		} else if(opt1_val =="color") {
+			mv.setViewName("./product/selectColor");
+		} else if(opt1_val =="vital"){
+			mv.setViewName("./product/selectVital");
 		}
-		else if(opt1=="color"){
-		
-			mv.setViewName("product/selectColor");
-		} 
-		else{
-			mv.setViewName("product/selectVital");
-		}
-		
 		
 		return mv;
 	}

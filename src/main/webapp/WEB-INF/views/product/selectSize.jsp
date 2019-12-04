@@ -1,6 +1,6 @@
-<select name="opt${num}_val" id="opt${num}_vals">
-	<option value="Small">small</option>
-	<option value="Medium">medium</option>
-	<option value="Large">large</option>
-	<option value="XLarge">xLarge</option>
+<select name="opt1_val" id="opt1_val">
+	<option value="Small">S</option>
+	<option value="Medium">M</option>
+	<option value="Large">L</option>
+	<option value="XLarge">XL</option>
 </select>
