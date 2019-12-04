@@ -1,4 +1,4 @@
-package com.diego.mid.model;
+package com.diego.mid.model.board;
 
 import java.sql.Date;
 

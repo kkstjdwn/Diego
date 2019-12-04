@@ -1,8 +1,10 @@
-package com.diego.mid.model;
+package com.diego.mid.model.member;
 
 import java.sql.Date;
+import java.util.Calendar;
 
 public class MemberVO {
+	
 	private String id;
 
     private String pw;
@@ -27,13 +29,13 @@ public class MemberVO {
 
     private String mem_rank;
 
-    private String total_pay;
+    private Integer total_pay;
 
     private Date join_date;
 
     private String lev;
 
-	public String getId() {
+    public String getId() {
 		return id;
 	}
 
@@ -58,6 +60,9 @@ public class MemberVO {
 	}
 
 	public String getAddress_pn() {
+		if (this.address_pn==null) {
+			address_pn ="";
+		}
 		return address_pn;
 	}
 
@@ -66,6 +71,10 @@ public class MemberVO {
 	}
 
 	public String getAddress_ba() {
+		if (this.address_ba == null) {
+			address_ba = "";
+			
+		}
 		return address_ba;
 	}
 
@@ -74,6 +83,9 @@ public class MemberVO {
 	}
 
 	public String getAddress_da() {
+		if (this.address_da == null) {
+			address_da = "";
+		}
 		return address_da;
 	}
 
@@ -82,6 +94,9 @@ public class MemberVO {
 	}
 
 	public String getPhone() {
+		if (this.phone ==null) {
+			phone="";
+		}
 		return phone;
 	}
 
@@ -90,6 +105,9 @@ public class MemberVO {
 	}
 
 	public String getEmail() {
+		if (this.email ==null) {
+			email="";
+		}
 		return email;
 	}
 
@@ -98,6 +116,9 @@ public class MemberVO {
 	}
 
 	public String getEmailCheck() {
+		if (this.emailCheck ==null) {
+			emailCheck="";
+		}
 		return emailCheck;
 	}
 
@@ -106,6 +127,10 @@ public class MemberVO {
 	}
 
 	public Date getAd_birth() {
+		if (this.ad_birth== null) {
+			this.ad_birth = new Date(Calendar.getInstance().getTimeInMillis());
+			//ad_birth = (Date)Calendar.getInstance().getTime();
+		}
 		return ad_birth;
 	}
 
@@ -114,26 +139,28 @@ public class MemberVO {
 	}
 
 	public String getAd_local() {
+		if (ad_local == null) {
+			ad_local="";
+		}
 		return ad_local;
 	}
 
 	public void setAd_local(String ad_local) {
-		this.ad_local = ad_local;
+		this.ad_local = ad_local.toUpperCase();
 	}
 
 	public String getMem_rank() {
-		return mem_rank;
+		return mem_rank.toUpperCase();
 	}
 
 	public void setMem_rank(String mem_rank) {
 		this.mem_rank = mem_rank;
 	}
-
-	public String getTotal_pay() {
+	public Integer getTotal_pay() {
 		return total_pay;
 	}
 
-	public void setTotal_pay(String total_pay) {
+	public void setTotal_pay(Integer total_pay) {
 		this.total_pay = total_pay;
 	}
 
@@ -152,5 +179,7 @@ public class MemberVO {
 	public void setLev(String lev) {
 		this.lev = lev;
 	}
+	
+
 
 }
