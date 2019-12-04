@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="adminMapper">
+
+	<!-- adminJoin -->
+	<insert id="adminJoin" parameterType="AdminVO">
+		insert into admin values(#{admin_id}, #{admin_pw}, #{admin_name}, '9999')
+	</insert>
+	<!-- adminLogin -->
+	<select id="adminLogin" parameterType="AdminVO" resultType="AdminVO">
+		select * from admin where admin_id=#{admin_id} and admin_pw=#{admin_pw}
+	</select>
+	
+	
+	<!-- adminCheckId -->
+	<select id="adminCheckId" resultType="AdminVO"
+		parameterType="AdminVO">
+		select admin_id from admin where admin_id=#{admin_id}
+	</select>
+
+	<!-- adminUpdate -->
+	<update id="adminUpdate" parameterType="AdminVO">
+		update admin set admin_pw=#{admin_pw}, admin_name=#{admin_name} where
+		admin_id=#{admin_id}
+	</update>
+	<!-- adminDelete -->
+	<delete id="adminDelete" parameterType="AdminVO">
+		delete admin where admin_id=#{admin_id}
+	</delete>
+	<!-- MemberManage List -->
+	<sql id="bs">
+		<choose>
+			<when test="kind == 'kt'">
+				where id like '%'||#{search}||'%'
+			</when>
+			<when test="kind == 'kw'">
+				where name like '%'||#{search}||'%'
+			</when>
+			<when test="kind == 'kc'">
+				where mem_rank like '%'||#{search}||'%'
+			</when>
+		</choose>
+	</sql>
+	
+	<select id="memberList" parameterType="Pager" resultType="memberVO">
+		select * from
+		(select N.*, rownum R from
+		(select * from member 
+		<include refid="bs"></include>
+		order by id desc) N)
+	where R between #{startRow} and #{lastRow}
+	</select>
+	<!-- MemberCount -->
+	<select id="memberCount" resultType="Integer" parameterType="Pager">
+		select count(id) from member
+		<include refid="bs"></include>
+	</select>
+	<!-- MemberSelect  -->
+	<select id="memberSelect" parameterType="memberVO" resultType="memberVO">
+		select * from member where id=#{id}
+	</select>
+	
+	<!-- Member Update -->
+	<update id="memberUpdate" parameterType="memberVO">
+		update member set name=#{name},address_pn=#{address_pn},
+		address_ba=#{address_ba},address_da=#{address_da} ,phone=#{phone}, ad_birth = #{ad_birth},
+		email=#{email},mem_rank=#{mem_rank},ad_local=#{ad_local},lev=#{lev} 
+		where id=#{id}
+	</update>
+	<!-- member Delete -->
+	<delete id="memberDelete" parameterType="memberVO">
+		delete member where id=#{id}
+	</delete>
+		
+
+</mapper>

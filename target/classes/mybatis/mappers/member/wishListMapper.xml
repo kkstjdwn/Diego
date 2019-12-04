@@ -2,4 +2,27 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  <mapper namespace="wishListMapper"></mapper>
+  <mapper namespace="wishListMapper">
+  
+  <insert id="wishListInsert" parameterType="wishlist">
+  	
+  	insert into wishlist(wish_num, image, id, pro_num, pro_info, price, price_point, delivery_cost)
+  	values(wish_seq.nextval,#{image}, #{id}, #{pro_num}, #{pro_info}, #{price}, #{price_point}, #{delivery_cost})
+  	
+  </insert>
+  
+  
+  <select id="wishListSelectList" parameterType="wishlist" resultType="wishlist">
+  
+  	select * from wishlist where id=#{id} order by wish_num desc
+  
+  </select>
+  
+  <delete id="wishListDelete" parameterType="wishlist">
+  
+  	delete wishlist where wish_num = #{wish_num}
+  
+  </delete>
+
+  
+  </mapper>

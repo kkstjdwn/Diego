@@ -19,6 +19,11 @@
 			<id>codelds</id>
 			<url>https://code.lds.org/nexus/content/groups/main-reqo</url>
 		</repository>
+	<!-- OJDBC6 안받아질때 추가 -->
+		<repository>
+			<id>Spring Plugins</id>
+			<url>http://repo.spring.io/plugins-release/</url>
+		</repository>
 	</repositories>
 
 
