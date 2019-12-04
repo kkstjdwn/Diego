@@ -41,5 +41,8 @@ public class HomeController {
 	public void diego() {
 		
 	}
-	
+	@GetMapping("/mainProduct")
+	public void mainProduct() {
+		
+	}
 }
