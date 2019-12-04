@@ -92,6 +92,7 @@
 				<label for="pro_size">Product Size:</label> <select name="pro_size">
 					<option value="">사이즈를 선택하세요</option>
 					<option value="Small">Small</option>
+					
 					<option value="Medium">Medium</option>
 					<option value="Large">Large</option>
 					<option value="X-Large">X-Large</option>
