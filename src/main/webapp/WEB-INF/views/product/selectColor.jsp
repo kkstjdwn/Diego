@@ -1,0 +1,1 @@
+<input type="color" name="opt${num}_val">
