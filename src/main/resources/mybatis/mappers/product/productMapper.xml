@@ -16,13 +16,7 @@
   		delete product where pro_num=#{pro_num}
   
   </delete>
-  
-  <!--list  -->
-  <select id="productList" parameterType="" resultType="">
-  	
-  </select>
-  
-  
+ 
   </mapper>
   
   
