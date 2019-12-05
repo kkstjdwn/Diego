@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.diego.mid.model.product.ProductVO;
@@ -30,7 +31,7 @@ public class ProductController {
 	public void productInsert()throws Exception {
 
 	}
-	@PostMapping(value = "productInsert")
+	@PostMapping(value ="productInsert")
 	public ModelAndView productInsert(ProductVO productVO )throws Exception {
 
 		ModelAndView mv= new ModelAndView();
@@ -85,7 +86,7 @@ public class ProductController {
 	
 	
 	//상품리스트
-	@GetMapping(value = "/productList")
+	@RequestMapping(value = "productList", method = {RequestMethod.GET, RequestMethod.POST})
 	private ModelAndView productList(Pager pager)throws Exception {
 		
 		List<ProductVO>ar= productService.productList(pager);
@@ -100,6 +101,7 @@ public class ProductController {
 		
 
 	} 
+	//상품리스트 끝
 	
 	
 	

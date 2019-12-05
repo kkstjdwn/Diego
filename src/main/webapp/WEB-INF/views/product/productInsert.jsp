@@ -18,8 +18,6 @@
 				<label for="cat_ref">Category Choice</label>
 			</div>
 
-
-
 			<div class="form-group">
 
 				<select id="cloth">
@@ -37,9 +35,6 @@
 					<option value="102">bag</option>
 				</select>
 			</div>
-
-
-
 
 
 			<!--한칸 띄우기 -->
@@ -100,10 +95,7 @@
 				</div>
 			</div>
 
-
-
-
-			<button class="btn btn-primary px-3" id="summit">상품 추가</button>
+			<button class="btn btn-primary px-3" >상품 추가</button>
 
 		</form>
 	</div>

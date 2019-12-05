@@ -23,7 +23,7 @@ public class ProductDAO {
 		return sqlSession.insert(NAMESPACE+"productInsert", productVO);
 	}	
 
-	//select
+	//list
 	public List<ProductVO> productList(Pager pager)throws Exception{
 		
 		return sqlSession.selectList(NAMESPACE+"productList", pager);

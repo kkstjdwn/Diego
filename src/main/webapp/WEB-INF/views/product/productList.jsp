@@ -12,15 +12,19 @@
 <body>
 
 	<div class="container">
-		<h1>List아닌뒈?</h1>
-
+		
+		<div class="jumbotron page-header">
+			<h1>Product List</h1>
+		</div>
+		
 		<table class="table">
 			<thead>
-				<tr>
+				<tr >
 					
+					<th><input type="checkbox" id="checkAll"></th>
 					<th>Product Num</th>
 					<th>Category</th>
-					<th>Name</th>
+					<th>Product Name</th>
 					<th>Price</th>
 					<th>Count</th>
 					<th>Sales</th>
@@ -37,7 +41,8 @@
 			<tbody>
 
 				<c:forEach items="${list}" var="product" varStatus="p">
-					<tr>
+					<tr class="warning">
+						<td><input type="checkbox" class="listCheck product${p.index }" value="${product.pro_num }"></td>
 						<td>${product.pro_num}</td>
 						<td>${product.cat_ref}</td>
 						<td>${product.pro_name}</td>
@@ -61,12 +66,14 @@
 		<div>
 			<form action="./productList" id="frm">
 				<input type="hidden" id="curPage" value="1" name="curPage">
-				<select id="kind" >
-					<option id="kt" value="kt">Product Num</option>
+				<select id="kind" name="kind">
+					<option id="kt" value="kt">Category</option>
 					<option id="kw" value="kw">Product Name</option>
-					<option id="kc" value="kc">Product Contents</option>
+					<option id="kc" value="kc">Price</option>
 				</select> 
-				<input type="text" id="search" value="${pager.search}">
+				
+				<input type="text" id="search" name="search" value="${pager.search}">
+				
 				<button>검색</button>
 			</form>
 		</div>
@@ -85,8 +92,12 @@
 			</ul>
 		</div>
 				
-				<a href="./productInsert">Product Insert</a>
-
+			
+					<button class="btn btn-primary" onclick="location.href='./productInsert' ">상품 등록</button>
+				
+				
+					<button class="btn btn-danger" id="pro_del">상품 삭제</button>
+				
 	</div>
 	<script type="text/javascript">
 	  	var kind = '${pager.kind}'

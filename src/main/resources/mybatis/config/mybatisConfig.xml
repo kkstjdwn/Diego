@@ -24,7 +24,6 @@
   		<typeAlias type="com.diego.mid.model.member.Point" alias="point"/>
   		<typeAlias type="com.diego.mid.model.member.Wishlist" alias="wishlist"/>
   		
-  		<typeAlias type="com.diego.mid.util.ProductPager" alias="ProductPager"/>
 		<typeAlias type="com.diego.mid.model.product.ProductVO" alias="ProductVO"/>
 		<typeAlias type="com.diego.mid.model.product.CategoryVO" alias="CategoryVO"/>
   	</typeAliases>

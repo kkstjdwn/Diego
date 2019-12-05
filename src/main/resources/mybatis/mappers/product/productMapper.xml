@@ -7,11 +7,9 @@
 
 	<!--insert -->
 	<insert id="productInsert" parameterType="ProductVO">
-		insert into product(pro_num, cat_ref, pro_name, pro_price, pro_count,
-		pro_date, pro_contents, pro_warning, pro_size, pro_color, pro_vital)
-		values(product_seq.nextval, #{cat_ref},#{pro_name}, #{pro_price},
-		#{pro_count},sysdate, #{pro_contents}, #{pro_warning},
-		#{pro_size},#{pro_color},#{pro_vital})
+		insert into product(pro_num, cat_ref, pro_name, pro_price, pro_count,pro_date, pro_contents, pro_warning, pro_size, pro_color, pro_vital)values(
+		product_seq.nextval, #{cat_ref},#{pro_name}, #{pro_price},#{pro_count},sysdate, #{pro_contents},
+		#{pro_warning},#{pro_size},#{pro_color},#{pro_vital})
 	</insert>
 
 
@@ -20,25 +18,24 @@
 
 		<choose>
 			<when test="kind == 'kt'">
-				where pro_num like '%'||#{search}||'%'
+				where cat_ref like '%'||#{search}||'%'
 			</when>
 			<when test="kind == 'kw'">
 				where pro_name like '%'||#{search}||'%'
 			</when>
 			<otherwise>
-				where pro_contents like '%'||#{search}||'%'
+				where pro_price like '%'||#{search}||'%'
 			</otherwise>
 		</choose>
 	</sql>
 
-	<select id="productCount" resultType="Integer"
-		parameterType="ProductPager">
+	<select id="productCount" resultType="Integer" parameterType="Pager">
 		select count(pro_num) from product
 		<include refid="sw"></include>
 	</select>
 
 
-	<select id="productList" parameterType="ProductPager" resultType="ProductVO">
+	<select id="productList" parameterType="Pager" resultType="ProductVO">
 		select * from
 		(select N.*, rownum R from
 		(select * from product
