@@ -52,59 +52,58 @@
 			</div>
 
 			<div class="form-group">
-				<label for="pro_price">Product Price:</label> <input type="number"
+				<label for="pro_price">Product Price:</label> 
+				<input type="number"
 					class="form-control" id="pro_price" name="pro_price"
 					placeholder="Product Price Enter">
 			</div>
 
 			<div class="form-group">
-				<label for="pro_count">Product Count:</label> <input type="text"
+				<label for="pro_count">Product Count:</label>
+				 <input type="text"
 					class="form-control" id="pro_count" name="pro_count"
 					placeholder="Product Count Enter">
 			</div>
 
 			<div class="form-group">
 				<label for="pro_contents">Product Cotents:</label>
-				<textarea type="text" id="pro_contents" name="pro_contents"
-					placeholder="Product Contents Enter">입력하시오.</textarea>
+				<textarea type="text" id="pro_contents" name="pro_contents">입력하시오.</textarea>
 			</div>
 
 			<div class="form-group">
 				<label for="pro_warning">Product Warning:</label>
-				<textarea type="text" id="pro_warning" name="pro_warning"
-					placeholder="Product Warning Enter">입력하시오.</textarea>
+				<textarea type="text" id="pro_warning" name="pro_warning">입력하시오.</textarea>
 			</div>
 
-
-
-			<input type="button" class="btn btn-default" id="btnOp"
-				value="Add Option">
-
-			<div id="options">
-				<div class="form-group" title="parent">
-					<div class="op">
-						<select name="opt1" id="opt1" class="optSelect">
-							<option value="size">size</option>
-							<option value="color">color</option>
-							<option value="vital">필수옵션</option>
-						</select>
-					</div>
-
-					<div id="opt1_val">
-						<select name="opt1_val" id="opt1_vals" class="valSelect">
-							<option value="Small">S</option>
-							<option value="Medium">M</option>
-							<option value="Large">L</option>
-							<option value="XLarge">XL</option>
-						</select>
-					</div>
-
-					<button class="btn btn-danger" id="od">option delete</button>
+			<div class="form-group">
+				<label for="pro_size">Product Size:</label>
+				<div>
+					<select id="pro_size" name="pro_size">
+						<option value="">선택하세요</option>
+						<option value="Small">S</option>
+						<option value="Medium">M</option>
+						<option value="Large">L</option>
+						<option value="XLarge">XL</option>
+					</select>
 				</div>
-
 			</div>
 
-			<button class="btn btn-primary px-3">상품 추가</button>
+			<div class="form-group">
+				<label for="pro_color">Product Color:</label>
+				 <input type="text" name="pro_color" id="pro_color" placeholder="Product Color Enter" class="form-control">
+			</div>
+
+			<div class="form-group">
+				<label for="pro_vital">Product Option:</label>
+				<div>
+					 <input type="text" name="pro_vital" id="pro_vital" placeholder="Product Vital Enter" class="form-control">
+				</div>
+			</div>
+
+
+
+
+			<button class="btn btn-primary px-3" id="summit">상품 추가</button>
 
 		</form>
 	</div>
@@ -113,13 +112,12 @@
 
 	<script type="text/javascript">
 	<!------------------------------ AJAX 자바스크립트방식 ----------------------- -->
-			var options=$('#options').html();
-			$('options').empty();
-			var count=0;
-			var index=1;
-	
-			//카테고리 ajax
-			$("#cloth").change(function() {
+		var options = $('#options').html();
+		$('options').empty();
+		var count = 0;
+
+		//카테고리 ajax
+		$("#cloth").change(function() {
 
 			//1. XMLHttpRequest 객체 생성
 			var xmlhttp;
@@ -146,8 +144,6 @@
 			}
 
 		});
-			
-			
 
 		//섬머노트
 		$("#pro_contents").summernote({
@@ -159,134 +155,8 @@
 			height : 120,
 
 		});
-
 		
-		
-		//color는 기본적으로 null값이 없기 때문에 input 컬러타입을 text로바꿔주자. 그럼 null이 가겟지? 빈칸이면
-		
-		//필수옵션 추가
-		$('#btnOp').click(function() {
-			var index=2;
-			if(count<2){
-				$('#options').append(options);
-				
-				count++;
-				
-			}else{
-				alert("3개이상금지");
-			}
-			
-		});		
-		
-		//필수옵션 삭제
-		$('#options').on("click","#od",function(){
-			
-			$(this).parents(".form-group").remove();
-			count--;
-			
-		});
-		
-		
-		//필수옵션 ajax
-		$('#opt1').change(function() {
-			
-			
-			if($('#opt1').val()=="size"){
-			$.ajax({
-				type : "GET",
-				url : "selectSize",
-				data:{
-					opt1 : $('#opt1').val()
-					
-				},
-				success : function(data) {
-					
-					$('#opt1_val').html(data);
-					
-					
-				}
-				
-			});
-			}
-			else if($('#opt1').val()=="color"){
-			
-			$.ajax({
-				type : "GET",
-				url : "selectColor",
-				data:{
-					opt1 : $('#opt1').val()
-					
-				},
-				success : function(data) {
-					
-					$('#opt1_val').html(data);
-					
-					
-				}
-				
-			});
-			
-			}
-			else {
-			$.ajax({
-				type : "GET",
-				url : "selectVital",
-				data:{
-					opt1 : $('#opt1').val()
-					
-				},
-				success : function(data) {
-					
-					$('#opt1_val').html(data);
-					
-					
-				}
-				
-			});
-			}
-		});
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-// 	$('#opt1').change(function() {
-
-// 		var opt1 = $('#opt1').val();
-		
-// 		$.post("selectSize", {opt1: opt1} , function(data) {
-			
-// 			$('#')
-			
-// 		});
-		
-		
-		
-// 		$.ajax({
-// 			type : "get",
-// 			url   : "selectSize",
-// 			data : {
-// 				title : $('#opt1').prop('title'),
-// 				opt1 : $('#opt1').val()
-// 			}, 
-// 			success:function(data){
-// 				$('#opt1_val').html(data);
-				
-// 			}	
-
-//		});
-		
-		
-		
-		
-		
-		
+	
 	</script>
 
 </body>

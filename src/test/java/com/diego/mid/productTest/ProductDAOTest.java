@@ -28,12 +28,10 @@ public class ProductDAOTest extends TestAbstractCase{
 			productVO.setPro_count(50);
 			productVO.setPro_contents("test");
 			productVO.setPro_warning("드라이세탁만가능");
-			productVO.setOpt1("t1");
-			productVO.setOpt1_val("t1");
-			productVO.setOpt2("t2");	
-			productVO.setOpt2_val("t2");
-			productVO.setOpt3("t3");
-			productVO.setOpt3_val("t3");
+			productVO.setPro_color("bk");
+			productVO.setPro_size("s");
+			productVO.setPro_vital("dfasf");
+		
 			
 			int result = productDAO.productInsert(productVO);
 			

@@ -1,5 +1,8 @@
 package com.diego.mid.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Controller;
@@ -11,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.diego.mid.model.product.ProductVO;
 import com.diego.mid.service.ProductService;
+import com.diego.mid.util.Pager;
 
 @Controller
 @RequestMapping("/product/**")
@@ -19,18 +23,20 @@ public class ProductController {
 	@Inject
 	private ProductService productService;
 
+	
+	
 	//상품등록 insert
 	@GetMapping(value = "productInsert")
 	public void productInsert()throws Exception {
 
 	}
 	@PostMapping(value = "productInsert")
-	public ModelAndView productInsert(ProductVO productVO)throws Exception {
+	public ModelAndView productInsert(ProductVO productVO )throws Exception {
 
 		ModelAndView mv= new ModelAndView();
-
+		
 		int result = productService.productInsert(productVO);
-
+		
 		String msg="등록실패";
 		if(result==1) {
 			msg="등록성공";
@@ -78,25 +84,27 @@ public class ProductController {
 	// 그걸 url과 파라미터를 받아 행동을 하는데..
 	
 	
+	//상품리스트
+	@GetMapping(value = "/productList")
+	private ModelAndView productList(Pager pager)throws Exception {
+		
+		List<ProductVO>ar= productService.productList(pager);
 	
-	@GetMapping("select**") //url 주소를 받고  매개변수로 파라미터 타입을 받아서 내
-	public ModelAndView selectOption(String opt1)throws Exception{
 		ModelAndView mv = new ModelAndView();
 		
-		if(opt1 =="size") {
-			String [] opt1_vals = {"small"," medium", "large","xLarge"};
-			mv.setViewName("./product/selectSize");
-		} else if(opt1 =="color") {
-			mv.setViewName("./product/selectColor");
-		} else if(opt1 =="vital"){
-			mv.setViewName("./product/selectVital");
-		}
+		mv.addObject("list", ar);
+		mv.addObject("pager", pager);
+		mv.setViewName("product/productList");
 		
 		return mv;
-	}
+		
+
+	} 
 	
 	
 	
+	
+
 	
 	//상품삭제
 //	@RequestMapping(value = "productDelete")
@@ -118,13 +126,6 @@ public class ProductController {
 //	}//상품삭제 끝 
 //	
 	
-	
-	//상품리스트
-//	@GetMapping(value = "productList")
-//	private void productList()throws Exception {
-//		
-//
-//	} 
 
 }
 

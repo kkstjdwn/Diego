@@ -10,10 +10,10 @@
 <body>
 <c:import url="../layout/bootStrap.jsp"/>
 <script type="text/javascript">
-	var result = "${result }";
+	var msg = "${msg}";
 	var path = "${path }";
 
-	alert(result);
+	alert(msg);
 	location.href = path;
 
 </script>

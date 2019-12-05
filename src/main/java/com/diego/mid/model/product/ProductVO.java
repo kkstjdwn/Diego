@@ -1,6 +1,7 @@
 package com.diego.mid.model.product;
 
 import java.sql.Date;
+import java.util.List;
 
 public class ProductVO {
 
@@ -13,14 +14,9 @@ public class ProductVO {
 	private Date pro_date;//상품올린날짜
 	private String pro_contents;//상품 상세내용
 	private String pro_warning;//상품 주의사항
-	private String opt1;//상품옵션1 추가하고싶을때마다 옵을 추가 최대 opt3까지
-	private String opt1_val;
-	private String opt2;
-	private String opt2_val;
-	private String opt3;
-	private String opt3_val;
-	
-	
+	private String pro_size;//상품 사이즈
+	private String pro_color;//상품 색상
+	private String pro_vital;//상품 필수옵션
 	public Integer getPro_num() {
 		return pro_num;
 	}
@@ -75,41 +71,23 @@ public class ProductVO {
 	public void setPro_warning(String pro_warning) {
 		this.pro_warning = pro_warning;
 	}
-	public String getOpt1() {
-		return opt1;
+	public String getPro_size() {
+		return pro_size;
 	}
-	public void setOpt1(String opt1) {
-		this.opt1 = opt1;
+	public void setPro_size(String pro_size) {
+		this.pro_size = pro_size;
 	}
-	public String getOpt1_val() {
-		return opt1_val;
+	public String getPro_color() {
+		return pro_color;
 	}
-	public void setOpt1_val(String opt1_val) {
-		this.opt1_val = opt1_val;
+	public void setPro_color(String pro_color) {
+		this.pro_color = pro_color;
 	}
-	public String getOpt2() {
-		return opt2;
+	public String getPro_vital() {
+		return pro_vital;
 	}
-	public void setOpt2(String opt2) {
-		this.opt2 = opt2;
-	}
-	public String getOpt2_val() {
-		return opt2_val;
-	}
-	public void setOpt2_val(String opt2_val) {
-		this.opt2_val = opt2_val;
-	}
-	public String getOpt3() {
-		return opt3;
-	}
-	public void setOpt3(String opt3) {
-		this.opt3 = opt3;
-	}
-	public String getOpt3_val() {
-		return opt3_val;
-	}
-	public void setOpt3_val(String opt3_val) {
-		this.opt3_val = opt3_val;
+	public void setPro_vital(String pro_vital) {
+		this.pro_vital = pro_vital;
 	}
 	
 	
