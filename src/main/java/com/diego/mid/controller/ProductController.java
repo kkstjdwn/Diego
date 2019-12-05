@@ -45,7 +45,7 @@ public class ProductController {
 	//상품등록 끝
 
 	//상품종류(cat_ref)선택 ajax
-	@GetMapping("/selectCloth")
+	@GetMapping("selectCloth")
 	public void selectCloth(Model model, String kind)throws Exception {
 		
 		
@@ -74,16 +74,21 @@ public class ProductController {
 
 	}//ajax끝
 	
-	@RequestMapping("/select**")
-	public ModelAndView selectOption(String opt1_val)throws Exception{
+	// 여러가지컨트롤러중 내가 원하는 일을 하는 컨트롤을 고른다.
+	// 그걸 url과 파라미터를 받아 행동을 하는데..
+	
+	
+	
+	@GetMapping("select**") //url 주소를 받고  매개변수로 파라미터 타입을 받아서 내
+	public ModelAndView selectOption(String opt1)throws Exception{
 		ModelAndView mv = new ModelAndView();
 		
-		if(opt1_val =="size") {
+		if(opt1 =="size") {
 			String [] opt1_vals = {"small"," medium", "large","xLarge"};
 			mv.setViewName("./product/selectSize");
-		} else if(opt1_val =="color") {
+		} else if(opt1 =="color") {
 			mv.setViewName("./product/selectColor");
-		} else if(opt1_val =="vital"){
+		} else if(opt1 =="vital"){
 			mv.setViewName("./product/selectVital");
 		}
 		

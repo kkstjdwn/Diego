@@ -13,55 +13,52 @@
 
 	<div class="container">
 		<h1>상품 등록 페이지</h1>
-		<form action="./productInsert" method="post" id="frm">
+		<form action="productInsert" method="post" id="frm">
 			<div class="form-group">
 				<label for="cat_ref">Category Choice</label>
 			</div>
 
-		
-		
-					<div class="form-group">
 
-						<select id="cloth">
-							<option value="100">Leather</option>
-							<option value="200">Cosmetic</option>
-							<option value="300">Cloth</option>
-							<option value="400">UnderWear</option>
 
-						</select>
-					</div>
+			<div class="form-group">
 
-					<div id="kind">
-						<select name="cat_ref" id="kinds">
-							<option value="101">wallet</option>
-							<option value="102">bag</option>
-						</select>
-					</div>
+				<select id="cloth">
+					<option value="100">Leather</option>
+					<option value="200">Cosmetic</option>
+					<option value="300">Cloth</option>
+					<option value="400">UnderWear</option>
 
-				
+				</select>
+			</div>
 
-		
+			<div id="kind">
+				<select name="cat_ref" id="kinds">
+					<option value="101">wallet</option>
+					<option value="102">bag</option>
+				</select>
+			</div>
+
+
+
+
 
 			<!--한칸 띄우기 -->
 			<br>
 
 			<div class="form-group">
-				<label for="pro_name">Product Name:</label> 
-				<input type="text"
+				<label for="pro_name">Product Name:</label> <input type="text"
 					class="form-control" id="pro_name" name="pro_name"
 					placeholder="Product Name Enter">
 			</div>
 
 			<div class="form-group">
-				<label for="pro_price">Product Price:</label> 
-				<input type="number"
+				<label for="pro_price">Product Price:</label> <input type="number"
 					class="form-control" id="pro_price" name="pro_price"
 					placeholder="Product Price Enter">
 			</div>
 
 			<div class="form-group">
-				<label for="pro_count">Product Count:</label> 
-				<input type="text"
+				<label for="pro_count">Product Count:</label> <input type="text"
 					class="form-control" id="pro_count" name="pro_count"
 					placeholder="Product Count Enter">
 			</div>
@@ -79,33 +76,34 @@
 			</div>
 
 
-			
-			<input type="button" class="btn btn-default" id="btnOp" value="Add Option">
-			
+
+			<input type="button" class="btn btn-default" id="btnOp"
+				value="Add Option">
+
 			<div id="options">
-					<div class="form-group" title="parent" >
-						<div class="op">
-							<select  name="opt1" id="opt1" >
-								<option value="size">size</option>
-								<option value="color">color</option>
-								<option value="vital">필수옵션</option>
-							</select>
-						</div>
-				
-						<div id="opt1_val">
-							<select name="opt1_val" id="opt1_vals">
-								<option value="Small">S1</option>
-								<option value="Medium">M1</option>
-								<option value="Large">L1</option>
-								<option value="XLarge">XL1</option>
-							</select>
-						</div>
-							
-					<button class="btn btn-danger" id="od">option delete</button>	
+				<div class="form-group" title="parent">
+					<div class="op">
+						<select name="opt1" id="opt1" class="optSelect">
+							<option value="size">size</option>
+							<option value="color">color</option>
+							<option value="vital">필수옵션</option>
+						</select>
+					</div>
+
+					<div id="opt1_val">
+						<select name="opt1_val" id="opt1_vals" class="valSelect">
+							<option value="Small">S</option>
+							<option value="Medium">M</option>
+							<option value="Large">L</option>
+							<option value="XLarge">XL</option>
+						</select>
+					</div>
+
+					<button class="btn btn-danger" id="od">option delete</button>
 				</div>
-				
+
 			</div>
-		
+
 			<button class="btn btn-primary px-3">상품 추가</button>
 
 		</form>
@@ -168,10 +166,12 @@
 		
 		//필수옵션 추가
 		$('#btnOp').click(function() {
+			var index=2;
 			if(count<2){
 				$('#options').append(options);
-				$('#opt1').prop('name', "opt+count+1");
+				
 				count++;
+				
 			}else{
 				alert("3개이상금지");
 			}
@@ -190,6 +190,8 @@
 		//필수옵션 ajax
 		$('#opt1').change(function() {
 			
+			
+			if($('#opt1').val()=="size"){
 			$.ajax({
 				type : "GET",
 				url : "selectSize",
@@ -205,6 +207,8 @@
 				}
 				
 			});
+			}
+			else if($('#opt1').val()=="color"){
 			
 			$.ajax({
 				type : "GET",
@@ -222,6 +226,8 @@
 				
 			});
 			
+			}
+			else {
 			$.ajax({
 				type : "GET",
 				url : "selectVital",
@@ -237,7 +243,7 @@
 				}
 				
 			});
-			
+			}
 		});
 		
 		
