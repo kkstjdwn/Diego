@@ -109,7 +109,7 @@
 								<li style="width: inherit; height: 36px; padding-bottom: 23px; background-color: orange;"></li>
 								<li style="height: 18px; display: inline-block; background-color: orange;">12</li>
 								<li style="height: 18px; display: inline-block; background-color: orange;">22</li>
-							</ul>
+							</ul> 
 						</div>
 					</c:if> 
 					<c:if test="${v % 4 ne 0 }">
@@ -132,12 +132,82 @@
 <!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
 
 <section style="margin-bottom: 250px; padding-bottom: 0;">
-<div class="add-join"></div>
+	<div class="add-join">
+		<a href="#" style="text-decoration: none;">
+			<div class="add-join-div">
+				<h1 style="font-size: 28px; padding-bottom: 15px;">마르시오디에고 신규 회원 혜택</h1>
+				<p>오직 신규 회원에게만 드리는 혜택</p>
+				<p>신규 회원 가입 시 즉시 사용할 수 있는</p>
+				<p>2,000포인트를 지급합니다.</p>
+			</div>
+		</a>
+	</div>
 
 </section>
 
 <!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
 
-<section style="padding-top: 350px;"></section>
+<section style="padding-top: 350px; padding-bottom: 190px;">
+<div class="ctg">
+	<div class="ctg-div">
+		<div class="ctg-div-name">
+		<h1>Clothing</h1>
+		</div>
+	</div>
+	<div class="ctg-div">
+		<div class="ctg-div-name">
+		<h1>Accessory</h1>
+		</div>
+	</div>
+	<div class="ctg-div-nm">
+		<div class="ctg-div-name">
+		<h1>Grooming</h1>
+		</div>
+	</div>
+</div>
+</section>
+
+<!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
+
+<section style="margin: 0; padding: 0; height: 1000px; background-color: navy;">
+	<div class="rev">
+	<ul>
+	<c:forEach begin="1" end="12" var="r">
+	<li class="rev-li">
+	<p class="rev-li-img"></p>
+	<div class="rev-li-mem">
+		<div class="rev-li-mem-tt">리뷰제목</div>
+		<div class="rev-li-mem-nk">***</div>
+	</div>
+	<div class="rev-li-info">
+		<div class="rev-li-info-img">
+			<p></p>
+		</div>
+		<div class="rev-li-info-div">
+		<div class="rev-li-info-tt">상품명</div>
+		<div class="rev-li-info-fb">
+			<span>리뷰<strong class="st">갯수</strong></span>
+			<span>평점<strong class="st">점수</strong></span>
+		</div>
+		</div>
+	</div>
+	</li>
+	</c:forEach>
+	</ul>
+	</div>
+	<div class="rev-page">
+		<a href="#"> < </a>
+		<c:forEach begin="1" end="8" var="p">
+		<a href="#"> ${p } </a>
+		</c:forEach>
+		<a href="#"> > </a>
+	</div>
+</section>
+
+<!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
+
+<footer> 
+<h1 style="font-size: 50px;">푸~~~~~~~~~~~~~~~~~~~터</h1>
+</footer>
 </body>
 </html>
