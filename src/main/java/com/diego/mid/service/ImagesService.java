@@ -23,7 +23,7 @@ public class ImagesService {
 		
 	public int imagesInsert(ImagesVO imagesVO,MultipartFile [] files,HttpSession session)throws Exception{
 		
-		
+	
 		String realPath=session.getServletContext().getRealPath("resources/product/images");
 		
 		imagesVO.setPro_main(saver.save(realPath, files[0]));
