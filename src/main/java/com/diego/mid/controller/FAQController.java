@@ -53,7 +53,7 @@ public class FAQController {
 	public String faqWrite(Model model)throws Exception{
 		List<FAQCategoryVO> ar = faqService.categoy();
 		model.addAttribute("category", ar);
-		return "faq/faqWrite";
+		return "../faqWrite";
 	}
 	
 	@PostMapping("faqWrite")

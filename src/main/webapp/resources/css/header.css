@@ -1,1 +1,205 @@
 @charset "UTF-8";
+
+* {
+	margin: 0px;
+	list-style: none;
+	padding: 0px;
+	font-family: Montserrat,Nanum Barun Gothic,sans-serif;
+}
+
+li{
+	list-style: none;
+}
+
+ul {
+    display: block;
+    list-style-type: disc;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+}
+
+#menubar nav ul li ul {
+    display: none;
+    position: absolute;
+    top: 49px;
+    text-align: left;
+    padding: 10px 0 5px 0;
+    z-index: 100;
+    opacity: 1.0;
+    transition-duration: 0.3s;
+    width: 100px;
+}
+
+#menubar nav ul li ul li {
+    display: block;
+    padding-left: 15px;
+    margin-left: -15px;
+}
+
+header {
+		top:0;
+		display: block;
+		background-color: green;
+		z-index: 99;
+		height: 20px; 
+		width: 100%; 
+		position: fixed;
+		font-size: 13px;
+    	padding: 27px 0;
+    	line-height: 20px;
+    	min-width: 1600p
+}
+
+#topinner{
+	background-color: orange;
+	padding: 0 50px;
+    margin: 0 auto;
+    
+}
+
+#logo{
+	background-color : aqua;
+	float: left;
+	margin-right: 80px;
+    margin-top: -11px;
+    width: 250px;
+    height: 34px;
+	
+}
+nav{display: block;}
+
+#menubar nav ul {
+    margin: 0;
+    padding: 0;
+}
+#menubar nav ul li {
+    display: inline-block;
+    position: relative;
+}
+#menubar nav ul li a {
+    color: black;
+    display: block;
+    font-size: 13px;
+    margin-right: 45px;
+    z-index: 101;
+    background-color: gray;
+}
+#menubar span {
+    position: relative;
+    text-decoration: none;
+}
+
+.right_menu {
+    position: absolute;
+    right: 45px;
+    top: 27px;
+	background-color: red;
+}
+
+#log{
+	float: left;
+	margin-top: 0;
+	font-size: 11px;
+}
+#topcart{
+	background-color:lime;
+	float: left;
+	margin-top: 0;
+    font-size: 11px;
+    margin-left: 15px;
+}
+
+.myhsop{
+	background-color:lime;
+	float: left;
+    font-size: 11px;
+    margin-left: 15px;
+}
+#ham{
+	background-color:lime;
+	float: left;
+    width: 19px;
+    height: 16px;
+    margin: 4px 0 0 15px;
+    cursor: pointer;
+}
+
+#ham img{
+	width: 100%;
+}
+
+/*ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ */
+
+.footer {
+    background: black;
+    height: 100vh;
+}
+
+.footer_con {
+    max-width: 1450px;
+    margin: 0 auto;
+    font-family: 'Montserrat',sans-serif;
+    font-size: 12px;
+    line-height: 24px;
+    margin-top: 80px;
+    color: black;
+}
+.foot_inner{
+	background-color: maroon;
+	padding-top: 220px;
+    margin: 0 50px;
+}
+.copypadding{
+	text-align: center;
+}
+
+.footer_logo{
+	background-color : blue;
+}
+.footer_logo a {
+	
+    color: white;
+    font-size: 30px;
+}
+
+#center{
+	background-color: silver;
+	    padding: 40px 0;
+}
+
+#customer {
+	background-color: orange;
+}
+
+#customer li{
+	color: white;
+}
+
+#company{
+	background-color : navy;
+	padding-bottom: 40px;
+}
+
+.copytext{
+	font-size: 12px;
+    color: gray;
+    display: inline;
+    padding-right: 8px;
+}
+
+#link{
+	background-color : orange;
+	font-size: 12px;
+}
+
+#link ul li{
+	display: inline;
+}
+
+
+#link ul li a{
+	padding: 10px;
+}

@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <c:import url="../layout/bootStrap.jsp" />
+
 <style type="text/css">
 .title_n {
 	text-transform: uppercase;
@@ -16,7 +17,7 @@
 
 </head>
 <body>
-	<c:import url="../layout/nav2.jsp" />
+	<c:import url="../layout/nav.jsp" />
 	<div class="container">
 		<h1 class="title_n">FAQ</h1>
 		<form id="frm" action="./faqList">
