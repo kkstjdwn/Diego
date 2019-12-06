@@ -17,6 +17,12 @@ public class ProductDAO {
 
 	private static final String NAMESPACE="productMapper.";
 
+	//pro_num을가져온다.
+		public int getProNum() throws Exception{
+			
+			return sqlSession.selectOne(NAMESPACE+"getProNum");
+		}
+	
 	//insert
 	public int productInsert(ProductVO productVO) throws Exception{
 		

@@ -15,11 +15,7 @@ public class ImagesDAO {
 	private final static String NAMESPACE= "imagesMapper.";
 
 	
-	//pro_num을가져온다.
-	public int getProNum() throws Exception{
-		
-		return sqlSession.selectOne(NAMESPACE+"getProNum");
-	}
+	
 	
 	//insert
 	public int imagesInsert(ImagesVO imagesVO)throws Exception {

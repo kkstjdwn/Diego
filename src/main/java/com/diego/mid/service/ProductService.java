@@ -16,8 +16,14 @@ public class ProductService {
 	@Inject
 	private ProductDAO productDAO;
 	
+	
+	
+	
+	
 	//상품 추가 INSERT
 	public int productInsert(ProductVO productVO)throws Exception{
+		
+		productVO.setPro_num(productDAO.getProNum());
 		
 		return productDAO.productInsert(productVO);
 		

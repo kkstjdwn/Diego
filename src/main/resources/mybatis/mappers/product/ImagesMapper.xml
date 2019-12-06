@@ -7,12 +7,7 @@
   <mapper namespace="imagesMapper">
   
   
-  	<!--pro_num을 가져온다. -->
-  	<select id="getProNum" resultType="Integer">
-  	
-  		select product_seq.nextval from dual
-  		
-  	</select>
+ 
   	
   	<!--이미지 insert  -->
 	<insert id="imagesInsert">

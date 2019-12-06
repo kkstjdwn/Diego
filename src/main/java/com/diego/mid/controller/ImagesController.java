@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.diego.mid.model.product.ImagesVO;
 import com.diego.mid.service.ImagesService;
 
 @Controller
@@ -16,7 +17,9 @@ public class ImagesController {
 	private ImagesService  imagesService;
 	
 	@GetMapping(value = "imagesInsert")
-	public void imagesInsert()throws Exception {
+	public void imagesInsert(ImagesVO imagesVO)throws Exception {
+		
+		
 		
 	}
 	

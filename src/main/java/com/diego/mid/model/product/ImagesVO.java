@@ -1,5 +1,7 @@
 package com.diego.mid.model.product;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class ImagesVO {
 
 	private Integer pro_num;
@@ -12,6 +14,18 @@ public class ImagesVO {
 	private String gif;//움짤
 	private String pro_info;// 상품주의사항사진
 	private String pro_size;// 상품 둘레사이즈사진
+	
+	private MultipartFile [] files;
+	
+	
+	
+	
+	public MultipartFile[] getFiles() {
+		return files;
+	}
+	public void setFiles(MultipartFile[] files) {
+		this.files = files;
+	}
 	public Integer getPro_num() {
 		return pro_num;
 	}
