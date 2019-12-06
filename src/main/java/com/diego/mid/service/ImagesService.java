@@ -34,7 +34,7 @@ public class ImagesService {
 		imagesVO.setPro_size(saver.save(realPath, files[5]));
 		imagesVO.setSumnale(saver.save(realPath, files[6]));
 		imagesVO.setGif(saver.save(realPath, files[7]));
-		imagesVO.set
+		imagesVO.setFront(saver.save(realPath, files[7]));
 		
 		return imagesDAO.imagesInsert(imagesVO);
 		
