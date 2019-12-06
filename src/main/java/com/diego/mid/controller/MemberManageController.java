@@ -203,8 +203,18 @@ public class MemberManageController {
 		point.setContents(orders.getPro_info());
 		
 		int result = 0;
-		int pInsert = service.pointInsert(point);
-		int cUse = service.couponUse(coupon);
+		int pInsert = 0;
+		if (point.getPoint_value() == 0) {
+			pInsert = 1;
+		}else {
+			pInsert=service.pointUse(point);			
+		}
+		int cUse = 0;
+		if (coupon.getCoup_num() == 9999) {
+			cUse = 1;
+		}else {
+			cUse = service.couponUse(coupon);
+		}
 		
 		if (pInsert==1 && cUse == 1) {
 			result = 1;
@@ -212,7 +222,7 @@ public class MemberManageController {
 			cUse = service.couponCancel(coupon);
 		}else if (pInsert != 1 && cUse == 1) {
 			point.setContents("주문실패");
-			pInsert = service.pointUse(point);
+			pInsert = service.pointInsert(point);
 		}else {
 			cUse = service.couponCancel(coupon);
 			point.setContents("주문실패");
@@ -227,7 +237,7 @@ public class MemberManageController {
 			msg = "성공";
 			path = "/mid/diego";
 		}
-		mv.addObject("result", msg);
+		mv.addObject("msg", msg);
 		mv.addObject("path", path);
 		mv.setViewName("common/common_msg");
 		return mv;
@@ -270,12 +280,18 @@ public class MemberManageController {
 			result = service.orderCancel(orders);
 		}
 		if (result > 0) {
-			coupon.setCoup_num(orders.getCoup_num());
-			result = service.couponCancel(coupon);
+			if (orders.getCoup_num() != 9999) {
+				coupon.setCoup_num(orders.getCoup_num());
+				result = service.couponCancel(coupon);
+			}
+			
 			point.setOrder_num(orders.getOrder_num());
 			point = service.pointCancel(point);
-			point.setContents("주문 취소");
-			result = service.pointUse(point);
+			
+			if (point != null) {
+				point.setContents("주문 취소");
+				result = service.pointInsert(point);
+			}
 		}
 		mv.addObject("msg", result);
 		mv.setViewName("common/common_ajax_result");

@@ -8,6 +8,10 @@
 }
 header{
 	position: fixed;
+	top:0px;
+	height: 74px;
+	width: 100%;
+	background-color: green;
 }
 section{
 	background-color: silver;
@@ -84,7 +88,6 @@ section{
 	width: 100%;
 	height: 586px;
 	background-color: fuchsia;
-	
 }
 
 .grm-div-h3{
@@ -266,6 +269,7 @@ section{
 .rev-page a{
 	text-decoration: none;
 }
+
 /*ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ */
 
 footer{

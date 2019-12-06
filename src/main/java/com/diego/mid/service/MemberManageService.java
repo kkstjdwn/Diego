@@ -72,6 +72,9 @@ public class MemberManageService {
 	
 	
 	public int pointInsert(Point point) throws Exception{
+		if(point.getPoint_value()<0) {
+			point.setPoint_value(point.getPoint_value() * -1);
+		}
 		point.setTotal_point(point.getPoint_value() + point.getTotal_point());
 		return dao.pointInsert(point);
 	}

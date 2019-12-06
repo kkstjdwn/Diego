@@ -6,19 +6,19 @@
 <head>
 <meta charset="UTF-8">
 <title>Make DIV</title>
-<link href="resources/css/mdCss.css" rel="stylesheet">
+<link href="resources/css/main.css" rel="stylesheet">
 </head>
 <body>
 <!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
 
-<header style="height: 74px; width: 100%; background-color: green;">
+<header>
 	<h1 style="text-align: center;">헤~~~~~더</h1>
 </header>
 
 <!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
 
-<section style="width: 100%; height: 1319px; background-color: blue; padding-bottom: 0;">
-	<div style="width: 100%; height: 969px; background-color: fuchsia;">
+<section style="width: 100%; height: 1319px; background-color: blue; padding-bottom: 0; margin-top:74px;">
+	<div style="width: 100%; height: 969px; background:url('resources/images/mainb_01.jpg');">
 	</div>
 </section>
 
@@ -66,7 +66,9 @@
 			<ul>
 				<li>
 					<div class="grm-div" style="margin-right: 30px;">
-						<p class="grm-div-a"></p>
+						<p class="grm-div-a">
+							<img alt="grm1" src="resources/images/skin01.jpg">
+						</p>
 						<h3 class="grm-div-h3">~</h3>
 						<p class="grm-div-p">@</p>
 						<span class="grm-div-span">SPECIAL PRICE</span>
@@ -74,7 +76,9 @@
 				</li>
 				<li>
 					<div class="grm-div">
-						<p class="grm-div-a"></p>
+						<p class="grm-div-a">
+							<img alt="grm1" src="resources/images/skin02.jpg">
+						</p>
 						<h3 class="grm-div-h3">~</h3>
 						<p class="grm-div-p">@</p>
 						<span class="grm-div-span">SPECIAL PRICE</span>
