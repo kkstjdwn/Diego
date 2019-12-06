@@ -7,13 +7,16 @@
 
 	<!--insert -->
 	<insert id="productInsert" parameterType="ProductVO">
-		insert into product(pro_num, cat_ref, pro_name, pro_price, pro_count,pro_date, pro_contents, pro_warning, pro_size, pro_color, pro_vital)values(
-		product_seq.nextval, #{cat_ref},#{pro_name}, #{pro_price},#{pro_count},sysdate, #{pro_contents},
+		insert into
+		product(pro_num, cat_ref, pro_name, pro_price, pro_count,pro_date,
+		pro_contents, pro_warning, pro_size, pro_color, pro_vital)values(
+		product_seq.nextval, #{cat_ref},#{pro_name},
+		#{pro_price},#{pro_count},sysdate, #{pro_contents},
 		#{pro_warning},#{pro_size},#{pro_color},#{pro_vital})
 	</insert>
 
 
-	<!--List -->
+	<!--검색창 -->
 	<sql id="sw">
 
 		<choose>
@@ -29,12 +32,13 @@
 		</choose>
 	</sql>
 
+	<!--count -->
 	<select id="productCount" resultType="Integer" parameterType="Pager">
 		select count(pro_num) from product
 		<include refid="sw"></include>
 	</select>
 
-
+	<!--list -->
 	<select id="productList" parameterType="Pager" resultType="ProductVO">
 		select * from
 		(select N.*, rownum R from
@@ -54,6 +58,19 @@
 		delete product where pro_num=#{pro_num}
 
 	</delete>
+
+	<!--select -->
+	<select id="productSelect" parameterType="ProductVO" resultType="ProductVO">
+		select * from product where pro_num= #{pro_num}
+	</select>
+
+	<!--update  -->
+	<update id="productUpdate" parameterType="ProductVO">
+		update product set pro_name=#{pro_num}, pro_price=#{pro_price}, pro_count=#{pro_count}, pro_contents=#{pro_contents}, pro_warning=#{pro_warning},
+		 pro_size=#{pro_size}, pro_color=#{pro_color}, pro_vital=#{pro_vital}
+		where pro_num = #{pro_num}
+	
+	</update>
 
 </mapper>
   

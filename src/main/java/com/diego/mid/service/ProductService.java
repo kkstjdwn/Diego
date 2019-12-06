@@ -23,6 +23,7 @@ public class ProductService {
 		
 	}
 	
+	//상품 리스트
 	public List<ProductVO>productList(Pager pager)throws Exception{
 		
 		pager.makeRow();
@@ -32,9 +33,24 @@ public class ProductService {
 	}
 	
 	
-//	//Delete
-//	public  int productDelete(ProductVO productVO)throws Exception {
-//		
-//		return productDAO.productDelete(productVO);
-//	}
+	// 상품삭제
+	public  int productDelete(ProductVO productVO)throws Exception {
+		
+		return productDAO.productDelete(productVO);
+	}
+	
+	//상품선택
+	public ProductVO productSelect(ProductVO productVO)throws Exception{
+		
+		return productDAO.productSelect(productVO);
+		
+	}
+	
+	//상품업데이트
+	public int productUpdate(ProductVO productVO)throws Exception{
+		
+		return productDAO.productUpdate(productVO);
+	}
+	
+	
 }

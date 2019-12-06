@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -93,7 +94,7 @@ public class ProductController {
 	
 		ModelAndView mv = new ModelAndView();
 		
-		mv.addObject("list", ar);
+		mv.addObject("productList", ar);
 		mv.addObject("pager", pager);
 		mv.setViewName("product/productList");
 		
@@ -105,29 +106,91 @@ public class ProductController {
 	
 	
 	
-	
-
-	
 	//상품삭제
-//	@RequestMapping(value = "productDelete")
-//	public ModelAndView productDelete(ProductVO productVO)throws Exception {
-//		int result = productService.productDelete(productVO);
-//		
-//		ModelAndView mv= new ModelAndView();
-//		
-//		String msg="삭제 실패";
-//		if(result== 1) {
-//			msg="삭제 성공";
-//		}
-//		mv.addObject("msg", msg);
-//		mv.addObject("path", "productList");
-//		mv.setViewName("common/common_result");
-//		
-//		return mv;
-//		
-//	}//상품삭제 끝 
-//	
-	
+	@PostMapping("productDelete")
+	public ModelAndView productDelete(ProductVO productVO, String[] num)throws Exception {
+		ModelAndView mv= new ModelAndView();
 
+		int check=0;
+		
+		int result =0;
+		
+		for(String string : num) {
+			
+			productVO.setPro_num(Integer.parseInt(string));
+			check = productService.productDelete(productVO);
+			Thread.sleep(200);
+			if(check==1) {
+				result++;
+			}
+		}
+		if(result == num.length) {
+			result =1;
+		}
+		
+	
+		mv.addObject("msg", result);
+		
+		mv.setViewName("common/common_ajax_result");
+		
+		return mv;
+		
+	}//상품삭제 끝 
+	
+	//상품셀렉트 
+	@GetMapping("productSelect")
+	public ModelAndView productSelect(ProductVO productVO)throws Exception{
+		
+		ModelAndView mv =new ModelAndView();
+		
+		productVO =  productService.productSelect(productVO);
+		
+		productVO.setPro_contents(productVO.getPro_contents().replace("\n\r", "<br>"));
+		
+		mv.addObject("product", productVO);
+		mv.setViewName("product/productSelect");
+		
+		return mv;
+	}
+	
+	
+	//상품수정
+	@GetMapping("productUpdate")
+	public ModelAndView productUpdate(ProductVO productVO )throws Exception{
+		
+		productVO= productService.productSelect(productVO);
+		
+		ModelAndView mv = new ModelAndView();
+		
+		mv.addObject("product", productVO);
+		mv.setViewName("product/productUpdate");
+		
+		return mv;
+		
+		
+		
+	}
+	
+	@PostMapping("productUpdate") 
+	public ModelAndView productUpdate2(ProductVO productVO)throws Exception {
+		
+		int result = productService.productUpdate(productVO);
+		
+		ModelAndView mv = new ModelAndView();
+		
+		String msg="수정 안됐는뒈?";
+		if(result==1) {
+			msg="수정 완료";
+		}
+		
+		mv.addObject("msg", msg);
+		mv.addObject("path", "productList");
+		mv.setViewName("common/common_result");
+			
+		
+		return mv;
+	}
+	
+	
 }
 

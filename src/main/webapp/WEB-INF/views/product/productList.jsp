@@ -10,16 +10,16 @@
 <c:import url="../layout/bootStrap.jsp" />
 </head>
 <body>
-
+	<c:import url="../layout/nav.jsp" />
 	<div class="container">
 		
 		<div class="jumbotron page-header">
 			<h1>Product List</h1>
 		</div>
 		
-		<table class="table">
-			<thead>
-				<tr >
+		<table class="table"  >
+			<thead >
+				<tr class="info">
 					
 					<th><input type="checkbox" id="checkAll"></th>
 					<th>Product Num</th>
@@ -34,18 +34,19 @@
 					<th>Size</th>
 					<th>Option</th>
 					<th>Date</th>
+					<th>Update</th>
 				</tr>
 
 			</thead>
 
 			<tbody>
 
-				<c:forEach items="${list}" var="product" varStatus="p">
+				<c:forEach items="${productList}" var="product" varStatus="p">
 					<tr class="warning">
-						<td><input type="checkbox" class="listCheck product${p.index }" value="${product.pro_num }"></td>
+						<td><input type="checkbox" class="productCheck product${p.index }" value="${product.pro_num }"></td>
 						<td>${product.pro_num}</td>
 						<td>${product.cat_ref}</td>
-						<td>${product.pro_name}</td>
+						<td><a href="./productSelect?pro_num=${product.pro_num}"> ${product.pro_name}</a></td>
 						<td>${product.pro_price}</td>
 						<td>${product.pro_count}</td>
 						<td>${product.pro_sale}</td>
@@ -55,7 +56,7 @@
 						<td>${product.pro_size}</td>
 						<td>${product.pro_vital}</td>
 						<td>${product.pro_date}</td>
-
+						<td><a href="./productUpdate?pro_num=${product.pro_num}"><input type="button" value="정보 수정" ></a></td>
 					</tr>
 
 				</c:forEach>
@@ -63,7 +64,7 @@
 			</tbody>
 		</table>
 
-		<div>
+		<div >
 			<form action="./productList" id="frm">
 				<input type="hidden" id="curPage" value="1" name="curPage">
 				<select id="kind" name="kind">
@@ -78,7 +79,7 @@
 			</form>
 		</div>
 
-		<div>
+		<div >
 			<ul class="pagination">
 				<c:if test="${pager.curBlock gt 1}">
 					<li><span id="${pager.startNum-1}" class="list">이전</span></li>
@@ -109,6 +110,85 @@
 			$("#curPage").val($(this).attr("id"));
 			$("#frm").submit();
 		});
+	 	
+	 	var check= false;
+	 	$('#checkAll').click(function() {
+	 		if(check == false){
+	 			$('.productCheck').prop("checked","true");
+	 			check=true;
+	 		}else{
+	 			$('.productCheck').prop("checked","");
+	 			check=false;
+	 		}
+			
+		});
+	 	
+	 	
+	 	
+	 	$('.productCheck').click(function() {
+			var all=0;
+			for(var p=0; p<${productList.size()}; p++){
+				if($('.product'+p).prop("checked")==true){
+					all++;
+				}
+			}
+			if(all==${productList.size()}){
+				$('#checkAll').prop("checked","true");
+				check= true;
+				
+			}else{
+				$('#checkAll').prop("checked","");
+				check=false;
+			}
+			
+			
+		});
+	 	
+	 	
+	 	$('#pro_del').click(function() {
+			
+	 		jQuery.ajaxSettings.traditional = true;
+	 		
+	 		for(var p =0; p<${productList.size()}; p++){
+	 			
+	 			var num= new Array();
+	 			var index=0;
+	 			for( var p=0; p<${productList.size()}; p++){
+	 				
+	 				if($('.product'+p).prop("checked")==true){
+	 					num[index] = $('.product'+p).val();
+	 					index++;
+	 				}
+	 				
+	 			}
+	 			
+	 		}
+	 		
+	 		$.ajax({
+	 			type : "POST",
+	 			url : "productDelete",
+	 			data: {
+	 				
+	 				num : num
+	 				
+	 			},
+	 			success	: function(data) {
+					if (data == 1) {
+						location.reload();
+						}else{
+							alert("다시 시도하세요.")
+						}
+				}
+	 			
+	 			
+	 			
+	 		});
+	 		
+	 		
+		});
+	 	
+	 	
+	 	
 	  </script>
 
 

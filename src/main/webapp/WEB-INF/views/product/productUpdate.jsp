@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+    pageEncoding="UTF-8"%>
+  <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,73 +10,66 @@
 <c:import url="../layout/summerNote.jsp"></c:import>
 </head>
 <body>
-
-	<div class="container">
+		<div class="container">
 
 		<div class="jumbotron page-header">
-			<h1>Product Insert Page</h1>
+			<h1>Product Update Page</h1>
 		</div>
-
-
-		<form action="productInsert" method="post" id="frm">
-			<div class="form-group">
-				<label for="cat_ref">Category Choice</label>
-			</div>
-
-			<div class="form-group">
-
-				<select id="cloth">
-					<option value="100">Leather</option>
-					<option value="200">Cosmetic</option>
-					<option value="300">Cloth</option>
-					<option value="400">UnderWear</option>
-
-				</select>
-			</div>
-
-			<div id="kind">
-				<select name="cat_ref" id="kinds">
-					<option value="101">wallet</option>
-					<option value="102">bag</option>
-				</select>
-			</div>
-
 
 			<!--한칸 띄우기 -->
 			<br>
 
+		<form action="productUpdate?pro_num=${product.pro_num}" method="post" id="frm" onsubmit="true">
+			
+			<input type="hidden" name="pro_num" value="${product.pro_num}">
+			
 			<div class="form-group">
-				<label for="pro_name">Product Name:</label> <input type="text"
+			<label for="pro_date">Product Insert Date:</label>
+					<b>${product.pro_date} </b>
+			</div>
+
+			<div class="form-group">
+			<label for="cat_ref">Category Number:</label>
+					<b>${product.cat_ref} </b>
+			</div>
+					
+
+		
+
+
+			<div class="form-group">
+				<label for="pro_name">Product Name:</label>
+				 <input type="text"
 					class="form-control" id="pro_name" name="pro_name"
-					placeholder="Product Name Enter">
+					required="required" value="${product.pro_name}" >
 			</div>
 
 			<div class="form-group">
 				<label for="pro_price">Product Price:</label> <input type="number"
 					class="form-control" id="pro_price" name="pro_price"
-					placeholder="Product Price Enter">
+					placeholder="Product Price Enter" value="${product.pro_price}">
 			</div>
 
 			<div class="form-group">
 				<label for="pro_count">Product Count:</label> <input type="text"
 					class="form-control" id="pro_count" name="pro_count"
-					placeholder="Product Count Enter">
+					placeholder="Product Count Enter" value="${product.pro_count}">
 			</div>
 
 			<div class="form-group">
 				<label for="pro_contents">Product Cotents:</label>
-				<textarea type="text" id="pro_contents" name="pro_contents">입력하시오.</textarea>
+				<textarea type="text" id="pro_contents" name="pro_contents" >${product.pro_contents}</textarea>
 			</div>
 
 			<div class="form-group">
 				<label for="pro_warning">Product Warning:</label>
-				<textarea type="text" id="pro_warning" name="pro_warning">입력하시오.</textarea>
+				<textarea type="text" id="pro_warning" name="pro_warning" >${product.pro_warning}</textarea>
 			</div>
 
 			<div class="form-group">
 				<label for="pro_size">Product Size:</label>
 				<div>
-					<select id="pro_size" name="pro_size">
+					<select id="pro_size" name="pro_size" value="${product.pro_size}">
 						<option value="">선택하세요</option>
 						<option value="Small">S</option>
 						<option value="Medium">M</option>
@@ -89,18 +82,18 @@
 			<div class="form-group">
 				<label for="pro_color">Product Color:</label> <input type="text"
 					name="pro_color" id="pro_color" placeholder="Product Color Enter"
-					class="form-control">
+					class="form-control" value="${product.pro_color}">
 			</div>
 
 			<div class="form-group">
 				<label for="pro_vital">Product Option:</label>
 				<div>
 					<input type="text" name="pro_vital" id="pro_vital"
-						placeholder="Product Vital Enter" class="form-control">
+						placeholder="Product Vital Enter" class="form-control" value="${product.pro_vital}">
 				</div>
 			</div>
 
-			<button class="btn btn-primary px-3">상품 추가</button>
+			<button class="btn btn-primary px-3">상품 수정</button>
 
 		</form>
 	</div>
@@ -155,6 +148,3 @@
 		
 	
 	</script>
-
-</body>
-</html>

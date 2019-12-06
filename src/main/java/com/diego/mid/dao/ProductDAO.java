@@ -36,12 +36,25 @@ public class ProductDAO {
 	}
 	
 	
-//	//delete
-//	public int productDelete(ProductVO productVO)throws Exception{
-//		
-//		return sqlSession.delete(NAMESPACE+"productDelete", productVO);
-//		
-//	}
+	//delete
+	public int productDelete(ProductVO productVO)throws Exception{
+		
+		return sqlSession.delete(NAMESPACE+"productDelete", productVO);
+		
+	}
+	
+	//selectOne
+	public ProductVO productSelect(ProductVO productVO)throws Exception{
+		
+		return sqlSession.selectOne(NAMESPACE+"productSelect", productVO);
+	}
+	
+	//update
+	public int productUpdate(ProductVO productVO)throws Exception{
+		
+		return sqlSession.update(NAMESPACE+"productUpdate", productVO);
+		
+	}
 	
 	
 }

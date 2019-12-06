@@ -7,8 +7,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
 @Component
-public class MemberFile {
-	
+public class ProductFile {
 	public String save(String realPath, MultipartFile image) throws Exception {
 		File file = new File(realPath);
 		if (!file.exists()) {
@@ -21,5 +20,6 @@ public class MemberFile {
 		
 		return fname;
 	}
-
+	
+	
 }
