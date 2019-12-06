@@ -16,7 +16,7 @@
 
 </head>
 <body>
-	<c:import url="../layout/nav.jsp" />
+	<c:import url="../layout/nav2.jsp" />
 	<div class="container">
 		<h1 class="title_n">FAQ</h1>
 		<form id="frm" action="./faqList">
