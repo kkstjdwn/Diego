@@ -42,8 +42,8 @@ public class HomeController {
 		
 	}
 	
-	@GetMapping("/exexe")
-	public void exexe() {
+	@GetMapping("/headerFooter")
+	public void headerFooter() {
 		
 	}
 }

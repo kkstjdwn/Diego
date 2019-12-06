@@ -37,7 +37,7 @@ public class FAQController {
 	@RequestMapping("faqSelect")
 	public ModelAndView faqSelect(FAQVO faqvo)throws Exception{
 		ModelAndView mv = new ModelAndView();
-		faqvo = faqService.faqSelect(faqvo);
+		faqvo = faqService.faqSelect(faqvo);                                                                                                                                                                                                                                           
 		faqvo.setFaq_contents(faqvo.getFaq_contents().replace("\r\n", "<br>"));
 		FAQCategoryVO faqCategoryVO = new FAQCategoryVO();
 		faqCategoryVO.setFcat_code(faqvo.getFcat_code());

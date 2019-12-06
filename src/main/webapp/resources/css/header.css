@@ -67,7 +67,9 @@ header {
     margin-top: -11px;
     width: 250px;
     height: 34px;
-	
+	transition: .3s all;
+    transition-duration: 0.7s;
+    transform-origin: 0 96%;
 }
 nav{display: block;}
 
@@ -129,6 +131,10 @@ nav{display: block;}
 
 #ham img{
 	width: 100%;
+}
+
+.t_logo {
+    transform: rotate(90deg);
 }
 
 /*ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ */
