@@ -6,18 +6,15 @@
 
   <mapper namespace="imagesMapper">
   
-  
  
-  	
   	<!--이미지 insert  -->
-	<insert id="imagesInsert">
+	<insert id="imagesInsert" parameterType="ImagesVO">
 		
-		insert into images(pro_num, pro_main, sumnale, front, back, pro_model, pro_full, gif, pro_info, pro_size)
-		values(#{pro_num},#{pro_main},#{sumnale},#{front},#{back},#{pro_model},#{pro_full},#{gif},#{pro_info},#{pro_size} )
+		insert into images values(images_seq.nextval,#{pro_num}, #{pro_main}, #{sumnale}, #{front}, #{back}, #{pro_model}, #{pro_full}, #{gif}, #{pro_info}, #{pro_sizecut} )
 	
 	</insert>  	
   	
-  	
+  		
   
   
   </mapper>

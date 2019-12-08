@@ -18,22 +18,24 @@ public class ProductDAO {
 	private static final String NAMESPACE="productMapper.";
 
 	//pro_num을가져온다.
-		public int getProNum() throws Exception{
-			
-			return sqlSession.selectOne(NAMESPACE+"getProNum");
-		}
+	/*
+	 * public int getProNum() throws Exception{
+	 * 
+	 * return sqlSession.selectOne(NAMESPACE+"getProNum"); }
+	 */
 	
-	//insert
-	public int productInsert(ProductVO productVO) throws Exception{
-		
-		return sqlSession.insert(NAMESPACE+"productInsert", productVO);
-	}	
 
 	//list
 	public List<ProductVO> productList(Pager pager)throws Exception{
 		
 		return sqlSession.selectList(NAMESPACE+"productList", pager);
 	}
+	
+	//insert
+	public int productInsert(ProductVO productVO) throws Exception{
+		
+		return sqlSession.insert(NAMESPACE+"productInsert", productVO);
+	}	
 	
 	//count
 	public int productCount(Pager pager)throws Exception {

@@ -12,8 +12,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.diego.mid.model.product.ImagesVO;
 import com.diego.mid.model.product.ProductVO;
 import com.diego.mid.service.ProductService;
 import com.diego.mid.util.Pager;
@@ -30,20 +32,20 @@ public class ProductController {
 	//상품등록 insert
 	@GetMapping(value = "productInsert")
 	public void productInsert()throws Exception {
-
+			
 	}
 	@PostMapping(value ="productInsert")
-	public ModelAndView productInsert(ProductVO productVO )throws Exception {
+	public ModelAndView productInsert(ProductVO productVO, MultipartFile[] imagesFiles, HttpSession session )throws Exception {
 
+		System.out.println("test");
 		ModelAndView mv= new ModelAndView();
-		
-		int result = productService.productInsert(productVO);
+		int result = productService.productInsert(productVO,imagesFiles, session );
 		
 		String msg="등록실패";
 		if(result==1) {
 			msg="등록성공";
 		}
-
+		
 		mv.addObject("msg", msg);
 		mv.addObject("path", "productList");
 		mv.setViewName("common/common_result");
@@ -162,6 +164,9 @@ public class ProductController {
 		
 		ModelAndView mv = new ModelAndView();
 		
+		int size=productVO.getImagesfiles().size();
+		
+		mv.addObject("size", size);
 		mv.addObject("product", productVO);
 		mv.setViewName("product/productUpdate");
 		

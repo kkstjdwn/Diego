@@ -14,13 +14,14 @@ public class ImagesDAO {
 	
 	private final static String NAMESPACE= "imagesMapper.";
 
-	
-	
-	
+
 	//insert
 	public int imagesInsert(ImagesVO imagesVO)throws Exception {
 		
 		return sqlSession.insert(NAMESPACE+"imagesInsert", imagesVO);
 	}
+	
+	
+
 	
 }

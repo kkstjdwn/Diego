@@ -18,7 +18,7 @@
 		</div>
 
 
-		<form action="productInsert" method="post" id="frm">
+		<form action="productInsert" method="post" id="frm" onsubmit=true enctype="multipart/form-data" >
 			<div class="form-group">
 				<label for="cat_ref">Category Choice</label>
 			</div>
@@ -62,6 +62,12 @@
 					class="form-control" id="pro_count" name="pro_count"
 					placeholder="Product Count Enter">
 			</div>
+			
+<!-- 			<div class="form-group"> -->
+<!-- 				<label for="pro_sale">Product Sale:</label>  -->
+<!-- 				<input type="text" class="form-control" id="pro_sale" name="pro_sale" placeholder="Product Sale Enter"> -->
+<!-- 			</div> -->
+			
 
 			<div class="form-group">
 				<label for="pro_contents">Product Cotents:</label>
@@ -100,7 +106,58 @@
 				</div>
 			</div>
 
-			<button class="btn btn-primary px-3">상품 추가</button>
+			<div id="imagesfiles">
+
+				<label for="pro_main">Product Main Images:</label>
+				<div>
+					<input type="file" class="form-control " id="pro_main" name="imagesFiles">
+				</div>
+
+				<label for="sumnale">Product Sumnale Images:</label>
+				<div>
+					<input type="file" class="form-control " id="sumnale" name="imagesFiles">
+				</div>
+
+				<label for="front">Product Front Images:</label>
+				<div>
+					<input type="file" class="form-control " id="front" name="imagesFiles">
+				</div>
+
+				<label for="back">Product Back Images:</label>
+				<div>
+					<input type="file" class="form-control " id="back" name="imagesFiles">
+				</div>
+
+				<label for="pro_model">Product Model Images:</label>
+				<div>
+					<input type="file" class="form-control " id="pro_model" name="imagesFiles">
+				</div>
+
+				<label for="pro_full">Product Full Images:</label>
+				<div>
+					<input type="file" class="form-control " id="pro_full" name="imagesFiles">
+				</div>
+
+				<label for="gif">Product Gif Images:</label>
+				<div>
+					<input type="file" class="form-control " id="gif" name="imagesFiles">
+				</div>
+
+				<label for="pro_info">Product Info Images:</label>
+				<div>
+					<input type="file" class="form-control " id="pro_info" name="imagesFiles">
+				</div>
+
+				<label for="pro_size">Product Size Images:</label>
+				<div>
+					<input type="file" class="form-control " id="pro_sizecut" name="imagesFiles">
+				</div>
+			</div>
+
+			<br>
+			<div>
+				<button class="btn btn-primary px-3">상품 추가</button>
+			</div>
 
 		</form>
 	</div>

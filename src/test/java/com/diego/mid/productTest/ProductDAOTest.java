@@ -16,7 +16,7 @@ public class ProductDAOTest extends TestAbstractCase{
 	private ProductDAO productDAO;
 
 	//insert
-	//@Test
+	@Test
 	public void productInsertTest()throws Exception {
 
 

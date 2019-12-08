@@ -36,6 +36,7 @@ public class ImagesDAOTest extends TestAbstractCase{
 		ImagesVO imagesVO = new ImagesVO();
 		
 		imagesVO.setPro_num(136);
+		imagesVO.setImages_num(2);
 		imagesVO.setBack("back");
 		imagesVO.setFront("front");
 		imagesVO.setGif("gif");
@@ -43,7 +44,7 @@ public class ImagesDAOTest extends TestAbstractCase{
 		imagesVO.setPro_info("t1");
 		imagesVO.setPro_main("t1");
 		imagesVO.setPro_model("t1");
-		imagesVO.setPro_size("t1");
+		imagesVO.setPro_sizecut("t1");
 		imagesVO.setSumnale("t1");
 		
 		int result =imagesDAO.imagesInsert(imagesVO);
