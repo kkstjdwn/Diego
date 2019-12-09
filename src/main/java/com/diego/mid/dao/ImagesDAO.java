@@ -24,18 +24,13 @@ public class ImagesDAO {
 	}
 	
 	
-
 	//list
 	public List<ImagesVO> imagesList( int pro_num)throws Exception{
 		
 		return sqlSession.selectList(NAMESPACE+"imagesList", pro_num);
 	}
 	
-	//update
-	public  int imagesUpdate(ImagesVO imagesVO) throws Exception{
-		return sqlSession.update(NAMESPACE+"imagesUpdate",imagesVO);
-		
-	}
+
 	
 	
 	

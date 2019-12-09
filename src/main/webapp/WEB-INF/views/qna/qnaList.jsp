@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+      <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,6 +9,7 @@
 <c:import url="../layout/bootStrap.jsp" />
 </head>
 <body>
-		<h1>QNA INSERT PAGE</h1>
+	<c:import url="../layout/nav.jsp" />
+		<h1>QNA LIST</h1>
 </body>
 </html>

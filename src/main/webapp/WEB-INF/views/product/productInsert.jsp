@@ -46,27 +46,25 @@
 			<br>
 
 			<div class="form-group">
-				<label for="pro_name">Product Name:</label> <input type="text"
+				<label for="pro_name">Product Name:</label> 
+				<input type="text"
 					class="form-control" id="pro_name" name="pro_name"
 					placeholder="Product Name Enter">
 			</div>
 
 			<div class="form-group">
-				<label for="pro_price">Product Price:</label> <input type="number"
+				<label for="pro_price">Product Price:</label> 
+				<input type="number"
 					class="form-control" id="pro_price" name="pro_price"
 					placeholder="Product Price Enter">
 			</div>
 
 			<div class="form-group">
-				<label for="pro_count">Product Count:</label> <input type="text"
+				<label for="pro_count">Product Count:</label> 
+				<input type="text"
 					class="form-control" id="pro_count" name="pro_count"
 					placeholder="Product Count Enter">
 			</div>
-			
-<!-- 			<div class="form-group"> -->
-<!-- 				<label for="pro_sale">Product Sale:</label>  -->
-<!-- 				<input type="text" class="form-control" id="pro_sale" name="pro_sale" placeholder="Product Sale Enter"> -->
-<!-- 			</div> -->
 			
 
 			<div class="form-group">
