@@ -18,15 +18,19 @@
 
 			<!--한칸 띄우기 -->
 			<br>
+			
+			
 
 		<form action="productUpdate?pro_num=${product.pro_num}" method="post" id="frm" onsubmit="true">
 			
 			<input type="hidden" name="pro_num" value="${product.pro_num}">
 			
+
 			<div class="form-group">
-			<label for="pro_date">Product Insert Date:</label>
-					<b>${product.pro_date} </b>
+			<label for="pro_num">Product Number:</label>
+					<b>${product.pro_num} </b>
 			</div>
+
 
 			<div class="form-group">
 			<label for="cat_ref">Category Number:</label>
@@ -92,6 +96,14 @@
 						placeholder="Product Vital Enter" class="form-control" value="${product.pro_vital}">
 				</div>
 			</div>
+			
+			
+
+			<br>
+
+
+
+
 
 			<button class="btn btn-primary px-3">상품 수정</button>
 

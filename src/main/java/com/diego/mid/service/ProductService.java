@@ -37,28 +37,34 @@ public class ProductService {
 		String realPath=session.getServletContext().getRealPath("resources/product/images");
 		
 		ImagesVO imagesVO = new ImagesVO();
-		//int result = productDAO.productInsert(productVO);
+		int result = productDAO.productInsert(productVO);
 		
 		imagesVO.setPro_num(productVO.getPro_num());
 		System.out.println(realPath);
 		
 		imagesVO.setPro_main(saver.save(realPath,imagesFiles[0]));
-		imagesVO.setPro_full(saver.save(realPath,imagesFiles[1]));
-		imagesVO.setPro_info(saver.save(realPath,imagesFiles[2]));
-		imagesVO.setPro_model(saver.save(realPath,imagesFiles[3]));
-		imagesVO.setPro_info(saver.save(realPath,imagesFiles[4]));
-		imagesVO.setPro_sizecut(saver.save(realPath,imagesFiles[5]));
-		imagesVO.setSumnale(saver.save(realPath,imagesFiles[6]));
-		imagesVO.setGif(saver.save(realPath,imagesFiles[7]));
-		imagesVO.setFront(saver.save(realPath,imagesFiles[8]));
+		imagesVO.setSumnale(saver.save(realPath,imagesFiles[1]));
+		imagesVO.setFront(saver.save(realPath,imagesFiles[2]));
+		imagesVO.setBack(saver.save(realPath, imagesFiles[3]));
+		imagesVO.setPro_model(saver.save(realPath,imagesFiles[4]));
+		imagesVO.setPro_full(saver.save(realPath,imagesFiles[5]));
+		imagesVO.setGif(saver.save(realPath,imagesFiles[6]));
+		imagesVO.setPro_info(saver.save(realPath,imagesFiles[7]));
+		imagesVO.setPro_sizecut(saver.save(realPath,imagesFiles[8]));
 		
-		System.out.println(imagesVO.getPro_full());
-		//result= imagesDAO.imagesInsert(imagesVO);
+		//System.out.println(imagesVO.getPro_full());
 		
-		//return result;
+		if(result>0 ) {
+			//&& imagesFiles[0].getOriginalFilename()!=null
 		
-		return productDAO.productInsert(productVO);
+		result= imagesDAO.imagesInsert(imagesVO);
 		
+		}
+		
+		
+		return result;
+		
+
 	}
 	
 	//상품 리스트
@@ -80,6 +86,12 @@ public class ProductService {
 	//상품선택
 	public ProductVO productSelect(ProductVO productVO)throws Exception{
 		
+	
+		productVO = productDAO.productSelect(productVO);
+		
+		List<ImagesVO>ar = imagesDAO.imagesList(productVO.getPro_num());
+		
+		productVO.setImages(ar);
 		return productDAO.productSelect(productVO);
 		
 	}
@@ -88,6 +100,7 @@ public class ProductService {
 	public int productUpdate(ProductVO productVO)throws Exception{
 		
 		return productDAO.productUpdate(productVO);
+	
 	}
 	
 	

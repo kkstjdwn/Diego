@@ -1,5 +1,7 @@
 package com.diego.mid.dao;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
@@ -23,5 +25,18 @@ public class ImagesDAO {
 	
 	
 
+	//list
+	public List<ImagesVO> imagesList( int pro_num)throws Exception{
+		
+		return sqlSession.selectList(NAMESPACE+"imagesList", pro_num);
+	}
+	
+	//update
+	public  int imagesUpdate(ImagesVO imagesVO) throws Exception{
+		return sqlSession.update(NAMESPACE+"imagesUpdate",imagesVO);
+		
+	}
+	
+	
 	
 }

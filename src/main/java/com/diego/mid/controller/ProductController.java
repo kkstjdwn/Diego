@@ -164,7 +164,7 @@ public class ProductController {
 		
 		ModelAndView mv = new ModelAndView();
 		
-		int size=productVO.getImagesfiles().size();
+		int size=productVO.getImages().size();
 		
 		mv.addObject("size", size);
 		mv.addObject("product", productVO);
@@ -179,11 +179,11 @@ public class ProductController {
 	@PostMapping("productUpdate") 
 	public ModelAndView productUpdate2(ProductVO productVO)throws Exception {
 		
-		int result = productService.productUpdate(productVO);
+		int result = productService.productUpdate(productVO );
 		
 		ModelAndView mv = new ModelAndView();
 		
-		String msg="수정 안됐는뒈?";
+		String msg="수정 실패";
 		if(result==1) {
 			msg="수정 완료";
 		}

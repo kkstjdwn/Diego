@@ -14,7 +14,17 @@
 	
 	</insert>  	
   	
-  		
-  
+  	<!--이미지 리스트  -->
+  	<select id="imagesList" parameterType="Integer" resultType="ImagesVO">
+  		select * from images where pro_num=#{pro_num}
+  	</select>
+ 
+	<!--이미지 업데이트 -->
+	<!-- <update id="imagesUpdate" parameterType="ImagesVO">
+		
+		update images set pro_main=#{pro_main}, sumnale=#{sumnale}, front=#{front}, back=#{back},pro_model=#{pro_model}, pro_full=#{pro_full},gif=#{gif}, pro_info=#{pro_info}, pro_sizecut=#{pro_sizecut}
+		where pro_num=#{pro_num}
+	
+	</update> -->
   
   </mapper>

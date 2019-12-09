@@ -20,7 +20,7 @@
 <div class="jumbotron page-header">
 	<h1>Product Info</h1>
 </div>
-			<input type="hidden" name="pro_num" value="${product.pro_num}">
+			
 			
 			<div class="form-group">
 			<label for="pro_date">Product Insert Date:</label>
@@ -28,15 +28,16 @@
 			</div>
 			
 			<div class="form-group">
+			<label for="pro_num">Product Number:</label>
+					<b>${product.pro_num} </b>
+			</div>
+			
+			
+			<div class="form-group">
 			<label for="cat_ref">Category Number:</label>
 					<b>${product.cat_ref} </b>
 			</div>
 		
-		
-			<div class="form-group">
-			<label for="pro_num">Product Number:</label>
-					<b>${product.pro_num} </b>
-			</div>
 		
 			<div class="form-group" >
 				<label for="pro_name">Product Name:</label> 
@@ -51,6 +52,11 @@
 			<div class="form-group">
 				<label for="pro_count">Product Count:</label>
 					<b>${product.pro_count} </b>
+			</div>
+	
+			<div class="form-group">
+				<label for="pro_sale">Product Sale:</label>
+					<b>${product.pro_sale} </b>
 			</div>
 	
 			<div class="form-group">
@@ -79,6 +85,75 @@
 				 	<b>${product.pro_vital} </b>
 			</div>
 			
+			<div>
+				<c:forEach items="${product.images}" var="image">
+					<div >
+							<label for="pro_main">Product Main Image:</label>
+							<br>
+					<a href="../resources/product/images/${image.pro_main}">${image.pro_main}</a>
+				
+					</div>
+					<div >
+							<label for="pro_sumnale">Product Sumnale Image:</label>
+							<br>
+					<a href="../resources/product/images/${image.sumnale}">${image.sumnale}</a>
+				
+					</div>
+					<div >
+							<label for="pro_front">Product Front Image:</label>
+							<br>
+					<a href="../resources/product/images/${image.front}">${image.front}</a>
+				
+					</div>
+					<div >
+							<label for="pro_back">Product Back Image:</label>
+							<br>
+					<a href="../resources/product/images/${image.back}">${image.back}</a>
+				
+					</div>
+					<div >
+							<label for="pro_model">Product Model Image:</label>
+							<br>
+					<a href="../resources/product/images/${image.pro_model}">${image.pro_model}</a>
+				
+					</div>
+					
+					<div >
+							<label for="pro_full">Product Full Image:</label>
+							<br>
+					<a href="../resources/product/images/${image.pro_full}">${image.pro_full}</a>
+				
+					</div>
+					
+					<div >
+							<label for="pro_gif">Product Gif Image:</label>
+							<br>
+					<a href="../resources/product/images/${image.gif}">${image.gif}</a>
+				
+					</div>
+					
+					<div >
+							<label for="pro_info">Product Info Image:</label>
+							<br>
+					<a href="../resources/product/images/${image.pro_info}">${image.pro_info}</a>
+				
+					</div>
+					
+					<div >
+							<label for="pro_sizecut">Product SizeCut Image:</label>
+							<br>
+					<a href="../resources/product/images/${image.pro_sizecut}">${image.pro_sizecut}</a>
+				
+					</div>
+					
+				
+				</c:forEach>
+			
+			</div>
+			
+			
+			
+			<a href="../qna/qnaInsert?pro_num=${product.pro_num}" class="btn btn-primary">QNA LIST</a>
 			<a href="./productUpdate?pro_num=${product.pro_num}" class="btn btn-primary">Update</a>
 			<a href="./productList?pro_num=${product.pro_num}" class="btn btn-default">List</a>
 	</div>

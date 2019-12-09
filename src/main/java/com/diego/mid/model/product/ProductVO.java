@@ -20,7 +20,7 @@ public class ProductVO {
 	private String pro_color;//상품 색상
 	private String pro_vital;//상품 필수옵션
 	
-	private List<ImagesVO> imagesfiles;
+	private List<ImagesVO> images;
 
 	public Integer getPro_num() {
 		return pro_num;
@@ -118,13 +118,14 @@ public class ProductVO {
 		this.pro_vital = pro_vital;
 	}
 
-	public List<ImagesVO> getImagesfiles() {
-		return imagesfiles;
+	public List<ImagesVO> getImages() {
+		return images;
 	}
 
-	public void setImagesfiles(List<ImagesVO> imagesfiles) {
-		this.imagesfiles = imagesfiles;
+	public void setImages(List<ImagesVO> images) {
+		this.images = images;
 	}
+
 	
 	
 	

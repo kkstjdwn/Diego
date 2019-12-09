@@ -51,8 +51,7 @@
 	</insert>
 
 	<!--select -->
-	<select id="productSelect" parameterType="ProductVO"
-		resultMap="image">
+	<select id="productSelect" parameterType="ProductVO" resultMap="image">
 		select P.*, I.images_num, I.pro_main, I.sumnale, I.front,
 		I.back, I.pro_model, I.pro_full, I.gif, I.pro_info, I.pro_sizecut
 		from
@@ -75,8 +74,7 @@
 		<result property="pro_color" column="pro_color" />
 		<result property="pro_vital" column="pro_vital" />
 
-		<collection property="images" javaType="List"
-			ofType="ImagesVO">
+		<collection property="images" javaType="List" ofType="ImagesVO">
 			<id property="images_num" column="images_num" />
 			<result property="pro_main" column="pro_main" />
 			<result property="sumnale" column="sumnale" />
@@ -108,7 +106,7 @@
 		pro_contents=#{pro_contents}, pro_warning=#{pro_warning},
 		pro_size=#{pro_size}, pro_color=#{pro_color}, pro_vital=#{pro_vital}
 		where pro_num = #{pro_num}
-
+		
 	</update>
 
 </mapper>

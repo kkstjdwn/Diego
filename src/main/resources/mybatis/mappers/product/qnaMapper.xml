@@ -8,9 +8,11 @@
    
    <!--insert-->
    <insert id="qnaWrite" parameterType="QnaVO">
-   	insert into qna values(#{id},#{admin_id},#{pro_num},qna_seq.nextval, #{title},#{contents},#{image},#{qna_pw},#{qna_seceret}, sysdate, qna_seq.currval,0,0)
-   		
+   		insert into qna values(#{writer},qna_seq.nextval,#{pro_num},#{title},#{contents},sysdate,qna_seq.currval,0,0)
    </insert>
+   
+   <select id="qnaList" ></select>
+   
    
    
    
