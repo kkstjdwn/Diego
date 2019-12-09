@@ -26,10 +26,14 @@ public class MemberTEST extends TestAbstractCase{
 		memberVO.setPw("c00");
 		//assertEquals(1, dao.memberInsert(memberVO));
 		//assertNotNull(dao.memberLogin(memberVO));
-		assertEquals(1, dao.memberUpdate(memberVO));
+		//assertEquals(1, dao.memberUpdate(memberVO));
 		//assertEquals(1, dao.memberDelete(memberVO));;
 		//assertEquals(1, dao.memberRankUp(memberVO));
 		//assertEquals(1, service.memberRankUp(memberVO));
+		String number = "01026337971";
+		System.out.println("010 : "+number.substring(0, 3));
+		System.out.println("XXXX : "+number.substring(3, 7));
+		System.out.println("XXXX : "+number.substring(7));
 	}
 
 }

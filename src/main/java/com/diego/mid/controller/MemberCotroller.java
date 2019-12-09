@@ -32,19 +32,23 @@ public class MemberCotroller {
 	public ModelAndView memberInsert(MemberVO memberVO)throws Exception{
 		ModelAndView mv = new ModelAndView();
 		int result = service.memberInsert(memberVO);
-		String msg = "0";
+		String msg = "다시 시도해 주세요";
+		String path = "#";
 		if (result>0) {
 			Point point = new Point();
 			point.setId(memberVO.getId());
+			point.setOrder_num(0);
 			point.setPoint_value(5000);
 			point.setContents("가입축하 포인트");
 			result = manageSevice.pointInsert(point);
 			if (result > 0) {
-				msg = "1";
+				msg = "가입을 축하드립니다!";
+				path = "/mid/member/memberLogin";
 			}
 		}
 		mv.addObject("msg", msg);
-		mv.setViewName("common/common_ajax_result");
+		mv.addObject("path", path);
+		mv.setViewName("common/common_msg");
 		
 		return mv;
 	}
@@ -62,6 +66,24 @@ public class MemberCotroller {
 		if (memberVO != null) {
 			msg = "1";
 			session.setAttribute("member", memberVO);
+
+			int up = 20000;
+			int x = 2;
+			if (memberVO.getMem_rank().equals("SILVER")) {
+				x = 5;
+				up=100000;
+			}else if (memberVO.getMem_rank().equals("GOLD")) {
+				x = 10;
+				up=300000;
+			}else if (memberVO.getMem_rank().equals("DIAMOND")) {
+				x = 15;
+				up=100000000;
+			}
+			session.setAttribute("p1", memberVO.getPhone().substring(0, 3));
+			session.setAttribute("p2", memberVO.getPhone().substring(3, 7));
+			session.setAttribute("p3", memberVO.getPhone().substring(7));
+			session.setAttribute("x", x);
+			session.setAttribute("up", up);
 		}
 		mv.addObject("msg", msg);
 		mv.setViewName("common/common_ajax_result");
@@ -74,15 +96,18 @@ public class MemberCotroller {
 		
 	}
 	
-	//@PostMapping("memberUpdate")
-	@RequestMapping(value = "memberUpdate", method = RequestMethod.POST)
+	@PostMapping("memberUpdate")
 	public ModelAndView memberUpdate(MemberVO memberVO, HttpSession session) throws Exception{
 		
 		ModelAndView mv = new ModelAndView();
 		int result = service.memberUpdate(memberVO);
 		if (result>0) {
-			session.setAttribute("member", memberVO);
-			mv.setViewName("diego");
+			session.setAttribute("member", service.memberLogin(memberVO));
+			mv.addObject("msg", "수정하였습니다");
+			mv.addObject("path", "/mid/diego");
+			mv.setViewName("common/common_msg");
+		}else {
+			mv.setViewName("/mid/diego");
 		}
 
 		return mv;
@@ -91,7 +116,7 @@ public class MemberCotroller {
 	
 	@GetMapping("memberSelect")
 	public void memberSelect(HttpSession session) {
-		
+
 	}
 	
 	@GetMapping("memberDelete")

@@ -76,6 +76,7 @@ $(".wishCheck").click(function() {
 		$("#checkAll").prop("checked","true");
 		check = true;
 	}else{
+		
 		$("#checkAll").prop("checked","");
 		check = false;
 		console.log(check);

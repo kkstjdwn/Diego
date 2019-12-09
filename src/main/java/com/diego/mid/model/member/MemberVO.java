@@ -34,6 +34,8 @@ public class MemberVO {
     private Date join_date;
 
     private String lev;
+    
+    private String email_chk;
 
     public String getId() {
 		return id;
@@ -178,6 +180,14 @@ public class MemberVO {
 
 	public void setLev(String lev) {
 		this.lev = lev;
+	}
+
+	public String getEmail_chk() {
+		return email_chk;
+	}
+
+	public void setEmail_chk(String email_chk) {
+		this.email_chk = email_chk;
 	}
 	
 
