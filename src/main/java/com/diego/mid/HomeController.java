@@ -48,8 +48,8 @@ public class HomeController {
 	@GetMapping("/layout/footer")
 	public void footer() {
 	}
-	@GetMapping("/notice/noticeList2")
-	public void noticeList2() {
+	@GetMapping("/notice/noticeWrite2")
+	public void noticeWrite2() {
 		
 	}
 }

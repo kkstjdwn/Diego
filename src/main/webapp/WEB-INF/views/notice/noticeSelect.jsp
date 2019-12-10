@@ -4,39 +4,85 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link href="../resources/css/noticeCss/noticeSelect.css" rel="stylesheet">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <meta charset="UTF-8">
-<title>notice title here</title>
-<c:import url="../layout/bootStrap.jsp"/>
-
+<title>Notice Select</title>
 </head>
 <body>
-	<c:import url="../layout/nav.jsp" />
-	<div class="container" >
-	<h1 class="title_n">Notice</h1> 
-		<table class="table ">
-			<thead>
-				<tr>
-					<th class="th1">Title</th><th class="th1">Writer</th><th class="th1">Date</th>
-				</tr>
-			</thead> 
-			<tbody> 
-				<tr>
-					<td id="title1">${dto.title}</td><td class="th1">${dto.admin_name}</td><td class="th1 date">${noticeVO.not_date}</td>
-				</tr>
-				<tr>
-					<td colspan="4"><div class="con1">${dto.contents}</div></td>
-				</tr>
-			</tbody>
-		</table>
-		
-		
-		<a href="noticeList" class="btn btn-primary">글목록</a>
-		
-			<a class="btn btn-primary" href="noticeUpdate?not_num=${dto.not_num}">Update</a>
-			<a class="btn btn-danger" href="noticeDelete?not_num=${dto.not_num}">Delete</a>
+	<c:import url="../layout/header.jsp" />
 
-	</div>
-	
-	
+	<div id="listcontentWrap2">
+		<c:import url="../layout/leftList.jsp" />
+
+		<div id="listcontent2">
+			<div class="">
+				<div class="">
+					<div class="titleArea">
+						<h2>
+							<font color="#555555">Notice</font>
+						</h2>
+					</div>
+				</div>
+				<!-- 글 내용-->
+				<form id="BoardDelForm" name="" action="" method="post" target="_self" enctype="multipart/form-data">
+					<div class="">
+						<div class="typeWrite">
+							<table border="1" summary="">
+								<caption></caption>
+								<colgroup>
+									<col style="width: 130px;" />
+									<col style="width: auto;" />
+								</colgroup>
+								<tbody>
+									<tr>
+										<th scope="row">제목</th>
+										<td>${dto.title}</td>
+									</tr>
+									<tr>
+										<th scope="row">작성자</th>
+										<td>${dto.admin_name}</td>
+									</tr>
+									<tr>
+										<td colspan="2">
+											<ul class="etcArea">
+												<li class=""><strong>작성일</strong> <span class="txtNum">${dto.not_date}</span></li>
+											</ul>
+											<div class="detail">
+												<!-- 글 안의내용  -->
+												${dto.contents}
+											</div>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<div class="base_button">
+						<span class="gLight">
+							<a href="./noticeList"><img src="../resources/images/button/btn_list.gif" alt="목록" /></a>
+						</span>
+							<!-- 관리자 아니면 안보이게 하기 -->
+							<span class="gRight">
+							 <a href="" onclick="" class="displaynone"><img src="../resources/images/button/btn_delete.gif"alt="삭제" /></a> 
+							 	<a href="" class="displaynone"><img src="../resources/images/button/btn_modify.gif" alt="수정" /></a> 
+							</span>
+						</div>
+					</div>
+				</form>
+			</div>
+</div>
+
+
+		</div>
+
+
+
+
+
+
+		<c:import url="../layout/footer.jsp" />
 </body>
+
+
 </html>

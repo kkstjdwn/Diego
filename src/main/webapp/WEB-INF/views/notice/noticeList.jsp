@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link href="../resources/css/noticeList.css" rel="stylesheet">
+<link href="../resources/css/noticeCss/noticeList.css" rel="stylesheet">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <meta charset="UTF-8">
@@ -60,12 +60,12 @@
 					</table>
 					<p class=""></p>
 				</div>
-				<c:if test="${admin ne null}">
+				<%-- <c:if test="${admin ne null}"> --%>
 				<div style="text-align: right; float: right; margin-top: 30px"
 					class="">
 					<a href="./noticeWrite" class="write"><b>글쓰기</b></a>
 				</div>
-				</c:if>
+				<%-- </c:if> --%>
 			</div> 
 
 			<ul class="pagination paging">

@@ -89,7 +89,7 @@
 						<li><a href=""><span>이벤트</span></a></li>
 						<li><a href=""><span>고객센터</span></a>
 							<ul class="menu_depth">
-								<li><a href="">Notice</a></li>
+								<li><a href="../notice/noticeList">Notice</a></li>
 								<li><a href="">FAQ</a></li>
 								<li><a href="">Q&A</a></li>
 								<li><a href="">Review</a></li>
@@ -213,7 +213,7 @@
 						<div class="navi_box">
 							<h1>Community</h1>
 							<ul class="contents c5">
-								<li><a href="">공지사항</a></li>
+								<li><a href="../notice/noticeList">공지사항</a></li>
 								<li><a href="">FAQ</a></li>
 								<li><a href="">Q&A</a></li>
 								<li><a href="">Photo
