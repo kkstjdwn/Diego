@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Make DIV</title>
+<title>HOME</title>
 <link href="resources/css/main.css" rel="stylesheet">
 </head>
 <body>

@@ -3,7 +3,6 @@ package com.diego.mid.controller;
 import java.util.List;
 
 import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -261,6 +260,28 @@ public class MemberManageController {
 		int sum = 0;
 		for (Orders orders2 : ar) {
 			sum+=orders2.getOrder_sum();
+			if (orders2.getOrder_status().equals("WP")) {
+				orders2.setOrder_status("결제 대기중");
+			}else if(orders2.getOrder_status().equals("OC")) {
+				orders2.setOrder_status("주문 취소");
+			}
+		}
+		mv.addObject("orderList", ar);
+		mv.addObject("sum", sum);
+		mv.setViewName("/member/memberManage/orderMyList");
+		return mv;
+	}
+	
+	@GetMapping("OrderCancelList")
+	public ModelAndView orderCancelList(HttpSession session) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		MemberVO vo = (MemberVO)session.getAttribute("member");
+		Orders orders = new Orders();
+		orders.setId(vo.getId());
+		List<Orders> ar = service.orderCancelList();
+		int sum = 0;
+		for (Orders orders2 : ar) {
+			orders2.setOrder_status("주문 취소");
 		}
 		mv.addObject("orderList", ar);
 		mv.addObject("sum", sum);

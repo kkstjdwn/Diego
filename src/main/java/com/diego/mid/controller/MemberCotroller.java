@@ -28,6 +28,13 @@ public class MemberCotroller {
 		
 	}
 	
+	@GetMapping("memberLogout")
+	public String memberLogout(HttpSession session) {
+		session.invalidate();
+		
+		return "redirect:memberLogin";
+	}
+	
 	@PostMapping("memberInsert")
 	public ModelAndView memberInsert(MemberVO memberVO)throws Exception{
 		ModelAndView mv = new ModelAndView();
@@ -102,6 +109,7 @@ public class MemberCotroller {
 		ModelAndView mv = new ModelAndView();
 		int result = service.memberUpdate(memberVO);
 		if (result>0) {
+			session.removeAttribute("member");
 			session.setAttribute("member", service.memberLogin(memberVO));
 			mv.addObject("msg", "수정하였습니다");
 			mv.addObject("path", "/mid/diego");

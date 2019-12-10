@@ -61,6 +61,9 @@ public class MemberManageService {
 		return dao.orderList();
 	}
 	
+	public List<Orders> orderCancelList() throws Exception{
+		return dao.orderCancelList();
+	}
 	public int orderCancel(Orders orders) throws Exception{
 		return dao.orderCancel(orders);
 	}

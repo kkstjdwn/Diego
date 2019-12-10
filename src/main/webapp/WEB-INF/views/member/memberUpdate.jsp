@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>회원 정보 수정</title>
 <link href="../resources/css/member.css" rel="stylesheet">
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -42,7 +42,7 @@
 </div>
 <!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
 <div class="right" style="height: 985px;">
-	<h1 style="color: black; margin-bottom: 55px; text-align: center; font-size: 20px; font-weight: normal;">회원 정보 수정</h1>
+	<h1 class="right-h1">회원 정보 수정</h1>
 	<div class="info">
 		<div class="info-image">
 			<img alt="프사" src="../resources/images/img_member_default.gif">
@@ -209,7 +209,6 @@
 			phone = phone + $(this).val();
 		});
 			$("#ph-number").prop("value",phone);
-			alert(phone);
 	}
 </script>
 </body>

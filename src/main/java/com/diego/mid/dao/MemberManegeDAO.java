@@ -59,8 +59,11 @@ public class MemberManegeDAO {
 		return sql.selectList(ORDER+"orderList");
 	}
 	
+	public List<Orders> orderCancelList() throws Exception{
+		return sql.selectList(ORDER+"orderCancelList");
+	}
 	public int orderCancel(Orders orders) throws Exception{
-		return sql.delete(ORDER+"orderCancel",orders);
+		return sql.update(ORDER+"orderCancel",orders);
 	}
 	
 	public int orderUpdate(Orders orders) throws Exception{

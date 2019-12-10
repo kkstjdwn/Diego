@@ -24,7 +24,7 @@
   <div class="form-group">
     <label class="control-label col-sm-2" for="pro_num">상품번호</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" id="pro_num" value="9999" name="pro_num" readonly="readonly">
+      <input type="text" class="form-control" id="pro_num" value="99999" name="pro_num" readonly="readonly">
     </div>
   </div>
   <div class="form-group">

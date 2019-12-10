@@ -9,8 +9,8 @@
   </select>
   
   <insert id="orderInsert" parameterType="orders">
-  insert into orders (order_num, order_date, image, id, pro_num, pro_info, pro_count, price, order_sum, coup_num)
-  values(#{order_num}, sysdate, #{image}, #{id}, #{pro_num}, #{pro_info}, #{pro_count}, #{price}, #{order_sum}, #{coup_num})
+  insert into orders (order_num, order_date, image, id, pro_num, pro_info, pro_count, price, order_sum, coup_num, order_status)
+  values(#{order_num}, sysdate, #{image}, #{id}, #{pro_num}, #{pro_info}, #{pro_count}, #{price}, #{order_sum}, #{coup_num}, 'WP')
   </insert>
   
   
@@ -29,7 +29,13 @@
   
   <select id="orderMyList" parameterType="orders" resultType="orders">
   
-  	select * from orders where id=#{id} order by order_num desc
+  	select * from orders where id=#{id} and order_status != 'OC' order by order_num desc
+  
+  </select>
+  
+  <select id="orderCancelList" parameterType="orders" resultType="orders">
+  
+  	select * from orders where id=#{id} and order_status = 'OC' order by order_num desc
   
   </select>
   
@@ -38,12 +44,12 @@
   	select * from orders order by order_num desc
   
   </select>
+
+  <update id="orderCancel" parameterType="orders">
   
-  <delete id="orderCancel" parameterType="orders">
-  
-  	delete orders where order_num=#{order_num}
-  
-  </delete>
+  	update orders set order_status = 'OC' where order_num = #{order_num }
+  	
+  </update>
   
   
   
