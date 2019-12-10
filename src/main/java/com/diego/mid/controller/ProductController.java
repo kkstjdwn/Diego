@@ -41,9 +41,9 @@ public class ProductController {
 		ModelAndView mv= new ModelAndView();
 		int result = productService.productInsert(productVO,imagesFiles, session );
 		
-		String msg="등록실패";
+		String msg="Insert Fail";
 		if(result==1) {
-			msg="등록성공";
+			msg="Insert Success";
 		}
 		
 		mv.addObject("msg", msg);
@@ -183,9 +183,9 @@ public class ProductController {
 		
 		ModelAndView mv = new ModelAndView();
 		
-		String msg="수정 실패";
+		String msg="Update Fail";
 		if(result==1) {
-			msg="수정 완료";
+			msg="Update Success";
 		}
 		
 		mv.addObject("msg", msg);

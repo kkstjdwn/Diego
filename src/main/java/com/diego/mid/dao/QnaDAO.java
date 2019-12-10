@@ -58,6 +58,16 @@ public class QnaDAO {
 		return sqlSession.selectOne(NAMESPACE+"imagesSelect", imagesVO);
 	}
 	
+	//삭제
+	public int qnaDelete(QnaVO qnaVO)throws Exception {
+		
+		return sqlSession.delete(NAMESPACE+"qnaDelete", qnaVO);
+	}
 	
+	//업데이트
+	public int qnaUpdate(QnaVO qnaVO)throws Exception {
+		
+		return sqlSession.update(NAMESPACE+"qnaUpdate", qnaVO);
+	}
 	
 }

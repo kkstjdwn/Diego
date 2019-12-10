@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+    pageEncoding="UTF-8"%>
+ <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,17 +10,16 @@
 <c:import url="../layout/summerNote.jsp"></c:import>
 </head>
 <body>
-	<c:import url="../layout/nav.jsp" />
-	
-	<div class="container">
+<c:import url="../layout/nav.jsp" />
+
+<div class="container">
 		
 		<div class="jumbotron page-header">
 			<h1>QNA WRITE PAGE</h1>
 		</div>
 		
-		<form action="./qnaWrite" method="post" onsubmit="true">
+		<form action="./qnaUpdate?qna_num=${qna.qna_num}" method="post" onsubmit="true">
 			
-					
 			<div class="form-group">
 			<label for="pro_num">Product Number:</label>
 				<input type="text" class="form-control" id="pro_num" name="pro_num" readonly="readonly" value="${param.pro_num}">
@@ -38,16 +37,16 @@
 
 			<div class="form-group">
 				<label for="witer">Writer : </label> 
-				<input type="text" class="form-control" id="writer" name="writer" readonly="readonly" value="${admin.admin_id}">
+				<input type="text" class="form-control" id="writer" name="writer" readonly="readonly" value="${qna.writer}">
 			</div>
 
 			
 			<div class="form-group">
 				<label for="contents">Contents:</label>
-				<textarea class="form-control" rows="30" id="contents" name="contents"></textarea>
+				<textarea class="form-control" rows="30" id="contents" name="contents">${qna.contents}</textarea>
 			</div>
 
-			<button  class="btn btn-primary">등록</button>
+			<button type="submit" class="btn btn-primary">Update</button>
 			<a href="./qnaList" class="btn btn-default">List</a>
 		
 		</form>
@@ -62,6 +61,5 @@
 	});
 	
 	</script>
-	
 </body>
 </html>

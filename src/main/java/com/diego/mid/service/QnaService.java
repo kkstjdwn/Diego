@@ -63,4 +63,16 @@ public class QnaService {
 		
 		return imagesDAO.imagesSelect(imagesVO);
 	}
+	
+	//delete
+	public int qnaDelete(QnaVO qnaVO)throws Exception {
+		
+		return qnaDAO.qnaDelete(qnaVO);
+	}
+	
+	//update
+	public int qnaUpdate(QnaVO qnaVO)throws Exception{
+		
+		return qnaDAO.qnaUpdate(qnaVO);
+	}
 }

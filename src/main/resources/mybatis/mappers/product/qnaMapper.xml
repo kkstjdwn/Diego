@@ -65,8 +65,17 @@
 	
 	</select>
 	
+	<!--qna삭제  -->
+	<delete id="qnaDelete" parameterType="Integer" >
+		delete qna where qna_num=#{qna_num}	
+	</delete>
 	
-	
+	<!--qnaUpdate  -->
+	<update id="qnaUpdate" parameterType="QnaVO">
+		update qna set 
+		title=#{title},contents=#{contents}
+		where qna_num=#{qna_num} and pro_num=#{pro_num}
+	</update>
 	
 	
 

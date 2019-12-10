@@ -46,9 +46,9 @@ public class QnaController {
 		ModelAndView mv = new ModelAndView();
 		int result = qnaService.qnaWrite(qnaVO);
 	
-		String msg = "등록실패";
+		String msg = "Insert Fail";
 		if(result==1) {
-			msg="등록성공";
+			msg="Insert Success";
 		}
 		mv.addObject("msg", msg);
 		mv.addObject("path", "qnaList");
@@ -75,25 +75,25 @@ public class QnaController {
 	//qna셀렉트
 	@GetMapping("qnaSelect")
 	public ModelAndView qnaSelect(QnaVO qnaVO, Integer pro_num)throws Exception {
-		
+		//맨위에 인젝트를 해놓았기 때문에 뒤에꺼만가져와서 NEW해줌.
 		productVO= new ProductVO();
 		imagesVO = new ImagesVO();
 		
+		//셀렉트문은 PRO_NUM을사용하여 불러오기 때문에 각자 PRO_NUM을 셋해줌.
 		//System.out.println(qnaVO.getPro_num());
 		qnaVO.setPro_num(pro_num);
 		productVO.setPro_num(pro_num);
 		imagesVO.setPro_num(pro_num);
 		
-	
-		
 		ModelAndView mv = new ModelAndView();
+		
 		qnaVO = qnaService.qnaSelect(qnaVO);
 		
+		//productVO 셀렉트문과 imageVO셀렉트문을 두개같이사용하기위해 
+		//VO들을 객체 생성해서 담아주고 VO들을 MV에 담아 보내준다.
 		productVO = qnaService.productSelect(productVO);
 					
 		imagesVO = qnaService.imagesSelect(imagesVO);
-		
-		
 		
 		qnaVO.setContents(qnaVO.getContents().replace("\n\r", "<br>"));
 		
@@ -105,6 +105,56 @@ public class QnaController {
 		return mv;
 	}
 	
+	//DELETE
+	@GetMapping("qnaDelete")
+	public ModelAndView qnaDelete(QnaVO qnaVO)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		
+		int result = qnaService.qnaDelete(qnaVO);
+		String msg="Delete Fail";
+		
+		if(result==1) {
+			
+			msg="Delete Success";
+		}
+		mv.addObject("msg",msg);
+		mv.addObject("path", "qnaList");
+		mv.setViewName("common/common_result");
+		
+		return mv;
+		
+	}
 	
+	//UPDATE
+	@GetMapping("qnaUpdate")
+	public ModelAndView qnaUpdate(QnaVO qnaVO, Integer pro_num)throws Exception{
+		
+		qnaVO.setPro_num(pro_num);
+		
+		ModelAndView mv = new ModelAndView();
+		qnaVO=qnaService.qnaSelect(qnaVO);
+		
+		
+		mv.addObject("qna", qnaVO);
+		mv.setViewName("qna/qnaUpdate");
+		return mv;
+	}
 	
+	@PostMapping("qnaUpdate")
+	public ModelAndView qnaUpdate2(QnaVO qnaVO)throws Exception{
+		
+		int result = qnaService.qnaUpdate(qnaVO);
+		ModelAndView mv= new ModelAndView();
+		
+		String msg="Update Fail";
+		if(result==1) {
+			msg="Update Success";
+		}
+		
+		mv.addObject("msg", msg);
+		mv.addObject("path", "qnaList");
+		mv.setViewName("common/common_result");
+
+		return mv;
+	}
 }
