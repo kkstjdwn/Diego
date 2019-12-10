@@ -303,7 +303,7 @@ v#log a {
     bottom: 0;
     background: white;
     z-index: 100;
-    transition: all 1000ms ease;
+    transition: all 1s ease;
 }
 
 .navi_logo {
