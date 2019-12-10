@@ -73,3 +73,18 @@
 #link ul li a{
 	padding: 10px;
 }
+
+.scrollTop {
+    right: 40px;
+    position: absolute;
+    bottom: 40px;
+    font-size: 20px;
+    z-index: 99;
+    display: none;
+}
+
+.scrollTop img{
+	background-color: white;
+   width: 17.5px;
+   height: 21px;
+}

@@ -6,6 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <link href="../resources/css/footer.css" rel="stylesheet">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <title>Insert title here</title>
 </head>
 <body>
@@ -53,6 +55,26 @@
 			</div>
 		</div>
 	</footer>
+		<div class="scrollTop" style="position:fixed;">
+			<a id="toparea" href="#top">
+				<img src="../resources/images/uparrow.png" alt="상향 화살표" class="fas">
+			</a>
+		</div> 
+
+		<script>
+		/* 스크롤시 위로가기 버튼 */
+		$(window).on("scroll", function() {
+			if ($(window).scrollTop() > 100) {
+				$('.scrollTop').css("display", "block");
+			} else {
+				$('.scrollTop').css("display", "none");
+			}
+		});
+		
+		 $('#toparea').click(function() {
+			 $('body, 	html').animate({scrollTop:0},500);
+			 }); 
+		</script>
 </body>
 
 </html>

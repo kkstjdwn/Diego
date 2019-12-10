@@ -5,6 +5,8 @@
 <html>
 <head>
 <link href="../resources/css/noticeList.css" rel="stylesheet">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <meta charset="UTF-8">
 <title>Notice List</title>
 </head>
@@ -28,7 +30,7 @@
 				</div>
 				<div class="base_table typeList gBorder">
 					<table border="1" summary="">
-						<caption>게시판 목록</caption>
+						<caption></caption>
 						<colgroup class="">
 							<col style="width: 70px;" />
 							<col style="width: auto;" />
@@ -45,10 +47,10 @@
 						</thead>
 						<tbody class="center">
 						<c:forEach items="${list}" var="dto" varStatus="st">
-							<tr style="background-color: #FFFFFF; color: #555555;" class="">
+							<tr style="background-color: #FFFFFF; color: #555555;" class="nbc">
 								<td>${dto.not_num}</td>
 								<td class="subject left txtBreak"><strong> <a
-										href="" style="color: #555555;">${dto.title}</a> <span
+										href="noticeSelect?not_num=${dto.not_num}" style="color: #555555;">${dto.title}</a> <span
 										class="txtEm"></span></strong></td>
 								<td>${dto.admin_name}</td>
 								<td class=""><span class="txtNum">${dto.not_date}</span></td>
@@ -58,49 +60,71 @@
 					</table>
 					<p class=""></p>
 				</div>
+				<c:if test="${admin ne null}">
 				<div style="text-align: right; float: right; margin-top: 30px"
 					class="">
-					<a href="" class="displaynone photoreview-bt size4 bt-font13"><b>글쓰기</b></a>
+					<a href="./noticeWrite" class="write"><b>글쓰기</b></a>
 				</div>
+				</c:if>
 			</div> 
 
-			<div>
-			<ul class="pagination">
-				<c:if test="${pager.curBlock > 1}">
-					<li><span id="${pager.startNum-1}" class="list"><img alt="뒤로" src="../resources/images/page_prev.gif"></span></li>
-				</c:if>
+			<ul class="pagination paging">
+				
+					<li><span id="${pager.startNum-1}" class="list listimg"><img alt="뒤로" src="../resources/images/page_prev.gif"></span></li>
 				<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
-					<li><span id="${i}" class="list">${i}</span></li>
+					<li><span id="${i}" class="list listnum">${i}</span></li>
 				</c:forEach>
 				<c:if test="${pager.curBlock < pager.totalBlock}">
 					<li><span id="${pager.lastNum+1}" class="list"><img alt="다음" src="../resources/images/page_next.gif"></span></li>
 				</c:if>
+					<li><span id="${pager.lastNum}" class="list"><img alt="다음" src="../resources/images/page_next.gif"></span></li>
 			</ul>
 
-		</div>
-
 			<form id="frm" action="./noticeList">
-			<input type="hidden" value="1" id="curPage" name="curPage">
-			<div class="form-group col-xs-2">
-				<select name="kind" class="form-control ">
-					<option id="kt" value="kt">Title</option>
-					<option id="kw" value="kw">Writer</option>
-					<option id="kc" value="kc">Contents</option>
-				</select>
-			</div>
-			<div class="input-group col-xs-3">
-				<input type="text" class="form-control" placeholder="Search"
-					name="search" value="${pager.search}">
-				<div class="input-group-btn">
-					<button class="btn btn-primary" type="submit">
-						<i class="glyphicon glyphicon-search"></i>
-					</button>
+			<div class="outsearch">
+				<input type="hidden" value="1" id="curPage" name="curPage">
+				<div class="form-group col-xs-2">
+					<select name="kind" class="form-control searchop">
+						<option id="kt" value="kt">Title</option>
+						<option id="kw" value="kw">Writer</option>
+						<option id="kc" value="kc">Contents</option>
+					</select>
+					<input type="text" class="form-control searchinp" placeholder="Search"
+						name="search" value="${pager.search}">
+						<button class="btn btn-primary" type="submit">
+							<img alt="찾기버튼" src="../resources/images/btn_find.gif">
+						</button>
 				</div>
 			</div>
 		</form>
 		</div>
 	</div>
 
+	<script type="text/javascript">
+		var kind = '${pager.kind}';
+		if (kind == '') {
+			kind = "kt";
+		}
+		$("#" + kind).prop("selected", true);
+		$(".list").click(function() {
+			$("#curPage").val($(this).attr("id"));
+			$("#frm").submit();
+		});
+	</script>
+	  
+	<script>
+	/* 마우스 오버  */
+	$('.listnum').mouseenter(function() {
+		$('.listnum').addClass("mousehover")
+	});
+	/* 마우스 리브  */
+	$('.listnum').mouseleave(function() {
+		$('.listnum').removeClass("mousehover")
+	});
+	</script>
+
 	<c:import url="../layout/footer.jsp" />
 </body>
+
+
 </html>

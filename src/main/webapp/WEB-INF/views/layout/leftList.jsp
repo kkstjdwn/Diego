@@ -5,6 +5,8 @@
 <head>
 <link href="../resources/css/leftList.css" rel="stylesheet">
 <meta charset="UTF-8">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <title>Insert title here</title>
 </head>
 
@@ -37,4 +39,14 @@
 				</div>
 			</div>
 		</div>
+		
+		<script>
+		$(window).on("scroll", function() {
+			if ($(window).scrollTop() > 100) {
+				$("#leftmenu").addClass("fixmenu2")
+			} else {
+				$("#leftmenu").removeClass("fixmenu2")
+			}
+		});
+		</script>
 </html>
