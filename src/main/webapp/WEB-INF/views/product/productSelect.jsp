@@ -82,8 +82,8 @@
 		<div>
 			<c:forEach items="${product.images}" var="image">
 				<div>
-					<label for="pro_main">Product Main Image:</label> <br> <a
-						href="../resources/product/images/${image.pro_main}">${image.pro_main}</a>
+					<label for="pro_main">Product Main Image:</label> <br>
+					 <a href="../resources/product/images/${image.pro_main}">${image.pro_main}</a>
 
 				</div>
 				<div>
@@ -139,10 +139,10 @@
 
 
 		<a href="../qna/qnaWrite?pro_num=${product.pro_num}"
-			class="btn btn-primary">QNA WRITE</a> <a
-			href="./productUpdate?pro_num=${product.pro_num}"
-			class="btn btn-primary">Update</a> <a
-			href="./productList?pro_num=${product.pro_num}"
+			class="btn btn-primary">QNA WRITE</a> 
+		<a href="./productUpdate?pro_num=${product.pro_num}"
+			class="btn btn-primary">Update</a>
+		<a href="./productList?pro_num=${product.pro_num}"
 			class="btn btn-default">List</a>
 	</div>
 

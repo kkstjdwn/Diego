@@ -30,7 +30,10 @@ public class ImagesDAO {
 		return sqlSession.selectList(NAMESPACE+"imagesList", pro_num);
 	}
 	
-
+	//select
+	public ImagesVO imagesSelect(ImagesVO imagesVO)throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"imagesSelect", imagesVO);
+	}
 	
 	
 	

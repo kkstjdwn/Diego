@@ -18,13 +18,12 @@
 			<h1>QNA WRITE PAGE</h1>
 		</div>
 		
-		<form action="./qnaWrite?pro_num=${product.pro_num}" method="post" onsubmit="true">
+		<form action="./qnaWrite" method="post" onsubmit="true">
 			
-					<input type="hidden" name="pro_num" value="${product.pro_num}">
-			
+					
 			<div class="form-group">
 			<label for="pro_num">Product Number:</label>
-					<b>${qna.pro_num} </b>
+				<input type="text" class="form-control" id="pro_num" name="pro_num" readonly="readonly" value="${param.pro_num}">
 			</div>
 			
 			<div class="form-group">
@@ -45,10 +44,10 @@
 			
 			<div class="form-group">
 				<label for="contents">Contents:</label>
-				<textarea class="form-control" rows="30" id="contents" name="faq_contents"></textarea>
+				<textarea class="form-control" rows="30" id="contents" name="contents"></textarea>
 			</div>
 
-			<button type="submit" class="btn btn-primary">등록</button>
+			<button  class="btn btn-primary">등록</button>
 			<a href="./qnaList" class="btn btn-default">List</a>
 		
 		</form>

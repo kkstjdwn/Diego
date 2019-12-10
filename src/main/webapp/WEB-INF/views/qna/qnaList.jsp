@@ -10,6 +10,72 @@
 </head>
 <body>
 	<c:import url="../layout/nav.jsp" />
-		<h1>QNA LIST</h1>
+		<div class="container">
+		
+		<div class="jumbotron page-header">
+			<h1>Qna List</h1>
+		</div>
+		
+		<table class="table"  >
+			<thead >
+				<tr class="info">
+					
+					<th>Num</th>
+					<th>Title</th>
+					<th>Writer</th>
+					<th>Date</th>
+				
+				</tr>
+
+			</thead>
+
+			<tbody>
+
+				<c:forEach items="${qnaList}" var="qna" varStatus="q">
+					<tr class="warning">
+						<td>${qna.qna_num}</td>
+						<td><a href="./qnaSelect?qna_num=${qna.qna_num}&pro_num=${qna.pro_num}">${qna.title}</a></td>
+						<td>${qna.writer}</td>
+						<td>${qna.qna_date}</td>
+					</tr>
+				</c:forEach>
+
+			</tbody>
+		</table>
+		
+		<div >
+			<form action="./qnaList" id="frm">
+				<input type="hidden" id="curPage" value="1" name="curPage">
+				<select id="kind" name="kind">
+					<option id="kt" value="kt">작성자</option>
+					<option id="kw" value="kw">제목</option>
+					<option id="kc" value="kc">내용</option>
+				</select> 
+				
+				<input type="text" id="search" name="search" value="${pager.search}">
+				
+				<button>찾기</button>
+			</form>
+		</div>
+		
+		<div >
+			<ul class="pagination">
+				<c:if test="${pager.curBlock gt 1}">
+					<li><span id="${pager.startNum-1}" class="list">이전</span></li>
+				</c:if>
+				<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
+					<li><span id="${i}" class="list">${i}</span></li>
+				</c:forEach>
+				<c:if test="${pager.curBlock lt pager.totalBlock}">
+					<li><span id="${pager.lastNum+1}" class="list">다음</span></li>
+				</c:if>
+			</ul>
+		</div>
+		
+		
+		
+		</div>
+		
+		
 </body>
 </html>

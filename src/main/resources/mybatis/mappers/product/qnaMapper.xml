@@ -3,17 +3,72 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  
-   <mapper namespace="qnaMapper">
-   
-   <!--insert-->
-   <insert id="qnaWrite" parameterType="QnaVO">
-   		insert into qna values(#{writer},qna_seq.nextval,#{pro_num},#{title},#{contents},sysdate,qna_seq.currval,0,0)
-   </insert>
-   
-   <select id="qnaList" ></select>
-   
-   
-   
-   
-   </mapper>
+
+<mapper namespace="qnaMapper">
+
+	<!--insert -->
+	<insert id="qnaWrite" parameterType="QnaVO">
+
+		insert into qna
+		values(#{writer},qna_seq.nextval,#{pro_num},#{title},#{contents},sysdate,qna_seq.currval,0,0)
+	</insert>
+
+	<!--검색창 -->
+	<sql id="sw">
+		<choose>
+			<when test="kind == 'kt'">
+				where writer like '%'||#{search}||'%'
+			</when>
+			<when test="kind == 'kw'">
+				where title like '%'||#{search}||'%'
+			</when>
+			<otherwise>
+				where contents like '%'||#{search}||'%'
+			</otherwise>
+		</choose>
+	</sql>
+
+
+	<!--리스트 -->
+	<select id="qnaList" parameterType="Pager" resultType="QnaVO">
+		select * from
+		(select Q.*, rowNum R from
+		(select * from qna
+		<include refid="sw" />
+		order by qna_num desc)Q)
+		where R between #{startRow} and #{lastRow}
+	</select>
+
+
+	<!--페이져 카운트 -->
+	<select id="qnaCount" parameterType="Pager" resultType="Integer">
+		select count(qna_num)from qna
+		<include refid="sw"></include>
+	</select>
+
+
+	
+
+	<!--셀렉트 -->
+	<select id="qnaSelect" parameterType="QnaVO" resultType="QnaVO" >
+		select * from qna where qna_num=#{qna_num} and pro_num=#{pro_num}
+
+	</select>
+
+	<!--셀렉트문에서 상품이미지와 상품 가격이름 가져오는것-->
+	<select id="productSelect" parameterType="ProductVO" resultType="ProductVO" >
+		select * from product where pro_num=#{pro_num}
+	</select>
+	
+	<select id="ImagesSelect" parameterType="ImagesVO" resultType="ImagesVO">
+		select * from images where pro_num=#{pro_num}
+	
+	</select>
+	
+	
+	
+	
+	
+
+
+</mapper>

@@ -1,6 +1,8 @@
 package com.diego.mid.model.product;
 
+
 import java.sql.Date;
+import java.util.List;
 
 public class QnaVO {
 
@@ -14,8 +16,6 @@ public class QnaVO {
 	private Integer step;
 	private Integer ref;
 	private Integer depth;
-	
-
 	public String getWriter() {
 		return writer;
 	}
@@ -76,6 +76,11 @@ public class QnaVO {
 	public void setDepth(Integer depth) {
 		this.depth = depth;
 	}
+	
+	
+	
+	
+
 
 	
 }
