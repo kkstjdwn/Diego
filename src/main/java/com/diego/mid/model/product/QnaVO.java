@@ -16,6 +16,16 @@ public class QnaVO {
 	private Integer step;
 	private Integer ref;
 	private Integer depth;
+	private Integer r;
+	
+	
+	
+	public Integer getR() {
+		return r;
+	}
+	public void setR(Integer r) {
+		this.r = r;
+	}
 	public String getWriter() {
 		return writer;
 	}

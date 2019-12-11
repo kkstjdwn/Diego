@@ -46,6 +46,7 @@ public class QnaDAO {
 		
 	}
 	
+	
 	//셀렉트 프로덕트
 	public QnaVO productSelect(ProductVO productVO)throws Exception {
 		
@@ -70,4 +71,14 @@ public class QnaDAO {
 		return sqlSession.update(NAMESPACE+"qnaUpdate", qnaVO);
 	}
 	
+	//답변달기
+	public int qnaReply(QnaVO qnaVO)throws Exception {
+		
+		return sqlSession.insert(NAMESPACE+"qnaReply", qnaVO);
+	}
+	
+	public int qnaReplyUpdate(QnaVO qnaVO)throws Exception {
+		
+		return sqlSession.update(NAMESPACE+"qnaReplyUpdate",qnaVO);
+	}
 }

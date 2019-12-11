@@ -33,8 +33,12 @@
 
 				<c:forEach items="${qnaList}" var="qna" varStatus="q">
 					<tr class="warning">
-						<td>${qna.qna_num}</td>
-						<td><a href="./qnaSelect?qna_num=${qna.qna_num}&pro_num=${qna.pro_num}">${qna.title}</a></td>
+						<td>${qna.r}</td>
+						<td>
+						<c:catch>
+							 <c:forEach begin="1" end="${qna.depth}">↳</c:forEach>
+						</c:catch>
+						<a href="./qnaSelect?qna_num=${qna.qna_num}&pro_num=${qna.pro_num}">${qna.title}</a></td>
 						<td>${qna.writer}</td>
 						<td>${qna.qna_date}</td>
 					</tr>
@@ -72,9 +76,26 @@
 			</ul>
 		</div>
 		
-		
-		
+	
 		</div>
+		
+		<script type="text/javascript">
+		var kind = '${pager.kind}'
+			if(kind == ''){
+				kind = "kt";
+			}
+			$("#"+kind).prop("selected", true);
+		
+		
+		$(".list").click(function() {
+			$("#curPage").val($(this).attr("id"));
+			$("#frm").submit();
+		});
+		
+		
+		
+		</script>
+		
 		
 		
 </body>

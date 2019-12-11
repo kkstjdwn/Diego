@@ -55,8 +55,12 @@
 			<label for="contents">내용</label> <b>${qna.contents}</b>
 		</div>
 
+		
+		
+
+
 		<a href="./qnaList?qna_num=${qna.qna_num}" class="btn btn-default">목록</a>
-		<a href="./qnaReply?qna_num=${qna.qna_num}" class="btn btn-primary">답변</a>
+		<a href="./qnaReply?qna_num=${qna.qna_num}&pro_num=${qna.pro_num}" class="btn btn-primary">답변</a>
 		<a href="./qnaDelete?qna_num=${qna.qna_num}" class="btn btn-danger">삭제</a>
 			<a href="./qnaUpdate?qna_num=${qna.qna_num}&pro_num=${qna.pro_num}" class="btn btn-warning">수정</a>
 	</div>

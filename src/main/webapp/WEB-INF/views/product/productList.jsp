@@ -24,6 +24,7 @@
 					<th><input type="checkbox" id="checkAll"></th>
 					<th>Product Num</th>
 					<th>Category</th>
+					<th>Main Image</th>
 					<th>Product Name</th>
 					<th>Price</th>
 					<th>Count</th>
@@ -46,6 +47,7 @@
 						<td><input type="checkbox" class="productCheck product${p.index }" value="${product.pro_num }"></td>
 						<td>${product.pro_num}</td>
 						<td>${product.cat_ref}</td>
+						<td><img src="../resources/product/images/${images.pro_main}"style="width: 10%; height: 10%;"></td>
 						<td><a href="./productSelect?pro_num=${product.pro_num}"> ${product.pro_name}</a></td>
 						<td>${product.pro_price}</td>
 						<td>${product.pro_count}</td>
@@ -101,16 +103,20 @@
 				
 	</div>
 	<script type="text/javascript">
-	  	var kind = '${pager.kind}'
+	  
+		//서치
+		var kind = '${pager.kind}'
 		if(kind == ''){
 			kind = "kt";
 		}
 		$("#"+kind).prop("selected", true);
-	 	$(".list").click(function() {
+	 	//페이징리스트
+		$(".list").click(function() {
 			$("#curPage").val($(this).attr("id"));
 			$("#frm").submit();
 		});
 	 	
+	 	//all체크눌렀을 때 모든것이 체크
 	 	var check= false;
 	 	$('#checkAll').click(function() {
 	 		if(check == false){
@@ -123,8 +129,7 @@
 			
 		});
 	 	
-	 	
-	 	
+	 	//하나라도 체크안되면 all체크에서 체크가해제됨.
 	 	$('.productCheck').click(function() {
 			var all=0;
 			for(var p=0; p<${productList.size()}; p++){
@@ -144,7 +149,7 @@
 			
 		});
 	 	
-	 	
+	 	//체크한거 삭제
 	 	$('#pro_del').click(function() {
 			
 	 		jQuery.ajaxSettings.traditional = true;

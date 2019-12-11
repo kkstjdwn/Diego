@@ -52,6 +52,7 @@ public class QnaService {
 		return qnaDAO.qnaSelect(qnaVO);
 	}
 	
+	
 	//selectProduct
 	public ProductVO productSelect(ProductVO productVO)throws Exception{
 		
@@ -74,5 +75,25 @@ public class QnaService {
 	public int qnaUpdate(QnaVO qnaVO)throws Exception{
 		
 		return qnaDAO.qnaUpdate(qnaVO);
+	}
+	
+	//reply
+	public int qnaReply(QnaVO qnaVO)throws Exception {
+		
+		QnaVO parent =(QnaVO)qnaDAO.qnaSelect(qnaVO);
+		System.out.println(qnaVO.getPro_num());
+		System.out.println(qnaVO.getQna_num());
+		
+		int result = qnaDAO.qnaReplyUpdate(qnaVO);
+		//parent.setPro_num(qnaVO.getPro_num());
+		//parent.setQna_num(qnaVO.getQna_num());
+		parent.setTitle(qnaVO.getTitle());
+		parent.setWriter(qnaVO.getWriter());
+		parent.setContents(qnaVO.getContents());
+		parent.setStep(parent.getStep()+1);
+		parent.setDepth(parent.getDepth()+1);
+		
+		return qnaDAO.qnaReply(parent);
+		
 	}
 }

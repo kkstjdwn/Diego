@@ -66,6 +66,7 @@ public class QnaController {
 		
 		mv.addObject("qnaList", ar);
 		mv.addObject("pager", pager);
+		
 		mv.setViewName("qna/qnaList");
 		
 		return mv;
@@ -105,6 +106,9 @@ public class QnaController {
 		return mv;
 	}
 	
+	
+	
+	
 	//DELETE
 	@GetMapping("qnaDelete")
 	public ModelAndView qnaDelete(QnaVO qnaVO)throws Exception{
@@ -125,6 +129,38 @@ public class QnaController {
 		
 	}
 	
+	//REPLY
+	@GetMapping("qnaReply")
+	public ModelAndView qnaReply(QnaVO qnaVO)throws Exception {
+		ModelAndView mv = new ModelAndView();
+		
+		qnaVO = qnaService.qnaSelect(qnaVO);
+		
+		mv.addObject("qna", qnaVO);
+		mv.setViewName("qna/qnaReply");
+		
+		return mv;
+	}
+	
+	@PostMapping("qnaReply")
+	public ModelAndView qnaReply2(QnaVO qnaVO)throws Exception{
+		
+		ModelAndView mv= new ModelAndView();
+		
+		int result= qnaService.qnaReply(qnaVO);
+		String msg="Reply Fail";
+		if(result==1) {
+			msg="Reply Success";
+		}
+		
+		mv.addObject("msg", msg);
+		mv.addObject("path", "qnaList");
+		mv.setViewName("common/common_result");
+		
+		return mv;
+	}
+	
+
 	//UPDATE
 	@GetMapping("qnaUpdate")
 	public ModelAndView qnaUpdate(QnaVO qnaVO, Integer pro_num)throws Exception{
