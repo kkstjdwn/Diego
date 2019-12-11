@@ -33,6 +33,7 @@
 
 				<c:forEach items="${qnaList}" var="qna" varStatus="q">
 					<tr class="warning">
+						
 						<td>${qna.r}</td>
 						<td>
 						<c:catch>

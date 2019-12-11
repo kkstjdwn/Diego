@@ -38,9 +38,8 @@
 		(select Q.*, rownum R from
 		(select * from qna
 		<include refid="sw" />
-		order by ref desc, step asc) Q )
-		where R between #{startRow} and
-		#{lastRow}
+		order by ref desc, step asc)Q) 
+		where R between #{startRow} and #{lastRow}
 	</select>
 
 

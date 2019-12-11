@@ -52,7 +52,10 @@
 		</div>
 
 		<div class="form-group">
-			<label for="contents">내용</label> <b>${qna.contents}</b>
+			<label for="contents">내용</label> 
+			
+			<div class="well" id="contents">${qna.contents}</div>
+			
 		</div>
 
 		

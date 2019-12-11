@@ -24,7 +24,7 @@
 					<th><input type="checkbox" id="checkAll"></th>
 					<th>Product Num</th>
 					<th>Category</th>
-					<th>Main Image</th>
+					<th>Image</th>
 					<th>Product Name</th>
 					<th>Price</th>
 					<th>Count</th>

@@ -54,13 +54,15 @@
 		</div>
 
 		<div class="form-group">
-			<label for="pro_contents">Product Cotents:</label> <b>${product.pro_contents}
-			</b>
+			
+			<label for="pro_contents">Product Cotents:</label> 
+			<div class="well" id="contents">${product.pro_contents}</div>
+			
 		</div>
 
 		<div class="form-group">
-			<label for="pro_warning">Product Warning:</label> <b>${product.pro_warning}
-			</b>
+			<label for="pro_warning">Product Warning:</label> 
+			<div class="well" id="contents">${product.pro_warning}</div>
 		</div>
 
 
