@@ -89,10 +89,9 @@
 						<option id="kw" value="kw">Writer</option>
 						<option id="kc" value="kc">Contents</option>
 					</select>
-					<input type="text" class="form-control searchinp" placeholder="Search"
-						name="search" value="${pager.search}">
+					<input type="text" class="form-control searchinp" placeholder="Search" name="search" value="${pager.search}">
 						<button class="btn btn-primary" type="submit">
-							<img alt="찾기버튼" src="../resources/images/btn_find.gif">
+							<img alt="찾기버튼" src="../resources/images/button/btn_find.gif">
 						</button>
 				</div>
 			</div>
