@@ -17,12 +17,12 @@
     margin-right: 15px;
 }
 
-.title{
+.ada .title{
     margin: 0px 0 50px;
     text-align: center;
 }
 
-.title h2 {
+.ada .title h2 {
     font-size: 20px;
     font-weight: 400;
     font-family: 'Montserrat',sans-serif;
@@ -54,9 +54,7 @@ li {
 }
 
 .faqMenu ul li a {
-    color: #afafaf;
     font-size: 13px;
-    font-weight: normal;
     padding-bottom: 3px;
 }
 /* 선택했을때 글씨 검고 두껍게 */
@@ -196,6 +194,7 @@ li {
 .subMenu {
     font-size: 14px;
     padding: 20px 0;
+    padding-left: 150px;
 }
 
 .navMenu2 > li ul .answerTxt {
@@ -204,4 +203,63 @@ li {
     width: 900px;
     font-size: 12px;
     word-break: keep-all;
+}
+
+.gRight {
+    float: right;
+    text-align: right;
+}
+
+.typeBG button a {
+ 	
+    border-radius: 100%;
+    display: inline-block;
+    position: relative;
+    z-index: 1;
+    
+    
+}
+
+.typeBG button{
+	right: 0;
+    bottom: -60px;
+	background-color : gray;
+	color: black;
+	width: 48px;
+	height: 21px;
+	position: absolute;
+}
+
+.pagination li{
+	display: inline-block;
+	vertical-align: top;
+}
+
+.paging{
+	margin: 30px 0;
+    text-align: center;
+    line-height: 0;
+    font-size: 12px;
+    font-family: Verdana,Dotum,AppleGothic,sans-serif;
+}
+
+.paging img{
+	    vertical-align: top;
+}
+
+.listimg{
+	vertical-align: top;
+}
+
+.listnum{
+    vertical-align: middle;
+    font-weight: bold;
+    color: #000;
+    display: block;
+    padding: 15px 7px;
+}
+
+.mousehover {
+    text-decoration: none;
+    border-bottom: solid 2px #000;
 }

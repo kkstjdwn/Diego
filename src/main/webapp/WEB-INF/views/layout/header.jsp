@@ -85,7 +85,7 @@
 						<li><a href=""><span>언더웨어</span></a></li>
 
 						<li><a href=""><span>이벤트</span></a></li>
-						<li><a href=""><span>고객센터</span></a>
+						<li><a href="../faq/faqList"><span>고객센터</span></a>
 							<ul class="menu_depth">
 								<li><a href="../notice/noticeList">Notice</a></li>
 								<li><a href="../faq/faqList">FAQ</a></li>

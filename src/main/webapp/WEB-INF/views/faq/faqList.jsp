@@ -17,7 +17,7 @@
 		<c:import url="../layout/leftList.jsp" />
 		<div id="listcontent2">
 			<div class="listpackage">
-				<div class="">
+				<div class="ada">
 					<div class="title">
 						<h2>
 							<font color="#555555">FAQ</font>
@@ -26,17 +26,15 @@
 				</div>
 				<div class="faqMenu">
 					<ul id="nav">
-						<li><a href="./faqList">전체보기</a></li>
-						<li><a href="">주문/결제/배송</a></li>
-						<li><a href="">취소/환불/교환</a></li>
+						<li><a href="./faqList" class="active">전체보기</a></li>
 					</ul>
 					<!-- 찾기 -->
+					<form id="frm" action="./faqList">
 					<div class="outsearch">
 						<input type="hidden" value="1" id="curPage" name="curPage">
 						<div class="form-group col-xs-2">
 							<select name="kind" class="form-control searchop">
 								<option id="kt" value="kt">Title</option>
-								<option id="kw" value="kw">Writer</option>
 								<option id="kc" value="kc">Contents</option>
 							</select> 
 							<span class="inputbox">
@@ -48,6 +46,7 @@
 							</span>
 						</div>
 					</div>
+					</form>
 				</div>
 				<div class="base_table typeList gBorder faqList">
 					<table border="1" summary="">
@@ -75,6 +74,11 @@
 															<li>
 																<div class="answerTxt">
 																	${dto.faq_contents}
+																	</br>
+																	</br>
+																	</br>
+																	 <a href="./faqDelete?faq_num=${dto.faq_num}"><img src="../resources/images/button/btn_delete.gif"alt="삭제" /></a>
+																	 <a href="./faqUpdate?faq_num=${dto.faq_num}"><img src="../resources/images/button/btn_modify.gif" alt="수정" /></a>
 																</div>
 															</li>
 														</ul>
@@ -86,32 +90,42 @@
 								</td>
 							</tr>
 						</tbody>
+					</table>
 				</div>
-				<div class="typeBG displaynone ">
-					<span class="gRight"> 
-						<a href="" class="displaynone blackBtn ani3">글쓰기</a>
+				<div class="typeBG">
+					<%-- <c:if test="${admin ne null}"> --%>
+					<span class="gRight"><button><a href="./faqWrite" class="ani3">글쓰기</a></button>
 					</span>
+					<%-- </c:if> --%>
 				</div>
 			</div>
-
-			<div
-				class="xans-element- xans-board xans-board-paging-1002 xans-board-paging xans-board-1002 ec-base-paginate">
-				<!--    <a href="?board_no=3&page=1"><img src="/web/upload/images/small_num_paging_prev.png" alt="이전 페이지" /></a>-->
-				<ol>
-					<li class="xans-record-"><a href="?board_no=3&page=1"
-						class="this">1</a></li>
-					<li class="xans-record-"><a href="?board_no=3&page=2"
-						class="other">2</a></li>
-					<li class="xans-record-"><a href="?board_no=3&page=3"
-						class="other">3</a></li>
-				</ol>
-				<!--    <a href="?board_no=3&page=2"><img src="/web/upload/images/small_num_paging_next.png" alt="다음 페이지" /></a>-->
-			</div>
-
+			<ul class="pagination paging">
+				
+					<li><span id="${pager.startNum-1}" style="cursor:pointer" class="list listimg"><img alt="뒤로" src="../resources/images/page_prev.gif"></span></li>
+				<c:forEach begin="${pager.startNum}"  end="${pager.lastNum}" var="i">
+					<li><span id="${i}" class="list listnum" style="cursor:pointer">${i}</span></li>
+				</c:forEach>
+				<c:if test="${pager.curBlock < pager.totalBlock}">
+					<li><span id="${pager.lastNum+1}" style="cursor:pointer" class="list"><img alt="다음" src="../resources/images/page_next.gif"></span></li>
+				</c:if>
+					<li><span id="${pager.lastNum}" style="cursor:pointer" class="list"><img alt="다음" src="../resources/images/page_next.gif"></span></li>
+			</ul>
+ 
 		</div>
 
 
 	</div>
+	<script type="text/javascript">
+		var kind = '${pager.kind}';
+		if (kind == '') {
+			kind = "kt";
+		}
+		$("#" + kind).prop("selected", true);
+		$(".list").click(function() {
+			$("#curPage").val($(this).attr("id"));
+			$("#frm").submit();
+		});
+	</script>
 	<script>
 	$(".subjectList a").click(function(){
 		$(".subMenu").slideUp();
@@ -122,7 +136,16 @@
             $(this).parent().addClass("activeA");
 		}
 	})
+	/* 마우스 오버  */
+	$('.listnum').mouseenter(function() {
+		$(this).addClass("mousehover")
+	});
+	/* 마우스 리브  */
+	$('.listnum').mouseleave(function() {
+		$(this).removeClass("mousehover")
+	});
 	</script>
+
 
 	<c:import url="../layout/footer.jsp" />
 </body>

@@ -41,14 +41,5 @@ public class HomeController {
 	public void diego() {
 		
 	}
-	
-	@GetMapping("/layout/header")
-	public void header() {
-	}
-	@GetMapping("/layout/footer")
-	public void footer() {
-	}
-	@GetMapping("/faq/faqList2")
-	public void faqList2() {
-	}
+
 }

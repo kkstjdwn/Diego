@@ -62,22 +62,22 @@
 				</div>
 				<%-- <c:if test="${admin ne null}"> --%>
 				<div style="text-align: right; float: right; margin-top: 30px"
-					class="">
-					<a href="./noticeWrite" class="write"><b>글쓰기</b></a>
+					class="typeBG">
+					<a href="./noticeWrite" class="write"><button>글쓰기</button></a>
 				</div>
 				<%-- </c:if> --%>
 			</div> 
 
 			<ul class="pagination paging">
 				
-					<li><span id="${pager.startNum-1}" class="list listimg"><img alt="뒤로" src="../resources/images/page_prev.gif"></span></li>
+					<li><span id="${pager.startNum-1}" style="cursor:pointer" class="list listimg"><img alt="뒤로" src="../resources/images/page_prev.gif"></span></li>
 				<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
-					<li><span id="${i}" class="list listnum">${i}</span></li>
+					<li><span id="${i}" class="list listnum" style="cursor:pointer">${i}</span></li>
 				</c:forEach>
 				<c:if test="${pager.curBlock < pager.totalBlock}">
-					<li><span id="${pager.lastNum+1}" class="list"><img alt="다음" src="../resources/images/page_next.gif"></span></li>
+					<li><span id="${pager.lastNum+1}" style="cursor:pointer" class="list"><img alt="다음" src="../resources/images/page_next.gif"></span></li>
 				</c:if>
-					<li><span id="${pager.lastNum}" class="list"><img alt="다음" src="../resources/images/page_next.gif"></span></li>
+					<li><span id="${pager.lastNum}" style="cursor:pointer" class="list"><img alt="다음" src="../resources/images/page_next.gif"></span></li>
 			</ul>
 
 			<form id="frm" action="./noticeList">
@@ -86,11 +86,11 @@
 				<div class="form-group col-xs-2">
 					<select name="kind" class="form-control searchop">
 						<option id="kt" value="kt">Title</option>
-						<option id="kw" value="kw">Writer</option>
 						<option id="kc" value="kc">Contents</option>
+						<option id="kw" value="kw">Writer</option>
 					</select>
 					<input type="text" class="form-control searchinp" placeholder="Search" name="search" value="${pager.search}">
-						<button class="btn btn-primary" type="submit">
+						<button class="btn btn-primary" style="cursor:pointer" type="submit">
 							<img alt="찾기버튼" src="../resources/images/button/btn_find.gif">
 						</button>
 				</div>
@@ -114,11 +114,11 @@
 	<script>
 	/* 마우스 오버  */
 	$('.listnum').mouseenter(function() {
-		$('.listnum').addClass("mousehover")
+		$(this).addClass("mousehover")
 	});
 	/* 마우스 리브  */
 	$('.listnum').mouseleave(function() {
-		$('.listnum').removeClass("mousehover")
+		$(this).removeClass("mousehover")
 	});
 	</script>
 

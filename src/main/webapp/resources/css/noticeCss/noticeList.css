@@ -212,6 +212,25 @@ button img{
     padding: 15px 7px;
 }
 
+.typeBG a {
+    padding: 20px 12px;
+    border-radius: 100%;
+    display: inline-block;
+    position: relative;
+    z-index: 1;
+    position: absolute;
+    right: 0;
+    bottom: -60px;
+}
+
+.typeBG a button{
+	background-color : gray;
+	color: black;
+	width: 48px;
+	height: 21px;
+}
+
 .mousehover {
     text-decoration: none;
     border-bottom: solid 2px #000;
+}

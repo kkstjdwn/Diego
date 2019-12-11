@@ -45,6 +45,12 @@ img {
     font-family: 'Montserrat',sans-serif;
 }
 
+.category{
+	color: black;
+    margin: 6px 0px;
+
+}
+
 table {
     width: 100%;
     border-spacing: 0;
@@ -62,7 +68,6 @@ table {
 
 th{
 	color: black;
-	
 }
 
 .typeWrite table {

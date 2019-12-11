@@ -37,7 +37,6 @@
 		where R between #{startRow} and #{lastRow}
 	</select>
 
-
 	<!-- faq Count -->
 	<select id="faqCount" resultType="Integer" parameterType="Pager">
 		select count(faq_num) from faq
@@ -56,7 +55,7 @@
 		#{faq_contents}, #{fcat_code}, sysdate)
 	</insert>
 
-	<!-- Select -->
+	<!-- SelectOne -->
 	<select id="faqSelect" parameterType="FAQVO" resultType="FAQVO">
 		select *
 		from faq where faq_num=#{faq_num}
