@@ -257,9 +257,7 @@ public class MemberManageController {
 		Orders orders = new Orders();
 		orders.setId(vo.getId());
 		List<Orders> ar = service.orderMyList(orders);
-		int sum = 0;
 		for (Orders orders2 : ar) {
-			sum+=orders2.getOrder_sum();
 			if (orders2.getOrder_status().equals("WP")) {
 				orders2.setOrder_status("결제 대기중");
 			}else if(orders2.getOrder_status().equals("OC")) {
@@ -267,8 +265,27 @@ public class MemberManageController {
 			}
 		}
 		mv.addObject("orderList", ar);
-		mv.addObject("sum", sum);
 		mv.setViewName("/member/memberManage/orderMyList");
+		return mv;
+	}
+	
+	@GetMapping("orderAllList")
+	public ModelAndView orderAllList(HttpSession session)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		MemberVO vo = (MemberVO)session.getAttribute("member");
+		Orders orders = new Orders();
+		orders.setId(vo.getId());
+		List<Orders> ar = service.orderMyList(orders);
+		for (Orders orders2 : ar) {
+			if (orders2.getOrder_status().equals("WP")) {
+				orders2.setOrder_status("결제 대기중");
+			}else if(orders2.getOrder_status().equals("OC")) {
+				orders2.setOrder_status("주문 취소");
+			}
+		}
+		mv.addObject("orderList", ar);
+		mv.addObject("h1", "주문 상품 정보");
+		mv.setViewName("/member/memberManage/listAjax");
 		return mv;
 	}
 	
@@ -278,14 +295,13 @@ public class MemberManageController {
 		MemberVO vo = (MemberVO)session.getAttribute("member");
 		Orders orders = new Orders();
 		orders.setId(vo.getId());
-		List<Orders> ar = service.orderCancelList();
-		int sum = 0;
+		List<Orders> ar = service.orderCancelList(orders);
 		for (Orders orders2 : ar) {
 			orders2.setOrder_status("주문 취소");
 		}
 		mv.addObject("orderList", ar);
-		mv.addObject("sum", sum);
-		mv.setViewName("/member/memberManage/orderMyList");
+		mv.addObject("h1", "취소/반품/교환");
+		mv.setViewName("/member/memberManage/listAjax");
 		return mv;
 	}
 	

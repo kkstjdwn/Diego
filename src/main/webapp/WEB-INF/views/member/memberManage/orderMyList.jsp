@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,10 +14,10 @@
 </head>
 <body>
 <header></header>
-<section style="width: 100%; height: 1200px;">
-<div class="main" style="background-color: orange;">
+<section style="width: 100%; overflow: hidden;">
+<div class="main" style="height: auto; margin-top: 150px;">
 <!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
-<div class="left" style="height: 985px;">
+<div class="left">
 	<div class="left-menu">
 		<ul class="left-list">
 			<li style="height: 30px; font-size: 13px;">Community</li>
@@ -42,126 +43,220 @@
 	</div>
 </div>
 <!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
-<div class="right" style="height: 985px; background-color: purple;">
-	<h1 class="right-h1" style="color: white;">주문 조회</h1>
+<div class="right">
+	<h1 class="right-h1">주문 조회</h1>
+<!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
 	<div class="ajax-bar">
-	<button class="btn-list-sel">주문내역조회</button>
-	<button class="btn-list">취소/반품/교환 내역</button>
-	</div>
-	<div class="cal-bar">
-	<div class="search-div">
-	<form action="" method="get" class="search-form">
-		<div>
-			<select id="order_status" name="order_status">
-				<option value="AL" selected="selected">전체 주문처리상태</option>
-				<option value="WP">입금전</option>
-				<option value="WD">배송준비중</option>
-				<option value="DV">배송중</option>
-				<option value="DC">배송완료</option>
-				<option value="OC">취소</option>
-				<option value="OX">교환</option>
-				<option value="OR">반품</option>
-			</select>
-		</div>
-		<div style="margin: 0 10px 0 0;">
-			<button type="button" class="btn-search" value="0">오늘</button>
-			<button type="button" class="btn-search" value="604800000">1주일</button>
-			<button type="button" class="btn-search" value="3592000‬000‬">1개월</button>
-			<button type="button" class="btn-search" value="7776000000">3개월</button>
-			<button type="button" class="btn-search" value="15552000000">6개월</button>
-		</div>
-		<div>
-			<input type="text" class="ip-cal" id="cal-left" readonly="readonly"> <span>&nbsp;~&nbsp;</span>
-			<input type="text" class="ip-cal" id="cal-right" readonly="readonly">
-		</div>
-		<div>
-			<button>조회</button>
-		</div>
-	</form>
-	</div>
-	<div style="height: 36px; margin-top: 10px; width: 100%; font-size: 11px; color: #939393; line-height: 1.5;">
-	<ul>
-		<li>&nbsp;기본적으로 최근 3개월간의 자료가 조회되며, 기간 검색시 지난 주문내역을 조회하실 수 있습니다.</li>
-		<li>&nbsp;주문번호를 클릭하시면 해당 주문에 대한 상세내역을 확인하실 수 있습니다.</li>
+	<ul style="border-bottom:1px solid #cbcdce; width: 100%; height: 42px;">
+	<li><button id="all-list" class="btn-list-sel">주문내역조회 (${orderList.size() })</button></li>
+	<li><button id="can-list" class="btn-list">취소/반품/교환 내역 (size)</button></li>
 	</ul>
 	</div>
+<!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
+	<div class="cal-bar">
+		<div class="search-div">
+		<form action="" method="get" class="search-form">
+			<div>
+				<select id="order_status" name="order_status">
+					<option value="AL" selected="selected">전체 주문처리상태</option>
+					<option value="WP">입금전</option>
+					<option value="WD">배송준비중</option>
+					<option value="DV">배송중</option>
+					<option value="DC">배송완료</option>
+					<option value="OC">취소</option>
+					<option value="OX">교환</option>
+					<option value="OR">반품</option>
+				</select>
+			</div>
+			<div style="margin: 0 10px 0 0;">
+				<button type="button" class="btn-search" value="0">오늘</button>
+				<button type="button" class="btn-search" value="7">1주일</button>
+				<button type="button" class="btn-search" value="30">1개월</button>
+				<button type="button" class="btn-search" value="90">3개월</button>
+				<button type="button" class="btn-search" value="180">6개월</button>
+			</div>
+			<div>
+				<input type="text" class="ip-cal" id="cal-left" name="search_date" readonly="readonly"> <span>&nbsp;~&nbsp;</span>
+				<input type="text" class="ip-cal" id="cal-right" readonly="readonly">
+			</div>
+			<div>
+				<button style="vertical-align: middle; background: #495164; border: none; color: white; width: 39px; height: 24px; margin-left: 10px; font-size: 11px; border-radius: 2px;">조회</button>
+			</div>
+		</form>
+		</div>
+		<div style="height: 36px; margin-top: 10px; width: 100%; font-size: 11px; color: #939393; line-height: 1.5;">
+			<ul>
+				<li>&nbsp;* 기본적으로 최근 3개월간의 자료가 조회되며, 기간 검색시 지난 주문내역을 조회하실 수 있습니다.</li>
+				<li>&nbsp;* 주문번호를 클릭하시면 해당 주문에 대한 상세내역을 확인하실 수 있습니다.</li>
+			</ul>
+		</div>
 	</div>
-
-
-
-</div>
+<!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
+<div class="ajax-table">
+	<div class="order-title">
+		<h3 style="height: 16px; font-size: 12px;">주문 상품 정보</h3>
+	</div>
+	<div style="margin-top: 10px; width: 100%; min-height: 220px;">
+		<table class="order-table">
+			<thead>
+				<tr>
+					<th style="border-left: none;">주문일자 <br>[주문번호]</th>
+					<th>이미지</th>
+					<th>상품정보</th>
+					<th>수량</th>
+					<th>상품구매금액</th>
+					<th>주문처리상태</th>
+					<th style="border-right: none;">취소/교환/반품</th>
+				</tr>
+			</thead>
+			<tbody>
+			<c:forEach items="${orderList }" var="ord" varStatus="i">
+				<tr>
+					<td class="or-order_num" style="border-left: none;">
+						${ord.order_date }<br>
+						[<a href="#">${ord.order_num }</a>]<br>
+						<img alt="" src="../../resources/images/btn_order_cancel2.gif" style="cursor: pointer;" class="or-cancel" title="${ord.order_num }">
+					</td>
+					<td class="or-image">
+						<a href="#">
+							<img alt="상품사진" src="../../resources/product/orders/c69a7cd57f808fa622d80fd6a2551b2c.jpg" width="80px" height="116px">
+						</a>
+					</td>
+					<td class="or-pro_info" style="text-align: left; padding: 14px 10px 15px; vertical-align: sub;">
+						<a href="#" style="font-weight: bold;">${ord.pro_info }</a> <br>
+						<p>[ord.pro_option]</p>
+					</td>
+					<td class="or-pro_count">
+						${ord.pro_count }
+					</td>
+					<td class="or-price">
+					<fmt:formatNumber value="${ord.price }" type="number"></fmt:formatNumber>원</td>
+					<td class="or-order_status">
+						${ord.order_status }
+					</td>
+					<td class="or-order_result" style="border-right: none;">
+					-
+					</td>
+				</tr>
+			</c:forEach>
+			</tbody>
+		</table>
+	</div>
+<!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
+	<div class="or-pager">
+		<a href="#" id="none-hover"> << </a>
+		<a href="#" id="none-hover"> < </a>
+		<c:forEach begin="1" end="8" var="p">
+		<c:choose>
+			<c:when test="${p eq 1 }">
+				<a href="#" style="color: black;"> ${p } </a>
+			</c:when>
+			<c:otherwise>
+				<a href="#"> ${p } </a>
+			</c:otherwise>
+		</c:choose>
+		
+		</c:forEach>
+		<a href="#" id="none-hover"> > </a>
+		<a href="#" id="none-hover"> >> </a>
+	</div>
+</div>	
 <!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
 </div>
 <!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
+</div>
 </section>
 
 
 <footer></footer>
 <script type="text/javascript">
+
 	$(document).ready(function() {
+		
 	var today = new Date().toISOString().substr(0, 10).replace('T', ' ');
  	$("#cal-right").prop("value", today);
  	today = new Date();
-	var day = 1000*60*60*24*10;
+	var day = 1000*60*60*24*90;
 	day = today.getTime() - day;
 	today.setTime(day);
 	today = new Date(today).toISOString().substr(0, 10).replace('T', ' ');
  	$("#cal-left").prop("value", today);
+ 	
+ 	
 	});
 	
+ 	today = new Date();
 	
  	$(".btn-search").on("click", function() {
- 		today = new Date();
+ 		var day = new Date();
+ 		day.setDate(today.getDate()-$(this).val());
+ 		day = new Date(day).toISOString().substr(0, 10).replace('T', ' ');
  		
- 		var tm = $(this).val();
- 		
- 		tm = today.getTime()-(tm);
- 		alert(today.getTime());
- 		alert(tm);
- 		today.setTime(tm);
- 		
- 		today = new Date(today).toISOString().substr(0, 10).replace('T', ' ');
- 		;
- 	 	$("#cal-left").prop("value", today);
+ 	 	$("#cal-left").prop("value", day);
 	});
 	
-	$(".orderDel").click(function() {
-		if (confirm("취소하시겠습니까?")) {
-			$.ajax({
-				type	: "POST",
-				url 	: "orderCancel",
-				data	: {
-					order_num	: $(this).val(),
-					id 			: "${member.id}"
-				},
-				success : function(data) {
-					data = data.trim();
-					if (data == 1) {
-						alert("성공적으로 취소됐습니다");
-						location.reload();
-					}else{
-						alert("다시 시도해 주세요");
-					}
-				}
-			});
-		}
-	});
+
 	
-	$("#cal-left").click(function() {
 		$(function() {
 		    $("#cal-left").datepicker({
 		    	dateFormat : "yy-mm-dd"
 		    });
 		});
+		
+		
+	$(".or-cancel").click(function() {
+		if (confirm("취소하시겠습니까?")) {
+			$.ajax({
+				type : "POST",
+				url : "orderCancel",
+				data : {
+					order_num 	: $(this).prop("title"),
+					id 			: "${member.id}"
+				},
+				success : function(data) {
+					data = data.trim();
+					if (data == 1) {
+						alert("주문이 취소됐습니다.");
+						location.reload();
+					}else{
+						alert("다시 시도해 주세요.")
+						}
+					}
+			});
+		}
 	});
 	
-	$("#cal-right").click(function() {		
-		$(function() {
-		    $("#cal-right").datepicker({
-		    	dateFormat : "yy-mm-dd"
-		    });
+	
+	$("#all-list").click(function() {
+		$.ajax({
+			type	: "GET",
+			url		: "orderAllList",
+			data	: {
+				id		: "${member.id}"
+			},
+			success	: function(data) {
+				$(".ajax-table").html(data);
+				$("#all-list").prop("class", "btn-list-sel");
+				$("#can-list").prop("class", "btn-list");
+			}
 		});
 	});
+	
+	$("#can-list").click(function() {
+		$.ajax({
+			type	: "GET",
+			url		: "OrderCancelList",
+			data	: {
+				id		: "${member.id}"
+			},
+			success	: function(data) {
+				$(".ajax-table").html(data);
+				$("#can-list").prop("class", "btn-list-sel");
+				$("#all-list").prop("class", "btn-list");
+			}
+		});
+	});
+		
 </script>
 </body>
 </html>

@@ -2,12 +2,15 @@ package com.diego.mid;
 
 import static org.junit.Assert.*;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.junit.Test;
 
 import com.diego.mid.dao.MemberManegeDAO;
 import com.diego.mid.model.member.Coupon;
+import com.diego.mid.model.member.Orders;
 import com.diego.mid.model.member.Point;
 import com.diego.mid.model.member.Wishlist;
 
@@ -36,10 +39,17 @@ public class MemberManageTEST extends TestAbstractCase {
 		
 		//assertEquals(1, dao.couponDelete(coupon));
 		
-		Wishlist wishlist = new Wishlist();
-		wishlist.setId("coo");
-		wishlist.setWish_num(7);
-		System.out.println(manegeDAO.wishListGetSum(wishlist));
+//		Wishlist wishlist = new Wishlist();
+//		wishlist.setId("coo");
+//		wishlist.setWish_num(7);
+//		System.out.println(manegeDAO.wishListGetSum(wishlist));
+		
+		Orders orders = new Orders();
+		orders.setId("coo");
+		List<Orders> ar = manegeDAO.orderCancelList(orders);
+		for (Orders orders2 : ar) {
+			System.out.println(orders2.getOrder_date());
+		}
 		}
 
 }

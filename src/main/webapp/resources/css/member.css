@@ -18,7 +18,7 @@ header{
 section{
 	margin-top:74px;
 	width: 100%;
-	height: 500px;
+	min-height: 800px;
 }
 footer{
 	width: 100%;
@@ -31,13 +31,12 @@ footer{
 .main{
 	top:76px;
 	width: 1833px;
-	height: 1380px;
-	position:relative;
+	height: 1200px;
 	margin:auto;
 }
 .left{
 	width: 215px;
-	height: inherit;
+	min-height: 650px;
 	float: left;
 }
 .right{
@@ -372,9 +371,7 @@ footer{
 .ajax-bar{
 	width: 100%;
 	height: 43px;
-	background-color: orange;
 	margin-bottom: 20px;
-	border-bottom: 1px solid #555;
 }
 .btn-list-sel{
 	font-size: 12px;
@@ -392,7 +389,7 @@ footer{
 	width: 200px;
 	padding: 12px 5px 13px;
 	text-align: center;
-	border: 1px solid #555;
+	border: 1px solid #cbcdce;
 	color: #707070;
 	background: white;
 	float: left;
@@ -401,7 +398,6 @@ footer{
 .cal-bar{
 	width: 100%;
 	height: 114px;
-	background: orange;
 }
 
 .search-div{
@@ -445,12 +441,91 @@ footer{
 	font-size: 12px;
 }
 
+/*ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ */
 
+.order-title{
+	margin: 40px 0 10px 10px;
+	
+}
 
+.order-table{
+	margin-top: 10px;
+	padding: 0;
+	margin: 0;
+	border-collapse: collapse;
+	font-size: 12px;
+}
+.order-table p{
+	color: #353535;
+	margin-top: 10px;
+	
+}
+.order-table th{
+	font-weight:normal;
+	padding: 14px 0 15px;
+	font-size: 12px;
+	height: 36px;
+	border: 1px solid #eaeaea;
+	
+}
 
+.order-table td{
+	text-align:center;
+	vertical-align:middle;
+	height: 116px;
+	border: 1px solid #eaeaea;
+}
+.order-table a{
+	text-decoration: none;
+	font-size: 12px;
+	color: black;
+}
+.or-order_num{
+	width: 135px;
+}
+.or-image{
+	width: 93px;
+}
+.or-pro_info{
+	width: 981px;
+}
+.or-pro_count{
+	width: 61px;
+}
+.or-price{
+	width: 111px;
+	font-weight: bold;
+}
+.or-order_status{
+	width: 111px;
+}
+.or-order_result{
+	width: 111px;
+}
 
+.or-pager{
+	margin: 30px 0;
+	height: 30px;
+	text-align: center;
+}
+.or-pager a{
+	color: #979797;
+	padding: 4px 7px;
+	font-size: 12px;
+	text-decoration: none;
+}
+.or-pager a:hover{
+	border-bottom: 1px solid black;
+	color: black;
+	font-weight: bold;
+}
 
-
+#none-hover{
+	border: none;
+	color: #979797;
+	padding : 4px 3px;
+	font-weight: normal;
+}
 
 
 
