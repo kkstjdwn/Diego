@@ -62,8 +62,8 @@
 								<a href="./noticeList"><img src="../resources/images/button/btn_list.gif" alt="목록" /></a>
 							</span> 
 							<span class="gRight"> 
-								<a href="#none" onclick="BOARD_WRITE.form_submit('boardWriteForm');">
-									<img src="../resources/images/button/btn_register.gif" alt="등록" /></a> 
+								<button type="submit" class="btn">
+									<img src="../resources/images/button/btn_register.gif" alt="등록" /></button>
 									<a href="./noticeList"><img src="../resources/images/button/btn_cancel.gif" alt="취소" /></a>
 							</span>
 						</div>
@@ -77,7 +77,7 @@
 </body>
 	<script type="text/javascript">
 	$("#contents").summernote({
-		height : 120,
+		height : 400,
 	});
 	</script>
 

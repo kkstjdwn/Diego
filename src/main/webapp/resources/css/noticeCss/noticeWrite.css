@@ -100,3 +100,9 @@ base_button img {
     float: right;
     text-align: right;
 }
+
+.gRight button{
+	padding: 0;
+	margin: 0;
+	border: none;
+}

@@ -6,8 +6,6 @@
 <head>
 <meta charset="UTF-8">
 <link href="../resources/css/header.css" rel="stylesheet">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <title>Insert title here</title>
 </head>
 <body>
@@ -90,7 +88,7 @@
 						<li><a href=""><span>고객센터</span></a>
 							<ul class="menu_depth">
 								<li><a href="../notice/noticeList">Notice</a></li>
-								<li><a href="">FAQ</a></li>
+								<li><a href="../faq/faqList">FAQ</a></li>
 								<li><a href="">Q&A</a></li>
 								<li><a href="">Review</a></li>
 								<li><a href=""><span>Event</span></a></li>
@@ -214,7 +212,7 @@
 							<h1>Community</h1>
 							<ul class="contents c5">
 								<li><a href="../notice/noticeList">공지사항</a></li>
-								<li><a href="">FAQ</a></li>
+								<li><a href="../faq/faqList">FAQ</a></li>
 								<li><a href="">Q&A</a></li>
 								<li><a href="">Photo
 										review</a></li>

@@ -5,8 +5,6 @@
 <head>
 <link href="../resources/css/leftList.css" rel="stylesheet">
 <meta charset="UTF-8">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <title>Insert title here</title>
 </head>
 
@@ -18,8 +16,8 @@
 
 						<ul>
 							<li class="title">Community</li>
-							<li class="sub"><a href="">Notice</a></li>
-							<li class="sub"><a href="">FAQ</a></li>
+							<li class="sub"><a href="../notice/noticeList">Notice</a></li>
+							<li class="sub"><a href="../faq/faqList">FAQ</a></li>
 							<li class="sub"><a href="">Q&A</a></li>
 							<li class="sub"><a href="">Photo review</a></li>
 							<li class="sub"><a href="">Review</a></li>

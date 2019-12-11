@@ -59,14 +59,16 @@
 							</table>
 						</div>
 						<div class="base_button">
-						<span class="gLight">
+						<span class="gLeft">
 							<a href="./noticeList"><img src="../resources/images/button/btn_list.gif" alt="목록" /></a>
 						</span>
 							<!-- 관리자 아니면 안보이게 하기 -->
+							<%-- <c:if test="${admin ne null}"> --%>
 							<span class="gRight">
-							 <a href="" onclick="" class="displaynone"><img src="../resources/images/button/btn_delete.gif"alt="삭제" /></a> 
-							 	<a href="" class="displaynone"><img src="../resources/images/button/btn_modify.gif" alt="수정" /></a> 
+							 <a href="./noticeDelete?not_num=${dto.not_num}" onclick="" class="displaynone"><img src="../resources/images/button/btn_delete.gif"alt="삭제" /></a> 
+							 	<a href="./noticeUpdate?not_num=${dto.not_num}" class="displaynone"><img src="../resources/images/button/btn_modify.gif" alt="수정" /></a> 
 							</span>
+							<%-- </c:if> --%>
 						</div>
 					</div>
 				</form>

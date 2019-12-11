@@ -1,0 +1,11 @@
+@charset "UTF-8";
+
+#listcontentWrap2 {
+	background-color:orange;
+    position: relative;
+    padding-left: 35px;
+    padding-right: 35px;
+    margin: 0 auto;
+    min-height: 600px;
+    margin-top: 150px;
+}
