@@ -63,7 +63,6 @@ ul {
 header {
 		top:0;
 		display: block;
-		background-color: green;
 		z-index: 99;
 		height: 20px; 
 		width: 100%; 
@@ -74,10 +73,10 @@ header {
     	min-width: 1600p;
     	transition-duration: 0.3s;
    		min-width: 1600px;
+   		background-color: white;
 }
 
 #topinner{
-	background-color: orange;
 	padding: 0 50px;
     margin: 0 auto;
     
@@ -110,7 +109,6 @@ nav{display: block;}
     font-size: 13px;
     margin-right: 45px;
     z-index: 101;
-    background-color: gray;
 }
 #menubar span {
     position: relative;
@@ -121,7 +119,6 @@ nav{display: block;}
     position: absolute;
     right: 45px;
     top: 27px;
-	background-color: red;
 }
 
 #log{
@@ -130,7 +127,6 @@ nav{display: block;}
 	font-size: 11px;
 }
 #topcart{
-	background-color:lime;
 	float: left;
 	margin-top: 0;
     font-size: 11px;
@@ -138,13 +134,11 @@ nav{display: block;}
 }
 
 .myhsop{
-	background-color:lime;
 	float: left;
     font-size: 11px;
     margin-left: 15px;
 }
 #ham{
-	background-color:lime;
 	float: left;
     width: 19px;
     height: 16px;
@@ -167,7 +161,6 @@ nav{display: block;}
     z-index: 1;
     top: 0;
     left: 0;
-    transition: all 1000ms ease;
 }
 
 .gnb_logo{

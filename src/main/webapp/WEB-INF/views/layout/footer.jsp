@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link href="../resources/css/footer.css" rel="stylesheet">
+<link href="/mid/resources/css/footer.css" rel="stylesheet">
 <title>Insert title here</title>
 </head>
 <body>
@@ -55,7 +55,7 @@
 	</footer>
 		<div class="scrollTop" style="position:fixed;">
 			<a id="toparea" href="#top">
-				<img src="../resources/images/uparrow.png" alt="상향 화살표" class="fas">
+				<img src="/mid/resources/images/uparrow.png" alt="상향 화살표" class="fas">
 			</a>
 		</div> 
 

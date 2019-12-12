@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link href="../resources/css/header.css" rel="stylesheet">
+<link href="/mid/resources/css/header.css" rel="stylesheet"> 
 <title>Insert title here</title>
 </head>
 <body>
@@ -57,7 +57,7 @@
 
 					<h1 class="gnb_logo">
 						<a href="/"><img
-							src="../resources/images/marciodiego_logo_fix.png" alt="마르시오디에고 로고" /></a>
+							src="/mid/resources/images/marciodiego_logo_fix.png" alt="마르시오디에고 로고" /></a>
 					</h1>
 					<ul class="menu_list gnb_menu">
 						<li><a href=""><span>신상품</span></a></li>
@@ -85,10 +85,10 @@
 						<li><a href=""><span>언더웨어</span></a></li>
 
 						<li><a href=""><span>이벤트</span></a></li>
-						<li><a href="../faq/faqList"><span>고객센터</span></a>
+						<li><a href="/mid/faq/faqList"><span>고객센터</span></a>
 							<ul class="menu_depth">
-								<li><a href="../notice/noticeList">Notice</a></li>
-								<li><a href="../faq/faqList">FAQ</a></li>
+								<li><a href="/mid/notice/noticeList">Notice</a></li>
+								<li><a href="/mid/faq/faqList">FAQ</a></li>
 								<li><a href="">Q&A</a></li>
 								<li><a href="">Review</a></li>
 								<li><a href=""><span>Event</span></a></li>
@@ -124,7 +124,7 @@
 
 						<!-- 장바구니 -->
 						<div id="topcarticon" class="cart2 ">
-							<img src="../resources/images/cart_wh.png" /> 장바구니 (0)
+							<img src="/mid/resources/images/cart_wh.png" /> 장바구니 (0)
 						</div>
 
 
@@ -136,7 +136,7 @@
 
 						<!-- 햄버거 -->
 						<div id="ham_btn">
-							<img src="../resources/images/hamb_icon_wh.png" alt="햄버거버튼" />  
+							<img src="/mid/resources/images/hamb_icon_wh.png" alt="햄버거버튼" />  
 						</div>
 
 
@@ -149,21 +149,21 @@
 						<span><a>로그인</a></span> <span><a>회원가입</a></span>
 					</div>
 					<div id="topcart">
-						<img src="../resources/images/cart.png">장바구니
+						<img src="/mid/resources/images/cart.png">장바구니
 					</div>
 					<div class="myhsop">나의 쇼핑</div>
 					<div id="ham">
-						<img src="../resources/images/hamb_icon.png">
+						<img src="/mid/resources/images/hamb_icon.png">
 					</div>
 				</div>
 			<!-- 오른쪽 메뉴 끝 -->
 	<!-- 햄버거버튼 클릭시 메뉴 -->	
 				<div class="navi_con" style="visibility: hidden; opacity: 0; top: -100%;">
 					<h1 class="navi_logo">
-						<img src="../resources/images/h_logo.png" alt="마르시오디에고 로고" />
+						<img src="/mid/resources/images/h_logo.png" alt="마르시오디에고 로고" />
 					</h1>
 					<div class="close_btn">
-						<img src="../resources/images/close_btn.png" alt="닫기버튼" />
+						<img src="/mid/resources/images/close_btn.png" alt="닫기버튼" />
 					</div>
 					<div class="marginNav">
 						<div class="navi_box">
@@ -211,8 +211,8 @@
 						<div class="navi_box">
 							<h1>Community</h1>
 							<ul class="contents c5">
-								<li><a href="../notice/noticeList">공지사항</a></li>
-								<li><a href="../faq/faqList">FAQ</a></li>
+								<li><a href="/mid/notice/noticeList">공지사항</a></li>
+								<li><a href="/mid/faq/faqList">FAQ</a></li>
 								<li><a href="">Q&A</a></li>
 								<li><a href="">Photo
 										review</a></li>
@@ -272,14 +272,14 @@
 		} else {
 			$("#logo").removeClass("t_logo")
 		}
-	});
+	}); 
 	/* 마우스 오버  */
 	$('header').mouseenter(function() {
-		$('.gnb_con').css("display", "");
+		$('.gnb_con').slideDown();
 	});
 	/* 마우스 리브  */
 	$('#topinner').mouseleave(function() {
-		$('.gnb_con').css("display", "none");
+		$('.gnb_con').slideUp();
 	});
 	
 	/* 햄버거버튼 클릭 이벤트 */

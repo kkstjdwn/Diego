@@ -1,7 +1,6 @@
 @charset "UTF-8";
 
 #listcontentWrap2 {
-	background-color:orange;
     position: relative;
     padding-left: 35px;
     padding-right: 35px;
@@ -13,6 +12,10 @@
 a {
     text-decoration: none;
     color: #000;
+}
+
+.typeWrite table th:first-child {
+    border-left: 0;
 }
 
 img {

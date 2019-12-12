@@ -4,32 +4,77 @@
 <!DOCTYPE html>
 <html>
 <head>
-<c:import url="../layout/bootStrap.jsp" />
+<link href="../resources/css/adminCss/adminLogin.css" rel="stylesheet">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Admin Login</title>
 </head>
 <body>
-	<c:import url="../layout/nav.jsp" />
-	<div class="container">
-		<h2>admin Login</h2>
-		<form action="./adminLogin" method="post">
-			<div class="form-group">
-				<label for="id">ID:</label> <input type="text"
-					class="form-control" id="id" name = "admin_id" placeholder="Enter ID"
-					required="required">
+	<c:import url="../layout/header.jsp" />
+	<div id="listcontentWrap3">
+		<div id="listcontent2">
+			<div id="wrap">
+			<!-- 왼쪽배경이미지 -->
+				<div class="login_bg"> </div>
 			</div>
-			<div class="form-group">
-				<label for="pw">Password:</label> <input type="password"
-					class="form-control" id="pw" placeholder="Enter password"
-					required="required" name="admin_pw">
-			</div>
-			<div class="checkbox">
-				<label><input type="checkbox" name="remember">
-					Remember me</label>
-			</div>
-			<button type="submit" class="btn btn-default">Submit</button>
-		</form>
+			<form id="" name="" action="./adminLogin" method="post">
+				<div id="login_wrap" class="loginbox ">
+					<div class="login">
+						<div id="logintitle">
+							<h2 class="playfonts">Admin Login</h2>
+							<span>Please eneter Admin ID and password<br />
+							only Admin
+							</span>
+						</div>
+						<fieldset>
+							<div class="id_box box_con">
+								<label class="idbox first" title="아이디">Admin ID</label>
+								<div class="id_inputbox">
+									<input id="admin_id" name="admin_id" class="inputTypeText" type="text" />
+								</div>
+							</div>
+							<div class="pw_box box_con">
+								<label class="pwbox" title="비밀번호">Password</label>
+								<div class="pw_inputbox">
+									<input id="admin_pw" name="admin_pw" type="password" />
+								</div>
+							</div>
+							<div class="go_wrap">
+								<div class="goShop">
+									<button type="submit" style="cursor:pointer" class="btn btn-default">로그인</button>
+								</div>
+							</div>
+						</fieldset>
+					</div>
+				</div>
+			</form>
+		</div>
 	</div>
 
+	<script>
+	$(".pw_inputbox input").addClass("inputTypeText2");
+	    
+	$(".inputTypeText").on("focus", function () {
+	    $(this).addClass("input_under"); 
+	});
+	
+	$(".inputTypeText").on("blur", function () {
+	    $(this).removeClass("input_under");
+	});
+	    
+	$(".inputTypeText2").on("focus", function () {
+	    $(this).addClass("input_under");
+	});
+	
+	$(".inputTypeText2").on("blur", function () {
+	    $(this).removeClass("input_under");
+	}); 
+
+    </script>
+
+	<c:import url="../layout/footer.jsp" />
 </body>
+
+
 </html>

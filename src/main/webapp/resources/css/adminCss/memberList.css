@@ -60,7 +60,7 @@ th, td {
     border-left: 0;
     border-right: 0;
     border-top: 0;
-    color: #fff;
+    color: black;
     line-height: 1.5;
     font-size: 12px;
 }
@@ -74,7 +74,7 @@ table {
     border-left: 0;
     border-right: 0;
     border-top: 0;
-    color: #fff;
+    color: black;
     line-height: 1.5;
     font-size: 12px;
 }
@@ -254,5 +254,4 @@ button img{
     padding: 18px 0;
     font-size: 13px;
     border: none;
-    width: 70px;
 }

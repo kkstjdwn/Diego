@@ -17,7 +17,6 @@
     color: black;
 }
 .foot_inner{
-	background-color: maroon;
 	padding-top: 220px;
     margin: 0 50px;
 }
@@ -26,7 +25,6 @@
 }
 
 .footer_logo{
-	background-color : blue;
 }
 .footer_logo a {
 	
@@ -35,12 +33,10 @@
 }
 
 #center{
-	background-color: silver;
 	    padding: 40px 0;
 }
 
 #customer {
-	background-color: orange;
 }
 
 #customer li{
@@ -48,7 +44,6 @@
 }
 
 #company{
-	background-color : navy;
 	padding-bottom: 40px;
 }
 
@@ -61,7 +56,6 @@
 }
 
 #link{
-	background-color : orange;
 	font-size: 12px;
 }
 
@@ -81,10 +75,12 @@
     font-size: 20px;
     z-index: 99;
     display: none;
+    color: gray;
 }
 
 .scrollTop img{
-	background-color: white;
    width: 20px;
    height: 24px;
+   background-color: white;
+   border-radius: 50%;
 }

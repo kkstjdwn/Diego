@@ -37,9 +37,9 @@
 									<col style="width: auto;" />
 								</colgroup>
 								<tbody>
-								<tr>
+								<tr style="display: none;">
 									<th scope="row">글번호</th>
-									<td><input type="text" name = "not_num" value="${dto.not_num}" readonly="readonly" style="display: none;"></td>
+									<td><input type="text" name = "not_num" value="${dto.not_num}" readonly="readonly"></td>
 								</tr>
 									<tr>
 										<th scope="row">제목</th>

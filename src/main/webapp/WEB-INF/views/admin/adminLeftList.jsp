@@ -15,23 +15,20 @@
 
 
 						<ul>
-							<li class="title">Community</li>
+							<li class="title">관리자 메뉴</li>
+							<li class="sub"><a href="/mid/admin/memberList">회원관리</a></li>
+							<li class="sub"><a href="/mid/admin/delivery/deliveryList">배송관리</a></li>
+
+						</ul>
+						<ul>
+							<li class="title"><a href="">Board</a></li>
 							<li class="sub"><a href="/mid/notice/noticeList">Notice</a></li>
 							<li class="sub"><a href="/mid/faq/faqList">FAQ</a></li>
 							<li class="sub"><a href="">Q&A</a></li>
-							<li class="sub"><a href="">Photo review</a></li>
-							<li class="sub"><a href="">Review</a></li>
-						</ul>
-						<ul>
-							<li class="title"><a href="">Event</a></li>
 						</ul>
 						<ul>
 							<li class="title">My page</li>
-							<li class="sub "><a href="">Order</a></li>
-							<li class="sub "><a href="">Wish list</a></li>
-							<li class="sub "><a href="">Mileage</a></li>
-							<li class="sub "><a href="">My board</a></li>
-							<li class="sub"><a href="#" style="cursor: pointer">Delivery</a></li>
+							<li class="sub "><a href="/mid/admin/adminUpdate">관리자정보 수정</a></li>
 						</ul>
 					</div>
 				</div>
