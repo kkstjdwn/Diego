@@ -1,6 +1,8 @@
 package com.diego.mid.dao;
 
 import java.util.List;
+import java.util.Map;
+
 import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
@@ -51,23 +53,41 @@ public class MemberManegeDAO {
 		return sql.selectOne(ORDER+"orderSelect",orders);
 	}
 	
-	public List<Orders> orderMyList(Orders orders) throws Exception{
-		return sql.selectList(ORDER+"orderMyList",orders);
+	public Integer MLcount(Orders orders) throws Exception{
+		return sql.selectOne(ORDER+"MLcount",orders);
+	}
+	
+	public List<Orders> orderMyList(Map<String, Object> map) throws Exception{
+		return sql.selectList(ORDER+"orderMyList",map);
 	}
 	
 	public List<Orders> orderList() throws Exception{
 		return sql.selectList(ORDER+"orderList");
 	}
 	
-	public List<Orders> orderCancelList(Orders orders) throws Exception{
-		return sql.selectList(ORDER+"orderCancelList",orders);
+	public Integer CLcount(Orders orders) throws Exception{
+		return sql.selectOne(ORDER+"CLcount",orders);
 	}
+	
+	public List<Orders> orderCancelList(Map<String, Object> map) throws Exception{
+		return sql.selectList(ORDER+"orderCancelList",map);
+	}
+	
+	
 	public int orderCancel(Orders orders) throws Exception{
 		return sql.update(ORDER+"orderCancel",orders);
 	}
 	
 	public int orderUpdate(Orders orders) throws Exception{
 		return sql.update(ORDER+"orderUpdate",orders);
+	}
+	
+	public Integer SLcount(Orders orders) throws Exception{
+		return sql.selectOne(ORDER+"SLcount",orders);
+	}
+	
+	public List<Orders> orderSearchList(Map<String, Object> map) throws Exception{
+		return sql.selectList(ORDER+"orderSearchList",map);
 	}
 	
 	public int pointInsert(Point point) throws Exception{

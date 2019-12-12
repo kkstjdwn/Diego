@@ -1,15 +1,18 @@
 package com.diego.mid.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Service;
 import com.diego.mid.dao.MemberManegeDAO;
 import com.diego.mid.model.member.Coupon;
-import com.diego.mid.model.member.MemberVO;
 import com.diego.mid.model.member.Orders;
 import com.diego.mid.model.member.Point;
 import com.diego.mid.model.member.Wishlist;
+import com.diego.mid.util.MPager;
 import com.diego.mid.util.MemberFile;
 
 @Service
@@ -45,24 +48,44 @@ public class MemberManageService {
 		int result = dao.orderInsert(orders); 
 		if (result > 0) {
 			return orders;
-		}
+		}else {
+			
 		return null;
+		}
 	}
 	
 	public Orders orderSelect(Orders orders) throws Exception{
 		return dao.orderSelect(orders);
 	}
-	
-	public List<Orders> orderMyList(Orders orders) throws Exception{
-		return dao.orderMyList(orders);
+//////////////////////////////////////////////////////////////////////////////////////////
+	public int MLcount(Orders orders) throws Exception{
+		return dao.MLcount(orders);
+	}
+	public int SLcount(Orders orders) throws Exception{
+		return dao.SLcount(orders);
+	}
+	public int CLcount(Orders orders) throws Exception{
+		return dao.CLcount(orders);
+	}
+//////////////////////////////////////////////////////////////////////////////////////////
+	public List<Orders> orderMyList(Orders orders,MPager pager) throws Exception{
+		pager.rowMake();
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("order", orders);
+		map.put("pager", pager);
+		return dao.orderMyList(map);
 	}
 	
 	public List<Orders> orderList() throws Exception{
 		return dao.orderList();
 	}
 	
-	public List<Orders> orderCancelList(Orders orders) throws Exception{
-		return dao.orderCancelList(orders);
+	public List<Orders> orderCancelList(Orders orders,MPager pager) throws Exception{
+		pager.rowMake();
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("order", orders);
+		map.put("pager", pager);
+		return dao.orderCancelList(map);
 	}
 	public int orderCancel(Orders orders) throws Exception{
 		return dao.orderCancel(orders);
@@ -71,6 +94,14 @@ public class MemberManageService {
 	public int orderUpdate(Orders orders) throws Exception{
 		orders.setOrder_sum(orders.getPro_count()*orders.getPrice());
 		return dao.orderUpdate(orders);
+	}
+	
+	public List<Orders> orderSearchList(Orders orders,MPager pager) throws Exception{
+		pager.rowMake();
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("order", orders);
+		map.put("pager", pager);
+		return dao.orderSearchList(map);
 	}
 	
 	
@@ -143,4 +174,6 @@ public class MemberManageService {
 		coupon.setUse("X");
 		return dao.couponUse(coupon);
 	}
+	
+	
 }

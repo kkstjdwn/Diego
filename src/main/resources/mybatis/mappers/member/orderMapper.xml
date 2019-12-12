@@ -27,15 +27,46 @@
   
   </select>
   
-  <select id="orderMyList" parameterType="orders" resultType="orders">
+  <select id="MLcount" parameterType="orders" resultType="Integer">
+  	select count(order_num) from orders where id = #{id} and order_status !='OC' order by order_num desc
+  </select>
   
-  	select * from orders where id=#{id} and order_status != 'OC' order by order_num desc
+  <select id="orderMyList" parameterType="Map" resultType="orders">
+  
+  	select * from (select O.*, rownum R from
+  	(select * from orders where id=#{order.id} and order_status != 'OC' order by order_num desc) O)
+	where r between #{pager.startRow} and #{pager.lastRow}
   
   </select>
   
-  <select id="orderCancelList" parameterType="orders" resultType="orders">
+  <select id="SLcount" parameterType="orders" resultType="Integer">
+  	select count(order_num) from orders where id = #{id} and order_status !='OC' and
+  	order_date between #{order_date} and sysdate
+  	order by order_num desc
+  </select>
   
-  	select * from orders where id=#{id} and order_status = 'OC' order by order_num desc
+  <select id="orderSearchList" parameterType="Map" resultType="orders">
+  
+  	select * from (select O.*, rownum R from
+  	(select * from orders where id=#{order.id} and order_status != 'OC' and 
+  	order_date between #{order.order_date} and sysdate order by order_num desc) O)
+	where r between #{pager.startRow} and #{pager.lastRow}
+  	
+  </select>
+  
+  <select id="CLcount" parameterType="orders" resultType="Integer">
+  select count(order_num) from orders where id=#{id} and order_status = 'OC' and 
+  	order_date between #{order_date} and sysdate
+  	order by order_num desc
+  </select>
+  
+  
+  <select id="orderCancelList" parameterType="Map" resultType="orders">
+  	
+  	select * from (select O.*, rownum R from
+  	(select * from orders where id=#{order.id} and order_status = 'OC' and 
+  	order_date between #{order.order_date} and sysdate order by order_num desc) O)
+	where r between #{pager.startRow} and #{pager.lastRow}
   
   </select>
   

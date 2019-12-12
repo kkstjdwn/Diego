@@ -2,19 +2,26 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <div class="order-title">
-		<h3 style="height: 16px; font-size: 12px;">${h1 }</h3>
+<c:choose>
+	<c:when test="${h1 eq 'A' }">
+		<h3 style="height: 16px; font-size: 12px;">주문 상품 조회</h3>
+	</c:when>
+	<c:otherwise>
+		<h3 style="height: 16px; font-size: 12px;">취소/반품/교환</h3>
+	</c:otherwise>
+</c:choose>
 	</div>
 	<div style="margin-top: 10px; width: 100%; min-height: 220px;">
 		<table class="order-table">
 			<thead>
 				<tr>
-					<th style="border-left: none;">주문일자 <br>[주문번호]</th>
-					<th>이미지</th>
-					<th>상품정보</th>
-					<th>수량</th>
-					<th>상품구매금액</th>
-					<th>주문처리상태</th>
-					<th style="border-right: none;">취소/교환/반품</th>
+					<th class="or-order_num" style="border-left: none;">주문일자 <br>[주문번호]</th>
+					<th class="or-image">이미지</th>
+					<th class="or-pro_info">상품정보</th>
+					<th class="or-pro_count">수량</th>
+					<th class="or-price">상품구매금액</th>
+					<th class="or-order_status">주문처리상태</th>
+					<th class="or-order_result" style="border-right: none;">취소/교환/반품</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -23,7 +30,9 @@
 					<td class="or-order_num" style="border-left: none;">
 						${ord.order_date }<br>
 						[<a href="#">${ord.order_num }</a>]<br>
+						<c:if test="${h1 eq 'A' }">
 						<img alt="" src="../../resources/images/btn_order_cancel2.gif" style="cursor: pointer;" class="or-cancel" title="${ord.order_num }">
+						</c:if>
 					</td>
 					<td class="or-image">
 						<a href="#">
@@ -49,12 +58,15 @@
 			</c:forEach>
 			</tbody>
 		</table>
+<c:if test="${orderList.size() eq 0 }">
+	<p class="no-order"> 주문 내역이 없습니다</p>
+</c:if>
 	</div>
 <!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
 	<div class="or-pager">
 		<a href="#" id="none-hover"> << </a>
 		<a href="#" id="none-hover"> < </a>
-		<c:forEach begin="1" end="8" var="p">
+		<c:forEach begin="${pager.startNum }" end="${pager.lastNum}" var="p">
 		<c:choose>
 			<c:when test="${p eq 1 }">
 				<a href="#" style="color: black;"> ${p } </a>

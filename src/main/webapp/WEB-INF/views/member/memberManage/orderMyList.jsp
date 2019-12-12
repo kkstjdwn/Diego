@@ -33,8 +33,8 @@
 		<ul class="left-list">
 			<li style="height: 30px;"><a href="#" style="color: black; font-size: 13px;">My page</a></li>
 			<c:if test="${!empty member }">
-			<li ><a href="#">My info</a></li></c:if>
-			<li ><a href="#">Order</a></li>
+			<li ><a href="../memberUpdate">My info</a></li></c:if>
+			<li ><a href="#" style="color: black;">Order</a></li>
 			<li ><a href="#">Wish list</a></li>
 			<li ><a href="#">Mileage</a></li>
 			<li ><a href="#">My board</a></li>
@@ -48,8 +48,8 @@
 <!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
 	<div class="ajax-bar">
 	<ul style="border-bottom:1px solid #cbcdce; width: 100%; height: 42px;">
-	<li><button id="all-list" class="btn-list-sel">주문내역조회 (${orderList.size() })</button></li>
-	<li><button id="can-list" class="btn-list">취소/반품/교환 내역 (size)</button></li>
+	<li><button id="all-list" class="btn-list-sel">주문내역조회 </button></li>
+	<li><button id="can-list" class="btn-list">취소/반품/교환 내역</button></li>
 	</ul>
 	</div>
 <!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
@@ -57,7 +57,7 @@
 		<div class="search-div">
 		<form action="" method="get" class="search-form">
 			<div>
-				<select id="order_status" name="order_status">
+				<select id="order_status" name="order_status" >
 					<option value="AL" selected="selected">전체 주문처리상태</option>
 					<option value="WP">입금전</option>
 					<option value="WD">배송준비중</option>
@@ -76,11 +76,11 @@
 				<button type="button" class="btn-search" value="180">6개월</button>
 			</div>
 			<div>
-				<input type="text" class="ip-cal" id="cal-left" name="search_date" readonly="readonly"> <span>&nbsp;~&nbsp;</span>
+				<input type="text" class="ip-cal" id="cal-left" name="order_date" readonly="readonly"> <span>&nbsp;~&nbsp;</span>
 				<input type="text" class="ip-cal" id="cal-right" readonly="readonly">
 			</div>
 			<div>
-				<button style="vertical-align: middle; background: #495164; border: none; color: white; width: 39px; height: 24px; margin-left: 10px; font-size: 11px; border-radius: 2px;">조회</button>
+				<button type="button" id="sel" style="vertical-align: middle; background: #495164; border: none; color: white; width: 39px; height: 24px; margin-left: 10px; font-size: 11px; border-radius: 2px;">조회</button>
 			</div>
 		</form>
 		</div>
@@ -100,13 +100,13 @@
 		<table class="order-table">
 			<thead>
 				<tr>
-					<th style="border-left: none;">주문일자 <br>[주문번호]</th>
-					<th>이미지</th>
-					<th>상품정보</th>
-					<th>수량</th>
-					<th>상품구매금액</th>
-					<th>주문처리상태</th>
-					<th style="border-right: none;">취소/교환/반품</th>
+					<th class="or-order_num" style="border-left: none;">주문일자 <br>[주문번호]</th>
+					<th class="or-image">이미지</th>
+					<th class="or-pro_info">상품정보</th>
+					<th class="or-pro_count">수량</th>
+					<th class="or-price">상품구매금액</th>
+					<th class="or-order_status">주문처리상태</th>
+					<th class="or-order_result" style="border-right: none;">취소/교환/반품</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -142,13 +142,20 @@
 			</tbody>
 		</table>
 	</div>
+<c:if test="${orderList.size() eq 0 }">
+	<p class="no-order"> 주문 내역이 없습니다</p>
+</c:if>
 <!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
 	<div class="or-pager">
-		<a href="#" id="none-hover"> << </a>
-		<a href="#" id="none-hover"> < </a>
-		<c:forEach begin="1" end="8" var="p">
+<%-- 		<c:if test="${pager.curBlock ne 2 }"> --%>
+			<a href="#" id="none-hover"> << </a>
+<%-- 		</c:if> --%>
+<%-- 		<c:if test="${pager.curBlock ne 1 }"> --%>
+			<a href="#" id="none-hover"> < </a>
+<%-- 		</c:if> --%>
+		<c:forEach begin="${pager.startNum }" end="${pager.lastNum}" var="p">
 		<c:choose>
-			<c:when test="${p eq 1 }">
+			<c:when test="${pager.curPage eq p }">
 				<a href="#" style="color: black;"> ${p } </a>
 			</c:when>
 			<c:otherwise>
@@ -157,8 +164,12 @@
 		</c:choose>
 		
 		</c:forEach>
-		<a href="#" id="none-hover"> > </a>
-		<a href="#" id="none-hover"> >> </a>
+<%-- 		<c:if test="${pager.curBlock lt pager.perBlock }"> --%>
+			<a href="#" id="none-hover"> > </a>
+<%-- 			<c:if test="${pager.perBlock ne pager.totalBlock }"> --%>
+				<a href="#" id="none-hover"> >> </a>
+<%-- 			</c:if> --%>
+<%-- 		</c:if> --%>
 	</div>
 </div>	
 <!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
@@ -169,6 +180,7 @@
 
 
 <footer></footer>
+
 <script type="text/javascript">
 
 	$(document).ready(function() {
@@ -203,8 +215,7 @@
 		    });
 		});
 		
-		
-	$(".or-cancel").click(function() {
+	$(".ajax-table").on("click",".or-cancel", function() {
 		if (confirm("취소하시겠습니까?")) {
 			$.ajax({
 				type : "POST",
@@ -228,33 +239,46 @@
 	
 	
 	$("#all-list").click(function() {
+		var d = $("#cal-left").val();
 		$.ajax({
 			type	: "GET",
 			url		: "orderAllList",
 			data	: {
-				id		: "${member.id}"
+				id		: "${member.id}",
+				order_date : d
+				
 			},
 			success	: function(data) {
 				$(".ajax-table").html(data);
 				$("#all-list").prop("class", "btn-list-sel");
 				$("#can-list").prop("class", "btn-list");
+				$("#order_status").prop("hidden", false);
 			}
 		});
 	});
 	
 	$("#can-list").click(function() {
+		var d = $("#cal-left").val();
 		$.ajax({
 			type	: "GET",
-			url		: "OrderCancelList",
+			url		: "orderCancelList",
 			data	: {
-				id		: "${member.id}"
+				id		: "${member.id}",
+				order_date : d
 			},
 			success	: function(data) {
 				$(".ajax-table").html(data);
 				$("#can-list").prop("class", "btn-list-sel");
 				$("#all-list").prop("class", "btn-list");
+				$("#order_status").prop("hidden", true);
 			}
 		});
+	});
+	
+	
+	$("#sel").click(function() {
+		$(".btn-list-sel").click();
+
 	});
 		
 </script>

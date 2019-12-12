@@ -2,6 +2,8 @@ package com.diego.mid;
 
 import static org.junit.Assert.*;
 
+import java.sql.Date;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -44,12 +46,23 @@ public class MemberManageTEST extends TestAbstractCase {
 //		wishlist.setWish_num(7);
 //		System.out.println(manegeDAO.wishListGetSum(wishlist));
 		
-		Orders orders = new Orders();
-		orders.setId("coo");
-		List<Orders> ar = manegeDAO.orderCancelList(orders);
-		for (Orders orders2 : ar) {
-			System.out.println(orders2.getOrder_date());
-		}
+//		Orders orders = new Orders();
+//		orders.setId("coo");
+//		List<Orders> ar = manegeDAO.orderCancelList(orders);
+//		for (Orders orders2 : ar) {
+//			System.out.println(orders2.getOrder_date());
+//		}
+		
+		Calendar ca = Calendar.getInstance();
+		Calendar ca2 = Calendar.getInstance();
+		System.out.println(ca.getTimeInMillis());
+		System.out.println(1000L*60*60*24*90);
+		System.out.println(ca.getTimeInMillis()-1000*60*60*24*90);
+		ca2.setTimeInMillis(ca.getTimeInMillis()-(1000L*60*60*24*90));
+		System.out.println(ca2.getTimeInMillis());
+		Date d = new Date(ca2.getTimeInMillis());
+		System.out.println(d);
+		
 		}
 
 }

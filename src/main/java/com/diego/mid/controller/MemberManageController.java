@@ -1,22 +1,22 @@
 package com.diego.mid.controller;
 
+import java.sql.Date;
+import java.util.Calendar;
 import java.util.List;
-
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-
 import com.diego.mid.model.member.Coupon;
 import com.diego.mid.model.member.MemberVO;
 import com.diego.mid.model.member.Orders;
 import com.diego.mid.model.member.Point;
 import com.diego.mid.model.member.Wishlist;
 import com.diego.mid.service.MemberManageService;
+import com.diego.mid.util.MPager;
 
 @Controller
 @RequestMapping("member/memberManage/**")
@@ -24,6 +24,8 @@ public class MemberManageController {
 	
 	@Inject
 	private MemberManageService service;
+	
+	
 	
 //@@@@@@@@@@@@@POINT@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 	
@@ -251,12 +253,20 @@ public class MemberManageController {
 	}
 	
 	@GetMapping("orderMyList")
-	public ModelAndView orderMyList(HttpSession session)throws Exception{
+	public ModelAndView orderMyList(HttpSession session,MPager pager)throws Exception{
+		
+		Calendar ca = Calendar.getInstance();
+		ca.setTimeInMillis(ca.getTimeInMillis()-(1000L*60*60*24*90));
+		Date d = new Date(ca.getTimeInMillis());
+		
+		
 		ModelAndView mv = new ModelAndView();
 		MemberVO vo = (MemberVO)session.getAttribute("member");
 		Orders orders = new Orders();
 		orders.setId(vo.getId());
-		List<Orders> ar = service.orderMyList(orders);
+		orders.setOrder_date(d);
+		pager.makePager(service.MLcount(orders));
+		List<Orders> ar = service.orderMyList(orders,pager);
 		for (Orders orders2 : ar) {
 			if (orders2.getOrder_status().equals("WP")) {
 				orders2.setOrder_status("결제 대기중");
@@ -264,18 +274,24 @@ public class MemberManageController {
 				orders2.setOrder_status("주문 취소");
 			}
 		}
+		mv.addObject("pager", pager);
 		mv.addObject("orderList", ar);
 		mv.setViewName("/member/memberManage/orderMyList");
 		return mv;
 	}
 	
 	@GetMapping("orderAllList")
-	public ModelAndView orderAllList(HttpSession session)throws Exception{
+	public ModelAndView orderAllList(HttpSession session,String order_date,MPager pager)throws Exception{
+		order_date.replace('-', '/');
 		ModelAndView mv = new ModelAndView();
+		
+		
 		MemberVO vo = (MemberVO)session.getAttribute("member");
 		Orders orders = new Orders();
 		orders.setId(vo.getId());
-		List<Orders> ar = service.orderMyList(orders);
+		orders.setOrder_date(Date.valueOf(order_date));
+		pager.makePager(service.SLcount(orders));
+		List<Orders> ar = service.orderSearchList(orders,pager);
 		for (Orders orders2 : ar) {
 			if (orders2.getOrder_status().equals("WP")) {
 				orders2.setOrder_status("결제 대기중");
@@ -283,24 +299,29 @@ public class MemberManageController {
 				orders2.setOrder_status("주문 취소");
 			}
 		}
+		mv.addObject("pager", pager);
 		mv.addObject("orderList", ar);
-		mv.addObject("h1", "주문 상품 정보");
+		mv.addObject("h1", "A");
 		mv.setViewName("/member/memberManage/listAjax");
 		return mv;
 	}
 	
-	@GetMapping("OrderCancelList")
-	public ModelAndView orderCancelList(HttpSession session) throws Exception {
+	@GetMapping("orderCancelList")
+	public ModelAndView orderCancelList(HttpSession session,String order_date,MPager pager) throws Exception {
+		order_date.replace('-', '/');
 		ModelAndView mv = new ModelAndView();
 		MemberVO vo = (MemberVO)session.getAttribute("member");
 		Orders orders = new Orders();
 		orders.setId(vo.getId());
-		List<Orders> ar = service.orderCancelList(orders);
+		orders.setOrder_date(Date.valueOf(order_date));
+		pager.makePager(service.CLcount(orders));
+		List<Orders> ar = service.orderCancelList(orders,pager);
 		for (Orders orders2 : ar) {
 			orders2.setOrder_status("주문 취소");
 		}
+		mv.addObject("pager", pager);
 		mv.addObject("orderList", ar);
-		mv.addObject("h1", "취소/반품/교환");
+		mv.addObject("h1", "C");
 		mv.setViewName("/member/memberManage/listAjax");
 		return mv;
 	}

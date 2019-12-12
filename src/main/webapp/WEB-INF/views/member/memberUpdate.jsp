@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,8 +32,8 @@
 		<ul class="left-list">
 			<li style="height: 30px;"><a href="#" style="color: black; font-size: 13px;">My page</a></li>
 			<c:if test="${!empty member }">
-			<li ><a href="#">My info</a></li></c:if>
-			<li ><a href="#">Order</a></li>
+			<li ><a href="#" style="color: black;">My info</a></li></c:if>
+			<li ><a href="memberManage/orderMyList">Order</a></li>
 			<li ><a href="#">Wish list</a></li>
 			<li ><a href="#">Mileage</a></li>
 			<li ><a href="#">My board</a></li>
@@ -49,8 +50,9 @@
 		</div>
 		<div class="info-rank">
 		<p>저희 쇼핑몰을 이용해 주셔서 감사합니다. <strong>${member.name }</strong> 님은 <strong>${member.mem_rank }</strong> 회원이십니다.</p>
-		<p><strong>${up }원</strong> 이상 구매시 <strong>${x }%</strong>을 추가적립 받으실 수 있습니다.</p>
+		<p><strong><fmt:formatNumber value="${up }" type="number"/>원</strong> 이상 구매시 <strong>${x }%</strong>을 추가적립 받으실 수 있습니다.</p>
 		</div>
+		
 	</div>
 <!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
 	<form action="memberUpdate" method="post" onsubmit="go()">
