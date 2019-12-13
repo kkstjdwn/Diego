@@ -48,13 +48,13 @@
 						<td>${product.pro_num}</td>
 						<td>${product.cat_ref}</td>
 					
-						<td><img src="../resources/product/images/${product.pro_main}"style="width: 80%; height:7%;"></td>
+						<td><img src="../resources/product/images/${product.pro_main}"style="width: 70%; height:7%;"></td>
 						
 						<td><a href="./productSelect?pro_num=${product.pro_num}"> ${product.pro_name}</a></td>
 						<td>${product.pro_price}</td>
 						<td>${product.pro_count}</td>
 						<td>${product.pro_sale}</td>
-						<td>${product.pro_contents}</td>
+						<td>${product.contents}</td>
 						<td>${product.pro_warning}</td>
 						<td>${product.pro_color}</td>
 						<td>${product.pro_size}</td>

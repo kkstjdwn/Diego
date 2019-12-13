@@ -63,7 +63,7 @@
 
 			<div class="form-group">
 				<label for="pro_contents">Product Cotents:</label>
-				<textarea type="text" id="pro_contents" name="pro_contents" >${product.pro_contents}</textarea>
+				<textarea type="text" id="pro_contents" name="contents" >${product.contents}</textarea>
 			</div>
 
 			<div class="form-group">

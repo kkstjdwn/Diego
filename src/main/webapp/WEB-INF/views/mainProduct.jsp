@@ -30,7 +30,7 @@
 	<a href="">QNA수정</a>
 
 	<h1>REVIEW</h1>
-	<a href="">리뷰리스트</a>
+	<a href="${pageContext.request.contextPath}/review/reviewList">리뷰리스트</a>
 	<br>
 	<a href="">리뷰작성</a>
 	<br>

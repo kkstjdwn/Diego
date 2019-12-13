@@ -1,6 +1,6 @@
 package com.diego.mid.controller;
 
-import java.util.ArrayList;
+
 import java.util.List;
 
 import javax.inject.Inject;
@@ -17,8 +17,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.diego.mid.model.product.ImagesVO;
 import com.diego.mid.model.product.ProductVO;
+import com.diego.mid.model.product.ReviewVO;
 import com.diego.mid.service.ProductService;
-import com.diego.mid.service.QnaService;
+
 import com.diego.mid.util.Pager;
 
 @Controller
@@ -90,7 +91,7 @@ public class ProductController {
 	
 	//상품리스트
 	@RequestMapping(value = "productList", method = {RequestMethod.GET, RequestMethod.POST})
-	private ModelAndView productList(Pager pager, ImagesVO imagesVO,ProductVO productVO )throws Exception {
+	private ModelAndView productList(Pager pager)throws Exception {
 		
 		List<ProductVO>ar= productService.productList(pager);
 		
@@ -147,7 +148,7 @@ public class ProductController {
 		
 		productVO =  productService.productSelect(productVO);
 		
-		productVO.setPro_contents(productVO.getPro_contents().replace("\n\r", "<br>"));
+		productVO.setContents(productVO.getContents().replace("\n\r", "<br>"));
 		
 		mv.addObject("product", productVO);
 		mv.setViewName("product/productSelect");
@@ -195,6 +196,31 @@ public class ProductController {
 		
 		return mv;
 	}
+	
+		//리뷰작성
+		@GetMapping(value = "productReview")
+		public void reviewWrite()throws Exception {
+				
+		}
+		
+		@PostMapping(value = "productReview")
+		public ModelAndView reviewWrite(ReviewVO reviewVO)throws Exception {
+			
+			//System.out.println(reviewVO.getContents()); 들어옴
+			ModelAndView mv = new ModelAndView();
+			int result = productService.reviewWrite(reviewVO);
+			
+			String msg="리뷰 저장이 실패했습니다.";
+			
+			if(result==1) {
+				msg="리뷰 저장이 완료되었습니다.";
+				
+			}
+			mv.addObject("msg", msg);
+			mv.addObject("path", "../review/reviewList");
+			mv.setViewName("common/common_result");
+			return mv;
+		}
 	
 	
 }

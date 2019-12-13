@@ -69,7 +69,7 @@
 
 			<div class="form-group">
 				<label for="pro_contents">Product Cotents:</label>
-				<textarea type="text" id="pro_contents" name="pro_contents">입력하시오.</textarea>
+				<textarea type="text" id="contents" name="contents">입력하시오.</textarea>
 			</div>
 
 			<div class="form-group">
@@ -198,7 +198,7 @@
 		});
 
 		//섬머노트
-		$("#pro_contents").summernote({
+		$("#contents").summernote({
 			height : 120,
 
 		});

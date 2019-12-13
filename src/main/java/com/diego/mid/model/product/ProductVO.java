@@ -14,7 +14,7 @@ public class ProductVO {
 	private Integer pro_count;//상품재고량
 	private Integer pro_sale;//상품판매개수
 	private Date pro_date;//상품올린날짜
-	private String pro_contents;//상품 상세내용
+	private String contents;//상품 상세내용
 	private String pro_warning;//상품 주의사항
 	private String pro_size;//상품 사이즈
 	private String pro_color;//상품 색상
@@ -96,12 +96,14 @@ public class ProductVO {
 		this.pro_date = pro_date;
 	}
 
-	public String getPro_contents() {
-		return pro_contents;
+
+
+	public String getContents() {
+		return contents;
 	}
 
-	public void setPro_contents(String pro_contents) {
-		this.pro_contents = pro_contents;
+	public void setContents(String contents) {
+		this.contents = contents;
 	}
 
 	public String getPro_warning() {

@@ -53,7 +53,7 @@
 			select product_seq.nextval from dual
 		</selectKey>
 		insert into product
-		values(#{pro_num},#{cat_ref},#{pro_name},#{pro_price},#{pro_count},0,sysdate,#{pro_contents},#{pro_warning},#{pro_size},#{pro_color},#{pro_vital})
+		values(#{pro_num},#{cat_ref},#{pro_name},#{pro_price},#{pro_count},0,sysdate,#{contents},#{pro_warning},#{pro_size},#{pro_color},#{pro_vital})
 	</insert>
 
 	<!--select -->
@@ -76,7 +76,7 @@
 		<result property="pro_count" column="pro_count" />
 		<result property="pro_sale" column="pro_sale" />
 		<result property="pro_date" column="pro_date" />
-		<result property="pro_contents" column="pro_contents" />
+		<result property="contents" column="contents" />
 		<result property="pro_warning" column="pro_warning" />
 		<result property="pro_size" column="pro_size" />
 		<result property="pro_color" column="pro_color" />
@@ -112,11 +112,17 @@
 	<update id="productUpdate" parameterType="ProductVO">
 		update product set
 		pro_name=#{pro_name}, pro_price=#{pro_price}, pro_count=#{pro_count},
-		pro_contents=#{pro_contents}, pro_warning=#{pro_warning},
+		contents=#{contents}, pro_warning=#{pro_warning},
 		pro_size=#{pro_size}, pro_color=#{pro_color}, pro_vital=#{pro_vital}
 		where pro_num = #{pro_num}
 
 	</update>
+
+	<!--리뷰 write  -->
+  <insert id="reviewWrite" parameterType="ReviewVO">
+   insert into review(id, pro_num, rev_num,star,contents,name,help,rev_date) values(
+    #{id},#{pro_num},rev_seq.nextval,#{star},#{contents},#{name},#{help},sysdate)
+   </insert>	
 
 </mapper>
   

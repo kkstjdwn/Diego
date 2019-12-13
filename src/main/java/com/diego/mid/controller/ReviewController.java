@@ -1,5 +1,7 @@
 package com.diego.mid.controller;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Controller;
@@ -8,8 +10,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.diego.mid.model.product.ProductVO;
 import com.diego.mid.model.product.ReviewVO;
 import com.diego.mid.service.ReviewService;
+import com.diego.mid.util.Pager;
 
 @Controller
 @RequestMapping("/review/**")
@@ -44,8 +48,22 @@ public class ReviewController {
 	
 	//리뷰리스트
 	@GetMapping("reviewList")
-	public void reviewList()throws Exception{
+	public ModelAndView reviewList(Pager pager, ReviewVO reviewVO)throws Exception{
+		ProductVO productVO = new ProductVO();
+		List<ReviewVO>ar= reviewService.reviewList(pager);
+		List<ProductVO>ar2= reviewService.productList(pager);
+		List<ReviewVO>ar3= reviewService.revAll(reviewVO);
 		
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("count", reviewService.reviewCount(pager));
+		mv.addObject("revAll", ar3);
+		mv.addObject("productList", ar2);
+		mv.addObject("reviewList", ar);
+		mv.addObject("pager", pager);
+		
+		mv.setViewName("review/reviewList");
+		
+		return mv;
 		
 	}
 	
