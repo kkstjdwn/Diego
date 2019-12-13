@@ -44,6 +44,12 @@ public class QnaService {
 		return qnaDAO.qnaList(pager);
 		
 	}
+	//카운트
+	public int qnaCount(Pager pager )throws Exception{
+		
+		return qnaDAO.qnaCount(pager);
+	}
+	
 	
 	//selectOne
 	public QnaVO qnaSelect(QnaVO qnaVO )throws Exception {

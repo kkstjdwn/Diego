@@ -6,6 +6,8 @@ import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
+
+import com.diego.mid.model.product.ImagesVO;
 import com.diego.mid.model.product.ProductVO;
 import com.diego.mid.util.Pager;
 
@@ -30,6 +32,7 @@ public class ProductDAO {
 		
 		return sqlSession.selectList(NAMESPACE+"productList", pager);
 	}
+	
 	
 	//insert
 	public int productInsert(ProductVO productVO) throws Exception{

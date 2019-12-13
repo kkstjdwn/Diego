@@ -1,39 +1,29 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style type="text/css">
-	*{
-	text-align: center;
-	}
-	a{	
-		font-size: 30px;
-		text-decoration: none;
-	}
-	a:hover{
-		text-decoration: underline;
-	}
-
-</style>
-
+<c:import url="./layout/bootStrap.jsp" />
 </head>
 <body>
+<c:import url="./layout/nav.jsp" />
+
+<div class="container">
 	<h1>PRODUCT</h1>
 	<a href="${pageContext.request.contextPath}/product/productInsert">상품추가</a>
 	<br>
-	<a href="">상품리스트</a>
+	<a href="${pageContext.request.contextPath}/product/productList">상품리스트</a>
 	<br>
 	<a href="">상품삭제</a>
 	<br>
 	<a href="">상품수정</a>
 	
 	<h1>QNA</h1>
-	<a href="">QNA리스트</a>
+	<a href="${pageContext.request.contextPath}/qna/qnaWrite">QNA작성</a>
 	<br>
-	<a href="">QNA작성</a>
+	<a href="${pageContext.request.contextPath}/qna/qnaList">QNA리스트</a>
 	<br>
 	<a href="">QNA삭제</a>
 	<br>
@@ -58,15 +48,7 @@
 	<br>
 	<a href="">리뷰코멘트수정</a>
 	
-	<h1>IMAGES</h1>
-	<a href="">이미지등록 리스트</a>
-	<br>
-	<a href="">이미지등록 </a>
-	<br>
-	<a href="">이미지삭제</a>
-	<br>
-	<a href="">이미지수정</a>
-	<br>
+</div>	
 	
 </body>
 </html>

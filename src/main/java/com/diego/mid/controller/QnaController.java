@@ -34,6 +34,7 @@ public class QnaController {
 	
 
 	
+	
 	//qna작성
 	@GetMapping(value = "qnaWrite")
 	public void qnaWrite()throws Exception{
@@ -61,9 +62,10 @@ public class QnaController {
 	public ModelAndView qnaList(Pager pager)throws Exception {
 		
 		List<QnaVO>ar = qnaService.qnaList(pager);
+	
 		
 		ModelAndView mv = new ModelAndView();
-		
+		mv.addObject("count", qnaService.qnaCount(pager));
 		mv.addObject("qnaList", ar);
 		mv.addObject("pager", pager);
 		

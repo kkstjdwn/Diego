@@ -30,11 +30,10 @@
 			</thead>
 
 			<tbody>
-
-				<c:forEach items="${qnaList}" var="qna" varStatus="q">
-					<tr class="warning">
-						
-						<td>${qna.r}</td>
+				
+				<c:forEach items="${qnaList}" var="qna" varStatus="q" >
+					<tr class="warning">	
+						<td>${count-(pager.curPage-1)*pager.perPage-q.index}</td>
 						<td>
 						<c:catch>
 							 <c:forEach begin="1" end="${qna.depth}">↳</c:forEach>
@@ -43,6 +42,7 @@
 						<td>${qna.writer}</td>
 						<td>${qna.qna_date}</td>
 					</tr>
+			
 				</c:forEach>
 
 			</tbody>

@@ -71,7 +71,9 @@
 	<br>
 	<a href="${pageContext.request.contextPath}/member/memberManage/couponDelete">CD</a>
 	<br>
-	
+	<br>
+	<a href="${pageContext.request.contextPath}/mainProduct">프로덕트</a>
+	<br>
 	
 </body>
 </html>

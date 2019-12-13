@@ -1,6 +1,8 @@
 package com.diego.mid.model.product;
 
+
 import java.sql.Date;
+import java.util.List;
 
 public class ReviewVO {
 	
@@ -8,13 +10,12 @@ public class ReviewVO {
 	private Integer pro_num;//상품번호
 	private Integer rev_num;//리뷰번호
 	private Integer star;//별개수
-	private String star_contents;// 별점 옆의 좋아요,싫어요 글생기는것
 	private String contents;// 리뷰내용
 	private String name;//작성자이름
-	private Integer help;// 도움이되셨습니까? 네(1)아니오(-1)
-	private String image;// 포토리뷰처럼 섬머노트이용해서 사진도 올릴수있게..
+	private Integer help;// 도움이되셨습니까? 네(1)아니오(0)
 	private Date rev_date;//작성날짜
 	
+	private List<ReviewFilesVO>files;// 포토리뷰처럼 섬머노트이용해서 사진도 올릴수있게..여러개 파일 저장.
 	public String getId() {
 		return id;
 	}
@@ -39,12 +40,6 @@ public class ReviewVO {
 	public void setStar(Integer star) {
 		this.star = star;
 	}
-	public String getStar_contents() {
-		return star_contents;
-	}
-	public void setStar_contents(String star_contents) {
-		this.star_contents = star_contents;
-	}
 	public String getContents() {
 		return contents;
 	}
@@ -63,18 +58,20 @@ public class ReviewVO {
 	public void setHelp(Integer help) {
 		this.help = help;
 	}
-	public String getImage() {
-		return image;
-	}
-	public void setImage(String image) {
-		this.image = image;
-	}
 	public Date getRev_date() {
 		return rev_date;
 	}
 	public void setRev_date(Date rev_date) {
 		this.rev_date = rev_date;
 	}
+	public List<ReviewFilesVO> getFiles() {
+		return files;
+	}
+	public void setFiles(List<ReviewFilesVO> files) {
+		this.files = files;
+	}
+	
+	
 	
 	
 }

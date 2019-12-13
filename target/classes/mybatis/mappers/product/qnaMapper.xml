@@ -8,11 +8,13 @@
 
 	<!--insert -->
 	<insert id="qnaWrite" parameterType="QnaVO">
-		<selectKey order="BEFORE" keyProperty="qna_num" resultType="Integer">
-  			select qna_seq.nextval from dual
-  		</selectKey>
-		
-		insert into qna(writer,qna_num,pro_num,title,contents,qna_date,ref,step,depth)
+		<selectKey order="BEFORE" keyProperty="qna_num"
+			resultType="Integer">
+			select qna_seq.nextval from dual
+		</selectKey>
+
+		insert into
+		qna(writer,qna_num,pro_num,title,contents,qna_date,ref,step,depth)
 		values(#{writer},qna_seq.nextval,#{pro_num},#{title},#{contents},sysdate,qna_seq.currval,0,0)
 	</insert>
 
@@ -31,76 +33,82 @@
 		</choose>
 	</sql>
 
+	
 
 	<!--리스트 -->
 	<select id="qnaList" parameterType="Pager" resultType="QnaVO">
 		select * from
-		(select Q.*, rownum R from
+		(select Q.* , rownum R from
 		(select * from qna
 		<include refid="sw" />
-		order by ref desc, step asc)Q) 
+		order by ref desc, step asc)Q)
 		where R between #{startRow} and #{lastRow}
 	</select>
 
 
 	<!--count -->
-	<select id="qnaCount" resultType="Integer"
-		parameterType="Pager">
+	<select id="qnaCount" resultType="Integer" parameterType="Pager">
 		select count(qna_num) from qna
 		<include refid="sw"></include>
 	</select>
 
 
 	<!--셀렉트 -->
-	<select id="qnaSelect" parameterType="QnaVO" resultType="QnaVO" >
+	<select id="qnaSelect" parameterType="QnaVO" resultType="QnaVO">
 		select * from qna where qna_num=#{qna_num} and pro_num=#{pro_num}
 
 	</select>
 
-	
-		
-	<!--셀렉트문에서 상품이미지와 상품 가격이름 가져오는것-->
-<!-- 	<select id="productSelect" parameterType="ProductVO" resultType="ProductVO" > -->
-<!-- 		select * from product where pro_num=#{pro_num} -->
-<!-- 	</select> -->
-	
-<!-- 	<select id="ImagesSelect" parameterType="ImagesVO" resultType="ImagesVO"> -->
-<!-- 		select * from images where pro_num=#{pro_num} -->
-	
-<!-- 	</select> -->
-	
-	<!--qna삭제  -->
-	<delete id="qnaDelete" parameterType="Integer" >
-		delete qna where qna_num=#{qna_num}	
+
+
+	<!--셀렉트문에서 상품이미지와 상품 가격이름 가져오는것 -->
+	<!-- <select id="productSelect" parameterType="ProductVO" resultType="ProductVO" 
+		> -->
+	<!-- select * from product where pro_num=#{pro_num} -->
+	<!-- </select> -->
+
+	<!-- <select id="ImagesSelect" parameterType="ImagesVO" resultType="ImagesVO"> -->
+	<!-- select * from images where pro_num=#{pro_num} -->
+
+	<!-- </select> -->
+
+	<!--qna삭제 -->
+	<delete id="qnaDelete" parameterType="Integer">
+		delete qna where
+		qna_num=#{qna_num}
 	</delete>
-	
-	<!--qnaUpdate  -->
+
+	<!--qnaUpdate -->
 	<update id="qnaUpdate" parameterType="QnaVO">
-		update qna set 
+		update qna set
 		title=#{title},contents=#{contents}
-		where qna_num=#{qna_num} and pro_num=#{pro_num}
+		where qna_num=#{qna_num} and
+		pro_num=#{pro_num}
 	</update>
-	
-	
-	<!--답글달기-->
+
+
+	<!--답글달기 -->
 	<insert id="qnaReply" parameterType="QnaVO">
-		
+
 		insert into qna values(
-		#{writer}, qna_seq.nextval, #{pro_num}, #{title}, #{contents}, sysdate,
+		#{writer}, qna_seq.nextval, #{pro_num}, #{title},
+		#{contents}, sysdate,
 		(select ref from qna where qna_num=#{qna_num}),
 		(select step from qna where qna_num=#{qna_num})+1,
-		(select depth from qna where qna_num=#{qna_num})+1)
-		
+		(select depth from
+		qna where qna_num=#{qna_num})+1)
+
 	</insert>
-	
+
 	<update id="qnaReplyUpdate" parameterType="QnaVO">
-		update qna set step=step+1
+		update qna set
+		step=step+1
 		where ref=(select ref from qna where qna_num=#{qna_num})
 		and step>(select step from qna where qna_num=#{qna_num})
-	
+
 	</update>
-	
-	
+
+
 
 
 </mapper>

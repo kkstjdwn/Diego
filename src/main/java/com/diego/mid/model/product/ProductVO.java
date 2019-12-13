@@ -19,7 +19,25 @@ public class ProductVO {
 	private String pro_size;//상품 사이즈
 	private String pro_color;//상품 색상
 	private String pro_vital;//상품 필수옵션
+	private String sumnale;
+	private String pro_main;
 	
+	public String getSumnale() {
+		return sumnale;
+	}
+
+	public void setSumnale(String sumnale) {
+		this.sumnale = sumnale;
+	}
+
+	public String getPro_main() {
+		return pro_main;
+	}
+
+	public void setPro_main(String pro_main) {
+		this.pro_main = pro_main;
+	}
+
 	private List<ImagesVO> images;
 
 	public Integer getPro_num() {

@@ -47,7 +47,9 @@
 						<td><input type="checkbox" class="productCheck product${p.index }" value="${product.pro_num }"></td>
 						<td>${product.pro_num}</td>
 						<td>${product.cat_ref}</td>
-						<td><img src="../resources/product/images/${images.pro_main}"style="width: 10%; height: 10%;"></td>
+					
+						<td><img src="../resources/product/images/${product.pro_main}"style="width: 80%; height:7%;"></td>
+						
 						<td><a href="./productSelect?pro_num=${product.pro_num}"> ${product.pro_name}</a></td>
 						<td>${product.pro_price}</td>
 						<td>${product.pro_count}</td>

@@ -18,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.diego.mid.model.product.ImagesVO;
 import com.diego.mid.model.product.ProductVO;
 import com.diego.mid.service.ProductService;
+import com.diego.mid.service.QnaService;
 import com.diego.mid.util.Pager;
 
 @Controller
@@ -27,7 +28,6 @@ public class ProductController {
 	@Inject
 	private ProductService productService;
 
-	
 	
 	//상품등록 insert
 	@GetMapping(value = "productInsert")
@@ -90,10 +90,10 @@ public class ProductController {
 	
 	//상품리스트
 	@RequestMapping(value = "productList", method = {RequestMethod.GET, RequestMethod.POST})
-	private ModelAndView productList(Pager pager)throws Exception {
+	private ModelAndView productList(Pager pager, ImagesVO imagesVO,ProductVO productVO )throws Exception {
 		
 		List<ProductVO>ar= productService.productList(pager);
-	
+		
 		ModelAndView mv = new ModelAndView();
 		
 		mv.addObject("productList", ar);

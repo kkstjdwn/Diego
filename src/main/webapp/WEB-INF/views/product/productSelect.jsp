@@ -7,6 +7,14 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <c:import url="../layout/bootStrap.jsp" />
+<style type="text/css">
+		.filebox label { display: inline-block; padding: .5em .75em; color: #999; font-size: inherit; line-height: normal; vertical-align: middle; background-color: #fdfdfd; cursor: pointer; border: 1px solid #ebebeb; border-bottom-color: #e2e2e2; border-radius: .25em; } 
+		.filebox input[type="file"] { /* 파일 필드 숨기기 */ position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip:rect(0,0,0,0); border: 0; }
+
+
+	</style>
+
+
 </head>
 <body>
 	<c:import url="../layout/nav.jsp" />
@@ -136,17 +144,60 @@
 
 			</c:forEach>
 
-		</div>
+		<br>
+	
+	<div class="container">
+		<form action="reviewWrite">			
+		<div class="form-group">
+			<input type="hidden" value="${member}" na>
+				<label for="contents">Review</label>
+				<a href="../review/reviewList" class="btn btn-info">후기게시판</a>
+				<textarea class="form-control" rows="10" id="contents" name="contents"></textarea>
+			 <br>
+					<div class="filebox"> 
+					<label for="reviewImages">+ 사진추가</label> 
+					<input type="file" id="reviewImages">
+					 </div>
+				<select name="star">
+					<option value="5">★★★★★ 아주 좋아요</option>
+					<option value="4">★★★★☆ 맘에 들어요</option>
+					<option value="3">★★★☆☆ 보통이에요</option>
+					<option value="2">★★☆☆☆ 그냥 그래요</option>
+					<option value="1">★☆☆☆☆ 별로에요</option>
+				</select>
+			<input   type="button"  class="btn btn-primary" value="ⓥ 리뷰 등록하기" id="review_write">
+			</div>
+			</form>
+			
+	
+			</div>
+			
+		
 
-
-
-		<a href="../qna/qnaWrite?pro_num=${product.pro_num}"
-			class="btn btn-primary">QNA WRITE</a> 
-		<a href="./productUpdate?pro_num=${product.pro_num}"
-			class="btn btn-primary">Update</a>
-		<a href="./productList?pro_num=${product.pro_num}"
-			class="btn btn-default">List</a>
 	</div>
+
+
+		</div>
+			<a href="../qna/qnaWrite?pro_num=${product.pro_num}" class="btn btn-primary">QNA WRITE</a> 
+			<a href="./productUpdate?pro_num=${product.pro_num}" class="btn btn-primary">Update</a>
+			<a href="./productList?pro_num=${product.pro_num}" class="btn btn-default">List</a>
+		</div>
+		
+		<script type="text/javascript">
+		
+			$("#review_write").click(function() {
+				
+				$.post("./reviewList",{}
+						
+				)
+				
+				$.post("./fileDelete",{fnum:1}, function(data) {
+				alert(data);
+
+				
+			});
+		
+		</script>
 
 
 </body>

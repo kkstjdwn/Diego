@@ -10,7 +10,7 @@
 <c:import url="../layout/summerNote.jsp"></c:import>
 </head>
 <body>
-
+<c:import url="../layout/nav.jsp" />
 	<div class="container">
 
 		<div class="jumbotron page-header">

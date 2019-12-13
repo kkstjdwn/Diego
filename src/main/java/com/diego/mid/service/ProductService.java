@@ -72,6 +72,7 @@ public class ProductService {
 		
 		pager.makeRow();
 		pager.makePage(productDAO.productCount(pager));
+		System.out.println(productDAO.productCount(pager));
 		
 		return productDAO.productList(pager);
 	}
