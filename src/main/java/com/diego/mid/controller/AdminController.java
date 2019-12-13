@@ -63,7 +63,7 @@ public class AdminController {
 			session.setAttribute("admin", adminVO);
 			session.setAttribute("dto", adminVO);
 		}
-		return "redirect:../";
+		return "redirect:./adminMypage";
 	}
 	
 	//Logout
