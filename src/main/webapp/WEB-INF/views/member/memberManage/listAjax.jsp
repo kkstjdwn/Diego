@@ -29,8 +29,8 @@
 				<tr>
 					<td class="or-order_num" style="border-left: none;">
 						${ord.order_date }<br>
-						[<a href="#">${ord.order_num }</a>]<br>
-						<c:if test="${h1 eq 'A' }">
+						[<a href="#">${ord.order_num }</a>]<br><br>
+						<c:if test="${h1 ne 'IC'}">
 						<img alt="" src="../../resources/images/btn_order_cancel2.gif" style="cursor: pointer;" class="or-cancel" title="${ord.order_num }">
 						</c:if>
 					</td>
@@ -63,20 +63,28 @@
 </c:if>
 	</div>
 <!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
-	<div class="or-pager">
-		<a href="#" id="none-hover"> << </a>
-		<a href="#" id="none-hover"> < </a>
+		<div class="or-pager">
+		<c:if test="${pager.curBlock gt 1 }">
+			<button type="button" class="btn-pager" id="none-hover"> << </button>
+		</c:if>
+		<c:if test="${pager.curBlock ne 1 }">
+			<button type="button" class="btn-pager" id="none-hover"> < </button>
+		</c:if>
 		<c:forEach begin="${pager.startNum }" end="${pager.lastNum}" var="p">
 		<c:choose>
-			<c:when test="${p eq 1 }">
-				<a href="#" style="color: black;"> ${p } </a>
+			<c:when test="${pager.curPage eq p }">
+				<button type="button" style="color: black; font-weight: bold;" title="${p }" class="btn-pager"> ${p } </button>
 			</c:when>
 			<c:otherwise>
-				<a href="#"> ${p } </a>
+				<button type="button" title="${p }"  class="btn-pager"> ${p } </button>
 			</c:otherwise>
 		</c:choose>
 		
 		</c:forEach>
-		<a href="#" id="none-hover"> > </a>
-		<a href="#" id="none-hover"> >> </a>
+		<c:if test="${pager.curBlock lt pager.totalBlock }">
+			<button type="button" class="btn-pager" id="none-hover"> > </button>
+			<c:if test="${pager.totalBlock gt pager.curBlock+1 }">
+				<button type="button" class="btn-pager" id="none-hover"> >> </button>
+			</c:if>
+		</c:if>
 	</div>

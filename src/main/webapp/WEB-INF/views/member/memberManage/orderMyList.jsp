@@ -15,7 +15,7 @@
 <body>
 <header></header>
 <section style="width: 100%; overflow: hidden;">
-<div class="main" style="height: auto; margin-top: 150px;">
+<div class="main" style="height: auto; margin-top: 74px;">
 <!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
 <div class="left">
 	<div class="left-menu">
@@ -48,8 +48,8 @@
 <!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
 	<div class="ajax-bar">
 	<ul style="border-bottom:1px solid #cbcdce; width: 100%; height: 42px;">
-	<li><button id="all-list" class="btn-list-sel">주문내역조회 </button></li>
-	<li><button id="can-list" class="btn-list">취소/반품/교환 내역</button></li>
+	<li><button id="all-list" class="btn-list-sel" title="orderAllList" name="AL">주문내역조회 </button></li>
+	<li><button id="can-list" class="btn-list" title="orderCancelList" name="CL">취소/반품/교환 내역</button></li>
 	</ul>
 	</div>
 <!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
@@ -114,7 +114,7 @@
 				<tr>
 					<td class="or-order_num" style="border-left: none;">
 						${ord.order_date }<br>
-						[<a href="#">${ord.order_num }</a>]<br>
+						[<a href="#">${ord.order_num }</a>]<br><br>
 						<img alt="" src="../../resources/images/btn_order_cancel2.gif" style="cursor: pointer;" class="or-cancel" title="${ord.order_num }">
 					</td>
 					<td class="or-image">
@@ -147,29 +147,29 @@
 </c:if>
 <!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
 	<div class="or-pager">
-<%-- 		<c:if test="${pager.curBlock ne 2 }"> --%>
-			<a href="#" id="none-hover"> << </a>
-<%-- 		</c:if> --%>
-<%-- 		<c:if test="${pager.curBlock ne 1 }"> --%>
-			<a href="#" id="none-hover"> < </a>
-<%-- 		</c:if> --%>
+		<c:if test="${pager.curBlock gt 1 }">
+			<button type="button" class="btn-pager" id="none-hover"> << </button>
+		</c:if>
+		<c:if test="${pager.curBlock ne 1 }">
+			<button type="button" class="btn-pager" id="none-hover"> < </button>
+		</c:if>
 		<c:forEach begin="${pager.startNum }" end="${pager.lastNum}" var="p">
 		<c:choose>
 			<c:when test="${pager.curPage eq p }">
-				<a href="#" style="color: black;"> ${p } </a>
+				<button type="button" style="color: black; font-weight: bold;" title="${p }" class="btn-pager"> ${p } </button>
 			</c:when>
 			<c:otherwise>
-				<a href="#"> ${p } </a>
+				<button type="button" title="${p }"  class="btn-pager"> ${p } </button>
 			</c:otherwise>
 		</c:choose>
 		
 		</c:forEach>
-<%-- 		<c:if test="${pager.curBlock lt pager.perBlock }"> --%>
-			<a href="#" id="none-hover"> > </a>
-<%-- 			<c:if test="${pager.perBlock ne pager.totalBlock }"> --%>
-				<a href="#" id="none-hover"> >> </a>
-<%-- 			</c:if> --%>
-<%-- 		</c:if> --%>
+		<c:if test="${pager.curBlock lt pager.totalBlock }">
+			<button type="button" class="btn-pager" id="none-hover"> > </button>
+			<c:if test="${pager.totalBlock gt pager.curBlock+1 }">
+				<button type="button" class="btn-pager" id="none-hover"> >> </button>
+			</c:if>
+		</c:if>
 	</div>
 </div>	
 <!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
@@ -182,6 +182,7 @@
 <footer></footer>
 
 <script type="text/javascript">
+
 
 	$(document).ready(function() {
 		
@@ -239,47 +240,105 @@
 	
 	
 	$("#all-list").click(function() {
-		var d = $("#cal-left").val();
-		$.ajax({
-			type	: "GET",
-			url		: "orderAllList",
-			data	: {
-				id		: "${member.id}",
-				order_date : d
+// 		var d = $("#cal-left").val();
+// 		$.ajax({
+// 			type	: "GET",
+// 			url		: "orderAllList",
+// 			data	: {
+// 				id		: "${member.id}",
+// 				order_date : d
 				
-			},
-			success	: function(data) {
-				$(".ajax-table").html(data);
-				$("#all-list").prop("class", "btn-list-sel");
-				$("#can-list").prop("class", "btn-list");
-				$("#order_status").prop("hidden", false);
-			}
-		});
+// 			},
+// 			success	: function(data) {
+// 				$(".ajax-table").html(data);
+// 				$("#all-list").prop("class", "btn-list-sel");
+// 				$("#can-list").prop("class", "btn-list");
+// 				$("#order_status").prop("hidden", false);
+// 				alert(page);
+// 			}
+// 		});
+		list("orderAllList",1,$(this).prop("name"));
 	});
 	
 	$("#can-list").click(function() {
-		var d = $("#cal-left").val();
-		$.ajax({
-			type	: "GET",
-			url		: "orderCancelList",
-			data	: {
-				id		: "${member.id}",
-				order_date : d
-			},
-			success	: function(data) {
-				$(".ajax-table").html(data);
-				$("#can-list").prop("class", "btn-list-sel");
-				$("#all-list").prop("class", "btn-list");
-				$("#order_status").prop("hidden", true);
-			}
-		});
+// 		var d = $("#cal-left").val();
+// 		$.ajax({
+// 			type	: "GET",
+// 			url		: "orderCancelList",
+// 			data	: {
+// 				id		: "${member.id}",
+// 				order_date : d
+// 			},
+// 			success	: function(data) {
+// 				$(".ajax-table").html(data);
+// 				$("#can-list").prop("class", "btn-list-sel");
+// 				$("#all-list").prop("class", "btn-list");
+// 				$("#order_status").prop("hidden", true);
+// 			}
+// 		});
+		list("orderCancelList",1,$(this).prop("name"));
 	});
 	
 	
 	$("#sel").click(function() {
-		$(".btn-list-sel").click();
+		list($(".btn-list-sel").prop("title"),1,$(".btn-list-sel").prop("name"));
+		
 
 	});
+	
+		
+	
+	function list(url,curPage,name) {
+		var d = $("#cal-left").val();
+		var status = $("#order_status").val();
+		$.ajax({
+			type	: "GET",
+			url		: url,
+			data	: {
+				id		: "${member.id}",
+				order_date : d,
+				curPage : curPage,
+				order_status : status
+			},
+			success	: function(data) {
+					
+				if (name == "CL" || name =="OX" || name == "OR") {
+					$(".ajax-table").html(data);
+					$("#can-list").prop("class", "btn-list-sel");
+					$("#all-list").prop("class", "btn-list");
+					$("#order_status").prop("hidden", true);
+				}else{
+					$(".ajax-table").html(data);
+					$("#all-list").prop("class", "btn-list-sel");
+					$("#can-list").prop("class", "btn-list");
+					$("#order_status").prop("hidden", false);
+				}
+				
+				
+			}
+		});
+	}
+	
+	
+	$(".ajax-table").on("click",".btn-pager", function() {
+		list($(".btn-list-sel").prop("title"),$(this).prop("title"),$(".btn-list-sel").prop("name"));
+	}) ;
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 		
 </script>
 </body>

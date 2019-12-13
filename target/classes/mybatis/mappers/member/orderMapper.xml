@@ -28,34 +28,61 @@
   </select>
   
   <select id="MLcount" parameterType="orders" resultType="Integer">
-  	select count(order_num) from orders where id = #{id} and order_status !='OC' order by order_num desc
+  	select count(order_num) from orders where id = #{id} and order_status not in('OC','OR','OX')
+  	order by order_num desc
   </select>
   
   <select id="orderMyList" parameterType="Map" resultType="orders">
   
   	select * from (select O.*, rownum R from
-  	(select * from orders where id=#{order.id} and order_status != 'OC' order by order_num desc) O)
+  	(select * from orders where id=#{order.id} and order_status not in('OC','OR','OX') order by order_num desc) O)
 	where r between #{pager.startRow} and #{pager.lastRow}
   
   </select>
   
   <select id="SLcount" parameterType="orders" resultType="Integer">
-  	select count(order_num) from orders where id = #{id} and order_status !='OC' and
-  	order_date between #{order_date} and sysdate
-  	order by order_num desc
+  	select count(order_num) from orders where id = #{id} and order_status <include refid="searchCount"></include> 
+  	and order_date between #{order_date} and sysdate order by order_num desc
   </select>
+  
+<sql id="search">
+	<choose>
+		<when test="order.order_status == 'AL'">
+			not in('OC','OX','OR')
+		</when>
+		<otherwise>
+			= #{order.order_status}
+		</otherwise>
+	</choose>
+</sql>
+  
+<sql id="searchCount">
+	<choose>
+		<when test="order_status == 'AL'">
+			not in('OC','OX','OR')
+		</when>
+		<otherwise>
+			= #{order_status}
+		</otherwise>
+	</choose>
+</sql>  
+  
+  
+  
+  
   
   <select id="orderSearchList" parameterType="Map" resultType="orders">
   
   	select * from (select O.*, rownum R from
-  	(select * from orders where id=#{order.id} and order_status != 'OC' and 
-  	order_date between #{order.order_date} and sysdate order by order_num desc) O)
+  	(select * from orders where id=#{order.id} and
+  	order_status <include refid="search"></include>  
+  	and order_date between #{order.order_date} and sysdate order by order_num desc) O)
 	where r between #{pager.startRow} and #{pager.lastRow}
   	
   </select>
   
   <select id="CLcount" parameterType="orders" resultType="Integer">
-  select count(order_num) from orders where id=#{id} and order_status = 'OC' and 
+  select count(order_num) from orders where id=#{id} and order_status in('OC','OR','OX') and 
   	order_date between #{order_date} and sysdate
   	order by order_num desc
   </select>
@@ -64,7 +91,7 @@
   <select id="orderCancelList" parameterType="Map" resultType="orders">
   	
   	select * from (select O.*, rownum R from
-  	(select * from orders where id=#{order.id} and order_status = 'OC' and 
+  	(select * from orders where id=#{order.id} and order_status in('OC','OR','OX') and 
   	order_date between #{order.order_date} and sysdate order by order_num desc) O)
 	where r between #{pager.startRow} and #{pager.lastRow}
   

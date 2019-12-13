@@ -116,7 +116,7 @@ public class MPager {
 		
 		//3.totalBlock
 
-		int perBlock = 5;
+		int perBlock = 10;
 		totalBlock = totalPage/perBlock;
 		if (totalPage%perBlock!=0) {
 			totalBlock++;
@@ -136,6 +136,10 @@ public class MPager {
 		if (curBlock==totalBlock) {
 			lastNum = totalPage;
 		}
+		if (totalPage ==0) {
+			lastNum = 1;
+		}
+		
 	}
 
 }

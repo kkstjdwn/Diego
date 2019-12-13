@@ -518,17 +518,24 @@ footer{
 	height: 30px;
 	text-align: center;
 }
-.or-pager a{
+.btn-pager{
+	border:none;
+	background: none;
 	color: #979797;
 	padding: 4px 7px;
 	font-size: 12px;
 	text-decoration: none;
 }
-.or-pager a:hover{
+.btn-pager:hover{
+	border:none;
+	background: none;
 	border-bottom: 1px solid black;
 	color: black;
 	font-weight: bold;
 }
+
+
+
 
 #none-hover{
 	border: none;

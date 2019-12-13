@@ -272,6 +272,18 @@ public class MemberManageController {
 				orders2.setOrder_status("결제 대기중");
 			}else if(orders2.getOrder_status().equals("OC")) {
 				orders2.setOrder_status("주문 취소");
+			}else if(orders2.getOrder_status().equals("WD")) {
+				orders2.setOrder_status("배송준비중");
+			}else if(orders2.getOrder_status().equals("DV")) {
+				orders2.setOrder_status("배송중");
+			}else if(orders2.getOrder_status().equals("DC")) {
+				orders2.setOrder_status("배송 완료");
+			}else if(orders2.getOrder_status().equals("OX")) {
+				orders2.setOrder_status("교환 요청");
+			}else if(orders2.getOrder_status().equals("OR")) {
+				orders2.setOrder_status("반품 요청");
+			}else {
+				orders2.setOrder_status("구매 확정");
 			}
 		}
 		mv.addObject("pager", pager);
@@ -281,47 +293,57 @@ public class MemberManageController {
 	}
 	
 	@GetMapping("orderAllList")
-	public ModelAndView orderAllList(HttpSession session,String order_date,MPager pager)throws Exception{
-		order_date.replace('-', '/');
+	public ModelAndView orderAllList(Orders orders,HttpSession session,MPager pager)throws Exception{
 		ModelAndView mv = new ModelAndView();
-		
-		
-		MemberVO vo = (MemberVO)session.getAttribute("member");
-		Orders orders = new Orders();
-		orders.setId(vo.getId());
-		orders.setOrder_date(Date.valueOf(order_date));
 		pager.makePager(service.SLcount(orders));
 		List<Orders> ar = service.orderSearchList(orders,pager);
+		String h1 = "AL";
 		for (Orders orders2 : ar) {
 			if (orders2.getOrder_status().equals("WP")) {
 				orders2.setOrder_status("결제 대기중");
 			}else if(orders2.getOrder_status().equals("OC")) {
 				orders2.setOrder_status("주문 취소");
+				h1="IC";
+			}else if(orders2.getOrder_status().equals("WD")) {
+				orders2.setOrder_status("배송준비중");
+			}else if(orders2.getOrder_status().equals("DV")) {
+				orders2.setOrder_status("배송중");
+			}else if(orders2.getOrder_status().equals("DC")) {
+				orders2.setOrder_status("배송 완료");
+			}else if(orders2.getOrder_status().equals("OX")) {
+				orders2.setOrder_status("교환 요청");
+				h1="IC";
+			}else if(orders2.getOrder_status().equals("OR")) {
+				orders2.setOrder_status("반품 요청");
+				h1="IC";
+			}else {
+				orders2.setOrder_status("구매 확정");
 			}
 		}
 		mv.addObject("pager", pager);
 		mv.addObject("orderList", ar);
-		mv.addObject("h1", "A");
+		mv.addObject("h1", h1);
 		mv.setViewName("/member/memberManage/listAjax");
 		return mv;
 	}
 	
 	@GetMapping("orderCancelList")
-	public ModelAndView orderCancelList(HttpSession session,String order_date,MPager pager) throws Exception {
-		order_date.replace('-', '/');
+	public ModelAndView orderCancelList(Orders orders,HttpSession session,MPager pager) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		MemberVO vo = (MemberVO)session.getAttribute("member");
-		Orders orders = new Orders();
-		orders.setId(vo.getId());
-		orders.setOrder_date(Date.valueOf(order_date));
 		pager.makePager(service.CLcount(orders));
 		List<Orders> ar = service.orderCancelList(orders,pager);
 		for (Orders orders2 : ar) {
-			orders2.setOrder_status("주문 취소");
+			if (orders2.getOrder_status().equals("OC")) {
+				orders2.setOrder_status("주문 취소");
+			}else if(orders2.getOrder_status().equals("OX")) {
+				orders2.setOrder_status("교환 요청");
+			}else {
+				orders2.setOrder_status("반품 요청");
+			}
 		}
 		mv.addObject("pager", pager);
 		mv.addObject("orderList", ar);
-		mv.addObject("h1", "C");
+		mv.addObject("h1", "IC");
 		mv.setViewName("/member/memberManage/listAjax");
 		return mv;
 	}
