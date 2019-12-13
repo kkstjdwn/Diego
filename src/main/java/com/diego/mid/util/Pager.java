@@ -6,7 +6,9 @@ public class Pager {
 	private Integer perPage;//페이지 당 글 갯수
 	private String kind; //검색종류
 	private String search; //검색어
+	private String fcat_code;
 	
+
 	//DB
 	private Integer startRow;//시작 rownum
 	public String getKind() {
@@ -23,6 +25,16 @@ public class Pager {
 	}
 	public void setSearch(String search) {
 		this.search = search;
+	}
+	
+	public String getFcat_code() {
+		if( fcat_code == null) {
+			 fcat_code="%%";
+		}
+		return fcat_code;
+	}
+	public void setFcat_code(String fcat_code) {
+		this.fcat_code = fcat_code;
 	}
 
 	private Integer lastRow;//마지막 rownum
@@ -98,11 +110,11 @@ public class Pager {
 		
 		//2.전체 페이지 수 구하지
 		int totalPage = totalCount / this.getPerPage();
-		if(totalCount%this.getPerPage() != 0)
-			totalPage++;
+		if(totalCount%this.getPerPage() != 0) {
+			totalPage++;}
 		
 		//3.전체 블럭 수 구하기
-		int perBlock = 5;
+		int perBlock = 10;
 		totalBlock = totalPage / perBlock;
 		if(totalPage%perBlock != 0 )
 			totalBlock++;

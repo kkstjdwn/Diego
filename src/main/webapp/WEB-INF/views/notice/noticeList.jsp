@@ -63,7 +63,7 @@
 				<%-- <c:if test="${admin ne null}"> --%>
 				<div style="text-align: right; float: right; margin-top: 30px"
 					class="typeBG">
-					<a href="./noticeWrite" class="write"><button>글쓰기</button></a>
+					<a href="./noticeWrite" class="write">글쓰기</a>
 				</div>
 				<%-- </c:if> --%>
 			</div> 

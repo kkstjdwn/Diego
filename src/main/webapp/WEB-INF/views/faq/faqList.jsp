@@ -27,6 +27,10 @@
 				<div class="faqMenu">
 					<ul id="nav">
 						<li><a href="./faqList" class="active">전체보기</a></li>
+						<li><a href="./faqList?fcat_code=100">회원</a></li>
+						<li><a href="./faqList?fcat_code=200">주문/결제/배송</a></li>
+           				<li><a href="./faqList?fcat_code=300">취소/환불/교환</a></li>
+           				<li><a href="./faqList?fcat_code=400">상품/포인트/기타</a></li>
 					</ul>
 					<!-- 찾기 -->
 					<form id="frm" action="./faqList">
@@ -40,6 +44,7 @@
 							<span class="inputbox">
 								<input type="text" class="form-control searchinp"
 									placeholder="Search" name="search" value="${pager.search}">
+								<input type="text" style="display: none;" name="fcat_code" value="${pager.fcat_code}">
 								<button class="btn" type="submit">
 									<img alt="찾기버튼" src="../resources/images/button/board_search_btn.png">
 								</button>
@@ -94,7 +99,8 @@
 				</div>
 				<div class="typeBG">
 					<%-- <c:if test="${admin ne null}"> --%>
-					<span class="gRight"><button><a href="./faqWrite" class="ani3">글쓰기</a></button>
+					<span class="gRight">
+						<a href="./faqWrite" class="ani3">글쓰기</a>
 					</span>
 					<%-- </c:if> --%>
 				</div>

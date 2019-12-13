@@ -27,7 +27,7 @@
 		</association>
 	</resultMap>
 	
-	<select id="faqList" parameterType="Pager" resultMap="faqVOJ">
+<!-- 	<select id="faqList" parameterType="Pager" resultMap="faqVOJ">
 		select D.*,F.fcat_name from
 		(select N.*, rownum R from
 		(select * from faq
@@ -35,12 +35,26 @@
 		order by faq_num desc) N) D full outer join FAQCategory F
 		on D.fcat_code = F.fcat_code
 		where R between #{startRow} and #{lastRow}
+	</select> -->
+	
+	
+	
+	
+	<select id="faqList" parameterType="Pager" resultMap="faqVOJ">
+		select D.*,F.fcat_name from
+		(select N.*, rownum R from
+		(select * from
+		(select * from faq
+		<include refid="bs"></include>)
+		where fcat_code like #{fcat_code} order by faq_num desc) N) D full outer join FAQCategory F
+		on D.fcat_code = F.fcat_code
+		where R between #{startRow} and #{lastRow}
 	</select>
 
 	<!-- faq Count -->
 	<select id="faqCount" resultType="Integer" parameterType="Pager">
-		select count(faq_num) from faq
-		<include refid="bs"></include>
+		 select count(faq_num) from (select * from faq where fcat_code like #{fcat_code})
+		 <include refid="bs"></include>
 	</select>
 
 	<!-- Write -->
