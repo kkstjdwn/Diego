@@ -18,13 +18,15 @@
 							<li class="title">관리자 메뉴</li>
 							<li class="sub"><a href="/mid/admin/memberList">회원관리</a></li>
 							<li class="sub"><a href="/mid/admin/delivery/deliveryList">배송관리</a></li>
+							<li class="sub"><a href="/mid//product/productList">상품관리</a></li>
 
 						</ul>
 						<ul>
 							<li class="title"><a href="">Board</a></li>
 							<li class="sub"><a href="/mid/notice/noticeList">Notice</a></li>
 							<li class="sub"><a href="/mid/faq/faqList">FAQ</a></li>
-							<li class="sub"><a href="">Q&A</a></li>
+							<li class="sub"><a href="/mid/qna/qnaList">Q&A</a></li>
+							<li class="sub"><a href="/mid/review/reviewList">Review</a></li>
 						</ul>
 						<ul>
 							<li class="title">My page</li>

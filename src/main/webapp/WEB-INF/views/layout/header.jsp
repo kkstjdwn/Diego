@@ -12,7 +12,7 @@
 	<header>
 		<div id="top">
 			<div id="topinner">
-				<div id="logo" class="">Logo</div>
+				<div id="logo" class=""><a href=""><img alt="h_logo" src="/mid/resources/images/h_logo.png"></a></div>
 				<div id="menubar">
 					<nav>
 						<div class="container">
@@ -89,8 +89,8 @@
 							<ul class="menu_depth">
 								<li><a href="/mid/notice/noticeList">Notice</a></li>
 								<li><a href="/mid/faq/faqList">FAQ</a></li>
-								<li><a href="">Q&A</a></li>
-								<li><a href="">Review</a></li>
+								<li><a href="/mid/qna/qnaList">Q&A</a></li>
+								<li><a href="/mid/review/reviewList">Review</a></li>
 								<li><a href=""><span>Event</span></a></li>
 							</ul></li>
 						<li><a href=""><span>About Brand</span></a>
@@ -118,8 +118,8 @@
 
 						<!-- 로그인/로그아웃 메뉴 -->
 						<div id="log" class="gnb_on ">
-							<span style="cursor: pointer"> <a href="">로그인</a></span> <a
-								href="" class="register_btn"> 회원가입 </a>
+							<span style="cursor: pointer"> <a href="/mid/member/memberLogin">로그인</a></span> <a
+								href="/mid/member/memberInsert" class="register_btn"> 회원가입 </a>
 						</div>
 
 						<!-- 장바구니 -->
@@ -146,7 +146,7 @@
 			<!--  오른쪽 메뉴 -->
 				<div class="right_menu">
 					<div id="log">
-						<span><a>로그인</a></span> <span><a>회원가입</a></span>
+						<span><a href="/mid/member/memberLogin">로그인</a></span> <span><a href="/mid/member/memberInsert">회원가입</a></span>
 					</div>
 					<div id="topcart">
 						<img src="/mid/resources/images/cart.png">장바구니
@@ -213,10 +213,10 @@
 							<ul class="contents c5">
 								<li><a href="/mid/notice/noticeList">공지사항</a></li>
 								<li><a href="/mid/faq/faqList">FAQ</a></li>
-								<li><a href="">Q&A</a></li>
+								<li><a href="/mid/qna/qnaList">Q&A</a></li>
 								<li><a href="">Photo
 										review</a></li>
-								<li><a href="">Review</a></li>
+								<li><a href="/mid/review/reviewList">Review</a></li>
 								<li><a href=""><span>Event</span></a></li>
 							</ul>
 						</div>
@@ -224,22 +224,22 @@
 							<h1>나의 쇼핑</h1>
 							<ul class="contents c6">
 								<li
-									class="xans-element- xans-layout xans-layout-statelogoff sub "><a
+									class="sub"><a
 									href="">주문현황</a>
 								</li>
 
 								<li
-									class="xans-element- xans-layout xans-layout-statelogoff sub "><a
+									class="sub"><a
 									href="">적립금</a>
 								</li>
 
 								<li
-									class="xans-element- xans-layout xans-layout-statelogoff sub "><a
+									class="sub"><a
 									href="">위시리스트</a>
 								</li>
 
 								<li
-									class="xans-element- xans-layout xans-layout-statelogoff sub "><a
+									class="sub"><a
 									href="">내
 										게시물</a></li>
 							</ul>
@@ -274,15 +274,20 @@
 		}
 	}); 
 	/* 마우스 오버  */
-	$('header').mouseenter(function() {
+	$('#menubar').mouseenter(function() {
 		$('.gnb_con').slideDown();
 	});
 	/* 마우스 리브  */
-	$('#topinner').mouseleave(function() {
+	$('header').mouseleave(function() {
 		$('.gnb_con').slideUp();
 	});
 	
 	/* 햄버거버튼 클릭 이벤트 */
+	$('#ham').on("click", function() {
+		$('.navi_con').css("visibility", "visible");
+		$('.navi_con').css("top", "0");
+		$('.navi_con').css("opacity","1");
+	});
 	$('#ham_btn').on("click", function() {
 		$('.navi_con').css("visibility", "visible");
 		$('.navi_con').css("top", "0");

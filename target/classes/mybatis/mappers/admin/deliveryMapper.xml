@@ -10,7 +10,7 @@
 				where order_num like '%'||#{search}||'%'
 			</when>
 			<when test="kind == 'kw'">
-				where del_num '%'||#{search}||'%'
+				where del_num like '%'||#{search}||'%'
 			</when>
 			<when test="kind == 'kc'">
 				where del_address like '%'||#{search}||'%'

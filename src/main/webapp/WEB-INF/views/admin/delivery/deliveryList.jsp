@@ -93,9 +93,10 @@
 					<input type="hidden" value="1" id="curPage" name="curPage">
 					<div class="form-group col-xs-2">
 						<select name="kind" class="form-control searchop">
-							<option id="kt" value="kt">ID</option>
-							<option id="kw" value="kw">NAME</option>
-							<option id="kc" value="kc">RANK</option>
+							<option id="kt" value="kt">주문번호</option>
+							<option id="kw" value="kw">송장번호</option>
+							<option id="kc" value="kc">주소</option>
+							<option id="kd" value="kd">배송상태</option>
 						</select> 
 						<input type="text" class="form-control searchinp"
 							placeholder="Search" name="search" value="${pager.search}">

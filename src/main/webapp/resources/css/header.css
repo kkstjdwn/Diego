@@ -81,9 +81,11 @@ header {
     margin: 0 auto;
     
 }
+#logo a img {
+    width: 100%;
+}
 
 #logo{
-	background-color : aqua;
 	float: left;
 	margin-right: 80px;
     margin-top: -11px;
@@ -162,6 +164,17 @@ nav{display: block;}
     top: 0;
     left: 0;
 }
+
+#topcart img {
+    margin-top: 2px;
+    margin-right: 3px;
+}
+
+#log a{
+	margin-top: 2px;
+    padding-right: 10px;
+}
+/* 마우스 오버시 css */
 
 .gnb_logo{
 	position: absolute;
@@ -269,6 +282,11 @@ v#log a {
     float: left;
     font-size: 11px;
     margin-left: 15px;
+    
+}
+
+.myshop_ico a{
+	color: white;
 }
 
  #ham_btn {
@@ -277,6 +295,10 @@ v#log a {
     height: 16px;
     margin: 4px 0 0 15px;
     cursor: pointer;
+}
+.gnb_on a{
+	margin-top: 2px;
+    padding-right: 10px;
 }
 .gnb_on a, .cart2 {
     color: white;

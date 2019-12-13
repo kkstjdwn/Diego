@@ -18,9 +18,9 @@
 							<li class="title">Community</li>
 							<li class="sub"><a href="/mid/notice/noticeList">Notice</a></li>
 							<li class="sub"><a href="/mid/faq/faqList">FAQ</a></li>
-							<li class="sub"><a href="">Q&A</a></li>
+							<li class="sub"><a href="/mid/qna/qnaList">Q&A</a></li>
 							<li class="sub"><a href="">Photo review</a></li>
-							<li class="sub"><a href="">Review</a></li>
+							<li class="sub"><a href="/mid/qna/review/reviewList">Review</a></li>
 						</ul>
 						<ul>
 							<li class="title"><a href="">Event</a></li>
