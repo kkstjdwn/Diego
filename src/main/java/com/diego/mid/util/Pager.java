@@ -110,9 +110,12 @@ public class Pager {
 		
 		//2.전체 페이지 수 구하지
 		int totalPage = totalCount / this.getPerPage();
-		if(totalCount%this.getPerPage() != 0) {
-			totalPage++;}
-		
+
+		if(totalCount%this.getPerPage() != 0) { 
+			
+			totalPage++;
+		}
+
 		//3.전체 블럭 수 구하기
 		int perBlock = 10;
 		totalBlock = totalPage / perBlock;

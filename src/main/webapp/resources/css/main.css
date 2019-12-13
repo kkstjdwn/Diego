@@ -1,0 +1,281 @@
+@charset "UTF-8";
+
+* {
+	margin: 0px;
+	list-style: none;
+	padding: 0px;
+	font-family: Montserrat,Nanum Barun Gothic,sans-serif;
+}
+header{
+	position: fixed;
+	top:0px;
+	height: 74px;
+	width: 100%;
+	background-color: green;
+}
+section{
+	background-color: silver;
+	padding-bottom: 350px;
+}
+.se-name{
+	width: 1540px;
+	margin: auto;
+	display: table;
+}
+.se-h1{
+	width: 240px;
+	padding-bottom: 50px;
+	background-color: gray;
+}
+/*ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ */
+
+.pro{
+	background-color: purple;
+	margin: auto;
+	
+	
+}
+.pro-li {
+	margin: auto;
+}
+
+.pro-li-div {
+	float: left;
+	width : 24.25%;
+	min-height: 673.2px;
+	background-color: lime;
+	margin-right: 1%;
+}
+.pro-li-div_nm {
+	float: left;
+	width : 24.25%;
+	min-height: 673.2px;
+	background-color: lime;
+}
+
+.pro-li-div-a {
+	width: 100%;
+	height: 543.2px;
+	background-color: navy;
+	margin-bottom: 10px;
+	
+}
+
+.pro-li-div-p {
+	width: 100%;
+	height: 25px;
+	background-color: maroon;
+	padding-top: 10px;
+	padding-bottom: 7px;
+}
+
+.pro-li-div-ul {
+	width: 372.67px;
+	background-color: olive;
+	padding-left: 0;
+}
+
+/*ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ */
+
+.grm-div{
+	width: 49%;
+	height: 670px; 
+	background-color: aqua;
+	float: left; 
+}
+
+.grm-div-a{
+	width: 100%;
+	height: 586px;
+	background-color: fuchsia;
+}
+
+.grm-div-h3{
+	width : 100%;
+	font-size: 16px;
+	padding: 18px 0 0;
+	margin-bottom : 2px;
+	background-color: teal;
+}
+.grm-div-p{
+	font-size: 12px;
+	color: #555555;
+	margin-bottom: 10px;
+	background-color: teal;
+}
+.grm-div-span{
+	color: #ff0000;
+	font-size: 14px;
+	background-color: teal;
+}
+
+/*ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ */
+
+.sps-gift{
+	width: 100%;
+	height: 500px;
+	background-color: maroon;
+}
+
+/*ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ */
+
+.add-join{
+	height: 682px;
+	width: 100%;
+	background-color: orange;
+	overflow: visible;
+}
+.add-join-div{
+	padding: 42px 0;
+	text-align: center;
+	width: 1540px;
+	height: 122px;
+	background-color: black;
+	position: relative;
+	left: 9.53%;
+	bottom: -600px;
+}
+
+/*ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ */
+
+.ctg{
+	width: 1647px;
+	height: 300px;
+	margin: auto;
+	background-color: green;
+}
+.ctg-div{
+	width: calc(98%/3);
+	height: 300px;
+	margin-right: 1%;
+	background-color: lime;
+	float: left;
+}
+.ctg-div-nm{
+	width: calc(98%/3);
+	height: 300px;
+	background-color: lime;
+	float: left;
+}
+.ctg-div-name{
+	background-color: blue;
+	width : 450px;
+	position: relative;
+	left: 50px;
+	top : 220px;
+	color: white;
+}
+
+/*ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ */
+
+.rev{
+	width: 1434px;
+	height:832px;
+	margin:auto;
+	background-color: fuchsia;
+}
+
+.rev-li{
+	width: 217px;
+	height:366px;
+	float:left;
+	background-color:black;
+	border: 1px solid #e5e5e5;
+	padding: 0;
+	margin: 0 10px 50px 10px;
+	box-shadow: 0 3px 3px #fafafa;
+	cursor: pointer;
+}
+
+.rev-li-img{
+	width: 215px;
+	background-color:purple;
+	height: 237px;
+}
+
+.rev-li-mem{
+	height: 32px;
+	background-color : gray;
+	padding: 12px 2px 15px 2px;
+	margin: 0 10px;
+	border-bottom: 1px solid #f3f3f3;
+}
+
+.rev-li-mem-tt{
+	margin: 0;
+	padding: 0;
+	font-size: 12px;
+	line-height: 1;
+	padding-bottom: 5px;
+	background-color: aqua;
+}
+
+.rev-li-mem-nk{
+	font-size: 11px;
+	color: #c4c4c4;
+	margin: 0;
+	padding: 0;
+	margin-right: 75px;
+	overflow: hidden;
+	background-color: blue;
+}
+
+.rev-li-info{
+	margin: 0;
+	padding: 13px 11px;
+	height: 40px;
+	background-color: red;
+}
+
+.rev-li-info-img p{
+	width: 33px;
+	height: 33px;
+	background-color: white;
+	float: left;
+}
+
+.rev-li-info-div{
+	margin-left: 45px;
+	font-size: 11px;
+	padding-top: 2px;
+	background-color: white;
+}
+.rev-li-info-tt{
+	font-size: 11px;
+	overflow: hidden;
+	color: black;
+	padding-bottom: 4px;
+}
+.rev-li-info-fb{
+	font-size: 11px;
+	color: #c3b799;
+}
+.st{
+	font-size: 11px;
+	color: #333333;
+	font-weight: bold;
+	padding: 0 12px 0 3px;
+}
+.rev-page{
+	width: 1422px;
+	padding-top: 25px;
+	text-align:center;
+	font-size : 30px;
+	line-height:inherit;
+	background-color:white;
+	margin: auto;
+}
+
+.rev-page a{
+	text-decoration: none;
+}
+
+/*ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ */
+
+footer{
+	width: 100%;
+	height: 969px;
+	background-color: maroon;
+	color: white;
+	text-align: center;
+}

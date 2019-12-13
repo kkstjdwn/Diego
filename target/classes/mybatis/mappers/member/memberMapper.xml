@@ -6,7 +6,7 @@
   
   <insert id="memberInsert" parameterType="memberVO">
   	
-  	insert into member(id, pw, name, join_date,lev) values(#{id}, #{pw}, #{name}, sysdate, 'guest')
+  	insert into member(id, pw, name, phone, email, join_date,lev) values(#{id}, #{pw}, #{name},#{phone},#{email}, sysdate, 'guest')
   	
   </insert>
   
@@ -15,7 +15,7 @@
   </select>
   
   <update id="memberUpdate" parameterType="memberVO">
-  	update member set pw = #{pw}, address_pn = #{address_pn}, address_ba=#{address_ba}, address_da = #{address_da}, phone=#{phone}, email=#{email}, ad_birth=#{ad_birth}, ad_local =#{ad_local} 
+  	update member set pw = #{pw}, address_pn = #{address_pn}, address_ba=#{address_ba}, address_da = #{address_da}, phone=#{phone}, email=#{email}, ad_birth=#{ad_birth}, ad_local =#{ad_local}, email_chk = #{email_chk}
   	where id=#{id}
   	
   </update>

@@ -24,7 +24,7 @@
   <div class="form-group">
     <label class="control-label col-sm-2" for="pro_num">상품번호</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" id="pro_num" value="9999" name="pro_num" readonly="readonly">
+      <input type="text" class="form-control" id="pro_num" value="99999" name="pro_num" readonly="readonly">
     </div>
   </div>
   <div class="form-group">
@@ -59,7 +59,7 @@
       <div class="form-group">
     <label class="control-label col-sm-2" for="point">사용 POINT</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control getSum" id="point" placeholder="사용할 포인트를 입력하세요" name="point_value">
+      <input type="text" class="form-control getSum" id="point" placeholder="사용할 포인트를 입력하세요" name="point_value" value="0">
     </div>
   </div>
     <div class="form-group">
@@ -74,7 +74,7 @@
     </div>
   </div>
   <!-- hidden 그룹 @@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-  <input type="hidden" value="" id="param" name="coup_num">
+  <input type="hidden" value="9999" id="param" name="coup_num">
   <div class="form-group">
     <label class="control-label col-sm-2">주문금액</label>
     <div class="col-sm-10">
@@ -124,7 +124,7 @@
 	
 	
 	$("#coupon").change(function() {
-		$(".opt").each(function(f) {
+		$(".opt").each(function() {
 			if ($(this).prop("selected")) {
 				$("#param").prop("value",$(this).prop("title"));
 			}

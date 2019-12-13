@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,8 +21,16 @@
 </head>
 <body>
 	<h1>MEMBER</h1>
+	<c:choose>
+	<c:when test="${empty member }">
 	<a href="${pageContext.request.contextPath}/member/memberLogin">로그인</a>
 	<br>
+	</c:when>
+	<c:otherwise>
+	<a href="${pageContext.request.contextPath}/member/memberLogout">로그아웃</a>
+	<br>
+	</c:otherwise>
+	</c:choose>
 	<a href="${pageContext.request.contextPath}/member/memberUpdate">update</a>
 	<br>
 	<a href="${pageContext.request.contextPath}/member/memberSelect">mypage</a>

@@ -39,13 +39,13 @@ public class MemberService {
 		
 		Integer total = memberVO.getTotal_pay();
 		if (total > 20000 && total <=100000) {
-			memberVO.setMem_rank("silver");
+			memberVO.setMem_rank("SILVER");
 		}else if(total > 100000 && total <=300000) {
-			memberVO.setMem_rank("gold");
+			memberVO.setMem_rank("GOLD");
 		}else if(total > 300000 && total <100000000) {
-			memberVO.setMem_rank("diamond");
+			memberVO.setMem_rank("DIAMOND");
 		}else {
-			memberVO.setMem_rank("hogu");
+			memberVO.setMem_rank("HOGU");
 		}
 		return dao.memberRankUp(memberVO);
 	}

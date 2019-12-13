@@ -1,23 +1,22 @@
 package com.diego.mid.controller;
 
+import java.sql.Date;
+import java.util.Calendar;
 import java.util.List;
-
 import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-
 import com.diego.mid.model.member.Coupon;
 import com.diego.mid.model.member.MemberVO;
 import com.diego.mid.model.member.Orders;
 import com.diego.mid.model.member.Point;
 import com.diego.mid.model.member.Wishlist;
 import com.diego.mid.service.MemberManageService;
+import com.diego.mid.util.MPager;
 
 @Controller
 @RequestMapping("member/memberManage/**")
@@ -25,6 +24,8 @@ public class MemberManageController {
 	
 	@Inject
 	private MemberManageService service;
+	
+	
 	
 //@@@@@@@@@@@@@POINT@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 	
@@ -203,8 +204,18 @@ public class MemberManageController {
 		point.setContents(orders.getPro_info());
 		
 		int result = 0;
-		int pInsert = service.pointInsert(point);
-		int cUse = service.couponUse(coupon);
+		int pInsert = 0;
+		if (point.getPoint_value() == 0) {
+			pInsert = 1;
+		}else {
+			pInsert=service.pointUse(point);			
+		}
+		int cUse = 0;
+		if (coupon.getCoup_num() == 9999) {
+			cUse = 1;
+		}else {
+			cUse = service.couponUse(coupon);
+		}
 		
 		if (pInsert==1 && cUse == 1) {
 			result = 1;
@@ -212,7 +223,7 @@ public class MemberManageController {
 			cUse = service.couponCancel(coupon);
 		}else if (pInsert != 1 && cUse == 1) {
 			point.setContents("주문실패");
-			pInsert = service.pointUse(point);
+			pInsert = service.pointInsert(point);
 		}else {
 			cUse = service.couponCancel(coupon);
 			point.setContents("주문실패");
@@ -227,7 +238,7 @@ public class MemberManageController {
 			msg = "성공";
 			path = "/mid/diego";
 		}
-		mv.addObject("result", msg);
+		mv.addObject("msg", msg);
 		mv.addObject("path", path);
 		mv.setViewName("common/common_msg");
 		return mv;
@@ -242,19 +253,98 @@ public class MemberManageController {
 	}
 	
 	@GetMapping("orderMyList")
-	public ModelAndView orderMyList(HttpSession session)throws Exception{
+	public ModelAndView orderMyList(HttpSession session,MPager pager)throws Exception{
+		
+		Calendar ca = Calendar.getInstance();
+		ca.setTimeInMillis(ca.getTimeInMillis()-(1000L*60*60*24*90));
+		Date d = new Date(ca.getTimeInMillis());
+		
+		
 		ModelAndView mv = new ModelAndView();
 		MemberVO vo = (MemberVO)session.getAttribute("member");
 		Orders orders = new Orders();
 		orders.setId(vo.getId());
-		List<Orders> ar = service.orderMyList(orders);
-		int sum = 0;
+		orders.setOrder_date(d);
+		pager.makePager(service.MLcount(orders));
+		List<Orders> ar = service.orderMyList(orders,pager);
 		for (Orders orders2 : ar) {
-			sum+=orders2.getOrder_sum();
+			if (orders2.getOrder_status().equals("WP")) {
+				orders2.setOrder_status("결제 대기중");
+			}else if(orders2.getOrder_status().equals("OC")) {
+				orders2.setOrder_status("주문 취소");
+			}else if(orders2.getOrder_status().equals("WD")) {
+				orders2.setOrder_status("배송준비중");
+			}else if(orders2.getOrder_status().equals("DV")) {
+				orders2.setOrder_status("배송중");
+			}else if(orders2.getOrder_status().equals("DC")) {
+				orders2.setOrder_status("배송 완료");
+			}else if(orders2.getOrder_status().equals("OX")) {
+				orders2.setOrder_status("교환 요청");
+			}else if(orders2.getOrder_status().equals("OR")) {
+				orders2.setOrder_status("반품 요청");
+			}else {
+				orders2.setOrder_status("구매 확정");
+			}
 		}
+		mv.addObject("pager", pager);
 		mv.addObject("orderList", ar);
-		mv.addObject("sum", sum);
 		mv.setViewName("/member/memberManage/orderMyList");
+		return mv;
+	}
+	
+	@GetMapping("orderAllList")
+	public ModelAndView orderAllList(Orders orders,HttpSession session,MPager pager)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		pager.makePager(service.SLcount(orders));
+		List<Orders> ar = service.orderSearchList(orders,pager);
+		String h1 = "AL";
+		for (Orders orders2 : ar) {
+			if (orders2.getOrder_status().equals("WP")) {
+				orders2.setOrder_status("결제 대기중");
+			}else if(orders2.getOrder_status().equals("OC")) {
+				orders2.setOrder_status("주문 취소");
+				h1="IC";
+			}else if(orders2.getOrder_status().equals("WD")) {
+				orders2.setOrder_status("배송준비중");
+			}else if(orders2.getOrder_status().equals("DV")) {
+				orders2.setOrder_status("배송중");
+			}else if(orders2.getOrder_status().equals("DC")) {
+				orders2.setOrder_status("배송 완료");
+			}else if(orders2.getOrder_status().equals("OX")) {
+				orders2.setOrder_status("교환 요청");
+				h1="IC";
+			}else if(orders2.getOrder_status().equals("OR")) {
+				orders2.setOrder_status("반품 요청");
+				h1="IC";
+			}else {
+				orders2.setOrder_status("구매 확정");
+			}
+		}
+		mv.addObject("pager", pager);
+		mv.addObject("orderList", ar);
+		mv.addObject("h1", h1);
+		mv.setViewName("/member/memberManage/listAjax");
+		return mv;
+	}
+	
+	@GetMapping("orderCancelList")
+	public ModelAndView orderCancelList(Orders orders,HttpSession session,MPager pager) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		pager.makePager(service.CLcount(orders));
+		List<Orders> ar = service.orderCancelList(orders,pager);
+		for (Orders orders2 : ar) {
+			if (orders2.getOrder_status().equals("OC")) {
+				orders2.setOrder_status("주문 취소");
+			}else if(orders2.getOrder_status().equals("OX")) {
+				orders2.setOrder_status("교환 요청");
+			}else {
+				orders2.setOrder_status("반품 요청");
+			}
+		}
+		mv.addObject("pager", pager);
+		mv.addObject("orderList", ar);
+		mv.addObject("h1", "IC");
+		mv.setViewName("/member/memberManage/listAjax");
 		return mv;
 	}
 	
@@ -270,12 +360,18 @@ public class MemberManageController {
 			result = service.orderCancel(orders);
 		}
 		if (result > 0) {
-			coupon.setCoup_num(orders.getCoup_num());
-			result = service.couponCancel(coupon);
+			if (orders.getCoup_num() != 9999) {
+				coupon.setCoup_num(orders.getCoup_num());
+				result = service.couponCancel(coupon);
+			}
+			
 			point.setOrder_num(orders.getOrder_num());
 			point = service.pointCancel(point);
-			point.setContents("주문 취소");
-			result = service.pointUse(point);
+			
+			if (point != null) {
+				point.setContents("주문 취소");
+				result = service.pointInsert(point);
+			}
 		}
 		mv.addObject("msg", result);
 		mv.setViewName("common/common_ajax_result");

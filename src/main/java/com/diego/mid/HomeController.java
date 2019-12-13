@@ -42,4 +42,10 @@ public class HomeController {
 		
 	}
 
+	
+	@GetMapping("/makeDiv")
+	public void makeDiv() {
+		
+	}
+
 }
