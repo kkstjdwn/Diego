@@ -29,7 +29,7 @@
 						
 					<c:forEach items="${revAll}" var="ra" varStatus="v">
 					
-						
+						<b>하잉</b>
 	
 							<b>${ra.pro_num}</b>
 							
