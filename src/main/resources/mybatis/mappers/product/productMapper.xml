@@ -120,8 +120,8 @@
 
 	<!--리뷰 write  -->
   <insert id="reviewWrite" parameterType="ReviewVO">
-   insert into review(id, pro_num, rev_num,star,contents,name,help,rev_date) values(
-    #{id},#{pro_num},rev_seq.nextval,#{star},#{contents},#{name},#{help},sysdate)
+   insert into review(id, pro_num, rev_num,star,rev_contents,name,help,rev_date) values(
+    #{id},#{pro_num},rev_seq.nextval,#{star},#{rev_contents},#{name},#{help},sysdate)
    </insert>	
 
 </mapper>

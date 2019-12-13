@@ -105,7 +105,7 @@ public class ProductService {
 
 	//리뷰 인서트
 	public int reviewWrite(ReviewVO reviewVO)throws Exception{
-		System.out.println(reviewVO.getContents());
+		System.out.println(reviewVO.getRev_contents());
 		return productDAO.reviewWrite(reviewVO);
 
 	}

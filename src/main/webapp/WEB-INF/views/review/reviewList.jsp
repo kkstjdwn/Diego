@@ -25,6 +25,8 @@
 
 				${product.pro_num}
 						
+				${product.pro_main}		
+						
 					<c:forEach items="${revAll}" var="ra" varStatus="v">
 					
 						

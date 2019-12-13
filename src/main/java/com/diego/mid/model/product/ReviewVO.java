@@ -10,7 +10,7 @@ public class ReviewVO {
 	private Integer pro_num;//상품번호
 	private Integer rev_num;//리뷰번호
 	private Integer star;//별개수
-	private String contents;// 리뷰내용
+	private String rev_contents;// 리뷰내용
 	private String name;//작성자이름
 	private Integer help;// 도움이되셨습니까? 네(1)아니오(0)
 	private Date rev_date;//작성날짜
@@ -18,64 +18,83 @@ public class ReviewVO {
 	private String pro_main;//메인이미지
 		
 	private List<ReviewFilesVO>files;// 포토리뷰처럼 섬머노트이용해서 사진도 올릴수있게..여러개 파일 저장.
-	
-	public String getPro_main() {
-		return pro_main;
-	}
-	public void setPro_main(String pro_main) {
-		this.pro_main = pro_main;
-	}
+
 	public String getId() {
 		return id;
 	}
+
 	public void setId(String id) {
 		this.id = id;
 	}
+
 	public Integer getPro_num() {
 		return pro_num;
 	}
+
 	public void setPro_num(Integer pro_num) {
 		this.pro_num = pro_num;
 	}
+
 	public Integer getRev_num() {
 		return rev_num;
 	}
+
 	public void setRev_num(Integer rev_num) {
 		this.rev_num = rev_num;
 	}
+
 	public Integer getStar() {
 		return star;
 	}
+
 	public void setStar(Integer star) {
 		this.star = star;
 	}
-	public String getContents() {
-		return contents;
+
+	public String getRev_contents() {
+		return rev_contents;
 	}
-	public void setContents(String contents) {
-		this.contents = contents;
+
+	public void setRev_contents(String rev_contents) {
+		this.rev_contents = rev_contents;
 	}
+
 	public String getName() {
 		return name;
 	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
+
 	public Integer getHelp() {
 		return help;
 	}
+
 	public void setHelp(Integer help) {
 		this.help = help;
 	}
+
 	public Date getRev_date() {
 		return rev_date;
 	}
+
 	public void setRev_date(Date rev_date) {
 		this.rev_date = rev_date;
 	}
+
+	public String getPro_main() {
+		return pro_main;
+	}
+
+	public void setPro_main(String pro_main) {
+		this.pro_main = pro_main;
+	}
+
 	public List<ReviewFilesVO> getFiles() {
 		return files;
 	}
+
 	public void setFiles(List<ReviewFilesVO> files) {
 		this.files = files;
 	}

@@ -27,7 +27,7 @@ public class ProductDAOTest extends TestAbstractCase{
 			productVO.setPro_price(500+i);
 			productVO.setPro_sale(i);
 			productVO.setPro_count(50+i);
-			productVO.setPro_contents("test"+i);
+			//productVO.setPro_contents("test"+i);
 			productVO.setPro_warning("드라이세탁만가능");
 			productVO.setPro_color("bk");
 			productVO.setPro_size("s");
@@ -77,7 +77,7 @@ public class ProductDAOTest extends TestAbstractCase{
 		productVO.setPro_price(500);
 		productVO.setPro_sale(0);
 		productVO.setPro_count(50);
-		productVO.setPro_contents("test");
+		//productVO.setPro_contents("test");
 		productVO.setPro_warning("드라이세탁만가능");
 		productVO.setPro_color("bk");
 		productVO.setPro_size("s");

@@ -38,7 +38,6 @@ public class ReviewController {
 		
 		if(result==1) {
 			msg="리뷰 저장이 완료되었습니다.";
-			
 		}
 		mv.addObject("msg", msg);
 		mv.addObject("path", "reviewList");

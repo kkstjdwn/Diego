@@ -19,9 +19,8 @@
 				where pro_num like '%'||#{search}||'%'
 			</otherwise>
 		</choose>
-
-
 	</sql>
+
   
   <!--리뷰 리스트1 상품정보만불러오는거  -->
   <select id="productList" parameterType="Pager" resultType="ProductVO">
@@ -64,8 +63,8 @@
   
   <!--리뷰 write  -->
   <insert id="reviewWrite" parameterType="ReviewVO">
-   insert into review(id, pro_num, rev_num,star,name,help,rev_date) values(
-    #{id},#{pro_num},rev_seq.nextval,#{star},#{name},#{help},sysdate)
+   insert into review(id, pro_num, rev_num,star,name,help,rev_date,rev_contents) values(
+    #{id},#{pro_num},rev_seq.nextval,#{star},#{name},#{help},sysdate,#{rev_contents})
    </insert>
   	
 
