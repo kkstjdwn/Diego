@@ -10,39 +10,37 @@
 <c:import url="../layout/summerNote.jsp"></c:import>
 </head>
 <body>
-
+<c:import url="../layout/nav.jsp" />
 	<div class="container">
-		<h1>상품 등록 페이지</h1>
-		<form action="./productInsert" method="post" id="frm">
+
+		<div class="jumbotron page-header">
+			<h1>Product Insert Page</h1>
+		</div>
+
+
+		<form action="productInsert" method="post" id="frm" onsubmit=true enctype="multipart/form-data" >
 			<div class="form-group">
 				<label for="cat_ref">Category Choice</label>
 			</div>
 
-			<div id="options">
+			<div class="form-group">
 
-				<div class="form-grop" title="parent">
+				<select id="cloth">
+					<option value="100">Leather</option>
+					<option value="200">Cosmetic</option>
+					<option value="300">Cloth</option>
+					<option value="400">UnderWear</option>
 
-					<div class="form-group">
-
-						<select id="cloth">
-							<option value="100">Leather</option>
-							<option value="200">Cosmetic</option>
-							<option value="300">Cloth</option>
-							<option value="400">UnderWear</option>
-
-						</select>
-					</div>
-
-					<div id="kind">
-						<select name="cat_ref" id="kinds">
-							<option value="101">wallet</option>
-							<option value="102">bag</option>
-						</select>
-					</div>
-
-				</div>
-
+				</select>
 			</div>
+
+			<div id="kind">
+				<select name="cat_ref" id="kinds">
+					<option value="101">wallet</option>
+					<option value="102">bag</option>
+				</select>
+			</div>
+
 
 			<!--한칸 띄우기 -->
 			<br>
@@ -56,7 +54,7 @@
 
 			<div class="form-group">
 				<label for="pro_price">Product Price:</label> 
-				<input type="text"
+				<input type="number"
 					class="form-control" id="pro_price" name="pro_price"
 					placeholder="Product Price Enter">
 			</div>
@@ -67,50 +65,97 @@
 					class="form-control" id="pro_count" name="pro_count"
 					placeholder="Product Count Enter">
 			</div>
+			
 
 			<div class="form-group">
 				<label for="pro_contents">Product Cotents:</label>
-				<textarea type="text" id="pro_contents" name="pro_contents"
-					placeholder="Product Contents Enter">입력하시오.</textarea>
+				<textarea type="text" id="contents" name="contents">입력하시오.</textarea>
 			</div>
 
 			<div class="form-group">
 				<label for="pro_warning">Product Warning:</label>
-				<textarea type="text" id="pro_warning" name="pro_warning"
-					placeholder="Product Warning Enter">입력하시오.</textarea>
+				<textarea type="text" id="pro_warning" name="pro_warning">입력하시오.</textarea>
 			</div>
 
-
-			<div class="form-group color" style="display: block">
-				<label for="color">Product Color:</label> 
-				<input type="color" id="color" name="color" placeholder="Product Color Enter" >
-
+			<div class="form-group">
+				<label for="pro_size">Product Size:</label>
+				<div>
+					<select id="pro_size" name="pro_size">
+						<option value="">선택하세요</option>
+						<option value="Small">S</option>
+						<option value="Medium">M</option>
+						<option value="Large">L</option>
+						<option value="XLarge">XL</option>
+					</select>
+				</div>
 			</div>
 
-
-			<div class="form-group size" style="display: none">
-				<label for="pro_size">Product Size:</label> <select name="pro_size">
-					<option value="">사이즈를 선택하세요</option>
-					<option value="Small">Small</option>
-					
-					<option value="Medium">Medium</option>
-					<option value="Large">Large</option>
-					<option value="X-Large">X-Large</option>
-					<option value="XX-Large">XX-Large</option>
-				</select>
-
-			</div>
-			
-			<div class="form-group bag">
-				<label for="pro_warning">Product Warning:</label>
-				<textarea type="text" id="pro_warning" name="pro_warning"
-					placeholder="Product Warning Enter">입력하시오.</textarea>
+			<div class="form-group">
+				<label for="pro_color">Product Color:</label> <input type="text"
+					name="pro_color" id="pro_color" placeholder="Product Color Enter"
+					class="form-control">
 			</div>
 
+			<div class="form-group">
+				<label for="pro_vital">Product Option:</label>
+				<div>
+					<input type="text" name="pro_vital" id="pro_vital"
+						placeholder="Product Vital Enter" class="form-control">
+				</div>
+			</div>
 
+			<div id="imagesfiles">
 
+				<label for="pro_main">Product Main Images:</label>
+				<div>
+					<input type="file" class="form-control " id="pro_main" name="imagesFiles">
+				</div>
 
-			<button class="btn btn-primary px-3">상품 추가</button>
+				<label for="sumnale">Product Sumnale Images:</label>
+				<div>
+					<input type="file" class="form-control " id="sumnale" name="imagesFiles">
+				</div>
+
+				<label for="front">Product Front Images:</label>
+				<div>
+					<input type="file" class="form-control " id="front" name="imagesFiles">
+				</div>
+
+				<label for="back">Product Back Images:</label>
+				<div>
+					<input type="file" class="form-control " id="back" name="imagesFiles">
+				</div>
+
+				<label for="pro_model">Product Model Images:</label>
+				<div>
+					<input type="file" class="form-control " id="pro_model" name="imagesFiles">
+				</div>
+
+				<label for="pro_full">Product Full Images:</label>
+				<div>
+					<input type="file" class="form-control " id="pro_full" name="imagesFiles">
+				</div>
+
+				<label for="gif">Product Gif Images:</label>
+				<div>
+					<input type="file" class="form-control " id="gif" name="imagesFiles">
+				</div>
+
+				<label for="pro_info">Product Info Images:</label>
+				<div>
+					<input type="file" class="form-control " id="pro_info" name="imagesFiles">
+				</div>
+
+				<label for="pro_size">Product Size Images:</label>
+				<div>
+					<input type="file" class="form-control " id="pro_sizecut" name="imagesFiles">
+				</div>
+			</div>
+
+			<br>
+			<div>
+				<button class="btn btn-primary px-3">상품 추가</button>
+			</div>
 
 		</form>
 	</div>
@@ -119,6 +164,11 @@
 
 	<script type="text/javascript">
 	<!------------------------------ AJAX 자바스크립트방식 ----------------------- -->
+		var options = $('#options').html();
+		$('options').empty();
+		var count = 0;
+
+		//카테고리 ajax
 		$("#cloth").change(function() {
 
 			//1. XMLHttpRequest 객체 생성
@@ -145,12 +195,10 @@
 
 			}
 
-			
-
 		});
 
 		//섬머노트
-		$("#pro_contents").summernote({
+		$("#contents").summernote({
 			height : 120,
 
 		});
@@ -159,14 +207,8 @@
 			height : 120,
 
 		});
-
+		
 	
-
-
-		
-		//color는 기본적으로 null값이 없기 때문에 input 컬러타입을 text로바꿔주자. 그럼 null가겟지? 빈칸이면
-				
-		
 	</script>
 
 </body>

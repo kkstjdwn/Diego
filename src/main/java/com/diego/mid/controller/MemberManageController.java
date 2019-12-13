@@ -160,6 +160,7 @@ public class MemberManageController {
 		int check = 0;
 		int result = 0;
 		for (String string : num) {
+			
 			wishlist.setWish_num(Integer.parseInt(string));
 			check = service.wishListDelete(wishlist);
 			Thread.sleep(200);

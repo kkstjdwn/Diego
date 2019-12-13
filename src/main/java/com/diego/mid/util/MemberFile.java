@@ -14,6 +14,7 @@ public class MemberFile {
 		if (!file.exists()) {
 			file.mkdirs();
 		}
+		
 		String fname = UUID.randomUUID()+"_"+image.getOriginalFilename();
 		file = new File(realPath, fname);
 		image.transferTo(file);

@@ -42,9 +42,15 @@ public class HomeController {
 		
 	}
 
+
 	
 	@GetMapping("/makeDiv")
 	public void makeDiv() {
+		
+	}
+
+	@GetMapping("/mainProduct")
+	public void mainProduct() {
 		
 	}
 

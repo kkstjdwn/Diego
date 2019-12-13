@@ -2,22 +2,129 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  
-  <mapper namespace="productMapper">
-  
-  <!--insert  -->
-  <insert id="productInsert" parameterType="ProductVO">
-  		insert into product(pro_num, cat_ref, pro_name, pro_price, pro_count,  pro_date, pro_contents, pro_warning, opt1, opt1_val, opt2, opt2_val, opt3, opt3_val) 
-  		values(product_seq.nextval, #{cat_ref},#{pro_name}, #{pro_price}, #{pro_count},sysdate, #{pro_contents}, #{pro_warning}, #{opt1}, #{opt1_val}, #{opt2}, #{opt2_val}, #{opt3}, #{opt3_val} )
- </insert>
-  
-  <!--delete  -->
-  <delete id="productDelete" parameterType="Integer">
-  		delete product where pro_num=#{pro_num}
-  
-  </delete>
- 
-  </mapper>
+
+<mapper namespace="productMapper">
+
+	<!--pro_num을 가져온다. -->
+	<!-- <select id="getProNum" resultType="Integer"> select product_seq.nextval 
+		from dual </select> -->
+	<!--검색창 -->
+	<sql id="sw">
+		<choose>
+			<when test="kind == 'kt'">
+				where cat_ref like '%'||#{search}||'%'
+			</when>
+			<when test="kind == 'kw'">
+				where pro_name like '%'||#{search}||'%'
+			</when>
+			<otherwise>
+				where pro_price like '%'||#{search}||'%'
+			</otherwise>
+		</choose>
+	</sql>
+
+	<!--list -->
+	<select id="productList" parameterType="Pager"
+		resultType="ProductVO">
+	select * from
+		(select P.*, rownum R from
+            (select  * FROM 
+              (select A.* ,B.sumnale, B.pro_main from product A, images B
+                 where A.pro_num = B.pro_num
+            )<include refid="sw"/> 
+            order by pro_num desc) P 
+            )
+           where R between #{startRow} and #{lastRow}
+	
+
+	</select>
+
+	<!--count -->
+	<select id="productCount" resultType="Integer"
+		parameterType="Pager">
+		select count(pro_num) from product
+		<include refid="sw"></include>
+	</select>
+
+	<!--insert -->
+	<insert id="productInsert" parameterType="ProductVO">
+		<selectKey order="BEFORE" resultType="Integer"
+			keyProperty="pro_num">
+			select product_seq.nextval from dual
+		</selectKey>
+		insert into product
+		values(#{pro_num},#{cat_ref},#{pro_name},#{pro_price},#{pro_count},0,sysdate,#{contents},#{pro_warning},#{pro_size},#{pro_color},#{pro_vital})
+	</insert>
+
+	<!--select -->
+	<select id="productSelect" parameterType="ProductVO"
+		resultMap="image">
+		select P.*, I.images_num, I.pro_main, I.sumnale, I.front,
+		I.back, I.pro_model, I.pro_full, I.gif, I.pro_info, I.pro_sizecut
+		from
+		product P full outer join images I
+		on P.pro_num = I.pro_num
+		where
+		P.pro_num=#{pro_num}
+	</select>
+
+	<resultMap type="ProductVO" id="image">
+		<id property="pro_num" column="pro_num" />
+		<result property="cat_ref" column="cat_ref" />
+		<result property="pro_name" column="pro_name" />
+		<result property="pro_price" column="pro_price" />
+		<result property="pro_count" column="pro_count" />
+		<result property="pro_sale" column="pro_sale" />
+		<result property="pro_date" column="pro_date" />
+		<result property="contents" column="contents" />
+		<result property="pro_warning" column="pro_warning" />
+		<result property="pro_size" column="pro_size" />
+		<result property="pro_color" column="pro_color" />
+		<result property="pro_vital" column="pro_vital" />
+
+		<collection property="images" javaType="List"
+			ofType="ImagesVO">
+			<id property="images_num" column="images_num" />
+			<result property="pro_main" column="pro_main" />
+			<result property="sumnale" column="sumnale" />
+			<result property="front" column="front" />
+			<result property="back" column="back" />
+			<result property="pro_model" column="pro_model" />
+			<result property="pro_full" column="pro_full" />
+			<result property="gif" column="gif" />
+			<result property="pro_info" column="pro_info" />
+			<result property="pro_sizecut" column="pro_sizecut" />
+
+		</collection>
+
+	</resultMap>
+
+
+	<!--delete -->
+	<delete id="productDelete" parameterType="Integer">
+		delete product where
+		pro_num=#{pro_num}
+
+	</delete>
+
+
+	<!--update -->
+	<update id="productUpdate" parameterType="ProductVO">
+		update product set
+		pro_name=#{pro_name}, pro_price=#{pro_price}, pro_count=#{pro_count},
+		contents=#{contents}, pro_warning=#{pro_warning},
+		pro_size=#{pro_size}, pro_color=#{pro_color}, pro_vital=#{pro_vital}
+		where pro_num = #{pro_num}
+
+	</update>
+
+	<!--리뷰 write  -->
+  <insert id="reviewWrite" parameterType="ReviewVO">
+   insert into review(id, pro_num, rev_num,star,rev_contents,name,help,rev_date) values(
+    #{id},#{pro_num},rev_seq.nextval,#{star},#{rev_contents},#{name},#{help},sysdate)
+   </insert>	
+
+</mapper>
   
   
 

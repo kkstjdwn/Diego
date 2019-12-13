@@ -2,6 +2,7 @@ package com.diego.mid.util;
 
 public class Pager {
 
+
 	private Integer curPage;//현재 페이지번호
 	private Integer perPage;//페이지 당 글 갯수
 	private String kind; //검색종류
@@ -11,6 +12,7 @@ public class Pager {
 
 	//DB
 	private Integer startRow;//시작 rownum
+	
 	public String getKind() {
 		return kind;
 	}
@@ -135,4 +137,7 @@ public class Pager {
 		if(curBlock == totalBlock)
 			lastNum = totalPage;
 	}
+		
+	
+	
 }

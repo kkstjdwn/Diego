@@ -14,7 +14,8 @@
 						<li><a href="#">Page 1-3</a></li>
 					</ul></li>
 				<li><a href="${pageContext.request.contextPath}/notice/noticeList">Notice</a></li>
-				<li><a href="${pageContext.request.contextPath}/faq/faqList">FAQ</a></li>
+				<li><a href="${pageContext.request.contextPath}/mainProduct">product</a></li>
+				
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 			<c:if test="${not empty sessionScope.admin}">

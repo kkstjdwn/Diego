@@ -1,7 +1,10 @@
 package com.diego.mid.model.product;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class ImagesVO {
 
+	private Integer images_num;
 	private Integer pro_num;
 	private String pro_main;// 클릭했을떄 들어가면 바로보이는 사진 결제창옆?에보이는 메인사진
 	private String sumnale;//썸네일사진
@@ -11,7 +14,14 @@ public class ImagesVO {
 	private String pro_full;// 전신샷
 	private String gif;//움짤
 	private String pro_info;// 상품주의사항사진
-	private String pro_size;// 상품 둘레사이즈사진
+	private String pro_sizecut;// 상품 둘레사이즈사진
+	
+	public Integer getImages_num() {
+		return images_num;
+	}
+	public void setImages_num(Integer images_num) {
+		this.images_num = images_num;
+	}
 	public Integer getPro_num() {
 		return pro_num;
 	}
@@ -66,12 +76,19 @@ public class ImagesVO {
 	public void setPro_info(String pro_info) {
 		this.pro_info = pro_info;
 	}
-	public String getPro_size() {
-		return pro_size;
+	public String getPro_sizecut() {
+		return pro_sizecut;
 	}
-	public void setPro_size(String pro_size) {
-		this.pro_size = pro_size;
+	public void setPro_sizecut(String pro_sizecut) {
+		this.pro_sizecut = pro_sizecut;
 	}
+	@Override
+	public String toString() {
+		return "ImagesVO [images_num=" + images_num + ", pro_num=" + pro_num + ", pro_main=" + pro_main + ", sumnale="
+				+ sumnale + ", front=" + front + ", back=" + back + ", pro_model=" + pro_model + ", pro_full="
+				+ pro_full + ", gif=" + gif + ", pro_info=" + pro_info + ", pro_sizecut=" + pro_sizecut + "]";
+	}
+	
 	
 	
 }
