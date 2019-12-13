@@ -19,6 +19,7 @@ section{
 	margin-top:74px;
 	width: 100%;
 	min-height: 800px;
+	overflow: hidden;
 }
 footer{
 	width: 100%;
@@ -30,17 +31,17 @@ footer{
 
 .main{
 	top:76px;
-	width: 1833px;
+	width: 100%;
 	height: 1200px;
-	margin:auto;
+	margin-top: 74px;
 }
 .left{
-	width: 215px;
+	width: 240px;
 	min-height: 650px;
 	float: left;
 }
 .right{
-	width: 1618px;
+	width: 1613px;
 	height: inherit;
 	float: left;
 }
@@ -283,7 +284,7 @@ footer{
 .left-menu{
 	position:fixed;
 	left:50px;
-	top:35%;
+	top:33%;
 	width: 200px;
 	height: 328px;
 }
@@ -429,6 +430,13 @@ footer{
 	width : 39px;
 	color: #939393;
 }
+
+.btn-search:hover{
+	background: #555555;
+	color: white;
+	border: #555555;
+}
+
 .ip-cal{
 	vertical-align: middle;
 	color: #353535;

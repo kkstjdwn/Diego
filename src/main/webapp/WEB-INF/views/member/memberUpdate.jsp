@@ -13,13 +13,13 @@
 </head>
 <body>
 <header></header>
-<section style="width: 100%; height: 1200px;">
+<section style="width: 100%; height: 1200px; overflow: hidden;">
 <div class="main">
 <!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
 <div class="left" style="height: 985px;">
 	<div class="left-menu">
 		<ul class="left-list">
-			<li style="height: 30px; font-size: 13px;">Community</li>
+			<li style="height: 30px; font-size: 13px; font-weight: bold;">Community</li>
 			<li ><a href="#">Notice</a></li> 
 			<li ><a href="#">FAQ</a></li> 
 			<li ><a href="#">Q&amp;A</a></li> 
@@ -27,14 +27,14 @@
 			<li ><a href="#">Review</a></li> 
 		</ul>
 		<ul class="left-list">
-			<li style="height: 30px;"><a href="#" style="color: black; font-size: 13px;">Event</a></li>
+			<li style="height: 30px;"><a href="#" style="color: black; font-size: 13px; font-weight: bold;">Event</a></li>
 		</ul>
 		<ul class="left-list">
-			<li style="height: 30px;"><a href="#" style="color: black; font-size: 13px;">My page</a></li>
+			<li style="height: 30px;"><a href="#" style="color: black; font-size: 13px; font-weight: bold;">My page</a></li>
 			<c:if test="${!empty member }">
 			<li ><a href="#" style="color: black;">My info</a></li></c:if>
 			<li ><a href="memberManage/orderMyList">Order</a></li>
-			<li ><a href="#">Wish list</a></li>
+			<li ><a href="memberManage/wishListSelectList">Wish list</a></li>
 			<li ><a href="#">Mileage</a></li>
 			<li ><a href="#">My board</a></li>
 			<li ><a href="#">Delivery</a></li>

@@ -11,7 +11,7 @@
 <body>
 <header></header>
 <section style="width: 100%; height: 1500px;">
-<div class="main">
+<div class="main" style="margin-top: 150px;">
 	<div class="left">
 <!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
 	<div class="left-menu">

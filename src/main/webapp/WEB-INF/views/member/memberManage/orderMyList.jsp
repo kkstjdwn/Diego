@@ -10,17 +10,16 @@
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <c:import url="../../common/calendar.jsp"/>
-<link>
 </head>
 <body>
 <header></header>
 <section style="width: 100%; overflow: hidden;">
-<div class="main" style="height: auto; margin-top: 74px;">
+<div class="main" style="height: auto;">
 <!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
 <div class="left">
 	<div class="left-menu">
 		<ul class="left-list">
-			<li style="height: 30px; font-size: 13px;">Community</li>
+			<li style="height: 30px; font-size: 13px; font-weight: bold;">Community</li>
 			<li ><a href="#">Notice</a></li> 
 			<li ><a href="#">FAQ</a></li> 
 			<li ><a href="#">Q&amp;A</a></li> 
@@ -28,14 +27,14 @@
 			<li ><a href="#">Review</a></li> 
 		</ul>
 		<ul class="left-list">
-			<li style="height: 30px;"><a href="#" style="color: black; font-size: 13px;">Event</a></li>
+			<li style="height: 30px;"><a href="#" style="color: black; font-size: 13px; font-weight: bold;">Event</a></li>
 		</ul>
 		<ul class="left-list">
-			<li style="height: 30px;"><a href="#" style="color: black; font-size: 13px;">My page</a></li>
+			<li style="height: 30px;"><a href="#" style="color: black; font-size: 13px; font-weight: bold;">My page</a></li>
 			<c:if test="${!empty member }">
 			<li ><a href="../memberUpdate">My info</a></li></c:if>
 			<li ><a href="#" style="color: black;">Order</a></li>
-			<li ><a href="#">Wish list</a></li>
+			<li ><a href="wishListSelectList">Wish list</a></li>
 			<li ><a href="#">Mileage</a></li>
 			<li ><a href="#">My board</a></li>
 			<li ><a href="#">Delivery</a></li>
