@@ -31,6 +31,7 @@ public class ReviewController {
 	@PostMapping(value = "reviewWrite")
 	public ModelAndView reviewWrite(ReviewVO reviewVO)throws Exception {
 		
+		
 		ModelAndView mv = new ModelAndView();
 		int result = reviewService.reviewWrite(reviewVO);
 		
@@ -47,17 +48,15 @@ public class ReviewController {
 	
 	//리뷰리스트
 	@GetMapping("reviewList")
-	public ModelAndView reviewList(Pager pager, ReviewVO reviewVO)throws Exception{
-		ProductVO productVO = new ProductVO();
-		List<ReviewVO>ar= reviewService.reviewList(pager);
-		List<ProductVO>ar2= reviewService.productList(pager);
-		List<ReviewVO>ar3= reviewService.revAll(reviewVO);
+	public ModelAndView reviewList(Pager pager)throws Exception{
+		
+		List<ProductVO>ar= reviewService.reviewList(pager);
 		
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("count", reviewService.reviewCount(pager));
-		mv.addObject("revAll", ar3);
-		mv.addObject("productList", ar2);
+		
 		mv.addObject("reviewList", ar);
+		
 		mv.addObject("pager", pager);
 		
 		mv.setViewName("review/reviewList");

@@ -110,8 +110,8 @@
 		<div>
 			<c:forEach items="${product.images}" var="image">
 				<div>
-					<label for="pro_main">Product Main Image:</label> <br> <a
-						href="../resources/product/images/${image.pro_main}">${image.pro_main}</a>
+					<label for="pro_main">Product Main Image:</label> <br> 
+					<a href="../resources/product/images/${image.pro_main}">${image.pro_main}</a>
 
 				</div>
 				<div>

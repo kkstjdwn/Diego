@@ -23,17 +23,23 @@ public class ReviewDAO {
 		
 		return sqlSession.insert(NAMESPACE+"reviewWrite",reviewVO );
 	}
+	
+	
 	//리뷰리스트1 상품리스트불러오기
-	public List<ProductVO> productList(Pager pager)throws Exception{
-		
-		return sqlSession.selectList(NAMESPACE+"productList", pager);
+	public List<ProductVO> reviewList(Pager pager)throws Exception{
+		return sqlSession.selectList(NAMESPACE+"reviewList",pager);
 	}	
 	
+	
+	
+	
+	
 	//리뷰리스트2 페이징된답글리스트불러오기
-	public List<ReviewVO> reviewList(Pager pager)throws Exception{
-		
-		return sqlSession.selectList(NAMESPACE+"reviewList", pager);
-	}
+	/*
+	 * public List<ReviewVO> reviewList(Pager pager)throws Exception{
+	 * 
+	 * return sqlSession.selectList(NAMESPACE+"reviewList", pager); }
+	 */
 	
 	//리뷰리스트3 전체리뷰불러오기
 	public List<ReviewVO> revAll(ReviewVO reviewVO)throws Exception{

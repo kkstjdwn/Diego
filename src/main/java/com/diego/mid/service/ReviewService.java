@@ -23,18 +23,20 @@ public class ReviewService {
 	}
 	
 	//리뷰 리스트1상품리스트가져오기
-	public List<ProductVO> productList(Pager pager)throws Exception{
-		pager.makeRow();
-		pager.makePage(reviewDAO.reviewCount(pager));
-		return reviewDAO.productList(pager);
-	}
-	//리뷰 리스트2페이징된답글리스트가져오기
-	public List<ReviewVO> reviewList(Pager pager)throws Exception{
-		
+	public List<ProductVO> reviewList(Pager pager)throws Exception{
 		pager.makeRow();
 		pager.makePage(reviewDAO.reviewCount(pager));
 		return reviewDAO.reviewList(pager);
 	}
+	
+	
+	//리뷰 리스트2페이징된답글리스트가져오기
+//	public List<ReviewVO> reviewList(Pager pager)throws Exception{
+//		
+//		pager.makeRow();
+//		pager.makePage(reviewDAO.reviewCount(pager));
+//		return reviewDAO.reviewList(pager);
+//	}
 	//리뷰 리스트3전체답글리스트가져오기
 	public List<ReviewVO>revAll(ReviewVO reviewVO)throws Exception{
 		

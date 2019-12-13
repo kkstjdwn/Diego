@@ -21,20 +21,24 @@
 	
 
 				
-			<c:forEach items="${productList}" var="product" varStatus="p" >
+			<c:forEach items="${reviewList}" var="review" varStatus="v" >
 
-				${product.pro_num}
-						
-				${product.pro_main}		
-						
-					<c:forEach items="${revAll}" var="ra" varStatus="v">
+				
+				<h1>상품명:${review.pro_name}</h1>
+				<h1>상품가격:${review.pro_price}</h1>
+				<h1>평점:${review.reviewVO.star}</h1>
+				<h1>넘버:${review.reviewVO.rev_num}</h1>
+				
+				
+				<h1>콘텐츠:${review.reviewVO.rev_contents},</h1>
+				
+				
+				<img src="../resources/product/images/${review.pro_main}"style="width: 70%; height:7%;">
+			<div>		
+			<b>----------------------------------------------------------</b>
+			</div>		
 					
-	
-							<b>${ra.pro_num}</b>
-							
 										
-					
-					</c:forEach>
 				
 			</c:forEach>
 				

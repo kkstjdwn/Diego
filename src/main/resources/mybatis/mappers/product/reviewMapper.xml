@@ -23,35 +23,62 @@
 
   
   <!--리뷰 리스트1 상품정보만불러오는거  -->
-  <select id="productList" parameterType="Pager" resultType="ProductVO">
-  	select *from
+  <select id="reviewList" parameterType="Pager" resultMap="reviewL">
+	select *from
   	(select P.*, rownum R from
-  		(select * from 
-  			(select A.*,B.pro_main from product A, images B
-  			where A.pro_num=B.pro_num
-  			)<include refid="bs"/>
-  	order by pro_num desc)P)
+  		( select * from
+ ( select A.*,B.pro_main ,V.id, V.rev_num, V.star, V.rev_contents,V.name,V.help, V.rev_date from product A, images B, review V
+            where A.pro_num=B.pro_num and A.pro_num=V.pro_num) <include refid="bs"/> order by pro_num desc)P)
   	where R between #{startRow} and #{lastRow}
   
   </select>
   
-  <!--리뷰 리스트2 페이징된리뷰불러오는거  -->
-  <select id="reviewList" parameterType="Pager" resultType="ReviewVO">
-  		select *from
-  		(select V.*, rownum R from
-  		(select * from review
-  		<include refid="bs"/>
-  		order by rev_num desc )V)
-  		where R between #{startRow} and #{lastRow}
+  <resultMap type="ProductVO" id="reviewL">
+		<id property="pro_num" column="pro_num" />
+		<result property="cat_ref" column="cat_ref" />
+		<result property="pro_name" column="pro_name" />
+		<result property="pro_price" column="pro_price" />
+		<result property="pro_count" column="pro_count" />
+		<result property="pro_sale" column="pro_sale" />
+		<result property="pro_date" column="pro_date" />
+		<result property="contents" column="contents" />
+		<result property="pro_warning" column="pro_warning" />
+		<result property="pro_size" column="pro_size" />
+		<result property="pro_color" column="pro_color" />
+		<result property="pro_vital" column="pro_vital" />
+		<result property="pro_main" column="pro_main" />
+		
+		<association property="reviewVO" javaType="reviewVO">
+			<id property="rev_num" column="rev_num" />
+			<result property="id" column="id" />	
+			<result property="star" column="star" />
+			<result property="rev_contents" column="rev_contents" />
+			<result property="name" column="name" />
+			<result property="help" column="help" />
+			<result property="rev_date" column="rev_date" />
+		</association>
+	</resultMap>
+  
+  
+  
+  
+ <!--리뷰 리스트2 페이징된리뷰불러오는거  -->
+<!--   <select id="reviewList" parameterType="Pager" resultType="ReviewVO"> -->
+<!--   		select *from -->
+<!--   		(select V.*, rownum R from -->
+<!--   		(select * from review -->
+<!--   		<include refid="bs"/> -->
+<!--   		order by rev_num desc )V) -->
+<!--   		where R between #{startRow} and #{lastRow} -->
   		
-  </select>
+<!--   </select> -->
   
   <!--리뷰 리스트3 전체리뷰 불러오는거  -->
-  <select id="revAll" parameterType="ReviewVO" resultType="ReviewVO">
+  <!-- <select id="revAll" parameterType="ReviewVO" resultType="ReviewVO">
   		select *from review
   		order by rev_num desc
   
-  </select>
+  </select> -->
   
   
   <!--리뷰 카운트-->
