@@ -6,6 +6,8 @@ import java.util.Map;
 import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
+
+import com.diego.mid.model.member.Cart;
 import com.diego.mid.model.member.Coupon;
 import com.diego.mid.model.member.Orders;
 import com.diego.mid.model.member.Point;
@@ -20,6 +22,7 @@ public class MemberManegeDAO {
 	private static final String POINT = "pointMapper.";
 	private static final String ORDER = "orderMapper.";
 	private static final String WISHLIST = "wishListMapper.";
+	private static final String CART = "cartMapper.";
 	
 	public int wishListInsert(Wishlist wishlist) throws Exception{
 		return sql.insert(WISHLIST+"wishListInsert",wishlist);
@@ -136,12 +139,25 @@ public class MemberManegeDAO {
 	}
 	
 	
+	public int cartInsert(Cart cart) throws Exception{
+		return sql.insert(CART+"cartinsert",cart);
+	}
 	
+	public int cartDelete(Cart cart) throws Exception{
+		return sql.delete(CART+"cartDelete",cart);
+	}
 	
+	public int cartUpdate (Cart cart) throws Exception{
+		return sql.update(CART+"cartUpdate",cart);
+	}
 	
+	public Cart cartSelect(Cart cart) throws Exception{
+		return sql.selectOne(CART+"cartSelect",cart);
+	}
 	
-	
-	
+	public List<Cart> cartList(Cart cart) throws Exception{
+		return sql.selectList(CART+"cartList",cart);
+	}
 	
 	
 	

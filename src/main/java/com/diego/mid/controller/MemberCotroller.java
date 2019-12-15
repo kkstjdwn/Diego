@@ -76,13 +76,17 @@ public class MemberCotroller {
 
 			int up = 20000;
 			int x = 2;
+			int ps = 1;
 			if (memberVO.getMem_rank().equals("SILVER")) {
+				ps =2;
 				x = 5;
 				up=100000;
 			}else if (memberVO.getMem_rank().equals("GOLD")) {
+				ps = 5;
 				x = 10;
 				up=300000;
 			}else if (memberVO.getMem_rank().equals("DIAMOND")) {
+				ps = 10;
 				x = 15;
 				up=100000000;
 			}
@@ -90,6 +94,7 @@ public class MemberCotroller {
 			session.setAttribute("p2", memberVO.getPhone().substring(3, 7));
 			session.setAttribute("p3", memberVO.getPhone().substring(7));
 			session.setAttribute("x", x);
+			session.setAttribute("ps", ps);
 			session.setAttribute("up", up);
 		}
 		mv.addObject("msg", msg);

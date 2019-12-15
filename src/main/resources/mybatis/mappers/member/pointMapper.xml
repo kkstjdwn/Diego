@@ -6,8 +6,8 @@
   
   <insert id="pointInsert" parameterType="point">
   
-  	insert into point(point_date, id, point_value, contents, total_point,order_num)
-  		values(sysdate, #{id}, #{point_value}, #{contents}, #{total_point},#{order_num})
+  	insert into point(point_date, id, point_value, point_save, contents, total_point,order_num)
+  		values(sysdate, #{id}, #{point_value},#{point_save}, #{contents}, #{total_point},#{order_num})
   	
   </insert>
   

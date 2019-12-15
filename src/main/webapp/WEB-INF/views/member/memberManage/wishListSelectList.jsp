@@ -51,9 +51,8 @@
 						<input type="checkbox" size="13px">
 					</th>
 					<th class="or-image">이미지
-<!-- 						<img alt="위시리스트 사진" src="../../resources/product/orders/c69a7cd57f808fa622d80fd6a2551b2c.jpg" height="116px" width="80px"> -->
 					</th>
-					<th class="">상품정보</th>
+					<th>상품정보</th>
 					<th>판매가</th>
 					<th>적립금</th>
 					<th>배송구분</th>
@@ -62,6 +61,20 @@
 					<th>선택</th>
 				</tr>
 			</thead>
+			<tbody>
+				<tr>
+					<td>
+						<input type="checkbox" class="wishCheck wish${w.index }" value="${wish.wish_num }">
+					</td>
+					<td>
+						<img alt="위시리스트 사진" src="../../resources/product/orders/c69a7cd57f808fa622d80fd6a2551b2c.jpg" height="116px" width="80px">
+					</td>
+					<td>
+						<a href="#" style="font-weight: bold;">${ord.pro_info }</a> <br>
+						<p>[ord.pro_option]</p>
+					</td>
+				</tr>
+			</tbody>
 		</table>
 		
 	</div>
@@ -70,71 +83,6 @@
 </div>
 </section>
 <footer></footer>
-<script type="text/javascript">
-var check = false;
-$("#checkAll").click(function() {
-	if (check == false) {
-	$(".wishCheck").prop("checked","true");
-	check = true;
-	}else{
-		$(".wishCheck").prop("checked","");
-		check= false;
-	}
-});
 
-$(".wishCheck").click(function() {
-	var all = 0;
-	for (var i = 0; i < ${wishList.size()}; i++) {
-		if ($(".wish"+i).prop("checked") == true) {
-			all++;
-		}
-	}
-	if (all == ${wishList.size()}) {
-		$("#checkAll").prop("checked","true");
-		check = true;
-	}else{
-		
-		$("#checkAll").prop("checked","");
-		check = false;
-		console.log(check);
-	}
-});
-
-$("#wishDel").click(function() {
-	
-jQuery.ajaxSettings.traditional = true;
-	
-		for (var i = 0; i < ${wishList.size()}; i++) {
-			
-			var num = new Array();
-			var index = 0;
-			for (var i = 0; i < ${wishList.size()}; i++) {
-				if ($(".wish"+i).prop("checked") == true) {
-				num[index] = $(".wish"+i).val();
-				index++;
-					}
-				} 
-			
-			}
-		
-		$.ajax({
-			type	: "POST",
-			url		: "wishListDelete",
-			data	: {
-				id : "${member.id}",
-				num : num
-				
-			},
-			success	: function(data) {
-				if (data == 1) {
-					location.reload();
-					}else{
-						alert("다시 시도하세요.")
-					}
-			}
-		});
-	
-});
-</script>
 </body>
 </html>

@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.diego.mid.model.member.Cart;
 import com.diego.mid.model.member.Coupon;
 import com.diego.mid.model.member.MemberVO;
 import com.diego.mid.model.member.Orders;
@@ -209,6 +211,8 @@ public class MemberManageController {
 		if (point.getPoint_value() == 0) {
 			pInsert = 1;
 		}else {
+			double x = (Integer)session.getAttribute("ps") *0.01;
+			point.setPoint_save((int)(orders.getPrice()*x));
 			pInsert=service.pointUse(point);			
 		}
 		int cUse = 0;
@@ -494,4 +498,77 @@ public class MemberManageController {
 	
 	
 //@@@@@@@@@@@@@COUPON@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+	
+//@@@@@@@@@@@@@CART@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+	@GetMapping("cartList")
+	public ModelAndView cartList(Cart cart, MPager pager) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		List<Cart> ar = service.cartList(cart);
+		mv.addObject("cartList", ar);
+		mv.setViewName("/mid/member/memberManage/cartList");
+		return mv;
+	}
+	
+	@PostMapping("cartInsert")
+	public ModelAndView cartInsert(Cart cart) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		
+		int result = service.cartInsert(cart);
+		String msg = "0";
+		if (result > 0) {
+			msg = "1";
+		}
+		mv.addObject("msg", msg);
+		mv.setViewName("common/common_ajax_result");
+		
+		return mv;
+	}
+	
+	@PostMapping("cartUpdate")
+	public ModelAndView cartUpdate(Cart cart) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		
+		int result = service.cartUpdate(cart);
+		String msg = "0";
+		if (result > 0) {
+			msg = "1";
+		}
+		mv.addObject("msg", msg);
+		mv.setViewName("common/common_ajax_result");
+		
+		return mv;
+	}
+	
+	@PostMapping("cartDelete")
+	public ModelAndView cartDelete(Cart cart) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		int result = service.cartDelete(cart);
+		String msg = "0";
+		if (result > 0) {
+			msg ="1";
+		}
+		mv.addObject("msg", msg);
+		mv.setViewName("common/common_ajax_result");
+		
+		return mv;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+//@@@@@@@@@@@@@CART@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 }

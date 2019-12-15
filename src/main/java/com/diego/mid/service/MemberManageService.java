@@ -8,6 +8,7 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Service;
 import com.diego.mid.dao.MemberManegeDAO;
+import com.diego.mid.model.member.Cart;
 import com.diego.mid.model.member.Coupon;
 import com.diego.mid.model.member.Orders;
 import com.diego.mid.model.member.Point;
@@ -109,7 +110,10 @@ public class MemberManageService {
 		if(point.getPoint_value()<0) {
 			point.setPoint_value(point.getPoint_value() * -1);
 		}
-		point.setTotal_point(point.getPoint_value() + point.getTotal_point());
+		if (point.getPoint_save() >0) {
+			point.setPoint_save(point.getPoint_save() * -1);
+		}
+		point.setTotal_point(point.getPoint_value() + point.getTotal_point()+ point.getPoint_save());
 		return dao.pointInsert(point);
 	}
 	
@@ -125,7 +129,7 @@ public class MemberManageService {
 		if (point.getPoint_value() > 0) {
 			point.setPoint_value(point.getPoint_value() * -1);
 		}
-		point.setTotal_point(point.getPoint_value() + point.getTotal_point());
+		point.setTotal_point(point.getPoint_value() + point.getTotal_point()+point.getPoint_save());
 		
 		return dao.pointInsert(point);
 	}
@@ -174,6 +178,43 @@ public class MemberManageService {
 		coupon.setUse("X");
 		return dao.couponUse(coupon);
 	}
+//////////////////////////////////////////////////////////////////////////////////////////
+	
+	
+	public int cartInsert(Cart cart) throws Exception{
+		return dao.cartInsert(cart);
+	}
+	
+	public int cartUpdate(Cart cart) throws Exception{
+		return dao.cartUpdate(cart);
+	}
+	
+	public int cartDelete(Cart cart) throws Exception{
+		return dao.cartDelete(cart);
+	}
+	
+	public Cart cartSelect(Cart cart) throws Exception{
+		return dao.cartSelect(cart);
+	}
+	
+	public List<Cart> cartList(Cart cart) throws Exception{
+		return dao.cartList(cart);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 }
