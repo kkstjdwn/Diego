@@ -5,14 +5,16 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Product List</title>
 <c:import url="../layout/bootStrap.jsp" />
 </head>
 <body>
-	<c:import url="../layout/nav.jsp" />
+	<c:import url="../layout/header.jsp" />
 	<div class="container">
-		
+		<c:import url="../layout/leftList.jsp" />
 		<div class="jumbotron page-header">
 			<h1>Product List</h1>
 		</div>
@@ -48,7 +50,7 @@
 						<td>${product.pro_num}</td>
 						<td>${product.cat_ref}</td>
 					
-						<td><img src="../resources/product/images/${product.pro_main}"style="width: 70%; height:7%;"></td>
+						<td><img src="../resources/product/images/${product.pro_main}"style= height:22%;"></td>
 						
 						<td><a href="./productSelect?pro_num=${product.pro_num}"> ${product.pro_name}</a></td>
 						<td>${product.pro_price}</td>
@@ -202,7 +204,7 @@
 
 
 
-
+<c:import url="../layout/footer.jsp" />
 
 </body>
 </html>

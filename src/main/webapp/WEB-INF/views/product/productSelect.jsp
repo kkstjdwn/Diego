@@ -173,8 +173,8 @@
 						<input type="hidden" value="${admin.admin_name}" name="name">
 						<input type="hidden" value="0" name="help"> 
 						<label
-							for="contents">Review</label> <a href="../review/reviewList"
-							class="btn btn-info">후기게시판</a>
+							for="contents">Review</label> 
+							<a href="../review/reviewList" class="btn btn-info">후기게시판</a>
 						<textarea class="form-control" rows="10" id="rev_contents"
 							name="rev_contents"></textarea>
 						<br>

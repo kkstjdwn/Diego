@@ -22,7 +22,7 @@ public class ReviewService {
 		return reviewDAO.reviewWrite(reviewVO);
 	}
 	
-	//리뷰 리스트1상품리스트가져오기
+	//리뷰 리스트
 	public List<ProductVO> reviewList(Pager pager)throws Exception{
 		pager.makeRow();
 		pager.makePage(reviewDAO.reviewCount(pager));
@@ -37,7 +37,7 @@ public class ReviewService {
 //		pager.makePage(reviewDAO.reviewCount(pager));
 //		return reviewDAO.reviewList(pager);
 //	}
-	//리뷰 리스트3전체답글리스트가져오기
+	//전체답글가져오기
 	public List<ReviewVO>revAll(ReviewVO reviewVO)throws Exception{
 		
 		return reviewDAO.revAll(reviewVO);

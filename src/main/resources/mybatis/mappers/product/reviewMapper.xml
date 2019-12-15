@@ -22,16 +22,18 @@
 	</sql>
 
   
-  <!--리뷰 리스트1 상품정보만불러오는거  -->
+  <!--이미지가조인된 프로덕트테이블과 리뷰테이블을 조인  -->
   <select id="reviewList" parameterType="Pager" resultMap="reviewL">
 	select *from
   	(select P.*, rownum R from
   		( select * from
  ( select A.*,B.pro_main ,V.id, V.rev_num, V.star, V.rev_contents,V.name,V.help, V.rev_date from product A, images B, review V
-            where A.pro_num=B.pro_num and A.pro_num=V.pro_num) <include refid="bs"/> order by pro_num desc)P)
+            where A.pro_num=B.pro_num and A.pro_num=V.pro_num) <include refid="bs"/> order by rev_num desc)P)
   	where R between #{startRow} and #{lastRow}
   
   </select>
+  
+  
   
   <resultMap type="ProductVO" id="reviewL">
 		<id property="pro_num" column="pro_num" />
@@ -73,12 +75,11 @@
   		
 <!--   </select> -->
   
-  <!--리뷰 리스트3 전체리뷰 불러오는거  -->
-  <!-- <select id="revAll" parameterType="ReviewVO" resultType="ReviewVO">
-  		select *from review
-  		order by rev_num desc
+  <!--리뷰테이블 정보 불러오는거  -->
+  <select id="revAll" parameterType="ReviewVO" resultType="ReviewVO">
+  		select *from review order by rev_num desc
   
-  </select> -->
+  </select> 
   
   
   <!--리뷰 카운트-->

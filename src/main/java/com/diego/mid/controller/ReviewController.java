@@ -48,13 +48,15 @@ public class ReviewController {
 	
 	//리뷰리스트
 	@GetMapping("reviewList")
-	public ModelAndView reviewList(Pager pager)throws Exception{
+	public ModelAndView reviewList(Pager pager,ReviewVO reviewVO)throws Exception{
 		
 		List<ProductVO>ar= reviewService.reviewList(pager);
+	
+		List<ReviewVO>ar2= reviewService.revAll(reviewVO);
 		
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("count", reviewService.reviewCount(pager));
-		
+		mv.addObject("revAll", ar2);
 		mv.addObject("reviewList", ar);
 		
 		mv.addObject("pager", pager);

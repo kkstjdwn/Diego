@@ -73,7 +73,7 @@ public class ProductService {
 
 		pager.makeRow();
 		pager.makePage(productDAO.productCount(pager));
-		System.out.println(productDAO.productCount(pager));
+		//System.out.println(productDAO.productCount(pager));
 
 		return productDAO.productList(pager);
 	}
@@ -105,7 +105,7 @@ public class ProductService {
 
 	//리뷰 인서트
 	public int reviewWrite(ReviewVO reviewVO)throws Exception{
-		System.out.println(reviewVO.getRev_contents());
+		//System.out.println(reviewVO.getRev_contents());
 		return productDAO.reviewWrite(reviewVO);
 
 	}

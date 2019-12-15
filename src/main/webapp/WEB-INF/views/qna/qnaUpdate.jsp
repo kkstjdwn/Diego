@@ -28,6 +28,7 @@
 			<div class="form-group">
 				<label for="title">제목 : </label> 
 				<select name="title">
+				
 					<option value="상품 문의드립니다">상품 문의 드립니다</option>
 					<option value="배송 문의드립니다">배송 문의 드립니다</option>
 					<option value="기타 문의드립니다">기타 문의 드립니다</option>
