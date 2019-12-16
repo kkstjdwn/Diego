@@ -146,9 +146,9 @@
 	</tr>
 	</table>
 	<div class="join-btn">
-		<button id="btn" class="btn" type="submit" style="background-color: #363636; color: white; border: none;">회원정보수정</button>
-		<button class="btn" onclick="back()">취소</button>
-		<button class="btn" onclick="del()" style="float: right;">회원 탈퇴</button>
+		<button id="member-btn" type="submit">회원정보수정</button>
+		<button class="mem-btn" onclick="back()">취소</button>
+		<button class="mem-btn" onclick="del()" style="float: right;">회원 탈퇴</button>
 		
 	</div>
 	</form>

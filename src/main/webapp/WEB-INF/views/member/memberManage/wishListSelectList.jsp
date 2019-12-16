@@ -11,8 +11,8 @@
 <body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <header></header>
-<section style="background: purple;">
-<div class="main">
+<section>
+<div class="main" style="min-height: 700px;">
 <!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
 <div class="left">
 	<div class="left-menu">
@@ -40,49 +40,224 @@
 	</div>
 </div>
 <!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
-<div class="right">
-	<h1 class="right-h1" style="color: orange; font-weight: bold;">관심상품</h1>
+<div class="right" style="min-height: 600px; overflow: hidden;">
+	<h1 class="right-h1" style="color: #353535;">관심상품</h1>
 <!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
-	<div style="background: orange; width: 100%; min-height: 300px;">
-		<table class="or-table">
+	<div class="ws-ajax" style="width: 100%; min-height: 300px; overflow: hidden;">
+		<table class="ws-table">
 			<thead>
 				<tr>
-					<th class="ws-checkBox">
-						<input type="checkbox" size="13px">
+					<th class="ws-checkBox" style="border-left: 0;">
+						<input type="checkbox" id="checkAll" size="13px">
 					</th>
-					<th class="or-image">이미지
+					<th class="ws-image">이미지
 					</th>
-					<th>상품정보</th>
-					<th>판매가</th>
-					<th>적립금</th>
-					<th>배송구분</th>
-					<th>배송비</th>
-					<th>합계</th>
-					<th>선택</th>
+					<th class="ws-pro_info">상품정보</th>
+					<th class="ws-pro_price">판매가</th>
+					<th class="ws-point">적립금</th>
+					<th class="ws-deli">배송구분</th>
+					<th class="ws-deli_cost">배송비</th>
+					<th class="ws-pro_sum">합계</th>
+					<th class="ws-btn" style="border-right: 0;">선택</th>
 				</tr>
 			</thead>
 			<tbody>
+			<c:forEach items="${wishList }" var="wish" varStatus="i">
 				<tr>
-					<td>
-						<input type="checkbox" class="wishCheck wish${w.index }" value="${wish.wish_num }">
+					<td class="ws-checkBox" style="border-left: 0; height: 116px;">
+						<input type="checkbox" class="wishCheck wish${i.index }" value="${wish.wish_num }">
 					</td>
-					<td>
+					<td class="ws-image">
 						<img alt="위시리스트 사진" src="../../resources/product/orders/c69a7cd57f808fa622d80fd6a2551b2c.jpg" height="116px" width="80px">
 					</td>
-					<td>
-						<a href="#" style="font-weight: bold;">${ord.pro_info }</a> <br>
-						<p>[ord.pro_option]</p>
+					<td class="ws-pro_info" style="text-align: left; padding-left: 10px;">
+						<a href="#" style="font-weight: bold; color: black; text-decoration: none;">${wish.pro_info } </a>
+					</td>
+					<td class="ws-pro_price">
+					<strong><fmt:formatNumber value="${wish.price }" type="number"></fmt:formatNumber>원</strong>
+					</td>
+					<td class="ws-point">
+						<span style="background: #b88cc5; color: white; border: 0; border-radius: 3px; font-size: 8px; height: 12px;">적</span>
+						<fmt:formatNumber value="${ps * 0.01 * wish.price}" type="number"></fmt:formatNumber>원
+					</td>
+					<td class="ws-deli"> ${wish.delivery } </td>
+					<td class="ws-deli_cost"> ${wish.delivery_cost } </td>
+					<td class="ws-pro_sum">
+					<strong><fmt:formatNumber value="${wish.price }" type="number"></fmt:formatNumber>원</strong>
+					</td>
+					<td class="ws-btn" style="border-right: 0;">
+					<button type="button" class="wish-btn wish-order-btn" value="${wish.pro_num }">주문하기</button><br>
+					<button type="button" class="wish-btn wish-cart-btn" value="${wish.pro_num }">장바구니담기</button><br>
+					<button type="button" class="wish-btn wish-del-btn" value="${wish.wish_num }">삭제</button><br>
 					</td>
 				</tr>
+				</c:forEach>
 			</tbody>
 		</table>
+<!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->		
+		<div class="wish-btn-group">
+			<span style="float: left;">
+			<button id="wish-del-check">삭제하기</button>
+			<button id="wish-cart-check">장바구니담기</button>
+			</span>
+			<span style="float: right;">
+			<button id="wish-order-all">전체상품주문</button>
+			<button id="wish-del-all">관심상품비우기</button>
+			</span>
+		</div>
+<!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
+	<div class="or-pager">
+		<c:if test="${pager.curBlock gt 1 }">
+			<button type="button" class="btn-pager" id="none-hover"> << </button>
+		</c:if>
+		<c:if test="${pager.curBlock ne 1 }">
+			<button type="button" class="btn-pager" id="none-hover"> < </button>
+		</c:if>
+		<c:forEach begin="${pager.startNum }" end="${pager.lastNum}" var="p">
+		<c:choose>
+			<c:when test="${pager.curPage eq p }">
+				<button type="button" style="color: black; font-weight: bold;" title="${p }" class="btn-pager"> ${p } </button>
+			</c:when>
+			<c:otherwise>
+				<button type="button" title="${p }"  class="btn-pager"> ${p } </button>
+			</c:otherwise>
+		</c:choose>
 		
+		</c:forEach>
+		<c:if test="${pager.curBlock lt pager.totalBlock }">
+			<button type="button" class="btn-pager" id="none-hover"> > </button>
+			<c:if test="${pager.totalBlock gt pager.curBlock+1 }">
+				<button type="button" class="btn-pager" id="none-hover"> >> </button>
+			</c:if>
+		</c:if>
+	</div>
+<!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
 	</div>
 </div>
 <!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
 </div>
 </section>
 <footer></footer>
+<script type="text/javascript">
+var check = false;
+var all = 0;
 
+$(".ws-ajax").on("click","#checkAll", function() {
+	if (check == false) {
+	$(".wishCheck").prop("checked","true");
+	check = true;
+	}else{
+		$(".wishCheck").prop("checked","");
+		check= false;
+	}
+});
+
+$(".ws-ajax").on("click",".wishCheck", function() {
+	all = 0;
+	var size = ${wishList.size()};
+	for (var i = 0; i < size; i++) {
+		if ($(".wish"+i).prop("checked") == true) {
+			all++;
+		}
+	}
+	if (all == size) {
+		$("#checkAll").prop("checked","true");
+		check = true;
+	}else{
+		$("#checkAll").prop("checked","");
+		check = false;
+	}
+});
+
+$(".ws-ajax").on("click","#wish-del-check", function() {
+	if (all == 0) {
+		alert("삭제할 항목을 선택해주세요");
+	}else {
+		
+		if (confirm("삭제하시겠습니까?")) {
+			
+		jQuery.ajaxSettings.traditional = true;
+			var size = ${wishList.size()};
+				for (var i = 0; i < size; i++) {
+					
+					var num = new Array();
+					var index = 0;
+					for (var i = 0; i < size; i++) {
+						if ($(".wish"+i).prop("checked") == true) {
+						num[index] = $(".wish"+i).val();
+						index++;
+							}
+						} 
+					
+					}
+				
+				$.ajax({
+					type	: "POST",
+					url		: "wishListDelete",
+					data	: {
+						id : "${member.id}",
+						num : num
+						
+					},
+					success	: function(data) {
+						if (data == 1) {
+							location.reload();
+							}else{
+								alert("다시 시도하세요.")
+							}
+					}
+				});
+			
+			}
+		}
+	});
+	
+	$(".ws-ajax").on("click","#wish-del-all", function() {
+		var id = "${member.id}";
+		if (confirm("리스트를 비우시겠습니까?")) {
+			$.ajax({
+				type	: "POST",
+				url		: "wishListClean",
+				data	: {
+					id : id
+				},
+				success	: function(data) {
+					data = data.trim();
+					if (data == 1) {
+						alert("깨ㅡㅡㅡ끗");
+						location.reload();
+					}else{
+						alert("??왜??");
+					}
+				}
+			});
+		}
+	});
+	
+	$(".ws-ajax").on("click",".btn-pager", function() {
+		var id = "${member.id}";
+		var curP = $(this).prop("title");
+			$.ajax({
+			type	: "GET",
+			url		: "wishListAjax",
+			data	: {
+				id : id,
+				curPage : curP
+			},
+			success	: function(data) {
+				$(".ws-ajax").html(data);
+			}
+		});
+	});
+	
+	$(".ws-ajax").on("click",".wish-order-btn", function() {
+		if (confirm("주문목록에 추가하시겠습니까?")) {
+			//var url = "orderInsert?pro_num="+$(this).val;
+			open("orderInsertAjax?pro_num=99999","_blank","width=600px, height=480px, top=200px,left=600px");
+		}
+	});
+	
+	
+</script>
 </body>
 </html>

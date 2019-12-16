@@ -53,15 +53,20 @@ public class MemberManageTEST extends TestAbstractCase {
 //			System.out.println(orders2.getOrder_date());
 //		}
 		
-		Calendar ca = Calendar.getInstance();
-		Calendar ca2 = Calendar.getInstance();
-		System.out.println(ca.getTimeInMillis());
-		System.out.println(1000L*60*60*24*90);
-		System.out.println(ca.getTimeInMillis()-1000*60*60*24*90);
-		ca2.setTimeInMillis(ca.getTimeInMillis()-(1000L*60*60*24*90));
-		System.out.println(ca2.getTimeInMillis());
-		Date d = new Date(ca2.getTimeInMillis());
-		System.out.println(d);
+//		Calendar ca = Calendar.getInstance();
+//		Calendar ca2 = Calendar.getInstance();
+//		System.out.println(ca.getTimeInMillis());
+//		System.out.println(1000L*60*60*24*90);
+//		System.out.println(ca.getTimeInMillis()-1000*60*60*24*90);
+//		ca2.setTimeInMillis(ca.getTimeInMillis()-(1000L*60*60*24*90));
+//		System.out.println(ca2.getTimeInMillis());
+//		Date d = new Date(ca2.getTimeInMillis());
+//		System.out.println(d);
+		
+		Wishlist wishlist = new Wishlist();
+		wishlist.setId("coo");
+		System.out.println("토탈페이지"+ manegeDAO.wishListCount(wishlist));
+		
 		
 		}
 

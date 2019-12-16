@@ -30,7 +30,7 @@
   <div class="form-group">
     <label class="control-label col-sm-2" for="pro_info">상품정보</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" id="pro_info" value="성주셔츠" name="pro_info" readonly="readonly">
+      <input type="text" class="form-control" id="pro_info" value="Test셔츠" name="pro_info" readonly="readonly">
       
     </div>
   </div>

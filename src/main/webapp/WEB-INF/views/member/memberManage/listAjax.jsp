@@ -3,7 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <div class="order-title">
 <c:choose>
-	<c:when test="${h1 eq 'A' }">
+	<c:when test="${h1 ne 'IC' }">
 		<h3 style="height: 16px; font-size: 12px;">주문 상품 조회</h3>
 	</c:when>
 	<c:otherwise>
@@ -47,7 +47,7 @@
 						${ord.pro_count }
 					</td>
 					<td class="or-price">
-					<fmt:formatNumber value="${ord.price }" type="number"></fmt:formatNumber>원</td>
+					<fmt:formatNumber value="${ord.order_sum }" type="number"></fmt:formatNumber>원</td>
 					<td class="or-order_status">
 						${ord.order_status }
 					</td>

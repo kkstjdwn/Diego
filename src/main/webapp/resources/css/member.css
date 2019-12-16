@@ -32,8 +32,9 @@ footer{
 .main{
 	top:76px;
 	width: 100%;
-	height: 1200px;
+	min-height: 900px;
 	margin-top: 74px;
+	overflow: hidden;
 }
 .left{
 	width: 240px;
@@ -267,9 +268,9 @@ footer{
 	padding: 10px 0;
 	text-align: center;
 }
-.btn{
+.mem-btn{
 	background-color: white;
-	color: #535746;
+	color: #555555;
 	font-size: 12px;
 	padding: 10px 35px;
 	text-align: center;
@@ -277,6 +278,30 @@ footer{
 	min-width:130px;
 	height: 36px;
 	cursor: pointer;
+}
+
+.mem-btn:hover{
+	border: 1px solid #555555;
+	font-weight: bold;
+}
+#member-btn{
+	font-size: 12px;
+	padding: 10px 35px;
+	text-align: center;
+	min-width:130px;
+	height: 36px;
+	cursor: pointer;
+	background-color: #555555;
+	color: white; 
+	border: 1px solid #555555;
+}
+
+
+#member-btn:hover{
+	background-color: white;
+	color: #555555;
+	font-weight: bold;
+	border: 1px solid #555555;
 }
 
 /*ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ */
@@ -542,15 +567,218 @@ footer{
 	font-weight: bold;
 }
 
-
-
-
 #none-hover{
 	border: none;
 	color: #979797;
 	padding : 4px 3px;
 	font-weight: normal;
 }
+
+/*ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ*/
+
+
+.ws-table{
+	margin-top: 10px;
+	padding: 0;
+	margin: 0;
+	border-collapse: collapse;
+	font-size: 12px;
+}
+
+.ws-table th{
+	line-height: 1.5;
+	font-size: 12px;
+	padding: 14px 0 15px;
+	border: 1px solid #eaeaea;
+	color: #353535;
+	vertical-align: middle;
+}
+
+.ws-table td{
+	border-spacing: 0;
+	border-collapse: collapse;
+	line-height: 1.5;
+	height:116px;
+	font-size: 12px;
+	text-align: center;
+	border-bottom: 1px solid #eaeaea;
+	color: #353535;
+	vertical-align: middle;
+	padding: 14px 0px 15px 0;
+}
+
+.ws-checkBox{
+	border-left: 0;
+	width: 27px;
+}
+
+.ws-image{
+	width: 92px;
+}
+
+.ws-pro_info{
+	width: 879px;
+}
+
+.ws-pro_price{
+	width: 105px;
+}
+.ws-point{
+	width: 100px;
+}
+.ws-deli{
+	width: 100px;
+}
+.ws-deli_cost{
+	width: 85px;
+}
+.ws-pro_sum{
+	width: 105px;
+}
+.ws-btn{
+	width: 110px;
+}
+
+.ws-btn{
+	border-right: 0;
+}
+
+.wish-btn{
+	cursor: pointer;
+	text-align: center;
+	font-size: 11px;
+	border: none;
+	height:27px;
+	width: 84px;
+	color:#555555;
+	background:white;
+	vertical-align: middle;
+	border-radius: 1px;
+	margin-bottom: 5px;
+	border: 1px solid #eaeaea;
+}
+
+.wish-cart-btn:hover{
+	font-weight: bold;
+	border: 1px solid #555555; 
+}
+
+.wish-del-btn:hover{
+	font-weight: bold;
+	border: 1px solid #555555;
+}
+
+.wish-order-btn{
+	background: #555555;
+	border:1px solid #555555;
+	color: white;
+}
+
+.wish-order-btn:hover{
+	background: white;
+	color: #555555;
+	border: 1px solid #555555;
+	font-weight: bold;
+}
+
+.wish-btn-group{
+	margin: 10px auto;
+	height: 48px;
+}
+
+/*ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ*/
+
+#wish-del-check{
+	line-height: 20px;
+	cursor: pointer;
+	text-align: center;
+	font-size: 12px;
+	width: 100px;
+	background: white;
+	margin: 0 5px 0 10px;
+	border: 1px solid #eaeaea;
+	color: #555555;
+	padding: 5px 0 6px 0;
+}
+
+#wish-del-check:hover{
+	font-weight: bold;
+	border: 1px solid #555555;
+}
+
+#wish-cart-check{
+	line-height: 20px;
+	cursor: pointer;
+	text-align: center;
+	font-size: 12px;
+	width: 100px;
+	margin: 0;
+	background: #555555;
+	border: 1px solid #555555;
+	color: white;
+	padding: 5px 0 6px 0;
+}
+
+#wish-cart-check:hover{
+	border: 1px solid #555555;
+	background: white;
+	color: #555555;
+	font-weight: bold;
+}
+
+#wish-order-all{
+	line-height: 20px;
+	cursor: pointer;
+	text-align: center;
+	font-size: 13px;
+	font-weight: bold;
+	width: 120px;
+	margin: 0 5px;
+	background: #555555;
+	border: 3px solid #555555;
+	color: white;
+	padding: 10px 0 12px 0;
+}
+
+#wish-order-all:hover{
+	background: white;
+	color: #555555;
+}
+
+#wish-del-all{
+	line-height: 20px;
+	cursor: pointer;
+	text-align: center;
+	font-size: 13px;
+	font-weight: bold;
+	width: 120px;
+	background: white;
+	margin: 0 5px;
+	border: 3px solid #eaeaea;
+	color: #555555;
+	padding: 10px 0 12px 0;
+}
+
+#wish-del-all:hover{
+	border: 3px solid #555555;
+}
+
+/*ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ*/
+
+.wish-pager{
+	clear:both;
+	margin: 20px auto;
+	height:34px;
+	width:100%;
+	text-align: center;
+}
+
+
+
+
+
+
+
 
 
 

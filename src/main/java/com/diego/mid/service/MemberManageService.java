@@ -32,12 +32,18 @@ public class MemberManageService {
 		return dao.wishListInsert(wishlist);
 	}
 	
-	public List<Wishlist> wishListSelectList(Wishlist wishlist) throws Exception{
-		return dao.wishListSelectList(wishlist);
+	public List<Wishlist> wishListSelectList(Wishlist wishlist,MPager pager) throws Exception{
+		pager.makePager(dao.wishListCount(wishlist));
+		pager.rowMake();
+		return dao.wishListSelectList(wishlist,pager);
 	}
 	
 	public int wishListDelete(Wishlist wishlist)throws Exception{
 		return dao.wishListDelete(wishlist);
+	}
+	
+	public int wishListClean(Wishlist wishlist) throws Exception{
+		return dao.wishListClean(wishlist);
 	}
 	
 	public Orders orderInsert(Orders orders,HttpSession session) throws Exception{
@@ -45,7 +51,6 @@ public class MemberManageService {
 		if (orders.getFname() !=null) {
 			orders.setImage(saver.save(session.getServletContext().getRealPath("/resources/product/orders"), orders.getFname()));
 		}
-		orders.setOrder_sum(orders.getPro_count()*orders.getPrice());
 		int result = dao.orderInsert(orders); 
 		if (result > 0) {
 			return orders;
@@ -123,6 +128,11 @@ public class MemberManageService {
 	
 	public List<Point> pointList() throws Exception{
 		return dao.pointList();
+	}
+	
+	public int pointSave(Point point) throws Exception{
+		point.setTotal_point(point.getTotal_point()+point.getPoint_save());
+		return dao.pointInsert(point);
 	}
 	
 	public int pointUse(Point point) throws Exception{

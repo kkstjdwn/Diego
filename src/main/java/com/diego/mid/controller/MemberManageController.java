@@ -17,8 +17,11 @@ import com.diego.mid.model.member.MemberVO;
 import com.diego.mid.model.member.Orders;
 import com.diego.mid.model.member.Point;
 import com.diego.mid.model.member.Wishlist;
+import com.diego.mid.model.product.ProductVO;
 import com.diego.mid.service.MemberManageService;
+import com.diego.mid.service.ProductService;
 import com.diego.mid.util.MPager;
+import com.diego.mid.util.Pager;
 
 @Controller
 @RequestMapping("member/memberManage/**")
@@ -26,6 +29,9 @@ public class MemberManageController {
 	
 	@Inject
 	private MemberManageService service;
+	
+	@Inject
+	private ProductService proService;
 	
 	
 	
@@ -129,7 +135,7 @@ public class MemberManageController {
 			msg = "성공";
 			path = "/mid/diego";
 		}
-		mv.addObject("result", msg);
+		mv.addObject("msg", msg);
 		mv.addObject("path", path);
 		mv.setViewName("common/common_msg");
 		return mv;
@@ -137,24 +143,57 @@ public class MemberManageController {
 	
 	
 	@GetMapping("wishListSelectList")
-	public ModelAndView wishListSelectList(HttpSession session) throws Exception{
+	public ModelAndView wishListSelectList(HttpSession session,MPager pager) throws Exception{
 		ModelAndView mv = new ModelAndView();
+		if (pager.getCurPage() == null) {
+			pager.setCurPage(1);
+		}
 		MemberVO vo = (MemberVO)session.getAttribute("member");
 		Wishlist wishlist = new Wishlist();
-		wishlist.setId(vo.getId());;
-		List<Wishlist> ar = service.wishListSelectList(wishlist);
+		wishlist.setId(vo.getId());
+		
+		List<Wishlist> ar = service.wishListSelectList(wishlist,pager);
 		mv.addObject("wishList", ar);
 		int sum = 0;
 		for (Wishlist wishlist2 : ar) {
 			sum+=wishlist2.getPrice();
 		}
 		mv.addObject("sum", sum);
-		
+		mv.addObject("pager", pager);
 		mv.setViewName("/member/memberManage/wishListSelectList");
 		
 		return mv;
 		
 	}
+	
+	@GetMapping("wishListAjax")
+	public ModelAndView wishListAjax(Wishlist wishlist, MPager pager) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		List<Wishlist> ar = service.wishListSelectList(wishlist, pager);
+		mv.addObject("wishList", ar);
+		int sum = 0;
+		for (Wishlist wishlist2 : ar) {
+			sum+=wishlist2.getPrice();
+		}
+		mv.addObject("sum", sum);
+		mv.addObject("pager", pager);
+		mv.setViewName("/member/memberManage/wishAjax");
+		return mv;
+	}
+	
+	@PostMapping("wishListClean")
+	public ModelAndView wishListClean(Wishlist wishlist) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		int result = service.wishListClean(wishlist);
+		int msg = 0;
+		if (result > 0) {
+			msg = 1;
+		}
+		mv.addObject("msg", msg);
+		mv.setViewName("common/common_ajax_result");
+		return mv;
+	}
+	
 	
 	@PostMapping("wishListDelete")
 	public ModelAndView wishListDelete(Wishlist wishlist,String[] num) throws Exception{
@@ -199,22 +238,43 @@ public class MemberManageController {
 		return mv;
 	}
 	
+	@GetMapping("orderInsertAjax")
+	public ModelAndView orderInsertAjax(ProductVO vo, HttpSession session) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		
+		vo = proService.productSelect(vo);
+		Point point = new Point();
+		Coupon coupon = new Coupon();
+		MemberVO mVo = (MemberVO)session.getAttribute("member");
+		coupon.setId(mVo.getId());
+		point.setId(mVo.getId());
+		mv.addObject("proVO", vo);
+		mv.addObject("couponList", service.couponMyList(coupon));
+		mv.addObject("point", service.pointSelect(point));
+		mv.setViewName("/member/memberManage/orderInsertAjax");
+		return mv;
+	}
+	
+	
 	@PostMapping("orderInsert")
 	public ModelAndView orderInsert(Orders orders,HttpSession session,Coupon coupon, Point point) throws Exception{
 		ModelAndView mv = new ModelAndView();
+		orders.setOrder_sum(orders.getPro_count()*orders.getPrice()-point.getPoint_value());
 		orders = service.orderInsert(orders, session);
 		point.setOrder_num(orders.getOrder_num());
 		point.setContents(orders.getPro_info());
 		
 		int result = 0;
 		int pInsert = 0;
+		double x = (Integer)session.getAttribute("ps") *0.01;
+		point.setPoint_save((int)(orders.getOrder_sum()*x));
+		
 		if (point.getPoint_value() == 0) {
-			pInsert = 1;
+			pInsert = service.pointSave(point);
 		}else {
-			double x = (Integer)session.getAttribute("ps") *0.01;
-			point.setPoint_save((int)(orders.getPrice()*x));
 			pInsert=service.pointUse(point);			
 		}
+		
 		int cUse = 0;
 		if (coupon.getCoup_num() == 9999) {
 			cUse = 1;

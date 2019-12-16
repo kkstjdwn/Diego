@@ -129,7 +129,7 @@
 						${ord.pro_count }
 					</td>
 					<td class="or-price">
-					<fmt:formatNumber value="${ord.price }" type="number"></fmt:formatNumber>원</td>
+					<fmt:formatNumber value="${ord.order_sum }" type="number"></fmt:formatNumber>원</td>
 					<td class="or-order_status">
 						${ord.order_status }
 					</td>

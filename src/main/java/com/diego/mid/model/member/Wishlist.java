@@ -1,7 +1,5 @@
 package com.diego.mid.model.member;
 
-import java.io.File;
-
 import org.springframework.web.multipart.MultipartFile;
 
 public class Wishlist {
@@ -13,7 +11,6 @@ public class Wishlist {
 	private Integer pro_num;
 	private String pro_info;
 	private Integer price;
-	private Integer price_point;
 	private String delivery;
 	private String delivery_cost;
 	
@@ -60,12 +57,6 @@ public class Wishlist {
 	}
 	public void setPrice(Integer price) {
 		this.price = price;
-	}
-	public Integer getPrice_point() {
-		return price_point;
-	}
-	public void setPrice_point(Integer price_point) {
-		this.price_point = price_point;
 	}
 	public String getDelivery() {
 		return delivery;

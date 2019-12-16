@@ -25,33 +25,27 @@
       <div class="form-group">
     <label class="control-label col-sm-2" for="pro_num">pro_num</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" id="pro_num" placeholder="pro_num" name="pro_num">
+      <input type="text" class="form-control" id="pro_num" placeholder="pro_num" name="pro_num" value="99999">
     </div>
   </div>
       <div class="form-group">
     <label class="control-label col-sm-2" for="pro_info">pro_info</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" id="pro_info" placeholder="pro_info" name="pro_info">
+      <input type="text" class="form-control" id="pro_info" placeholder="pro_info" name="pro_info" value="WishTest">
     </div>
   </div>
       <div class="form-group">
     <label class="control-label col-sm-2" for="price">PRICE</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" id="price" placeholder="price" name="price">
-    </div>
-  </div>
-      <div class="form-group">
-    <label class="control-label col-sm-2" for="price_point">PRICE_POINT</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" id="price_point" name="price_point">
+      <input type="text" class="form-control" id="price" placeholder="price" name="price" value="50000">
     </div>
   </div>
       <div class="form-group">
     <label class="control-label col-sm-2" for="delivery_cost">DEL_COST</label>
     <div class="col-sm-10">
       <select class="form-control" name="delivery_cost">
+      	<option value="무료">그외지역</option>
       	<option value="3000">제주</option>
-      	<option value="2500">그외지역</option>
       </select>
     </div>
   </div>

@@ -1,5 +1,6 @@
 package com.diego.mid.dao;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -12,6 +13,7 @@ import com.diego.mid.model.member.Coupon;
 import com.diego.mid.model.member.Orders;
 import com.diego.mid.model.member.Point;
 import com.diego.mid.model.member.Wishlist;
+import com.diego.mid.util.MPager;
 
 @Repository
 public class MemberManegeDAO {
@@ -28,21 +30,34 @@ public class MemberManegeDAO {
 		return sql.insert(WISHLIST+"wishListInsert",wishlist);
 	}
 	
-	public List<Wishlist> wishListSelectList(Wishlist wishlist) throws Exception{
-		return sql.selectList(WISHLIST+"wishListSelectList",wishlist);
+	public int wishListCount(Wishlist wishlist) throws Exception{
+		return sql.selectOne(WISHLIST+"wishListCount",wishlist);
+	}
+	
+	public List<Wishlist> wishListSelectList(Wishlist wishlist,MPager pager) throws Exception{
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("wish", wishlist);
+		map.put("pager", pager);
+		return sql.selectList(WISHLIST+"wishListSelectList",map);
 	}
 	
 	public int wishListDelete(Wishlist wishlist)throws Exception{
 		return sql.delete(WISHLIST+"wishListDelete",wishlist);
 	}
 	
-	public Integer wishListGetSum(Wishlist wishlist) throws Exception{
-		return sql.selectOne(WISHLIST+"wishListGetSum",wishlist);
+	public int wishListClean(Wishlist wishlist) throws Exception{
+		return sql.delete(WISHLIST+"wishListClean",wishlist);
 	}
 	
-	public Integer wishListSetSum(Wishlist wishlist) throws Exception{
-		return sql.update(WISHLIST+"wishListSetSum",wishlist);
-	}
+	
+//	
+//	public Integer wishListGetSum(Wishlist wishlist) throws Exception{
+//		return sql.selectOne(WISHLIST+"wishListGetSum",wishlist);
+//	}
+//	
+//	public Integer wishListSetSum(Wishlist wishlist) throws Exception{
+//		return sql.update(WISHLIST+"wishListSetSum",wishlist);
+//	}
 	
 	public int getOrderNum() throws Exception{
 		return sql.selectOne(ORDER+"getOrderNum");
