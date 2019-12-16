@@ -131,9 +131,25 @@
 						<div class="myshop_ico">
 							<a href=""><span>나의 쇼핑</span></a>
 						</div>
-
-
-
+						
+						  <!-- 검색 -->
+						<div id="topsearch">
+							<div class="search-bar">
+								<form id="searchBarForm" name="" action="/mid/prosearch/prosearchList"
+									method="get" target="_self" enctype="multipart/form-data">
+									<select name="kind" class="form-control searchop" style="display: none;">
+										<option id="kw" value="kw">product</option>
+									</select>
+									<div class="">
+										<fieldset id="search_fieldset">
+											<input id="keyword" name="search" class="inputTypeText"
+												 value="" type="text" />
+												 <button class="btn btn-primary" style="cursor:pointer" type="submit"><img src="/mid/resources/images/button/button_search_wh.png" /></button>
+										</fieldset>
+									</div>
+								</form>
+							</div>
+						</div>
 						<!-- 햄버거 -->
 						<div id="ham_btn">
 							<img src="/mid/resources/images/hamb_icon_wh.png" alt="햄버거버튼" />  
@@ -152,6 +168,23 @@
 						<img src="/mid/resources/images/cart.png">장바구니
 					</div>
 					<div class="myhsop">나의 쇼핑</div>
+					<div id="topsearch">
+							<div class="search-bar">
+								<form id="searchBarForm" name="" action="/mid/prosearch/prosearchList"
+									method="get" target="_self" enctype="multipart/form-data">
+									<select name="kind" class="form-control searchop" style="display: none;">
+										<option id="kw" value="kw">product</option>
+									</select>
+									<div class="">
+										<fieldset id="search_fieldset">
+											<input id="keyword" name="search" class="inputTypeText"
+												 value="" type="text" />
+												 <button class="btn btn-primary" style="cursor:pointer" type="submit"><img src="/mid/resources/images/button/board_search_btn.png" /></button>
+										</fieldset>
+									</div>
+								</form>
+							</div>
+						</div>
 					<div id="ham">
 						<img src="/mid/resources/images/hamb_icon.png">
 					</div>
@@ -263,6 +296,19 @@
 		</div>
 	</header>
 </body>
+
+<script type="text/javascript">
+		//서치
+		var kind = '${pager.kind}';
+		if (kind == '') {
+			kind = "kw";
+		}
+		$("#" + kind).prop("selected", true);
+		$(".list").click(function() {
+			$("#curPage").val($(this).attr("id"));
+			$("#searchBarForm").submit();
+		});
+	  </script>
 
 <script>
 	/* 로고 가로세로 */

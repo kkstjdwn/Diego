@@ -27,6 +27,30 @@
 						</ul>
 					</div>
 				</div>
+				 
+				 <!-- 검색 -->
+				<div id="topsearch">
+					<div class="search-bar">
+						<form id="searchBarForm" name=""
+							action="/mid/prosearch/prosearchList" method="get" target="_self"
+							enctype="multipart/form-data">
+							<select name="kind" class="form-control searchop"
+								style="display: none;">
+								<option id="kw" value="kw">product</option>
+							</select>
+							<div class="">
+								<fieldset id="search_fieldset">
+									<input id="keyword" name="search" class="inputTypeText"
+										value="" type="text" />
+									<button class="btn btn-primary" style="cursor: pointer"
+										type="submit">
+										<img src="/mid/resources/images/button/button_search_wh.png" />
+									</button>
+								</fieldset>
+							</div>
+						</form>
+					</div>
+				</div>
 				<div id="company" class="copypadding">
 					<ul>
 						<li class="copytext">"1"</li>

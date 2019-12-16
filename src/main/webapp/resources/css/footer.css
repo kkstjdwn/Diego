@@ -78,6 +78,45 @@
     color: gray;
 }
 
+footer #topsearch {
+    text-align: center;
+    padding-bottom: 220px;
+    float: none;
+}
+
+footer  #topsearch input {
+    font-size: 100%;
+    font-family: Nanum Barun Gothic,Verdana,Dotum,AppleGothic,sans-serif;
+    color: #353535;
+    vertical-align: middle;
+}
+
+footer #search_fieldset {
+    width: 300px;
+    margin: auto;
+    position: relative;
+}
+
+footer #search_fieldset input {
+    width: 100% !important;
+    border: none!important;
+    border-bottom: 1px solid #fff!important;
+    background: transparent !important;
+    color: #fff !important;
+    padding-bottom: 9px ;
+    text-indent: 8px;
+}
+
+footer #search_fieldset button {
+    position: absolute;
+    right: 0;
+    bottom: 12px;
+}
+
+footer button img {
+    width: 17px;
+}
+
 .scrollTop img{
    width: 20px;
    height: 24px;
