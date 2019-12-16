@@ -30,6 +30,7 @@
 		<typeAlias type="com.diego.mid.model.product.ImagesVO" alias="ImagesVO"/>
 		<typeAlias type="com.diego.mid.model.product.QnaVO" alias="QnaVO"/>
 		<typeAlias type="com.diego.mid.model.product.ReviewVO" alias="ReviewVO"/>
+			<typeAlias type="com.diego.mid.model.product.RevFilesVO" alias="RevFilesVO"/>
   	</typeAliases>
 
 

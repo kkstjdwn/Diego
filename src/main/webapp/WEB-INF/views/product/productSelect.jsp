@@ -178,18 +178,33 @@
 						<textarea class="form-control" rows="10" id="rev_contents"
 							name="rev_contents"></textarea>
 						<br>
-						<div class="filebox">
-							<label for="reviewImages">+ 사진추가</label> <input type="file"
-								id="reviewImages"> <select name="star">
+						
+						<div id="filebox">
+							<div class="form-group" title="parent" >
+									<label for="reviewImages">+ 사진추가</label> 
+									<div class="col-sm-9">
+										<input type="file" id="reviewImages" name="file"> 
+									</div>
+									<div class="col-sm-1">
+										<input type="button" class="form-control btn btn-danger del_file" value="삭제">
+									</div>
+							</div>						
+						</div>
+						
+						<input type="button" value="add file" class="btn btn-primary" id="add_file">
+						
+						<div class="container">
+							<select name="star">
 								<option value="5">★★★★★ 아주 좋아요</option>
 								<option value="4">★★★★☆ 맘에 들어요</option>
 								<option value="3">★★★☆☆ 보통이에요</option>
 								<option value="2">★★☆☆☆ 그냥 그래요</option>
 								<option value="1">★☆☆☆☆ 별로에요</option>
 							</select>
-							<button class="btn btn-primary" id="review_write">ⓥ 리뷰
-								등록하기</button>
 						</div>
+							<div>
+								<button class="btn btn-primary" id="review_write">ⓥ 리뷰 등록하기</button>
+							</div>
 					</div>
 				</form>
 
@@ -208,7 +223,35 @@
 	</div>
 
 	<script type="text/javascript">
-		/* 	$("#review_write").click(function() {
+	 
+		var filebox= $('#filebox').html();
+		$('#filebox').empty();
+		var count =0;
+		var index=0;
+		
+		$('#add_file').click(function() {
+			if(count<4){
+			$('#filebox').append(filebox);
+			count++;
+			}else{
+				alert("리뷰 사진은 최대  4장까지 첨부가능합니다 ");
+				
+			}
+			
+		});
+		
+		$("#filebox").on("click", ".del_file",function(){
+			
+			$(this).parent().parent().remove();
+			count--;
+		});
+		
+		
+		
+	
+	
+	
+	/* 	$("#review_write").click(function() {
 				
 				$.post("./reviewList",{},function(data){
 						

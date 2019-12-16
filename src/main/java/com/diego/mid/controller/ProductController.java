@@ -38,7 +38,7 @@ public class ProductController {
 	@PostMapping(value ="productInsert")
 	public ModelAndView productInsert(ProductVO productVO, MultipartFile[] imagesFiles, HttpSession session )throws Exception {
 
-		System.out.println("test");
+		
 		ModelAndView mv= new ModelAndView();
 		int result = productService.productInsert(productVO,imagesFiles, session );
 		
@@ -199,16 +199,22 @@ public class ProductController {
 	
 		//리뷰작성
 		@GetMapping(value = "productReview")
-		public void reviewWrite()throws Exception {
+		public void productReview()throws Exception {
 				
 		}
 		
 		@PostMapping(value = "productReview")
-		public ModelAndView reviewWrite(ReviewVO reviewVO)throws Exception {
-			
+		public ModelAndView productReview(ReviewVO reviewVO , MultipartFile [] file , HttpSession session)throws Exception {
+			//System.out.println("test");테스트 들어옴.
 			//System.out.println(reviewVO.getContents()); 들어옴
 			ModelAndView mv = new ModelAndView();
-			int result = productService.reviewWrite(reviewVO);
+			
+			for(int i=0; i<file.length;i++) {
+				System.out.println(file[i].getOriginalFilename());
+			}
+			
+			
+			int result = productService.productReview(reviewVO, file ,session);
 			
 			String msg="리뷰 저장이 실패했습니다.";
 			

@@ -68,8 +68,8 @@ public class ProductDAO {
 	}
 	
 	//리뷰작성
-		public int reviewWrite(ReviewVO reviewVO)throws Exception {
+		public int productReview(ReviewVO reviewVO)throws Exception {
 			
-			return sqlSession.insert(NAMESPACE+"reviewWrite",reviewVO );
+			return sqlSession.insert(NAMESPACE+"productReview",reviewVO );
 		}
 }

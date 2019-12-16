@@ -21,45 +21,40 @@
 			<h1>Review List</h1>
 		</div>
 
-		<table class="table"  >
-			<thead >
-				<tr class="info">
+		
+					<c:forEach items="${reviewList}" var="review" varStatus="status">
 					
-					<th>Main Image</th>
-					<th>Product Name</th>
-					<th>Product Price</th>
-					<th>Product Number</th>
-					<th>평점</th>
-					<th>Review Number</th>
-					<th>Review Contents</th>
-					<th>Review Date</th>
-					
-				</tr>
-
-			</thead>
-
-			<tbody>
-
-					<c:forEach items="${reviewList}" var="review" varStatus="v">
+				
 					<tr class="warning">
 					
 						<td><img src="../resources/product/images/${review.pro_main}"style="width: 70%; height: 20%;"></td>
+						<br>
 						<td>${review.pro_name}</td>
 						<td>${review.pro_price}</td>
 						<td>${review.pro_num}</td>
 						<td>${review.reviewVO.star}</td>
 						<td>${review.reviewVO.rev_num}</td>
-						<td><a href="./reviewSelect">${review.reviewVO.rev_contents}</a></td>
 						<td>${review.reviewVO.rev_date}</td>
-					
-						
+					<h1>---------------------------------------------------------------------------</h1>
 					</tr>
-
+						<c:forEach items="${revAll}" var="rev">
+						
+					 <c:if test="${review.pro_num eq rev.pro_num}"> 	
+									<p>리뷰: ${rev.rev_contents}</p>	
+										<p>pronum: ${rev.pro_num}</p>	
+									<p>review_number: ${rev.rev_num}
+					 </c:if>  
+					
+						</c:forEach>
+						
+						<br>
+						
+						<h1>---------------------------------------------------------------------------</h1>
+							
+							
 				</c:forEach>
 
-			</tbody>
-		</table>
-
+		
 
 
 		<div>

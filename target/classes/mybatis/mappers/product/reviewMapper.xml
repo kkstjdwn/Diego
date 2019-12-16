@@ -21,8 +21,19 @@
 		</choose>
 	</sql>
 
+
+	<!--리뷰테이블 -->
+  <select id="revAll" parameterType="Pager" resultType="ReviewVO">
+  		select *from (select V.*, rownum R from
+		(select * from review
+  		 <include refid="bs"/>
+  		 order by rev_num desc) V)
+  		where R between #{startRow} and #{lastRow}
   
-  <!--이미지가조인된 프로덕트테이블과 리뷰테이블을 조인  -->
+  </select> 
+
+  
+  <!--상품테이블과리뷰테이블합친것  -->
   <select id="reviewList" parameterType="Pager" resultMap="reviewL">
 	select *from
   	(select P.*, rownum R from
@@ -32,8 +43,6 @@
   	where R between #{startRow} and #{lastRow}
   
   </select>
-  
-  
   
   <resultMap type="ProductVO" id="reviewL">
 		<id property="pro_num" column="pro_num" />
@@ -60,10 +69,22 @@
 			<result property="rev_date" column="rev_date" />
 		</association>
 	</resultMap>
+   
+  
+  <!--리뷰 카운트-->
+  <select id="reviewCount" resultType="Integer" parameterType="Pager">
+  	select count(rev_num) from review
+  	<include refid="bs"/>
+  </select>
   
   
+  <!--리뷰 write  -->
+  <insert id="reviewWrite" parameterType="ReviewVO">
   
-  
+   insert into review(id, pro_num, rev_num,star,name,help,rev_date,rev_contents) values(
+    #{id},#{pro_num},rev_seq.nextval,#{star},#{name},#{help},sysdate,#{rev_contents})
+   </insert>
+  	
  <!--리뷰 리스트2 페이징된리뷰불러오는거  -->
 <!--   <select id="reviewList" parameterType="Pager" resultType="ReviewVO"> -->
 <!--   		select *from -->
@@ -75,26 +96,5 @@
   		
 <!--   </select> -->
   
-  <!--리뷰테이블 정보 불러오는거  -->
-  <select id="revAll" parameterType="ReviewVO" resultType="ReviewVO">
-  		select *from review order by rev_num desc
-  
-  </select> 
-  
-  
-  <!--리뷰 카운트-->
-  <select id="reviewCount" resultType="Integer" parameterType="Pager">
-  	select count(rev_num) from review
-  	<include refid="bs"/>
-  </select>
-  
-  
-  <!--리뷰 write  -->
-  <insert id="reviewWrite" parameterType="ReviewVO">
-   insert into review(id, pro_num, rev_num,star,name,help,rev_date,rev_contents) values(
-    #{id},#{pro_num},rev_seq.nextval,#{star},#{name},#{help},sysdate,#{rev_contents})
-   </insert>
-  	
-
   
   </mapper>

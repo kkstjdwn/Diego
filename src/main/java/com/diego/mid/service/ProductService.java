@@ -1,6 +1,7 @@
 package com.diego.mid.service;
 
 
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -11,9 +12,12 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.diego.mid.dao.ImagesDAO;
 import com.diego.mid.dao.ProductDAO;
+import com.diego.mid.dao.RevFilesDAO;
 import com.diego.mid.model.product.ImagesVO;
 import com.diego.mid.model.product.ProductVO;
+import com.diego.mid.model.product.RevFilesVO;
 import com.diego.mid.model.product.ReviewVO;
+import com.diego.mid.util.FileSaver;
 import com.diego.mid.util.Pager;
 import com.diego.mid.util.ProductFile;
 
@@ -25,13 +29,20 @@ public class ProductService {
 
 	@Inject
 	private ImagesDAO imagesDAO;
+	
+	@Inject
+	private RevFilesDAO revFilesDAO;
 
 	@Inject
 	private ProductFile saver;
+	
+	@Inject
+	private FileSaver fileSaver;
 
 	//상품 추가 INSERT
 	public int productInsert(ProductVO productVO, MultipartFile [] imagesFiles ,HttpSession session )throws Exception{
-
+		
+		
 		//productVO.setPro_num(productDAO.getProNum());
 
 		//1. 파일을 저장할 실제경로
@@ -104,9 +115,34 @@ public class ProductService {
 	}
 
 	//리뷰 인서트
-	public int reviewWrite(ReviewVO reviewVO)throws Exception{
-		//System.out.println(reviewVO.getRev_contents());
-		return productDAO.reviewWrite(reviewVO);
+	public int productReview(ReviewVO reviewVO, MultipartFile [] file, HttpSession session)throws Exception{
+		//System.out.println(reviewVO.getRev_contents());성공
+		System.out.println("test");//서비스에서 안찍힘.
+		
+		//1. 파일을 저장할 실제경로
+		String realPath = session.getServletContext().getRealPath("resources/product/photoReview");
+		
+		System.out.println(realPath);
+		
+		RevFilesVO revFilesVO = new RevFilesVO();
+		int result= productDAO.productReview(reviewVO);
+		revFilesVO.setRev_num(reviewVO.getRev_num());
+		
+		for(MultipartFile multipartFile:file) {
+			if(multipartFile.getSize() !=0) {
+				
+				String fileName = fileSaver.save(realPath, multipartFile);
+				revFilesVO.setFname(fileName);
+				revFilesVO.setOname(multipartFile.getOriginalFilename());
+				result= revFilesDAO.fileWrite(revFilesVO);
+				
+				if(result <1) {
+					throw new SQLException();
+				}
+			}
+		}
+		
+		return result;
 
 	}
 }

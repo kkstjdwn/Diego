@@ -119,10 +119,20 @@
 	</update>
 
 	<!--리뷰 write  -->
-  <insert id="reviewWrite" parameterType="ReviewVO">
+  <insert id="productReview" parameterType="ReviewVO">
+   <selectKey order="BEFORE" resultType="Integer"
+			keyProperty="rev_num">
+			select rev_seq.nextval from dual
+		</selectKey>
+   
    insert into review(id, pro_num, rev_num,star,rev_contents,name,help,rev_date) values(
-    #{id},#{pro_num},rev_seq.nextval,#{star},#{rev_contents},#{name},#{help},sysdate)
+    #{id},#{pro_num},#{rev_num},#{star},#{rev_contents},#{name},#{help},sysdate)
    </insert>	
+	
+	
+	
+	
+	
 
 </mapper>
   

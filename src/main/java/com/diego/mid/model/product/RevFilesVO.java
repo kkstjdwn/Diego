@@ -1,9 +1,9 @@
 package com.diego.mid.model.product;
 
-public class ReviewFilesVO {
+public class RevFilesVO {
 	
 	private int fnum;
-	private int num;
+	private int rev_num;
 	private String fname;
 	private String oname;
 	
@@ -13,11 +13,11 @@ public class ReviewFilesVO {
 	public void setFnum(int fnum) {
 		this.fnum = fnum;
 	}
-	public int getNum() {
-		return num;
+	public int getRev_num() {
+		return rev_num;
 	}
-	public void setNum(int num) {
-		this.num = num;
+	public void setRev_num(int rev_num) {
+		this.rev_num = rev_num;
 	}
 	public String getFname() {
 		return fname;
@@ -32,6 +32,6 @@ public class ReviewFilesVO {
 		this.oname = oname;
 	}
 	
-	
+
 
 }

@@ -48,17 +48,18 @@ public class ReviewController {
 	
 	//리뷰리스트
 	@GetMapping("reviewList")
-	public ModelAndView reviewList(Pager pager,ReviewVO reviewVO)throws Exception{
+	public ModelAndView reviewList(Pager pager)throws Exception{
 		
 		List<ProductVO>ar= reviewService.reviewList(pager);
 	
-		List<ReviewVO>ar2= reviewService.revAll(reviewVO);
+		List<ReviewVO>ar2= reviewService.revAll(pager);
 		
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("count", reviewService.reviewCount(pager));
-		mv.addObject("revAll", ar2);
-		mv.addObject("reviewList", ar);
 		
+		mv.addObject("revAll", ar2);//리뷰를가져오는것
+		mv.addObject("reviewList", ar);//상품정보를 가져오는것
+			
 		mv.addObject("pager", pager);
 		
 		mv.setViewName("review/reviewList");

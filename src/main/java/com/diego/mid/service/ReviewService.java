@@ -17,16 +17,22 @@ public class ReviewService {
 	@Inject 
 	private ReviewDAO reviewDAO;
 	
-	//리뷰 인서트 지워도됨..혹시몰라서 냄겨놓음, 매퍼 ,dao,서비스,컨트롤러까지.. 이유는 product단에서 전부처리를해줌.
+	//리뷰 인서트
 	public int reviewWrite(ReviewVO reviewVO)throws Exception{
 		return reviewDAO.reviewWrite(reviewVO);
 	}
 	
-	//리뷰 리스트
+	//상품+리뷰리스트
 	public List<ProductVO> reviewList(Pager pager)throws Exception{
 		pager.makeRow();
 		pager.makePage(reviewDAO.reviewCount(pager));
 		return reviewDAO.reviewList(pager);
+	}
+	
+	//리뷰리스트가져오기
+	public List<ReviewVO>revAll(Pager pager)throws Exception{
+		
+		return reviewDAO.revAll(pager);
 	}
 	
 	
@@ -37,11 +43,6 @@ public class ReviewService {
 //		pager.makePage(reviewDAO.reviewCount(pager));
 //		return reviewDAO.reviewList(pager);
 //	}
-	//전체답글가져오기
-	public List<ReviewVO>revAll(ReviewVO reviewVO)throws Exception{
-		
-		return reviewDAO.revAll(reviewVO);
-	}
 	
 	
 	

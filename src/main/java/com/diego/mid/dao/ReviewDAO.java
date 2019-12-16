@@ -25,10 +25,15 @@ public class ReviewDAO {
 	}
 	
 	
-	//리뷰리스트 
+	//상품+리뷰리스트
 	public List<ProductVO> reviewList(Pager pager)throws Exception{
 		return sqlSession.selectList(NAMESPACE+"reviewList",pager);
 	}	
+	
+	//리뷰리스트
+	public List<ReviewVO> revAll(Pager pager)throws Exception{
+		return sqlSession.selectList(NAMESPACE+"revAll", pager);
+	}
 	
 	
 	//리뷰리스트2 페이징된답글리스트불러오기
@@ -38,12 +43,7 @@ public class ReviewDAO {
 	 * return sqlSession.selectList(NAMESPACE+"reviewList", pager); }
 	 */
 	
-	//pro_num에대한 리뷰만가져오는것.
-	public List<ReviewVO> revAll(ReviewVO reviewVO)throws Exception{
-		return sqlSession.selectList(NAMESPACE+"revAll", reviewVO);
-	}
-	
-	
+
 	//리뷰카운트 
 	public int reviewCount(Pager pager)throws Exception {
 		

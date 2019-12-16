@@ -21,6 +21,7 @@ public class ProductVO {
 	private String pro_vital;//상품 필수옵션
 	private String sumnale;
 	private String pro_main;
+	
 	private ReviewVO reviewVO;
 	
 	
