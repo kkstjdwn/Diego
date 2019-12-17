@@ -114,29 +114,29 @@ public class ProductService {
 
 	}
 
-	//리뷰 인서트
-	public int productReview(ReviewVO reviewVO, MultipartFile [] file, HttpSession session)throws Exception{
+	//리뷰작성
+	public int productReview(ReviewVO reviewVO, HttpSession session, MultipartFile [] file)throws Exception{
 		//System.out.println(reviewVO.getRev_contents());성공
-		System.out.println("test");//서비스에서 안찍힘.
+		//System.out.println("test");
 		
 		//1. 파일을 저장할 실제경로
 		String realPath = session.getServletContext().getRealPath("resources/product/photoReview");
 		
-		System.out.println(realPath);
-		
 		RevFilesVO revFilesVO = new RevFilesVO();
-		int result= productDAO.productReview(reviewVO);
-		revFilesVO.setRev_num(reviewVO.getRev_num());
 		
-		for(MultipartFile multipartFile:file) {
-			if(multipartFile.getSize() !=0) {
-				
-				String fileName = fileSaver.save(realPath, multipartFile);
-				revFilesVO.setFname(fileName);
+		int result= productDAO.productReview(reviewVO);
+		
+		revFilesVO.setRev_num(reviewVO.getRev_num());
+	
+		System.out.println(realPath);//찍힘.
+		
+		for (MultipartFile multipartFile : file) {
+			if (multipartFile.getSize() != 0) {				
+				revFilesVO.setFname(fileSaver.save(realPath, multipartFile));
 				revFilesVO.setOname(multipartFile.getOriginalFilename());
-				result= revFilesDAO.fileWrite(revFilesVO);
-				
-				if(result <1) {
+				result = revFilesDAO.fileWrite(revFilesVO);
+		
+				if (result<1) {
 					throw new SQLException();
 				}
 			}

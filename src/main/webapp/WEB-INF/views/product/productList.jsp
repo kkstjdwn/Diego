@@ -50,7 +50,7 @@
 						<td>${product.pro_num}</td>
 						<td>${product.cat_ref}</td>
 					
-						<td><img src="../resources/product/images/${product.pro_main}"style= height:22%;"></td>
+						<td><img src="../resources/product/images/${product.sumnale}"style= height:22%;"></td>
 						
 						<td><a href="./productSelect?pro_num=${product.pro_num}"> ${product.pro_name}</a></td>
 						<td>${product.pro_price}</td>

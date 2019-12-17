@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.diego.mid.model.product.ProductVO;
+import com.diego.mid.model.product.RevFilesVO;
 import com.diego.mid.model.product.ReviewVO;
 import com.diego.mid.util.Pager;
 
@@ -26,14 +27,26 @@ public class ReviewDAO {
 	
 	
 	//상품+리뷰리스트
-	public List<ProductVO> reviewList(Pager pager)throws Exception{
-		return sqlSession.selectList(NAMESPACE+"reviewList",pager);
-	}	
+	
+	 public List<ProductVO> reviewList(Pager pager)throws Exception{ return
+	 sqlSession.selectList(NAMESPACE+"reviewList",pager); }
+	 
+	
+	/*
+	 * public List<ReviewVO> reviewList(Pager pager)throws Exception{ return
+	 * sqlSession.selectList(NAMESPACE+"reviewList1",pager); }
+	 */
 	
 	//리뷰리스트
 	public List<ReviewVO> revAll(Pager pager)throws Exception{
 		return sqlSession.selectList(NAMESPACE+"revAll", pager);
 	}
+	
+	//포토리뷰이미지
+	public List<RevFilesVO>photoReview(Pager pager)throws Exception{
+		return sqlSession.selectList(NAMESPACE+"photoReview", pager);
+	}
+	
 	
 	
 	//리뷰리스트2 페이징된답글리스트불러오기
@@ -49,4 +62,11 @@ public class ReviewDAO {
 		
 		return sqlSession.selectOne(NAMESPACE+"reviewCount", pager);
 	}
+	
+	//프로덕트카운트
+	public int productCount(Pager pager)throws Exception{
+		
+		return sqlSession.selectOne(NAMESPACE+"productCount", pager);
+	}
+	
 }

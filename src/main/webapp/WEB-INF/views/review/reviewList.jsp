@@ -21,40 +21,40 @@
 			<h1>Review List</h1>
 		</div>
 
-		
-					<c:forEach items="${reviewList}" var="review" varStatus="status">
-					
-				
-					<tr class="warning">
-					
-						<td><img src="../resources/product/images/${review.pro_main}"style="width: 70%; height: 20%;"></td>
-						<br>
-						<td>${review.pro_name}</td>
-						<td>${review.pro_price}</td>
-						<td>${review.pro_num}</td>
-						<td>${review.reviewVO.star}</td>
-						<td>${review.reviewVO.rev_num}</td>
-						<td>${review.reviewVO.rev_date}</td>
-					<h1>---------------------------------------------------------------------------</h1>
-					</tr>
-						<c:forEach items="${revAll}" var="rev">
-						
-					 <c:if test="${review.pro_num eq rev.pro_num}"> 	
-									<p>리뷰: ${rev.rev_contents}</p>	
-										<p>pronum: ${rev.pro_num}</p>	
-									<p>review_number: ${rev.rev_num}
-					 </c:if>  
-					
-						</c:forEach>
-						
-						<br>
-						
-						<h1>---------------------------------------------------------------------------</h1>
-							
-							
+
+		<c:forEach items="${reviewList}" var="review" varStatus="status">
+
+			<p><img src="../resources/product/images/${review.pro_main}"	style="width: 70%; height: 20%;"></p>
+			
+			<br>
+			
+			<p>${review.pro_name}</p>
+			<p>${review.pro_price}</p>
+			<p>${review.pro_num}</p>
+			<c:forEach items="${review.reviewVO}" var="rev" varStatus="status" begin="0" end="2" step="1">
+				<p style="color: red;">${rev.rev_contents}</p>
+				<p>${rev.star}</p>
+				<p>${rev.rev_num}</p>
+				<p>${rev.rev_date}</p>
+
+				<c:forEach items="${review.revFilesVO}" var="ref" varStatus="r">
+<%-- 					<c:if test="${rev.rev_num eq ref.rev_num}"> --%>
+								<p>${ref.rev_num}</p>
+<%-- 						<p>${ref.fname}</p> --%>
+<%-- 					</c:if> --%>
+
 				</c:forEach>
 
-		
+			</c:forEach>
+
+			<p>-----------------------------------------------------------------------------------------------</p>
+			<hr>
+
+		</c:forEach>
+
+
+
+
 
 
 		<div>
@@ -64,8 +64,8 @@
 					<option id="kt" value="kt">작성자</option>
 					<option id="kw" value="kw">제목</option>
 					<option id="kc" value="kc">내용</option>
-				</select> 
-				<input type="text" id="search" name="search" value="${pager.search}">
+				</select> <input type="text" id="search" name="search"
+					value="${pager.search}">
 
 				<button>찾기</button>
 			</form>
@@ -87,6 +87,9 @@
 
 
 	</div>
+
+
+
 	<script type="text/javascript">
 		//서치	
 		var kind = '${pager.kind}'
@@ -102,6 +105,6 @@
 		});
 	</script>
 
-<c:import url="../layout/footer.jsp" />
+	<c:import url="../layout/footer.jsp" />
 </body>
 </html>

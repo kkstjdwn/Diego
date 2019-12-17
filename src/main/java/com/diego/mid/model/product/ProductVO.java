@@ -22,15 +22,25 @@ public class ProductVO {
 	private String sumnale;
 	private String pro_main;
 	
-	private ReviewVO reviewVO;
+	private List<ReviewVO> reviewVO;
+	
+	private List<RevFilesVO>revFilesVO;
 	
 	
 	
-	public ReviewVO getReviewVO() {
+	public List<RevFilesVO> getRevFilesVO() {
+		return revFilesVO;
+	}
+
+	public void setRevFilesVO(List<RevFilesVO> revFilesVO) {
+		this.revFilesVO = revFilesVO;
+	}
+
+	public List<ReviewVO> getReviewVO() {
 		return reviewVO;
 	}
 
-	public void setReviewVO(ReviewVO reviewVO) {
+	public void setReviewVO(List<ReviewVO> reviewVO) {
 		this.reviewVO = reviewVO;
 	}
 

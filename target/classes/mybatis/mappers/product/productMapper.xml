@@ -118,18 +118,35 @@
 
 	</update>
 
+
 	<!--리뷰 write  -->
   <insert id="productReview" parameterType="ReviewVO">
-   <selectKey order="BEFORE" resultType="Integer"
-			keyProperty="rev_num">
+   <selectKey order="BEFORE" resultType="Integer" keyProperty="rev_num">
 			select rev_seq.nextval from dual
 		</selectKey>
    
-   insert into review(id, pro_num, rev_num,star,rev_contents,name,help,rev_date) values(
+   insert into review
+   (id, pro_num, rev_num,star,rev_contents,name,help,rev_date) values(
     #{id},#{pro_num},#{rev_num},#{star},#{rev_contents},#{name},#{help},sysdate)
    </insert>	
 	
 	
+	<resultMap type="ReviewVO" id="revFile">
+  	<id property="rev_num" column="rev_num"/>
+  	<result property="id" column="id"/>
+  	<result property="star" column="star"/>
+  	<result property="rev_contents" column="rev_contents"/>
+  	<result property="name" column="name"/>
+  	<result property="help" column="help"/>
+  	<result property="rev_date" column="rev_date"/>
+  	<result property="pro_main" column="pro_main"/>
+  	<collection property="files" javaType="java.util.List" ofType="RevFilesVO">
+  		<id property="fnum" column="fnum"/>
+  		<result property="fname" column="fname"/>
+  		<result property="oname" column="oname"/>
+  	</collection>
+	
+	 </resultMap>
 	
 	
 	

@@ -9,7 +9,7 @@ import org.springframework.web.multipart.MultipartFile;
 @Component
 public class FileSaver {
 	
-	public String save (String realPath, MultipartFile  multipartFile)throws Exception{
+	public String save(String realPath, MultipartFile  multipartFile)throws Exception{
 		//*공통적으로 쓰임.
 		File file = new File(realPath);
 		//System.out.println(file.exists());//파일이존재합니까? 트루면 존재 펄스면 존재x

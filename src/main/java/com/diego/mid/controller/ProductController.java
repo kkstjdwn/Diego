@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.diego.mid.model.product.ImagesVO;
 import com.diego.mid.model.product.ProductVO;
 import com.diego.mid.model.product.ReviewVO;
 import com.diego.mid.service.ProductService;
@@ -204,21 +203,23 @@ public class ProductController {
 		}
 		
 		@PostMapping(value = "productReview")
-		public ModelAndView productReview(ReviewVO reviewVO , MultipartFile [] file , HttpSession session)throws Exception {
-			//System.out.println("test");테스트 들어옴.
+		public ModelAndView productReview(ReviewVO reviewVO, HttpSession session,  MultipartFile [] file)throws Exception {
+			//System.out.println("test");//나옴.
 			//System.out.println(reviewVO.getContents()); 들어옴
+
 			ModelAndView mv = new ModelAndView();
 			
-			for(int i=0; i<file.length;i++) {
-				System.out.println(file[i].getOriginalFilename());
-			}
+			session.getServletContext().getRealPath("resources/product/photoReview");
 			
+//			for (int i = 0; i < file.length; i++) {
+//				System.out.println(file[i].getOriginalFilename());
+//			}
 			
-			int result = productService.productReview(reviewVO, file ,session);
+			int result = productService.productReview(reviewVO, session, file);
 			
 			String msg="리뷰 저장이 실패했습니다.";
 			
-			if(result==1) {
+			if(result >0) {
 				msg="리뷰 저장이 완료되었습니다.";
 				
 			}

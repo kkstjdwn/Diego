@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.diego.mid.model.product.ProductVO;
+import com.diego.mid.model.product.RevFilesVO;
 import com.diego.mid.model.product.ReviewVO;
 import com.diego.mid.service.ReviewService;
 import com.diego.mid.util.Pager;
@@ -51,15 +52,13 @@ public class ReviewController {
 	public ModelAndView reviewList(Pager pager)throws Exception{
 		
 		List<ProductVO>ar= reviewService.reviewList(pager);
-	
-		List<ReviewVO>ar2= reviewService.revAll(pager);
 		
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("count", reviewService.reviewCount(pager));
+		mv.addObject("count", reviewService.productCount(pager));
 		
-		mv.addObject("revAll", ar2);//리뷰를가져오는것
+	
 		mv.addObject("reviewList", ar);//상품정보를 가져오는것
-			
+		
 		mv.addObject("pager", pager);
 		
 		mv.setViewName("review/reviewList");

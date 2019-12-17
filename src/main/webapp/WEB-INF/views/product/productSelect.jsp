@@ -7,32 +7,6 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <c:import url="../layout/bootStrap.jsp" />
-<style type="text/css">
-.filebox label {
-	display: inline-block;
-	padding: .5em .75em;
-	color: #999;
-	font-size: inherit;
-	line-height: normal;
-	vertical-align: middle;
-	background-color: #fdfdfd;
-	cursor: pointer;
-	border: 1px solid #ebebeb;
-	border-bottom-color: #e2e2e2;
-	border-radius: .25em;
-}
-
-.filebox input[type="file"] { /* 파일 필드 숨기기 */
-	position: absolute;
-	width: 1px;
-	height: 1px;
-	padding: 0;
-	margin: -1px;
-	overflow: hidden;
-	clip: rect(0, 0, 0, 0);
-	border: 0;
-}
-</style>
 
 
 </head>
@@ -166,9 +140,9 @@
 
 
 			<div class="container">
-				<form action="./productReview" method="post">
+				<form action="./productReview" method="post" enctype="multipart/form-data">
 					<div class="form-group">
-						<input type="text" value="${admin.admin_id}" name="id"> <input
+						<input type="text" value="${admin.admin_id}" name="id" readonly="readonly"> <input
 							type="hidden" value="${product.pro_num}" name="pro_num">
 						<input type="hidden" value="${admin.admin_name}" name="name">
 						<input type="hidden" value="0" name="help"> 
