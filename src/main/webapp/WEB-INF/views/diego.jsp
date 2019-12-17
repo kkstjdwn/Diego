@@ -38,6 +38,10 @@
 	<a href="${pageContext.request.contextPath}/member/memberInsert">join</a>
 	<br>
 	<br>
+	<h1>CART</h1>
+	<a href="${pageContext.request.contextPath}/member/memberManage/cartList" >CTL</a>
+	<br>
+	<br>
 	<h1>POINT</h1>
 	<a href="${pageContext.request.contextPath}/member/memberManage/pointInsert" >PI</a>
 	<br>

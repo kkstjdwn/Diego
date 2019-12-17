@@ -86,7 +86,7 @@
 					<strong><fmt:formatNumber value="${wish.price }" type="number"></fmt:formatNumber>원</strong>
 					</td>
 					<td class="ws-btn" style="border-right: 0;">
-					<button type="button" class="wish-btn wish-order-btn" value="${wish.pro_num }">주문하기</button><br>
+					<button type="button" class="wish-btn wish-order-btn" value="${wish.pro_num }" title="X">주문하기</button><br>
 					<button type="button" class="wish-btn wish-cart-btn" value="${wish.pro_num }">장바구니담기</button><br>
 					<button type="button" class="wish-btn wish-del-btn" value="${wish.wish_num }">삭제</button><br>
 					</td>
@@ -101,7 +101,6 @@
 			<button id="wish-cart-check">장바구니담기</button>
 			</span>
 			<span style="float: right;">
-			<button id="wish-order-all">전체상품주문</button>
 			<button id="wish-del-all">관심상품비우기</button>
 			</span>
 		</div>
@@ -212,27 +211,6 @@ $(".ws-ajax").on("click","#wish-del-check", function() {
 		}
 	});
 	
-	$(".ws-ajax").on("click","#wish-del-all", function() {
-		var id = "${member.id}";
-		if (confirm("리스트를 비우시겠습니까?")) {
-			$.ajax({
-				type	: "POST",
-				url		: "wishListClean",
-				data	: {
-					id : id
-				},
-				success	: function(data) {
-					data = data.trim();
-					if (data == 1) {
-						alert("깨ㅡㅡㅡ끗");
-						location.reload();
-					}else{
-						alert("??왜??");
-					}
-				}
-			});
-		}
-	});
 	
 	$(".ws-ajax").on("click",".btn-pager", function() {
 		var id = "${member.id}";
@@ -251,13 +229,58 @@ $(".ws-ajax").on("click","#wish-del-check", function() {
 	});
 	
 	$(".ws-ajax").on("click",".wish-order-btn", function() {
-		if (confirm("주문목록에 추가하시겠습니까?")) {
-			//var url = "orderInsert?pro_num="+$(this).val;
-			open("orderInsertAjax?pro_num=99999","_blank","width=600px, height=480px, top=200px,left=600px");
+		var pro_num = $(this).val();
+		open("orderInsertAjax?pro_num="+pro_num,"_blank","width=600px, height=480px, top=200px,left=600px");
+	});
+	
+	$(".ws-ajax").on("click",".wish-del-btn", function() {
+		if (confirm("삭제하시겠습니까?")) {
+			
+		jQuery.ajaxSettings.traditional = true;
+		
+				var num = new Array();
+				
+					num[0] = $(this).val();
+			
+			$.ajax({
+				type	: "POST",
+				url		: "wishListDelete",
+				data	: {
+					id : "${member.id}",
+					num : num
+					
+				},
+				success	: function(data) {
+					if (data == 1) {
+						location.reload();
+						}else{
+							alert("다시 시도하세요.")
+						}
+				}
+			});
 		}
 	});
 	
 	
+	$(".ws-ajax").on("click","#wish-del-all", function() {
+		if (confirm("wishList를 비우시겠습니까?")) {
+			$.ajax({
+				type	: "POST",
+				url		: "wishListClean",
+				data	: {
+					id	:	"${member.id}"
+				},
+				success	:	function(data) {
+					data = data.trim();
+					if (data == 1) {
+						location.reload();
+					}else{
+						alert("다시 시도해주세요");
+					}
+				}
+			});
+		}
+	});
 </script>
 </body>
 </html>

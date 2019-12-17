@@ -193,8 +193,7 @@ public class MemberManageController {
 		mv.setViewName("common/common_ajax_result");
 		return mv;
 	}
-	
-	
+
 	@PostMapping("wishListDelete")
 	public ModelAndView wishListDelete(Wishlist wishlist,String[] num) throws Exception{
 		ModelAndView mv = new ModelAndView();
@@ -306,6 +305,56 @@ public class MemberManageController {
 		mv.addObject("msg", msg);
 		mv.addObject("path", path);
 		mv.setViewName("common/common_msg");
+		return mv;
+	}
+	
+	@PostMapping("orderInsertAjax")
+	public ModelAndView orderInsertAjax(Orders orders,HttpSession session,Coupon coupon, Point point) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		orders.setOrder_sum(orders.getPro_count()*orders.getPrice()-point.getPoint_value());
+		orders = service.orderInsert(orders, session);
+		point.setOrder_num(orders.getOrder_num());
+		point.setContents(orders.getPro_info());
+		
+		int result = 0;
+		int pInsert = 0;
+		double x = (Integer)session.getAttribute("ps") *0.01;
+		point.setPoint_save((int)(orders.getOrder_sum()*x));
+		
+		if (point.getPoint_value() == 0) {
+			pInsert = service.pointSave(point);
+		}else {
+			pInsert=service.pointUse(point);			
+		}
+		
+		int cUse = 0;
+		if (coupon.getCoup_num() == 9999) {
+			cUse = 1;
+		}else {
+			cUse = service.couponUse(coupon);
+		}
+		
+		if (pInsert==1 && cUse == 1) {
+			result = 1;
+		}else if(pInsert == 1 && cUse != 1) {
+			cUse = service.couponCancel(coupon);
+		}else if (pInsert != 1 && cUse == 1) {
+			point.setContents("주문실패");
+			pInsert = service.pointInsert(point);
+		}else {
+			cUse = service.couponCancel(coupon);
+			point.setContents("주문실패");
+			pInsert = service.pointUse(point);
+		}
+		
+		
+		int msg	 = 0;
+		if (result > 0) {
+			
+			msg = 1;
+		}
+		mv.addObject("msg", msg);
+		mv.setViewName("common/common_ajax_result");
 		return mv;
 	}
 	
@@ -562,11 +611,20 @@ public class MemberManageController {
 //@@@@@@@@@@@@@CART@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
 	@GetMapping("cartList")
-	public ModelAndView cartList(Cart cart, MPager pager) throws Exception{
+	public ModelAndView cartList(Cart cart,HttpSession session, MPager pager) throws Exception{
 		ModelAndView mv = new ModelAndView();
-		List<Cart> ar = service.cartList(cart);
+		MemberVO vo = (MemberVO)session.getAttribute("member");
+		cart.setId(vo.getId());
+		Point point = new Point();
+		Coupon coupon = new Coupon();
+		point.setId(vo.getId());
+		coupon.setId(vo.getId());
+		List<Cart> ar = service.cartList(cart,pager);
+		mv.addObject("point", service.pointSelect(point));
+		mv.addObject("coupon", service.couponMyList(coupon));
 		mv.addObject("cartList", ar);
-		mv.setViewName("/mid/member/memberManage/cartList");
+		mv.addObject("pager", pager);
+		mv.setViewName("/member/memberManage/cartList");
 		return mv;
 	}
 	
@@ -616,19 +674,5 @@ public class MemberManageController {
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-//@@@@@@@@@@@@@CART@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+	//@@@@@@@@@@@@@CART@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 }

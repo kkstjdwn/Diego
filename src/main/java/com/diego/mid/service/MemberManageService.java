@@ -207,8 +207,10 @@ public class MemberManageService {
 		return dao.cartSelect(cart);
 	}
 	
-	public List<Cart> cartList(Cart cart) throws Exception{
-		return dao.cartList(cart);
+	public List<Cart> cartList(Cart cart,MPager pager) throws Exception{
+		pager.makePager(dao.cartListCoint(cart));
+		pager.rowMake();
+		return dao.cartList(cart,pager);
 	}
 	
 	

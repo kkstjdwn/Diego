@@ -24,6 +24,10 @@
  	 
  	</select>
  	
+ 	<select id="cartListCount" parameterType="cart" resultType="Integer">
+ 		select count(cart_num) from cart where id = #{id}
+ 	</select>
+ 	
  	<select id="cartList" parameterType="map" resultType="cart">
  	
  		select * from (select C.*, rownum r from (select * from cart where id=#{cart.id} order by cart_num desc) C)

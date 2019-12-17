@@ -1,6 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,12 +17,17 @@
 .opt-div p {
 	margin-left: 16px;
 	margin-bottom: 7px;
-	height: 18px;
-	line-height: 18px;
+	height: 20px;
+	line-height: 20px;
 }
 
-.value-div p {
-	
+#count-up:hover{
+	border: 1px solid #008bcc;
+	border-bottom:none;
+}
+#count-down:hover{
+	border: 1px solid #008bcc;
+	border-top: none; 
 }
 </style>
 </head>
@@ -61,31 +66,35 @@
 			<div class="value-div"
 				style="width: 70%; float: left; margin-top: 20px;">
 				<p>
-					<select style="width: 85%;">
+					<select style="width: 58%;" id="pro_opt">
 						<option>A TYPE</option>
 						<option>B TYPE</option>
 					</select>
 				</p>
-				<p>${proVO.pro_price }원</p>
-				<p>
-					<select style="width: 85%;">
-						<c:forEach begin="1" end="10" varStatus="i">
-							<option>${i.count }</option>
-						</c:forEach>
-					</select>
+				
+				<p style="color: #008bcc; font-weight: bold;"><fmt:formatNumber type="number" value="${proVO.pro_price }"></fmt:formatNumber>원</p>
+				<p style="position: relative;">
+					<input type="text" id="pro_count" value="1">
+					<img alt="count-up" src="../../resources/images/button/btn_count_up.gif" style="position:absolute; top: 1px; height: 10px; left: 150px;" id="count-up">
+					<img alt="count-up" src="../../resources/images/button/btn_count_down.gif" style="position:absolute; bottom: -1px; height: 10px; left: 150px;" id="count-down">
+						
+							
+						
 				</p>
-				<p>${point.total_point }</p>
+				
+				<p><fmt:formatNumber type="number" value="${point.total_point }"></fmt:formatNumber> 포인트</p>
 				<p>
-					<input type="text" style="width: 245px;">
+					<input type="text" style="width: 165px;" value="0" id="point_value">
 				</p>
 				<p>
-					<select style="width: 85%;">
+					<select style="width: 58%;" id="coupon">
 						<option value="1">사용할 쿠폰을 선택하세요</option>
 						<c:forEach items="${couponList }" var="coupon" varStatus="i">
 							<option value="${coupon.sales_value}" title="${coupon.coup_num }"
 								class="opt">${coupon.coup_name }(${coupon.discount }%)</option>
 						</c:forEach>
 					</select>
+					<input type="hidden" id="param" value="9999">
 				</p>
 			</div>
 		</div>
@@ -94,18 +103,113 @@
 			style="width: 100%; margin: 10px 0; clear:both; height:24px; border-top: 1px solid #eaeaea; border-bottom: 1px solid #eaeaea;">
 			<p style="font-size: 11px; margin-left: 18px;">
 				총 주문 금액<span style="font-size: 9px;"> (수량)</span> : <span
-					style="color: #008bcc; font-size: 14px; font-weight: bold;">${proVO.pro_price }원</span><span
+					style="color: #008bcc; font-size: 14px; font-weight: bold;" id="order_sum" title="${proVO.pro_price }">
+					<fmt:formatNumber type='number'>${proVO.pro_price }</fmt:formatNumber>
+					</span>원<span
 					style="color: #008bcc; font-size: 9px;">(수량)</span>
 			</p>
 		</div>
 		<div
 			style="width: 100%; clear: both; min-height: 100px; overflow: hidden; text-align: center; margin-top: 10px;">
 
-			<button
+			<button id="order-insert"
 				style="width: 100px; height: 30px; background: #555555; color: white; border: 1px solid #555555; margin-top: 20px;">주문하기</button>
-			<button
+			<button id="cart-insert"
 				style="width: 100px; height: 30px; color: #555555; border: 1px solid #555555; margin-top: 20px; background: white;">장바구니담기</button>
 		</div>
 	</div>
+<script type="text/javascript">
+	
+	var orderPass = true;
+
+	
+	function getSum() {
+		var price = ${proVO.pro_price}*1;
+		var total = ${point.total_point}*1;
+		var point = $("#point_value").val()*1;
+		if (total < point) {
+			orderPass = false;
+			alert("안통해!");
+			$("#point_value").prop("value","0");
+			point = 0;
+			var sum = price * $("#pro_count").val() * $("#coupon").val() - point;
+			$("#order_sum").text(sum);
+			$("#point_value").focus();
+		}else{
+			orderPass = true;
+		var sum = price * $("#pro_count").val() * $("#coupon").val() - point;
+		$("#order_sum").text(sum);
+		}
+	}
+	
+$(".value-div").change(function() {
+	getSum();
+});
+
+$("#count-up").click(function() {
+	$("#pro_count").prop("value",$("#pro_count").val()*1+1);
+	getSum();
+});
+
+$("#count-down").click(function() {
+	if ($("#pro_count").val() == 1) {
+		alert("최소 주문수량은 1개 입니다.");
+	}else{
+	$("#pro_count").prop("value",$("#pro_count").val()*1-1);
+	getSum();		
+	}
+	
+});
+
+$("#coupon").change(function() {
+	$(".opt").each(function() {
+		if ($(this).prop("selected")) {
+			$("#param").prop("value",$(this).prop("title"));
+		}
+	});
+});
+
+$("#order-insert").click(function() {
+	if (orderPass) {
+		var id = "${member.id}";
+		var pro_num	= ${proVO.pro_num};
+		var pro_info = "${proVO.pro_name}";
+		var price = ${proVO.pro_price};
+		var coup_num = $("#param").val();
+		var total_point = ${point.total_point};
+		$.ajax({
+			type	: "POST",
+			url		: "orderInsertAjax",
+			data	: {
+				id : id,
+				pro_num		: pro_num,
+				pro_info 	: pro_info,
+				pro_count	: $("#pro_count").val(),
+				price		: price,
+				point_value	: $("#point_value").val(),
+				coup_num	: coup_num,
+				total_point : total_point
+				
+			},
+			success	: function(data) {
+				data = data.trim();
+				if (data == "1") {
+					$(".wish-order-btn",opener.document).prop("title","O");
+					alert("주문 성공");
+					self.close();
+				}else{
+					$(".wish-order-btn",opener.document).prop("title","X");
+					alert("주문 실패");
+					self.close();
+				}
+			}
+		});
+	}else{
+		alert("주문 금액을 다시 확인해 주세요");
+	}
+});
+
+
+</script>
 </body>
 </html>

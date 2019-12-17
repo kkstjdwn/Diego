@@ -170,11 +170,16 @@ public class MemberManegeDAO {
 		return sql.selectOne(CART+"cartSelect",cart);
 	}
 	
-	public List<Cart> cartList(Cart cart) throws Exception{
-		return sql.selectList(CART+"cartList",cart);
+	public List<Cart> cartList(Cart cart,MPager pager) throws Exception{
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("cart", cart);
+		map.put("pager", pager);
+		return sql.selectList(CART+"cartList",map);
 	}
 	
-	
+	public int cartListCoint(Cart cart) throws Exception{
+		return sql.selectOne(CART+"cartListCount",cart);
+	}
 	
 	
 	

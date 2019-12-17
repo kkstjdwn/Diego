@@ -57,7 +57,6 @@
 			<button id="wish-cart-check">장바구니담기</button>
 			</span>
 			<span style="float: right;">
-			<button id="wish-order-all">전체상품주문</button>
 			<button id="wish-del-all">관심상품비우기</button>
 			</span>
 		</div>
