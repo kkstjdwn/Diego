@@ -21,65 +21,28 @@
 		</choose>
 	</sql>
 
+<!--리뷰첨부파일가져오기-->
+<select id="photoReview" parameterType="Integer" resultType="RevFilesVO" >
+select * from revFiles where fnum = (select min(fnum) from revFiles group by rev_num having rev_num= #{rev_num})
+</select>
 
-	<!--리뷰테이블 -->
-  <select id="revAll" parameterType="Pager" resultType="ReviewVO">
-  		select *from (select V.*, rownum R from
-		(select * from review
-  		 <include refid="bs"/>
-  		 order by rev_num desc) V)
-  		where R between #{startRow} and #{lastRow}
-  
-  </select> 
+<!-- 	select * from revFiles  -->
 
-  <!--포로리뷰이미지가져오기  -->
-	<select id="photoReview" parameterType="Pager" resultType="RevFilesVO">
-		select *from (select F.*, rownum R from
-		(select * from revFiles
-		order by fnum desc) F)
-		where R between #{startRow} and #{lastRow}
-	
-	</select>
-  
-  
-  
-  <!--상품테이블과리뷰테이블합친것  -->
-  <select id="reviewList" parameterType="Pager" resultMap="reviewL">
+
+
+
+
+  <!--(상품+이미지+리뷰+리뷰파일)리스트 -->
+  <select id="reviewList" parameterType="PPager" resultMap="reviewL">
 	select C.*, F.fname ,F.fnum, F.oname from
   	(select P.*, rownum R from
   		( select * from
  ( select A.*,B.pro_main ,V.id, V.rev_num, V.star, V.rev_contents,V.name,V.help, V.rev_date from product A, images B, review V
             where A.pro_num=B.pro_num and A.pro_num=V.pro_num)<include refid="bs"/> )P)C full outer join revfiles F on C.rev_num = F.rev_num where R between #{startRow} and #{lastRow}
-            order by C.rev_num desc
+            
   
   </select>
-  
-	<!--봉~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~인 -->  
-<!--   <resultMap type="reviewVO" id="reviewL1" > -->
-<!--   		<id property="rev_num" column="rev_num" /> -->
-<!-- 			<result property="id" column="id" />	 -->
-<!-- 			<result property="star" column="star" /> -->
-<!-- 			<result property="rev_contents" column="rev_contents" /> -->
-<!-- 			<result property="name" column="name" /> -->
-<!-- 			<result property="help" column="help" /> -->
-<!-- 			<result property="rev_date" column="rev_date" /> -->
-<!--  		 <collection property="revFilesVO" javaType="List" ofType="revFilesVO"> -->
-<!-- 			<id property="fnum" column="fnum" /> -->
-<!-- 			<result property="rev_num" column="rev_num"/> -->
-<!-- 			<result property="fname" column="fname" />	 -->
-<!-- 			<result property="oname" column="oname" /> -->
-<!-- 		</collection> -->
-<!--   </resultMap> -->
-<!--   <select id="reviewList1" parameterType="Pager" resultMap="reviewL1"> -->
-<!--    select * from           -->
-<!-- (select R.*, rownum N from  -->
-<!-- (select * from review full outer join revfiles using (rev_num) where pro_num=281 order by rev_num desc)R) -->
-<!-- where N between #{startRow} and #{lastRow} -->
-<!--   </select> -->
-  	<!--봉~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~인 -->  
-  
-  
-  
+   
   <resultMap type="ProductVO" id="reviewL">
 		<id property="pro_num" column="pro_num" />
 		<result property="cat_ref" column="cat_ref" />
@@ -105,25 +68,27 @@
 			<result property="rev_date" column="rev_date" />
 		</collection>
 		
-		<collection property="revFilesVO" javaType="List" ofType="revFilesVO">
+		<collection property="revFilesVO" javaType="List" ofType="revFilesVO">		
 			<id property="fnum" column="fnum" />
+			<result property="rev_num" column="rev_num" />
 			<result property="fname" column="fname" />	
 			<result property="oname" column="oname" />
 		
 		</collection>
 		
 		
+		
 	</resultMap>
    
   
   <!--리뷰 카운트-->
-  <select id="reviewCount" resultType="Integer" parameterType="Pager">
-  	select count(rev_num) from review
-  	<include refid="bs"/>
-  </select>
+<!--   <select id="reviewCount" resultType="Integer" parameterType="Pager"> -->
+<!--   	select count(rev_num) from review -->
+<!--   	<include refid="bs"/> -->
+<!--   </select> -->
   
-  <!-- 제품 카운트  -->
-  <select id="productCount" resultType="Integer" parameterType="Pager">
+  <!-- 프로덕트 카운트  -->
+  <select id="productCount" resultType="Integer" parameterType="PPager">
   	select count(pro_num) from product
   
   </select>
@@ -134,18 +99,14 @@
    insert into review(id, pro_num, rev_num,star,name,help,rev_date,rev_contents) values(
     #{id},#{pro_num},rev_seq.nextval,#{star},#{name},#{help},sysdate,#{rev_contents})
    </insert>
+
   	
- <!--리뷰 리스트2 페이징된리뷰불러오는거  -->
-<!--   <select id="reviewList" parameterType="Pager" resultType="ReviewVO"> -->
-<!--   		select *from -->
-<!--   		(select V.*, rownum R from -->
-<!--   		(select * from review -->
-<!--   		<include refid="bs"/> -->
-<!--   		order by rev_num desc )V) -->
-<!--   		where R between #{startRow} and #{lastRow} -->
-  		
-<!--   </select> -->
-  
+	<!--별점평균-->
+	<select id="totalStar" resultType="Double" parameterType="reviewVO">
+		select avg(star) from review where pro_num=#{pro_num}
+		
+	</select>
+
   	
 
   

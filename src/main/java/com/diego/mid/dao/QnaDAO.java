@@ -10,7 +10,9 @@ import org.springframework.stereotype.Repository;
 import com.diego.mid.model.product.ImagesVO;
 import com.diego.mid.model.product.ProductVO;
 import com.diego.mid.model.product.QnaVO;
-import com.diego.mid.util.Pager;
+import com.diego.mid.util.MPager;
+import com.diego.mid.util.PPager;
+
 
 @Repository
 public class QnaDAO {
@@ -27,14 +29,14 @@ public class QnaDAO {
 	}
 	
 	//리스트
-	public List<QnaVO> qnaList(Pager pager)throws Exception{
+	public List<QnaVO> qnaList(PPager pager)throws Exception{
 		
 		return sqlSession.selectList(NAMESPACE+"qnaList", pager);
 		
 	}
 	
 	//페이져카운트
-	public int qnaCount(Pager pager)throws Exception{
+	public int qnaCount(PPager pager)throws Exception{
 		
 		return sqlSession.selectOne(NAMESPACE+"qnaCount", pager);
 	}

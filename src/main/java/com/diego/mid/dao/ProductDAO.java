@@ -9,7 +9,9 @@ import org.springframework.stereotype.Repository;
 
 import com.diego.mid.model.product.ProductVO;
 import com.diego.mid.model.product.ReviewVO;
-import com.diego.mid.util.Pager;
+import com.diego.mid.util.MPager;
+
+
 
 @Repository
 public class ProductDAO {
@@ -28,7 +30,7 @@ public class ProductDAO {
 	
 
 	//list
-	public List<ProductVO> productList(Pager pager)throws Exception{
+	public List<ProductVO> productList(MPager pager)throws Exception{
 		
 		return sqlSession.selectList(NAMESPACE+"productList", pager);
 	}
@@ -41,7 +43,7 @@ public class ProductDAO {
 	}	
 	
 	//count
-	public int productCount(Pager pager)throws Exception {
+	public int productCount(MPager pager)throws Exception {
 		
 		return sqlSession.selectOne(NAMESPACE+"productCount", pager);
 	}

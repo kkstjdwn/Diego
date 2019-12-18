@@ -36,18 +36,18 @@ public class mapperTest extends TestAbstractCase{
 	}
 
 	//dao테스트
-	@Test
-	public void daoTest() throws Exception {
-		Pager pager = new Pager();
-		pager.makeRow();
-		pager.makePage(reviewDAO.reviewCount(pager));
-		List<ProductVO> ar = reviewDAO.reviewList(pager);
-		System.out.println(ar.size());
-		for (int i = 0; i < ar.size(); i++) {
-			ar.get(i).getReviewVO();
-		}
-		assertNotNull(ar);
-	}
+	//@Test
+//	public void daoTest() throws Exception {
+//		Pager pager = new Pager();
+//		pager.makeRow();
+//		pager.makePage(reviewDAO.reviewCount(pager));
+//		List<ProductVO> ar = reviewDAO.reviewList(pager);
+//		System.out.println(ar.size());
+//		for (int i = 0; i < ar.size(); i++) {
+//			ar.get(i).getReviewVO();
+//		}
+//		assertNotNull(ar);
+//	}
 	
 		
 	

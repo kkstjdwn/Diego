@@ -7,12 +7,14 @@
 
     <configuration>
   	<typeAliases >
+  		<typeAlias type="java.lang.Double" alias="Double"/>
   		<typeAlias type="java.lang.Integer" alias="Integer"/>
   		<typeAlias type="java.lang.String" alias="String"/>
   		<typeAlias type="java.util.Map" alias="Map"/>
   		<typeAlias type="java.util.List" alias="List"/>
-  		
+  			<typeAlias type="com.diego.mid.util.MPager" alias="MPager"/>
   		<typeAlias type="com.diego.mid.util.Pager" alias="Pager"/>
+  		<typeAlias type="com.diego.mid.util.PPager" alias="PPager"/>
   		<typeAlias type="com.diego.mid.model.board.NoticeVO" alias="NoticeVO"/>
   		<typeAlias type="com.diego.mid.model.board.FAQVO" alias="FAQVO"/>
   		<typeAlias type="com.diego.mid.model.admin.AdminVO" alias="AdminVO"/>

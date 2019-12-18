@@ -18,8 +18,9 @@ import org.springframework.web.servlet.ModelAndView;
 import com.diego.mid.model.product.ProductVO;
 import com.diego.mid.model.product.ReviewVO;
 import com.diego.mid.service.ProductService;
+import com.diego.mid.util.MPager;
 
-import com.diego.mid.util.Pager;
+
 
 @Controller
 @RequestMapping("/product/**")
@@ -90,7 +91,7 @@ public class ProductController {
 	
 	//상품리스트
 	@RequestMapping(value = "productList", method = {RequestMethod.GET, RequestMethod.POST})
-	private ModelAndView productList(Pager pager)throws Exception {
+	private ModelAndView productList(MPager pager)throws Exception {
 		
 		List<ProductVO>ar= productService.productList(pager);
 		

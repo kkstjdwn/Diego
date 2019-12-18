@@ -18,7 +18,9 @@ import com.diego.mid.model.product.ProductVO;
 import com.diego.mid.model.product.RevFilesVO;
 import com.diego.mid.model.product.ReviewVO;
 import com.diego.mid.util.FileSaver;
-import com.diego.mid.util.Pager;
+import com.diego.mid.util.MPager;
+
+
 import com.diego.mid.util.ProductFile;
 
 @Service
@@ -80,10 +82,10 @@ public class ProductService {
 	}
 
 	//상품 리스트
-	public List<ProductVO>productList(Pager pager)throws Exception{
+	public List<ProductVO>productList(MPager pager)throws Exception{
 
-		pager.makeRow();
-		pager.makePage(productDAO.productCount(pager));
+		pager.rowMake();
+		pager.makePager(productDAO.productCount(pager));
 		//System.out.println(productDAO.productCount(pager));
 
 		return productDAO.productList(pager);

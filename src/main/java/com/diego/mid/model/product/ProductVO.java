@@ -21,7 +21,16 @@ public class ProductVO {
 	private String pro_vital;//상품 필수옵션
 	private String sumnale;
 	private String pro_main;
+	private Double totalstar;
 	
+	public Double getTotalstar() {
+		return totalstar;
+	}
+
+	public void setTotalstar(Double totalstar) {
+		this.totalstar = totalstar;
+	}
+
 	private List<ReviewVO> reviewVO;
 	
 	private List<RevFilesVO>revFilesVO;

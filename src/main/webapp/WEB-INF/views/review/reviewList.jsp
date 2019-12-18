@@ -27,28 +27,32 @@
 			<p><img src="../resources/product/images/${review.pro_main}"	style="width: 70%; height: 20%;"></p>
 			
 			<br>
+			<p>상품명: ${review.pro_name}</p>
+			<p>가격: ${review.pro_price}원</p>
+			<p>상품넘버: ${review.pro_num}</p>
+			<p>평균평점: ${review.totalstar}</p>
+			<hr>
 			
-			<p>${review.pro_name}</p>
-			<p>${review.pro_price}</p>
-			<p>${review.pro_num}</p>
 			<c:forEach items="${review.reviewVO}" var="rev" varStatus="status" begin="0" end="2" step="1">
-				<p style="color: red;">${rev.rev_contents}</p>
-				<p>${rev.star}</p>
-				<p>${rev.rev_num}</p>
-				<p>${rev.rev_date}</p>
-
-				<c:forEach items="${review.revFilesVO}" var="ref" varStatus="r">
-<%-- 					<c:if test="${rev.rev_num eq ref.rev_num}"> --%>
-								<p>${ref.rev_num}</p>
-<%-- 						<p>${ref.fname}</p> --%>
-<%-- 					</c:if> --%>
-
+			
+<%-- 				<p>${review.revFilesVO[status.index].fname}</p> --%>
+			
+				<c:forEach items="${review.revFilesVO}" var="ref" varStatus="status2" >
+						
+						<c:if test="${rev.rev_num eq ref.rev_num and ref.fnum ne 0}" >
+							
+							<img src="../resources/product/photoReview/${ref.fname}" style="width: 70px; height: 70px;">
+							
+						</c:if>				
 				</c:forEach>
-
+			
+				
+				<p style="color: red;">${rev.rev_contents}</p>
+				<hr>
+				
 			</c:forEach>
 
-			<p>-----------------------------------------------------------------------------------------------</p>
-			<hr>
+			
 
 		</c:forEach>
 

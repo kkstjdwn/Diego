@@ -11,6 +11,8 @@ import com.diego.mid.dao.ReviewDAO;
 import com.diego.mid.model.product.ProductVO;
 import com.diego.mid.model.product.RevFilesVO;
 import com.diego.mid.model.product.ReviewVO;
+import com.diego.mid.util.MPager;
+import com.diego.mid.util.PPager;
 import com.diego.mid.util.Pager;
 
 @Service
@@ -19,52 +21,36 @@ public class ReviewService {
 	@Inject 
 	private ReviewDAO reviewDAO;
 	
-	
+
 	//리뷰 인서트
 	public int reviewWrite(ReviewVO reviewVO)throws Exception{
 		return reviewDAO.reviewWrite(reviewVO);
 	}
 	
-	//상품+리뷰리스트
+	//(상품+이미지+리뷰+리뷰파일)리스트
 	
-	 public List<ProductVO> reviewList(Pager pager)throws Exception{
-	 pager.makeRow(); 
+	 public List<ProductVO> reviewList(PPager pager)throws Exception{
+	 pager.makeRow();
 	 pager.makePage(reviewDAO.productCount(pager));
-	 return reviewDAO.reviewList(pager); }
-	 
-	
-
-	//리뷰리스트가져오기
-	public List<ReviewVO>revAll(Pager pager)throws Exception{
+	 return reviewDAO.reviewList(pager); 
+	 }
+	 	
+	//리뷰첨부파일가져오기
+	public RevFilesVO photoReview(Integer rev_num)throws Exception{
 		
-		return reviewDAO.revAll(pager);
+		return reviewDAO.photoReview(rev_num);
+	} 
+	 
+	//별점 평균
+	public double totalStar(ReviewVO reviewVO)throws Exception {
+		
+		return reviewDAO.totalStar(reviewVO);
 	}
-	
-	//포토리뷰이미지가져오기
-	public List<RevFilesVO>photoReview(Pager pager)throws Exception{
-		return reviewDAO.photoReview(pager);
-	}
-	
-	
-	//리뷰 리스트2페이징된답글리스트가져오기
-//	public List<ReviewVO> reviewList(Pager pager)throws Exception{
-//		
-//		pager.makeRow();
-//		pager.makePage(reviewDAO.reviewCount(pager));
-//		return reviewDAO.reviewList(pager);
-//	}
-	
-	
-	
 	//리뷰 카운트
 //    public int reviewCount(Pager pager)throws Exception {
 //    	
 //    	return reviewDAO.reviewCount(pager);
 //    }
 
-    //리뷰 카운트
-    public int productCount(Pager pager)throws Exception {
-    	
-    	return reviewDAO.productCount(pager);
-    }
+   
 }

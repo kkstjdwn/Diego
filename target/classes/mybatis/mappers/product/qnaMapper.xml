@@ -36,7 +36,7 @@
 	
 
 	<!--리스트 -->
-	<select id="qnaList" parameterType="Pager" resultType="QnaVO">
+	<select id="qnaList" parameterType="PPager" resultType="QnaVO">
 		select * from
 		(select Q.* , rownum R from
 		(select * from qna
@@ -47,7 +47,7 @@
 
 
 	<!--count -->
-	<select id="qnaCount" resultType="Integer" parameterType="Pager">
+	<select id="qnaCount" resultType="Integer" parameterType="PPager">
 		select count(qna_num) from qna
 		<include refid="sw"></include>
 	</select>

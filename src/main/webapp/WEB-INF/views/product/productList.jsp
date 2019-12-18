@@ -62,7 +62,8 @@
 						<td>${product.pro_size}</td>
 						<td>${product.pro_vital}</td>
 						<td>${product.pro_date}</td>
-						<td><a href="./productUpdate?pro_num=${product.pro_num}"><input type="button" value="정보 수정" ></a></td>
+						<td><a href="./productUpdate?pro_num=${product.pro_num}">
+						<input type="button" value="정보 수정" ></a></td>
 					</tr>
 
 				</c:forEach>

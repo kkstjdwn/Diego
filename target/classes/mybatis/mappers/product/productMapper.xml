@@ -24,7 +24,7 @@
 	</sql>
 
 	<!--list -->
-	<select id="productList" parameterType="Pager"
+	<select id="productList" parameterType="MPager"
 		resultType="ProductVO">
 	select * from
 		(select P.*, rownum R from
@@ -40,8 +40,7 @@
 	</select>
 
 	<!--count -->
-	<select id="productCount" resultType="Integer"
-		parameterType="Pager">
+	<select id="productCount" resultType="Integer" parameterType="MPager">
 		select count(pro_num) from product
 		<include refid="sw"></include>
 	</select>
