@@ -8,7 +8,9 @@ import org.springframework.stereotype.Service;
 
 import com.diego.mid.dao.AdminDAO;
 import com.diego.mid.model.admin.AdminVO;
+import com.diego.mid.model.admin.ProManageVO;
 import com.diego.mid.model.member.MemberVO;
+import com.diego.mid.model.product.ProductVO;
 import com.diego.mid.util.Pager;
 
 @Service
@@ -57,5 +59,17 @@ public class AdminService {
 	public int memberUpdate(MemberVO memberVO)throws Exception{
 		return adminDAO.memberUpdate(memberVO);
 	}
+	
+	//proManageList 
+	public List<ProManageVO> proManageList(Pager pager)throws Exception{
+		pager.makeRow();
+		pager.makePage(adminDAO.productCount(pager));
+		return adminDAO.proManageList(pager);
+	}
+	// 상품삭제
+	public int productDelete(ProManageVO proManageVO)throws Exception {
+		return adminDAO.productDelete(proManageVO);
+	}
 
+	
 }

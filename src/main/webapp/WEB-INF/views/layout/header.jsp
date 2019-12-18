@@ -165,7 +165,7 @@
 						<span><a href="/mid/member/memberLogin">로그인</a></span> <span><a href="/mid/member/memberInsert">회원가입</a></span>
 					</div>
 					<div id="topcart">
-						<img src="/mid/resources/images/cart.png">장바구니
+						<img src="/mid/resources/images/cart.png">장바구니 (0)
 					</div>
 					<div class="myhsop">나의 쇼핑</div>
 					<div id="topsearch">

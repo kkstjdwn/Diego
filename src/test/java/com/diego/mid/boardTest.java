@@ -13,6 +13,7 @@ import org.junit.Test;
 import com.diego.mid.dao.AdminDAO;
 import com.diego.mid.dao.FAQDAO;
 import com.diego.mid.dao.NoticeDAO;
+import com.diego.mid.model.admin.ProManageVO;
 import com.diego.mid.model.board.FAQVO;
 import com.diego.mid.model.board.NoticeVO;
 import com.diego.mid.model.member.MemberVO;
@@ -31,12 +32,7 @@ public class boardTest extends TestAbstractCase {
 	@Inject	
 	private SqlSession session;
 	
-	//@Test
-	public void sessionTest() throws Exception{
-		NoticeVO noticeVO = new NoticeVO();
-		noticeVO.setNot_num(2);
-		assertNotNull(session.selectOne("noticeMapper.noticeSelect", noticeVO));
-	}
+
 		
 	//@Test
 	public void noticeSelect()throws Exception {

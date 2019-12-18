@@ -8,7 +8,17 @@ public class Pager {
 	private String kind; //검색종류
 	private String search; //검색어
 	private String fcat_code;
+	private String cat_ref;
 	
+
+	public String getCat_ref() {
+		if( cat_ref == null) {
+			cat_ref="%%";}
+		return cat_ref;
+	}
+	public void setCat_ref(String cat_ref) {
+		this.cat_ref = cat_ref;
+	}
 
 	//DB
 	private Integer startRow;//시작 rownum

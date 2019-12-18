@@ -5,15 +5,20 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.diego.mid.model.admin.AdminVO;
+import com.diego.mid.model.admin.ProManageVO;
 import com.diego.mid.model.member.MemberVO;
+import com.diego.mid.model.product.ProductVO;
 import com.diego.mid.service.AdminService;
 import com.diego.mid.util.Pager;
 
@@ -132,6 +137,46 @@ public class AdminController {
 		return mv;
 	}
 	
+	//proManageList
+	@GetMapping("proManageList")
+	public ModelAndView proManageList(Pager pager)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		List<ProManageVO> ar = adminService.proManageList(pager);
+		mv.addObject("list", ar);
+		mv.addObject("pager", pager);
+		mv.setViewName("admin/proManageList");
+		return mv;
+	}
 	
+	
+	//상품삭제
+		@RequestMapping(method =  {RequestMethod.GET, RequestMethod.POST}, value = "productDelete")
+		public ModelAndView productDelete(ProManageVO proManageVO, String[] num)throws Exception {
+			ModelAndView mv= new ModelAndView();
+
+			int check=0;
+			
+			int result =0;
+			
+			for(String string : num) {
+				
+				proManageVO.setPro_num(Integer.parseInt(string));
+				check = adminService.productDelete(proManageVO);
+				Thread.sleep(200);
+				if(check==1) {
+					result++;
+				}
+			}
+			if(result == num.length) {
+				result =1;
+			}
+			
+			
+			mv.addObject("msg", result);
+			
+			mv.setViewName("common/common_ajax_result");
+			
+			return mv;
+		}
 	
 }

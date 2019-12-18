@@ -18,6 +18,7 @@
   		<typeAlias type="com.diego.mid.model.admin.AdminVO" alias="AdminVO"/>
   		<typeAlias type="com.diego.mid.model.admin.DeliveryVO" alias="DeliveryVO"/>
   		<typeAlias type="com.diego.mid.model.board.FAQCategoryVO" alias="FAQCategoryVO"/>
+  		<typeAlias type="com.diego.mid.model.admin.ProManageVO" alias="ProManageVO"/>
   		
   		<typeAlias type="com.diego.mid.model.member.MemberVO" alias="memberVO"/>
   		<typeAlias type="com.diego.mid.model.member.Coupon" alias="coupon"/>

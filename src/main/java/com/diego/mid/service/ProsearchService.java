@@ -20,7 +20,6 @@ public class ProsearchService {
 
 		pager.makeRow();
 		pager.makePage(prosearchDAO.productCount(pager));
-		System.out.println(prosearchDAO.productCount(pager));
 
 		return prosearchDAO.productList(pager);
 	}

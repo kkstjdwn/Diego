@@ -8,7 +8,9 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.diego.mid.model.admin.AdminVO;
+import com.diego.mid.model.admin.ProManageVO;
 import com.diego.mid.model.member.MemberVO;
+import com.diego.mid.model.product.ProductVO;
 import com.diego.mid.util.Pager;
 
 @Repository
@@ -59,5 +61,20 @@ public class AdminDAO {
 	public int memberUpdate(MemberVO memberVO)throws Exception{
 		return session.update(NAMESPACE+"memberUpdate", memberVO);
 	}
+	
+	//product Count
+	public int productCount(Pager pager)throws Exception{
+		return session.selectOne(NAMESPACE+"productCount", pager);
+	}
+	//proManage List
+	public List<ProManageVO> proManageList(Pager pager)throws Exception{
+		return session.selectList(NAMESPACE+"proManageList", pager);
+	}
+	
+	//product delete
+		public int productDelete(ProManageVO proManageVO)throws Exception{
+			return session.delete(NAMESPACE+"productDelete", proManageVO);
+			
+		}
 	
 }

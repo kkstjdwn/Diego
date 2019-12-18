@@ -144,14 +144,18 @@ strong {
 }
 
 #frm{
-	padding: 20px 0 20px 10px;
     color: #2e2e2e;
     font-size: 12px;
     display: block;
 }
 .outsearch{
-	margin: 0 0 10px;
-    padding: 0 0 0 7px;
+	color: #2e2e2e;
+    font-size: 12px;
+    position: absolute;
+    top: -5px;
+    right: 0;
+    padding: 0!important;
+    display: block;
 }
 
 .searchop {
@@ -261,3 +265,117 @@ button img{
 	height: 100px;
 }
 
+.form-group select {
+	height: 30px;
+    appearance: none;
+    padding-left: 5px;
+    margin-bottom: 10px;
+    border: 0;
+    border-bottom: 1px solid #000;
+    font-weight: bold;
+    cursor: pointer;
+    margin: 0 2px 0 0;
+    width: 72px;
+    
+}
+
+#outcloth{
+	display: inline-block;
+}
+#cloth{
+	display: inline-block;
+}
+
+#kind{
+	display: inline-block;
+}
+
+#catat{
+	display: inline-block;
+}
+
+#kind select {
+	height: 30px;
+    appearance: none;
+    padding-left: 5px;
+    margin-bottom: 10px;
+    border: 0;
+    border-bottom: 1px solid #000;
+    font-weight: bold;
+    cursor: pointer;
+    margin: 0 2px 0 0;
+    width: 100px;
+    display: inline-block;
+}
+
+.inputbox{
+    border-bottom: 1px solid #000;
+    display: inline-block;
+    margin-bottom: 10px;
+    vertical-align: top;
+}
+.inputbox input {
+    height: 29px;
+    line-height: 29px;
+    padding: 0 4px;
+    border: 0;
+}
+
+.form-group .btn {
+	background: none;
+}
+.gRight {
+    float: right;
+    text-align: right;
+}
+
+.typeBG button a {
+ 	
+    border-radius: 100%;
+    display: inline-block;
+    position: relative;
+    z-index: 1;
+    
+    
+}
+
+.typeBG button{
+	background-color : black;
+	color: white;
+	width: 70px;
+	height: 50px;
+	cursor: pointer;
+}
+
+.faqMenu {
+    margin-bottom: 25px;
+    position: relative;
+}
+.faqMenu ul li {
+    margin-right: 25px;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: normal;
+}
+.faqMenu ul li a {
+    font-size: 13px;
+    padding-bottom: 3px;
+}
+#protable{
+	border-top: 2px solid #000 !important;
+}
+
+.lala{
+	border-left: none !important;
+	border-right: none !important;
+}
+
+#select1{
+	width: 100px !important;
+	display: inline-block;
+}
+
+#kinds{
+	width: 100px !important;
+	display: inline-block;
+}

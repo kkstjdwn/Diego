@@ -79,7 +79,7 @@ public class ProductService {
 	}
 
 
-	// 상품삭제
+	
 	public  int productDelete(ProductVO productVO)throws Exception {
 
 		return productDAO.productDelete(productVO);

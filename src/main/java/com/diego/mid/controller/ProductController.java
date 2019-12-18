@@ -87,7 +87,40 @@ public class ProductController {
 	
 	// 여러가지컨트롤러중 내가 원하는 일을 하는 컨트롤을 고른다.
 	// 그걸 url과 파라미터를 받아 행동을 하는데..
-	
+	@GetMapping("selectCloth2")
+	public void selectCloth2(Model model, String kind)throws Exception {
+		
+		
+		int result=Integer.parseInt( kind);
+		
+		if(result==0) {
+			String [] kinds = {"선택하세요","all"};
+			model.addAttribute("kind", kinds);
+			model.addAttribute("result", "");	
+		}
+		
+		if(result==100) {
+			String [] kinds = {"선택하세요","wallet","bag"};
+			model.addAttribute("kind", kinds);
+			model.addAttribute("result", result);	
+		}
+		else if(result==200) {
+			String [] kinds = {"선택하세요","face","body"};
+			model.addAttribute("kind", kinds);
+			model.addAttribute("result", result);
+			
+		}else if(result==300) {
+			String [] kinds = {"선택하세요","tshirts","shirts","pants","suits"};
+			model.addAttribute("kind", kinds);
+			model.addAttribute("result", result);
+		}else if(result==400) {
+			String [] kinds = {"선택하세요","underwear"};
+			model.addAttribute("kind", kinds);
+			model.addAttribute("result", result);
+			
+		}
+
+	}
 	
 	//상품리스트
 	@RequestMapping(value = "productList", method = {RequestMethod.GET, RequestMethod.POST})
