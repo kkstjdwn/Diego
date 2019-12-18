@@ -659,20 +659,39 @@ public class MemberManageController {
 	}
 	
 	@PostMapping("cartDelete")
-	public ModelAndView cartDelete(Cart cart) throws Exception{
+	public ModelAndView cartDelete(Cart cart,String[] num) throws Exception{
 		ModelAndView mv = new ModelAndView();
-		int result = service.cartDelete(cart);
-		String msg = "0";
-		if (result > 0) {
-			msg ="1";
+		
+		int check = 0;
+		int result = 0;
+		for (String string : num) {
+			cart.setCart_num(Integer.parseInt(string));
+			check = service.cartDelete(cart);
+			Thread.sleep(200);
+			if (check == 1) {
+				result++;
+			}
 		}
-		mv.addObject("msg", msg);
+		if (result == num.length) {
+			result = 1;
+		}
+		
+		mv.addObject("msg", result);
 		mv.setViewName("common/common_ajax_result");
 		
 		return mv;
 	}
 	
-	
+	@PostMapping("cartClean")
+	public ModelAndView cartClean(Cart cart) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		
+		int result = service.cartClean(cart);
+		
+		mv.addObject("msg", result);
+		mv.setViewName("common/common_ajax_result");
+		return mv;
+	}
 	
 	//@@@@@@@@@@@@@CART@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 }

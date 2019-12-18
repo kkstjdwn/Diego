@@ -181,7 +181,9 @@ public class MemberManegeDAO {
 		return sql.selectOne(CART+"cartListCount",cart);
 	}
 	
-	
+	public int cartClean(Cart cart) throws Exception{
+		return sql.delete(CART+"cartClean",cart);
+	}
 	
 	
 	

@@ -9,7 +9,7 @@ public class Cart {
 	private Integer pro_price;
 	private Integer pro_count;
 	private String delivery;
-	private Integer dilivery_cost;
+	private String delivery_cost;
 	
 	public Integer getCart_num() {
 		return cart_num;
@@ -59,12 +59,13 @@ public class Cart {
 	public void setDelivery(String delivery) {
 		this.delivery = delivery;
 	}
-	public Integer getDilivery_cost() {
-		return dilivery_cost;
+	public String getDelivery_cost() {
+		return delivery_cost;
 	}
-	public void setDilivery_cost(Integer dilivery_cost) {
-		this.dilivery_cost = dilivery_cost;
+	public void setDelivery_cost(String delivery_cost) {
+		this.delivery_cost = delivery_cost;
 	}
+	
 	
 	
 	

@@ -84,7 +84,7 @@
 				
 				<p><fmt:formatNumber type="number" value="${point.total_point }"></fmt:formatNumber> 포인트</p>
 				<p>
-					<input type="text" style="width: 165px;" value="0" id="point_value">
+					<input type="number" min="0" style="width: 165px;" value="0" id="point_value">
 				</p>
 				<p>
 					<select style="width: 58%;" id="coupon">
@@ -208,8 +208,16 @@ $("#order-insert").click(function() {
 		alert("주문 금액을 다시 확인해 주세요");
 	}
 });
+	
+	$("#point_value").change(function() {
+		if ($(this).val()==0) {
+			$(this).prop("value",0);
+		}
+	});
 
-
+	function numberOnly(){
+		
+	}
 </script>
 </body>
 </html>

@@ -34,4 +34,9 @@
  		where r between #{pager.startRow} and #{pager.lastRow}
  	</select>
  	
+ 	<delete id="cartClean" parameterType="cart">
+ 	
+ 		delete cart where id = #{id}
+ 	
+ 	</delete>
   </mapper>

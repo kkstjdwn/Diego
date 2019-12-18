@@ -820,7 +820,7 @@ footer{
 	width: 99.5%;
 	height: 36px;
 	border: 1px solid #eaeaea;
-	background: #d7d5d5;
+	background: #f6f6f6;
 	margin: 20px auto 0;
 }
 .cart-table-title p{
@@ -842,6 +842,16 @@ footer{
 
 .cart-table th{
 	height: 18px;
+	line-height: 1.5;
+	font-size: 12px;
+	padding: 14px 0 15px;
+	border: 1px solid #eaeaea;
+	color: #353535;
+	vertical-align: middle;
+}
+
+.cart-table td{
+	height: 117px;
 	line-height: 1.5;
 	font-size: 12px;
 	padding: 14px 0 15px;
@@ -886,11 +896,299 @@ footer{
 	width: 98px;
 }
 
-.cart-btn{
+.cart-btn-group{
 	width:110px;
 }
 
 /*ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ */
+
+.cart-btn{
+	cursor: pointer;
+	text-align: center;
+	font-size: 11px;
+	border: none;
+	height:27px;
+	width: 84px;
+	color:#555555;
+	background:white;
+	vertical-align: middle;
+	border-radius: 1px;
+	margin-bottom: 5px;
+	border: 1px solid #eaeaea;
+}
+
+.cart-order-btn{
+	background: #555555;
+	border:1px solid #555555;
+	color: white;
+}
+
+
+.cart-order-btn:hover{
+	background: white;
+	color: #555555;
+	border: 1px solid #555555;
+	font-weight: bold;
+}
+
+.cart-wish-btn:hover{
+	font-weight: bold;
+	border: 1px solid #555555; 
+}
+
+.cart-del-btn:hover{
+	font-weight: bold;
+	border: 1px solid #555555; 
+}
+
+.cart-warning{
+	text-align:left;
+	border: 1px solid #eaeaea;
+	border-left: 0;
+	border-right: 0;
+	width: 99%;
+	height: 32px;
+	margin: 20px auto 15px;
+	font-size: 11px;
+	color: #555555;
+}
+
+/*ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ*/
+
+.cart-btn-menu1{
+	width: 99%;
+	margin: auto;
+}
+
+.cart-btn-menu2{
+	clear:both;
+	width: 99%;
+	margin: auto;
+}
+
+#cart-del-check{
+	list-style: none;
+	font-family: Montserrat,Nanum Barun Gothic,sans-serif;
+	line-height: 20px;
+	cursor: pointer;
+	text-align: center;
+	font-size: 12px;
+	width: 100px;
+	background: white;
+	margin: 0 5px 0 10px;
+	border: 1px solid #eaeaea;
+	color: #555555;
+	padding: 5px 0 6px 0;
+}
+#cart-del-check:hover{
+	font-weight: bold;
+	border: 1px solid #555555;
+}
+
+#cart-wish-check{
+	list-style: none;
+	font-family: Montserrat,Nanum Barun Gothic,sans-serif;
+	line-height: 20px;
+	cursor: pointer;
+	text-align: center;
+	font-size: 12px;
+	width: 100px;
+	background: #555555;
+	margin: 0 5px 0 10px;
+	border: 1px solid #555555;
+	color: white;
+	padding: 5px 0 6px 0;
+}
+#cart-wish-check:hover{
+	font-weight: bold;
+	color:#555555;
+	background:white;
+	border: 1px solid #555555;
+}
+
+
+
+.cart-big-btn{
+	list-style: none;
+	font-family: Montserrat,Nanum Barun Gothic,sans-serif;
+	line-height: 20px;
+	cursor: pointer;
+	text-align: center;
+	font-size: 13px;
+	font-weight: bold;
+	width: 120px;
+	background: white;
+	margin: 0 5px;
+	border: 3px solid #eaeaea;
+	color: #555555;
+	padding: 10px 0 12px 0;
+}
+
+#cart-del-all{
+	float: right;
+}
+
+#cart-del-all:hover{
+	border: 3px solid #555555;
+} 
+
+#cart-order-all{
+	background: #555555;
+	color: white;
+	border-color: #555555;
+}
+
+#cart-order-all:hover{
+	border-color: #eaeaea;
+}
+
+#cart-order-check:hover{
+	border-color: #555555;
+}
+
+#cart-shoping:hover{
+	border-color: #555555;
+}
+
+/*ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ*/
+
+.cart-check-view{
+	width: 99%;
+	clear: both;
+	margin: 30px auto 20px;
+	display: none;
+}
+
+.cart-view-table{
+	margin: 0;
+	margin: 3px auto 0;
+	padding: 0;
+	font-size: 14px;
+	border-collapse: collapse;
+}
+
+.cart-view-table th{
+	height: 39px;
+	padding: 14px 0 15px;
+	border: 1px solid #eaeaea;
+	border-top: 2px solid black;
+	color: #353535;
+	font-weight:bold;
+	vertical-align: middle;
+}
+
+.cart-view-pro{
+	width: 272px;
+}
+
+.cart-view-deli{
+	width: 304px;
+}
+.cart-view-price{
+	width: 1027px;
+}
+
+.cart-view-table td{
+	height:34px;
+	line-height: 1.5;
+	font-size: 23px;
+	padding: 14px 0 15px;
+	border: 1px solid #eaeaea;
+	color: #353535;
+	font-weight:bold;
+	vertical-align: middle;
+	border-bottom: 2px solid black;
+}
+
+/*ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ*/
+
+
+.cart-using-info{
+	width:99%;
+	margin-top: 40px; 
+}
+
+.cart-using-table{
+	width: 98%;
+	margin: 0;
+	padding: 0;
+	font-size: 12px;
+	margin: 0 auto;
+	border-collapse: collapse;
+	
+}
+
+
+.cart-using-table th{
+	height: 18px;
+	padding: 14px 10px 15px;
+	background: #eaeaea;
+	border:1px solid #eaeaea;
+	color: #555555;
+	text-align: left;
+}
+
+.cart-using-table td{
+	color:#404040;
+	height: 250px;
+	padding: 0 9px 12px;
+	text-align: left;
+	border:1px solid #eaeaea;
+}
+
+.cart-using-table td h4{
+	color: #707070;
+}
+
+.cart-using-table td p{
+	margin-bottom: 3px;
+}
+
+.cart-using-sp{
+	border: none;
+	color: white;
+	font-weight:bold;
+	background:#bababa;
+	padding: 1px 3px 1px 3px;
+	font-size: 11px;
+	border-radius: 3px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

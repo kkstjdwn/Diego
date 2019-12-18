@@ -213,7 +213,9 @@ public class MemberManageService {
 		return dao.cartList(cart,pager);
 	}
 	
-	
+	public int cartClean(Cart cart) throws Exception{
+		return dao.cartClean(cart);
+	}
 	
 	
 	

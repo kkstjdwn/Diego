@@ -12,7 +12,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <header></header>
 <section>
-<div class="main" style="background: purple; min-height: 1325px;">
+<div class="main" style="min-height: 1325px;">
 <!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
 <div class="left">
 	<div class="left-menu">
@@ -40,9 +40,9 @@
 	</div>
 </div>
 <!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
-<div class="right" style="background: orange;">
+<div class="right">
 	<h1 class="right-h1" style="color: #353535;">장바구니</h1>
-	<div class="cart-mem-info" style="background: orange;">
+	<div class="cart-mem-info">
 		<div class="cart-info-h1">
 			<p style="color: #404040; font-size: 12px; line-height: 71px; font-weight: bold;">혜택정보</p>
 		</div>
@@ -53,17 +53,18 @@
 			<p style="margin-top: 10px;"><span style="margin-right: 30px;">가용 적립금 : <strong><fmt:formatNumber type="number">${point.total_point }</fmt:formatNumber></strong>원</span> <span>쿠폰 : <strong>${coupon.size() }</strong>&nbsp;개 </span> </p>
 		</div>
 	</div>
-	<div class="cart-ajax" style="background: maroon;">
+	<div class="cart-ajax">
 		<div class="cart-ajax-bar">
 			<ul style="border-bottom:1px solid #cbcdce; width: 100%; height: 42px;">
 			<li><button id="all-list" class="btn-list-sel">국내배송상품(${cartList.size()})</button></li>
 			</ul>
 		</div>
+<!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
 		<div class="cart-ajax-table">
 			<div class="cart-table-title">
 				<p>일반상품(${cartList.size()})</p>
 			</div>
-			<div style="width: 100%; text-align: center;">
+			<div class="cart-table-div" style="width: 100%; text-align: center;">
 				<table class="cart-table">
 					<thead>
 						<tr>
@@ -76,35 +77,358 @@
 							<th class="cart-deli">배송구분</th>
 							<th class="cart-deli-cost">배송비</th>
 							<th class="cart-sum">합계</th>
-							<th class="cart-btn" style="border-right: 0;">선택</th>
+							<th class="cart-btn-group" style="border-right: 0;">선택</th>
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach items="${cartList }" var="cart" varStatus="c">
+						<c:forEach items="${cartList }" var="cart" varStatus="i">
 							<tr>
-								<td class="cart-checkBox">
-									<input type="checkbox" class="cartCheck cart${i.index }" value="${cart.cart_num }">
+								<td class="cart-checkBox" style="border-left:0;">
+									<input type="checkbox" class="cartCheck cart${i.index }" value="${cart.cart_num }" title="${i.index }">
 								</td>
-								<td>
-									<img alt="장바구니 사진" src="../../resources/cart/${cart.pro_image }">
+								<td class="cart-image">
+									<img alt="장바구니 사진" src="../../resources/product/orders/c69a7cd57f808fa622d80fd6a2551b2c.jpg" height="116px" width="80px">
 								</td>
-								<td>
+								<td class="cart-pro_info" style="text-align: left;">
+									<a href="#" style="font-weight: bold; color: black; text-decoration: none; margin-left: 10px;">${cart.pro_info } </a>
+								</td>
+								<td class="cart-price">
+									<input type="hidden" class="cart-pro_price${i.index }" value="${cart.pro_price }">
+									<strong><fmt:formatNumber value="${cart.pro_price }" type="number"></fmt:formatNumber>원</strong>
+								</td>
+								<td class="cart-count">
+									<p style="position: relative;">
+									<input type="number" min="1" class="cart-pro_count${i.index } count-check" value="1" style="height: 21px; width: 29px; border-radius: 3px; line-height: 21px; border: 1px solid #eaeaea;">
+									</p>
+								</td>
+								<td class="cart-point" >
+									<span style="background: #b88cc5; color: white; border: 0; border-radius: 3px; font-size: 8px; height: 12px;">적</span>
+									<fmt:formatNumber value="${ps * 0.01 * cart.pro_price}" type="number"></fmt:formatNumber>원
+								</td>
+								<td class="cart-deli">${cart.delivery }</td>
+								<td class="cart-deli-cost">${cart.delivery_cost }</td>
+								<td class="cart-sum">
+									<strong><fmt:formatNumber value="${cart.pro_price }" type="number"></fmt:formatNumber>원</strong>
+								</td>
+								<td class="cart-btn-group" style="border-right: 0;">
+									<button type="button" class="cart-btn cart-order-btn" value="${cart.pro_num }" title="X">주문하기</button><br>
+									<button type="button" class="cart-btn cart-wish-btn" value="${cart.pro_num }">관심상품등록</button><br>
+									<button type="button" class="cart-btn cart-del-btn" value="${cart.cart_num }">삭제</button><br>
 								</td>
 							
 							
 							</tr>
 						
 						</c:forEach>
-					
 					</tbody>
 				</table>
+				<h1 style="margin:20px 20px 0; text-align: right; font-size: 13px; color: #555555;">상품구매금액 <span class="cart-sum-sp" style="color: black;"></span>원 + 배송비 0 (무료) = 합계 : <strong style="font-size: 17px; color: black;"><span class="cart-sum-sp" ></span></strong>원 </h1>
+				<div class="cart-warning">
+					<p style="margin-left: 33px; padding: 8px 0;">
+					<span style="border: 1px solid #eaeaea; color: red; padding: 1px 4px; font-size: 11px; border-radius: 3px;">!</span>&nbsp;할인 적용 금액은 주문서작성의 결제예정금액에서 확인 가능합니다.</p>
+				</div>
+				<div class="cart-btn-menu1" style="text-align: left;">
+					<button id="cart-del-check">삭제하기</button>
+					<button id="cart-wish-check">관심상품등록</button>
+					<button id="cart-del-all" class="cart-big-btn">장바구니 비우기</button>
+				</div>
+<!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
+				<div class="cart-check-view" >
+					<table class="cart-view-table">
+						<thead>
+							<tr>
+								<th class="cart-view-pro" style="border-left: 0;">총 상품금액</th>
+								<th class="cart-view-deli">총 배송비</th>
+								<th class="cart-view-price" style="border-right: 0;">결제예정금액</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td class="cart-view-pro" style="border-left: 0;"><span class="cart-view-sp">0</span>원</td>
+								<td class="cart-view-deli">+ 0원</td>
+								<td class="cart-view-price" style="border-right: 0;"><span class="cart-view-sp2">0</span>원</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+<!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
+				<div class="cart-btn-menu2">
+					<button class="cart-big-btn" id="cart-order-all">전체상품주문</button>
+					<button class="cart-big-btn" id="cart-order-check">선택상품주문</button>
+					<button class="cart-big-btn" id="cart-shoping">쇼핑계속하기</button>
+				</div>
 			</div>
 		</div>
+<!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
+	<div class="cart-using-info">
+		<table class="cart-using-table">
+			<thead>
+				<tr>
+					<th>이용안내</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>
+						<br>
+						<h4>장바구니 이용안내</h4>
+						<br>
+						<p><span class="cart-using-sp">1</span>&nbsp;해외배송 상품과 국내배송 상품은 함께 결제하실 수 없으니 장바구니 별로 따로 결제해 주시기 바랍니다.</p>
+						<p><span class="cart-using-sp">2</span>&nbsp;해외배송 가능 상품의 경우 국내배송 장바구니에 담았다가 해외배송 장바구니로 이동하여 결제하실 수 있습니다.</p>
+						<p><span class="cart-using-sp">3</span>&nbsp;선택하신 상품의 수량을 변경하시려면 수량변경 후 [변경] 버튼을 누르시면 됩니다.</p>
+						<p><span class="cart-using-sp">4</span>&nbsp;[쇼핑계속하기] 버튼을 누르시면 쇼핑을 계속 하실 수 있습니다.</p>
+						<p><span class="cart-using-sp">5</span>&nbsp;장바구니와 관심상품을 이용하여 원하시는 상품만 주문하거나 관심상품으로 등록하실 수 있습니다.</p>
+						<p><span class="cart-using-sp">6</span>&nbsp;파일첨부 옵션은 동일상품을 장바구니에 추가할 경우 마지막에 업로드 한 파일로 교체됩니다.</p>
+						<br>
+						<br>
+						<h4>무이자할부 이용안내</h4>
+						<br>
+						<p><span class="cart-using-sp">1</span>&nbsp;상품별 무이자할부 혜택을 받으시려면 무이자할부 상품만 선택하여 [주문하기] 버튼을 눌러 주문/결제 하시면 됩니다.</p>
+						<p><span class="cart-using-sp">2</span>&nbsp;[전체 상품 주문] 버튼을 누르시면 장바구니의 구분없이 선택된 모든 상품에 대한 주문/결제가 이루어집니다.</p>
+						<p><span class="cart-using-sp">3</span>&nbsp;단, 전체 상품을 주문/결제하실 경우, 상품별 무이자할부 혜택을 받으실 수 없습니다.</p>
+					</td>
+				</tr>
+			</tbody>
+			
+		
+		</table>
+	</div>
+<!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
 	</div>
 </div>
 <!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
 </div>
 </section>
 <footer></footer>
+<script type="text/javascript">
+//ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ뷰체커ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+	var viewCheck = 0;
+//ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ뷰체커ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+	function taVal() {
+		var size = ${cartList.size()};
+		var sum = 0;
+		for (var i = 0; i < size; i++) {
+			var price = $(".cart-pro_price"+i).val();
+			var count = $(".cart-pro_count"+i).val();
+			sum = sum + price*count;
+			
+		}
+		
+		$(".cart-sum-sp").text(sum);
+		
+		return sum;
+	}
+	
+	$(document).ready(function() {
+		taVal();
+	});
+	
+	$(".cart-table-div").change(function() {
+		taVal();
+	});
+	
+	var check = false;
+	var all = 0;
+	
+	$("#checkAll").click(function() {
+		var size = ${cartList.size()};
+		if (check == false) {
+		$(".cartCheck").prop("checked","true");
+		check = true;
+		getSpan();
+		}else{
+			$(".cartCheck"). prop("checked","");
+			check= false;
+			viewCheck=0;
+			$(".cart-view-sp").text(0);
+			$(".cart-check-view").css("display","none");
+		}
+	});
+	
+	
+	$(".cartCheck").click(function() {
+		all = 0;
+		var size = ${cartList.size()};
+		for (var i = 0; i < size; i++) {
+			if ($(".cart"+i).prop("checked") == true) {
+				all++;
+			}
+		}
+		if (all == size) {
+			$("#checkAll").prop("checked","true");
+			check = true;
+		}else{
+			$("#checkAll").prop("checked","");
+			check = false;
+		}
+	});
+
+	$(".cart-table-div").on("click","#cart-del-check", function() {
+		if (all == 0) {
+			alert("삭제할 항목을 선택해주세요");
+		}else {
+			
+			if (confirm("삭제하시겠습니까?")) {
+				
+			jQuery.ajaxSettings.traditional = true;
+				var size = ${cartList.size()};
+					for (var i = 0; i < size; i++) {
+						
+						var num = new Array();
+						var index = 0;
+						for (var i = 0; i < size; i++) {
+							if ($(".cart"+i).prop("checked") == true) {
+							num[index] = $(".cart"+i).val();
+							index++;
+								}
+							} 
+						
+						}
+					
+					$.ajax({
+						type	: "POST",
+						url		: "cartDelete",
+						data	: {
+							id : "${member.id}",
+							num : num
+							
+						},
+						success	: function(data) {
+							if (data == 1) {
+								location.reload();
+								}else{
+									alert("다시 시도하세요.")
+								}
+						}
+					});
+				
+				}
+			}
+		});
+		
+		
+		$(".cart-table-div").on("click",".cart-order-btn", function() {
+			var pro_num = $(this).val();
+			open("orderInsertAjax?pro_num="+pro_num,"_blank","width=600px, height=480px, top=200px,left=600px");
+		});
+		
+		$(".cart-table-div").on("click",".cart-del-btn", function() {
+			if (confirm("삭제하시겠습니까?")) {
+				
+			jQuery.ajaxSettings.traditional = true;
+			
+					var num = new Array();
+					
+						num[0] = $(this).val();
+				
+				$.ajax({
+					type	: "POST",
+					url		: "cartDelete",
+					data	: {
+						id : "${member.id}",
+						num : num
+						
+					},
+					success	: function(data) {
+						if (data == 1) {
+							location.reload();
+							}else{
+								alert("다시 시도하세요.")
+							}
+					}
+				});
+			}
+		});
+		
+		
+		$(".cart-table-div").on("click","#cart-del-all", function() {
+			if (confirm("장바구니를 비우시겠습니까?")) {
+				$.ajax({
+					type	: "POST",
+					url		: "cartClean",
+					data	: {
+						id	:	"${member.id}"
+					},
+					success	:	function(data) {
+						data = data.trim();
+						if (data == 1) {
+							location.reload();
+						}else{
+							alert("다시 시도해주세요");
+						}
+					}
+				});
+			}
+		});
+		
+		
+		$(".cartCheck").click(function() {
+				var i = $(this).prop("title");
+				var price = $(".cart-pro_price"+i).val()*1;
+				var count = $(".cart-pro_count"+i).val()*1;
+				var sumPrice = $(".cart-view-sp").text()*1;
+				
+			if ($(this).prop("checked")) {			
+				sumPrice = sumPrice + price * count;
+				$(".cart-view-sp").text(sumPrice);
+				$(".cart-view-sp2").text(sumPrice);
+				viewCheck++;
+			}else{
+				sumPrice = sumPrice - price * count;
+				$(".cart-view-sp").text(sumPrice);
+				$(".cart-view-sp2").text(sumPrice);
+				viewCheck--;
+			}
+			
+			
+			if (viewCheck > 0) {
+				$(".cart-check-view").css("display","block");
+			}else{
+				$(".cart-check-view").css("display","none");
+				$(".cart-view-sp").text(0);
+			}
+			
+			console.log(viewCheck);
+		});
+		
+		function getSpan() {
+				var sumPrice = 0;
+			$(".cartCheck").each(function() {
+				
+				var i = $(this).prop("title");
+				var price = $(".cart-pro_price"+i).val()*1;
+				var count = $(".cart-pro_count"+i).val()*1;
+				
+				if ($(this).prop("checked")) {			
+					sumPrice = sumPrice + price * count;
+					$(".cart-view-sp").text(sumPrice);
+					$(".cart-view-sp2").text(sumPrice);
+					viewCheck++;
+				}else{
+					sumPrice = sumPrice - price * count;
+					$(".cart-view-sp").text(sumPrice);
+					$(".cart-view-sp2").text(sumPrice);
+					viewCheck--;
+				}
+			
+			
+				if (viewCheck > 0) {
+					$(".cart-check-view").css("display","block");
+				}else{
+					$(".cart-check-view").css("display","none");
+					$(".cart-view-sp").text(0);
+				}
+				
+			});
+		}
+
+		$(".count-check").change(function() {
+			$(".count-check").each(function() {
+				if ($(this).val()==0) {
+					$(this).prop("value",1);
+				}
+			});
+		});
+</script>
 </body>
 </html>
