@@ -72,4 +72,9 @@ public class ProductDAO {
 			
 			return sqlSession.insert(NAMESPACE+"reviewWrite",reviewVO );
 		}
+		
+	//상품정보가져오기
+	public ProductVO productGetInfo(ProductVO productVO) throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"productGetInfo",productVO);
+	}
 }

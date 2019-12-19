@@ -25,7 +25,7 @@
 						<input type="checkbox" class="wishCheck wish${i.index }" value="${wish.wish_num }">
 					</td>
 					<td class="ws-image">
-						<img alt="위시리스트 사진" src="../../resources/product/orders/c69a7cd57f808fa622d80fd6a2551b2c.jpg" height="116px" width="80px">
+						<img alt="위시리스트 사진" src="../../resources/product/images/${wish.image }" height="116px" width="80px">
 					</td>
 					<td class="ws-pro_info" style="text-align: left; padding-left: 10px;">
 						<a href="#" style="font-weight: bold; color: black; text-decoration: none;">${wish.pro_info } </a>

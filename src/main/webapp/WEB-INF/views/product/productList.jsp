@@ -60,7 +60,11 @@
 						<td>${product.pro_size}</td>
 						<td>${product.pro_vital}</td>
 						<td>${product.pro_date}</td>
-						<td><a href="./productUpdate?pro_num=${product.pro_num}"><input type="button" value="정보 수정" ></a></td>
+						<td><a href="./productUpdate?pro_num=${product.pro_num}"><input type="button" value="정보 수정" ></a>
+							<c:if test="${!empty member }">
+							<button class="insert-wishList" value="${product.pro_num }">관심상품</button>
+							</c:if>
+						</td>
 					</tr>
 
 				</c:forEach>
@@ -194,7 +198,31 @@
 	 		
 		});
 	 	
-	 	
+	 	$(".insert-wishList").click(function() {
+				if (confirm("관심상품으로 등록하시겠습니까?")) {
+					var id = "${member.id}";
+					var pro_num = $(this).val();
+					
+					$.ajax({
+						type	: "POST",
+						url		: "../member/memberManage/wishAjaxInsert",
+						data	: {
+							id : id,
+							pro_num	:	pro_num
+						},
+						success	: function(d) {
+							d = d.trim();
+							
+							if (d == 1) {
+								alert("추가되었습니다.");
+							}else{
+								alert("이미 등록되어 있습니다.");
+							}
+						}
+					});
+				}
+			
+		});
 	 	
 	  </script>
 

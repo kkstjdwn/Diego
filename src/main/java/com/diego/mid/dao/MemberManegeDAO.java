@@ -49,6 +49,10 @@ public class MemberManegeDAO {
 		return sql.delete(WISHLIST+"wishListClean",wishlist);
 	}
 	
+	public List<Integer> wishOverlapCheck(Wishlist wishlist) throws Exception{
+		return sql.selectList(WISHLIST+"overlapCheck",wishlist);
+	}
+	
 	
 //	
 //	public Integer wishListGetSum(Wishlist wishlist) throws Exception{
@@ -155,7 +159,7 @@ public class MemberManegeDAO {
 	
 	
 	public int cartInsert(Cart cart) throws Exception{
-		return sql.insert(CART+"cartinsert",cart);
+		return sql.insert(CART+"cartInsert",cart);
 	}
 	
 	public int cartDelete(Cart cart) throws Exception{
@@ -185,8 +189,9 @@ public class MemberManegeDAO {
 		return sql.delete(CART+"cartClean",cart);
 	}
 	
-	
-	
+	public List<Integer> cartOverlapCheck(Cart cart) throws Exception{
+		return sql.selectList(CART+"overlapCheck",cart);
+	}
 	
 	
 	

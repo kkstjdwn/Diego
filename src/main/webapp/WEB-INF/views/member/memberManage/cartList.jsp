@@ -84,10 +84,10 @@
 						<c:forEach items="${cartList }" var="cart" varStatus="i">
 							<tr>
 								<td class="cart-checkBox" style="border-left:0;">
-									<input type="checkbox" class="cartCheck cart${i.index }" value="${cart.cart_num }" title="${i.index }">
+									<input type="checkbox" class="cartCheck cart${i.index }" value="${cart.cart_num }" title="${i.index }" name="${cart.pro_num }">
 								</td>
 								<td class="cart-image">
-									<img alt="장바구니 사진" src="../../resources/product/orders/c69a7cd57f808fa622d80fd6a2551b2c.jpg" height="116px" width="80px">
+									<img alt="장바구니 사진" src="../../resources/product/images/${cart.pro_image }" height="116px" width="80px">
 								</td>
 								<td class="cart-pro_info" style="text-align: left;">
 									<a href="#" style="font-weight: bold; color: black; text-decoration: none; margin-left: 10px;">${cart.pro_info } </a>
@@ -122,6 +122,9 @@
 						</c:forEach>
 					</tbody>
 				</table>
+				<c:if test="${cartList.size() eq 0 }">
+					<p class="no-order">장바구니가 비었습니다 ㅠㅠ</p>
+				</c:if>
 				<h1 style="margin:20px 20px 0; text-align: right; font-size: 13px; color: #555555;">상품구매금액 <span class="cart-sum-sp" style="color: black;"></span>원 + 배송비 0 (무료) = 합계 : <strong style="font-size: 17px; color: black;"><span class="cart-sum-sp" ></span></strong>원 </h1>
 				<div class="cart-warning">
 					<p style="margin-left: 33px; padding: 8px 0;">
@@ -236,6 +239,7 @@
 		$(".cartCheck").prop("checked","true");
 		check = true;
 		getSpan();
+		all = size;
 		}else{
 			$(".cartCheck"). prop("checked","");
 			check= false;
@@ -388,7 +392,6 @@
 				$(".cart-view-sp").text(0);
 			}
 			
-			console.log(viewCheck);
 		});
 		
 		function getSpan() {
@@ -429,6 +432,76 @@
 				}
 			});
 		});
+		
+		
+		$(".cart-wish-btn").click(function() {
+			var id = "${member.id}";
+			var pro_num = $(this).val();
+			
+			if (confirm("관심상품으로 등록하시겠습니까?")) {
+				$.ajax({
+					type	: "POST",
+					url		: "wishAjaxInsert",
+					data	: {
+						id : id,
+						pro_num	: pro_num
+					},
+					success	: function(d) {
+						d = d.trim();
+						if (d == 1) {
+							alert("추가되었습니다.");
+						}else{
+							alert("이미 추가된 상품입니다.");
+						}
+					}
+				});
+			}
+			
+		});
+		
+		
+		
+		$("#cart-wish-check").click(function() {
+			if (all==0) {
+				alert("등록할 상품을 선택해주세요");
+				
+			}else{
+				
+				if (confirm("선택 상품을 관심물품에 등록하시겠습니까?")) {
+					jQuery.ajaxSettings.traditional = true;
+					var goods = new Array();
+					var count = 0;
+					var size = ${cartList.size()};
+					var id = "${member.id}";
+					
+						for (var i = 0; i < size; i++) {
+							if ($(".cart"+i).prop("checked")==true) {
+								goods[count] = $(".cart"+i).prop("name");
+								count++;
+							}
+						}
+						
+					$.ajax({
+						type	: "POST",
+						url		: "wishListCheckInsert",
+						data	: {
+							id 		: id,
+							num		: goods
+						},
+						success	: function(d) {
+							d = d.trim();
+							if (d==1) {
+								alert("추가 되었습니다.");
+							}else{
+								alert("다시 시도해주세요.");
+							}
+						}
+					});
+				}
+			}
+		});
+		
+		
 </script>
 </body>
 </html>

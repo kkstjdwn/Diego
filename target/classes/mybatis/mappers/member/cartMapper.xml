@@ -5,8 +5,8 @@
   <mapper namespace="cartMapper">
  	
  	<insert id="cartInsert" parameterType="cart">
- 	insert into cart(cart_num, id, pro_num, pro_info, pro_image, pro_price, pro_count)
- 	values(cart_seq.nextval,#{id}, #{pro_num}, #{pro_info},#{pro_image},#{pro_price},#{pro_count})
+	 	insert into cart(cart_num, id, pro_num, pro_info, pro_image, pro_price, pro_count)
+	 	values(cart_seq.nextval,#{id}, #{pro_num}, #{pro_info},#{pro_image},#{pro_price},#{pro_count})
  	</insert>
  	
  	<delete id="cartDelete" parameterType="cart">
@@ -39,4 +39,8 @@
  		delete cart where id = #{id}
  	
  	</delete>
+ 	
+ 	<select id="overlapCheck" parameterType="cart" resultType="Integer">
+ 		select pro_num from cart where id = #{id}
+ 	</select>
   </mapper>

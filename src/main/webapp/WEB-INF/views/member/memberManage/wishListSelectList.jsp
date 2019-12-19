@@ -65,10 +65,10 @@
 			<c:forEach items="${wishList }" var="wish" varStatus="i">
 				<tr>
 					<td class="ws-checkBox" style="border-left: 0; height: 116px;">
-						<input type="checkbox" class="wishCheck wish${i.index }" value="${wish.wish_num }">
+						<input type="checkbox" class="wishCheck wish${i.index }" value="${wish.wish_num }" title="${wish.pro_num }">
 					</td>
 					<td class="ws-image">
-						<img alt="위시리스트 사진" src="../../resources/product/orders/c69a7cd57f808fa622d80fd6a2551b2c.jpg" height="116px" width="80px">
+						<img alt="위시리스트 사진" src="../../resources/product/images/${wish.image }" height="116px" width="80px">
 					</td>
 					<td class="ws-pro_info" style="text-align: left; padding-left: 10px;">
 						<a href="#" style="font-weight: bold; color: black; text-decoration: none;">${wish.pro_info } </a>
@@ -94,6 +94,9 @@
 				</c:forEach>
 			</tbody>
 		</table>
+	<c:if test="${wishList.size() eq 0 }">
+		<p class="no-order">관심상품이 없습니다.</p>
+	</c:if>
 <!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->		
 		<div class="wish-btn-group">
 			<span style="float: left;">
@@ -145,6 +148,7 @@ $(".ws-ajax").on("click","#checkAll", function() {
 	if (check == false) {
 	$(".wishCheck").prop("checked","true");
 	check = true;
+	all = ${wishList.size()};
 	}else{
 		$(".wishCheck").prop("checked","");
 		check= false;
@@ -167,6 +171,7 @@ $(".ws-ajax").on("click",".wishCheck", function() {
 		check = false;
 	}
 });
+
 
 $(".ws-ajax").on("click","#wish-del-check", function() {
 	if (all == 0) {
@@ -276,6 +281,68 @@ $(".ws-ajax").on("click","#wish-del-check", function() {
 						location.reload();
 					}else{
 						alert("다시 시도해주세요");
+					}
+				}
+			});
+		}
+	});
+	
+	$(".wish-cart-btn").click(function() {
+		var id = "${member.id}";
+		var pro_num = $(this).val();
+		
+		if (confirm("장바구니에 담으시겠습니까?")) {
+			$.ajax({
+				type	: "POST",
+				url		: "cartAjaxInsert",
+				data	: {
+					id		: id,
+					pro_num	: pro_num
+				},
+				success	: function(d) {
+					d = d.trim();
+					if (d == 1) {
+						if (confirm("장바구니에 담았습니다. 장바구니로 이동하시겠습니까?")) {
+							location.href = "cartList";
+						}
+					}else{
+						alert("이미 담겨 있습니다.");
+					}
+				}
+			});
+		}
+		
+	});
+	
+	
+	$("#wish-cart-check").click(function() {
+		if (confirm("선택 상품을 장바구니에 담으시겠습니까?")) {
+			jQuery.ajaxSettings.traditional = true;
+			var goods = new Array();
+			var count = 0;
+			var size = ${wishList.size()};
+			var id = "${member.id}";
+			
+				for (var i = 0; i < size; i++) {
+					if ($(".wish"+i).prop("checked")==true) {
+						goods[count] = $(".wish"+i).prop("title");
+						count++;
+					}
+				}
+				
+			$.ajax({
+				type	: "POST",
+				url		: "cartCheckInsert",
+				data	: {
+					id 		: id,
+					num		: goods
+				},
+				success	: function(d) {
+					d = d.trim();
+					if (d==1) {
+						alert("추가 되었습니다.");
+					}else{
+						alert("다시 시도해주세요.");
 					}
 				}
 			});

@@ -11,6 +11,12 @@
   	
   </insert>
   
+  <select id="overlapCheck" parameterType="wishlist" resultType="Integer">
+  
+  	select pro_num from wishlist where id = #{id}
+  	
+  </select>
+  
   <select id="wishListCount" parameterType="wishlist" resultType="Integer">
   	
   	select count(wish_num) from wishlist where id = #{id}

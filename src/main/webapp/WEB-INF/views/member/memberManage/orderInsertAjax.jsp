@@ -29,6 +29,34 @@
 	border: 1px solid #008bcc;
 	border-top: none; 
 }
+
+#order-insert{
+	width: 100px; 
+	height: 30px; 
+	background: #555555; 
+	color: white; 
+	border: 1px solid #555555; 
+	margin-top: 20px;"
+}
+#order-insert:hover{
+	border: 2px solid #555555;
+	background: white;
+	color: #555555;
+	font-weight: bold;
+}
+
+#cart-insert{
+	width: 100px; 
+	height: 30px; 
+	color: #555555; 
+	border: 1px solid #555555; 
+	margin-top: 20px; 
+	background: white;
+}
+#cart-insert:hover{
+	border: 2px solid #555555;
+	font-weight: bold;
+}
 </style>
 </head>
 <script
@@ -49,7 +77,7 @@
 		<div
 			style="width: 20%; float: left;height: 200px;">
 			<img
-				src="../../resources/product/wishList/592309708dc1472cb3d6d0dfedc0fb9d.gif"
+				src="../../resources/product/images/${proVO.pro_image }"
 				height="82px" width="82px" style="margin: 20px 0 0 20px;">
 		</div>
 		<div class="opt-div"
@@ -112,10 +140,8 @@
 		<div
 			style="width: 100%; clear: both; min-height: 100px; overflow: hidden; text-align: center; margin-top: 10px;">
 
-			<button id="order-insert"
-				style="width: 100px; height: 30px; background: #555555; color: white; border: 1px solid #555555; margin-top: 20px;">주문하기</button>
-			<button id="cart-insert"
-				style="width: 100px; height: 30px; color: #555555; border: 1px solid #555555; margin-top: 20px; background: white;">장바구니담기</button>
+			<button id="order-insert">주문하기</button>
+			<button id="cart-insert">장바구니담기</button>
 		</div>
 	</div>
 <script type="text/javascript">
@@ -215,9 +241,31 @@ $("#order-insert").click(function() {
 		}
 	});
 
-	function numberOnly(){
-		
-	}
+	$("#cart-insert").click(function() {
+			var id = "${member.id}";
+			var pro_num	= ${proVO.pro_num};
+			
+		if (confirm("장바구니에 담으시겠습니까?")) {
+			$.ajax({
+				type	: "POST",
+				url		: "cartAjaxInsert",
+				data	: {
+					id		: id,
+					pro_num	: pro_num
+				},
+				success	: function(d) {
+					d = d.trim();
+					if (d == 1) {
+						alert("장바구니에 담겼습니다.");
+					}else{
+						alert("이미 담겨있습니다.");
+					}
+				}
+				
+			});
+		}
+	});
+	
 </script>
 </body>
 </html>

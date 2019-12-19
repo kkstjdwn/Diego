@@ -37,7 +37,7 @@
 						<label style="color: #2e2e2e; font-size: 14px;">Your ID</label>
 					</div>
 					<div>
-						<input class="login-form-id-ip" type="text" id="id">
+						<input class="login-form-id-ip" type="text" id="id" autofocus="autofocus">
 					</div>
 				</div>
 				<div class="login-form-pw">
@@ -81,6 +81,7 @@
 </section>
 <footer></footer>
 <script type="text/javascript">
+	
 	$("#login").click(function() {
 		$.ajax({
 			type : "POST",
@@ -103,7 +104,35 @@
 	$("#insert").click(function() {
 		location.href="/mid/member/memberInsert";
 	});
+	
+	
+	function login() {
+		$.ajax({
+			type : "POST",
+			url : "memberLogin",
+			data : {
+				id : $("#id").val(),
+				pw : $("#pw").val()
+			},
+			success : function(data) {
+				data = data.trim();
+				if (data == "1") {
+					location.href="/mid/diego";
+				}else{
+					alert("똑바로 치세요");
+				}
+			}
+		});
+	}
+	
+	$("#pw").keyup(function(e){
+		if(e.keyCode == 13){
+			login(); 
+			}
+		});
 
+		
+		
 </script>
 
 </body>

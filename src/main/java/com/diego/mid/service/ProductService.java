@@ -38,13 +38,18 @@ public class ProductService {
 		String realPath=session.getServletContext().getRealPath("resources/product/images");
 
 		ImagesVO imagesVO = new ImagesVO();
+		String sumNale = saver.save(realPath, imagesFiles[1]);
+		productVO.setPro_image(sumNale);
 		int result = productDAO.productInsert(productVO);
 
 		imagesVO.setPro_num(productVO.getPro_num());
 		System.out.println(realPath);
-
+		
+		//메인 사진 하나 productVO에 넣기
+		
+		
 		imagesVO.setPro_main(saver.save(realPath,imagesFiles[0]));
-		imagesVO.setSumnale(saver.save(realPath,imagesFiles[1]));
+		imagesVO.setSumnale(sumNale);
 		imagesVO.setFront(saver.save(realPath,imagesFiles[2]));
 		imagesVO.setBack(saver.save(realPath, imagesFiles[3]));
 		imagesVO.setPro_model(saver.save(realPath,imagesFiles[4]));
@@ -108,5 +113,9 @@ public class ProductService {
 		System.out.println(reviewVO.getRev_contents());
 		return productDAO.reviewWrite(reviewVO);
 
+	}
+	
+	public ProductVO productGetInfo(ProductVO productVO) throws Exception{
+		return productDAO.productGetInfo(productVO);
 	}
 }

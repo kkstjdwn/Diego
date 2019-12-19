@@ -23,12 +23,8 @@ public class MemberManageService {
 	@Inject
 	private MemberManegeDAO dao;
 
-	public int wishListInsert(Wishlist wishlist, HttpSession session) throws Exception{
-		String realPath = session.getServletContext().getRealPath("/resources/product/wishList");
-		if (wishlist.getFname()!=null) {
-			wishlist.setImage(saver.save(realPath, wishlist.getFname()));			
-		}
-		
+	
+	public int wishListInsert(Wishlist wishlist) throws Exception{
 		return dao.wishListInsert(wishlist);
 	}
 	
@@ -44,6 +40,10 @@ public class MemberManageService {
 	
 	public int wishListClean(Wishlist wishlist) throws Exception{
 		return dao.wishListClean(wishlist);
+	}
+	
+	public List<Integer> wishOverlapCheck(Wishlist wishlist) throws Exception{
+		return dao.wishOverlapCheck(wishlist);
 	}
 	
 	public Orders orderInsert(Orders orders,HttpSession session) throws Exception{
@@ -217,7 +217,9 @@ public class MemberManageService {
 		return dao.cartClean(cart);
 	}
 	
-	
+	public List<Integer> cartOverlapCheck(Cart cart) throws Exception{
+		return dao.cartOverlapCheck(cart);
+	}
 	
 	
 	

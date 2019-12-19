@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.diego.mid.model.member.Cart;
@@ -126,9 +127,15 @@ public class MemberManageController {
 	}
 	
 	@PostMapping("wishListInsert")
-	public ModelAndView wishListInsert(Wishlist wishlist, HttpSession session) throws Exception{
+	public ModelAndView wishListInsert(Wishlist wishlist) throws Exception{
 		ModelAndView mv = new ModelAndView();
-		int result = service.wishListInsert(wishlist, session);
+		List<Integer> numCheck = service.wishOverlapCheck(wishlist);
+		int result = 0;
+		for (Integer integer : numCheck) {
+			if (integer != wishlist.getPro_num()) {				
+				result = service.wishListInsert(wishlist);
+			}
+		}
 		String msg	 = "실패";
 		String path = "#";
 		if (result > 0) {
@@ -218,6 +225,98 @@ public class MemberManageController {
 		return mv;
 	}
 	
+	
+	@PostMapping("wishAjaxInsert")
+	public ModelAndView wishAjaxInsert(ProductVO productVO, Wishlist wishlist) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		List<Integer> numCheck = service.wishOverlapCheck(wishlist);
+		int result = 0;
+		if (numCheck.size() != 0) {
+				
+			for (Integer integer : numCheck) {
+				if (!integer.equals(productVO.getPro_num())) {
+					result++;
+				}
+			}
+			
+			if (result == numCheck.size()) {
+				productVO = proService.productGetInfo(productVO);
+				wishlist.setImage(productVO.getPro_image());
+				wishlist.setPro_info(productVO.getPro_name());
+				wishlist.setPrice(productVO.getPro_price());
+				wishlist.setDelivery_cost("무료배송");
+				
+				result = service.wishListInsert(wishlist);
+			}
+		}else {
+			productVO = proService.productGetInfo(productVO);
+			wishlist.setImage(productVO.getPro_image());
+			wishlist.setPro_info(productVO.getPro_name());
+			wishlist.setPrice(productVO.getPro_price());
+			wishlist.setDelivery_cost("무료배송");
+			
+			result = service.wishListInsert(wishlist);
+		}
+		mv.addObject("msg", result);
+		mv.setViewName("common/common_ajax_result");
+		return mv;
+	}
+	
+	
+	@PostMapping("wishListCheckInsert")
+	public ModelAndView wishListCheckInsert(ProductVO productVO, Wishlist wishlist, String[] num)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		int result = 0;
+		for (String string : num) {
+			int check = 0;
+			
+			List<Integer> numCheck = service.wishOverlapCheck(wishlist);
+			
+			if (numCheck.size() != 0) {
+				for (Integer integer : numCheck) {
+					if (!integer.equals(Integer.parseInt(string))) {
+						check++;
+					}
+				}
+				
+				if (check == numCheck.size()) {
+					
+					productVO.setPro_num(Integer.parseInt(string));
+					productVO = proService.productGetInfo(productVO);
+					wishlist.setPro_num(productVO.getPro_num());
+					wishlist.setImage(productVO.getPro_image());
+					wishlist.setPro_info(productVO.getPro_name());
+					wishlist.setPrice(productVO.getPro_price());
+					wishlist.setDelivery_cost("무료배송");
+					
+					result = service.wishListInsert(wishlist);
+					
+				}
+				
+				
+				
+			}else {
+				productVO.setPro_num(Integer.parseInt(string));
+				productVO = proService.productGetInfo(productVO);
+				wishlist.setPro_num(productVO.getPro_num());
+				wishlist.setImage(productVO.getPro_image());
+				wishlist.setPro_info(productVO.getPro_name());
+				wishlist.setPrice(productVO.getPro_price());
+				wishlist.setDelivery_cost("무료배송");
+				
+				result = service.wishListInsert(wishlist);
+			}
+			
+		}
+		
+		
+		mv.addObject("msg", result);
+		mv.setViewName("common/common_ajax_result");
+		return mv;
+	}
+	
+	
+	
 //@@@@@@@@@@@@@WISHLIST@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 	
 //@@@@@@@@@@@@@ORDER@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -241,7 +340,7 @@ public class MemberManageController {
 	public ModelAndView orderInsertAjax(ProductVO vo, HttpSession session) throws Exception{
 		ModelAndView mv = new ModelAndView();
 		
-		vo = proService.productSelect(vo);
+		vo = proService.productGetInfo(vo);
 		Point point = new Point();
 		Coupon coupon = new Coupon();
 		MemberVO mVo = (MemberVO)session.getAttribute("member");
@@ -256,8 +355,10 @@ public class MemberManageController {
 	
 	
 	@PostMapping("orderInsert")
-	public ModelAndView orderInsert(Orders orders,HttpSession session,Coupon coupon, Point point) throws Exception{
+	public ModelAndView orderInsert(Orders orders,HttpSession session,Coupon coupon, Point point,ProductVO productVO) throws Exception{
 		ModelAndView mv = new ModelAndView();
+		productVO = proService.productGetInfo(productVO);
+		orders.setImage(productVO.getPro_image());
 		orders.setOrder_sum(orders.getPro_count()*orders.getPrice()-point.getPoint_value());
 		orders = service.orderInsert(orders, session);
 		point.setOrder_num(orders.getOrder_num());
@@ -309,8 +410,10 @@ public class MemberManageController {
 	}
 	
 	@PostMapping("orderInsertAjax")
-	public ModelAndView orderInsertAjax(Orders orders,HttpSession session,Coupon coupon, Point point) throws Exception{
+	public ModelAndView orderInsertAjax(Orders orders,HttpSession session,Coupon coupon, Point point,ProductVO productVO) throws Exception{
 		ModelAndView mv = new ModelAndView();
+		productVO = proService.productGetInfo(productVO);
+		orders.setImage(productVO.getPro_image());
 		orders.setOrder_sum(orders.getPro_count()*orders.getPrice()-point.getPoint_value());
 		orders = service.orderInsert(orders, session);
 		point.setOrder_num(orders.getOrder_num());
@@ -687,6 +790,102 @@ public class MemberManageController {
 		ModelAndView mv = new ModelAndView();
 		
 		int result = service.cartClean(cart);
+		
+		mv.addObject("msg", result);
+		mv.setViewName("common/common_ajax_result");
+		return mv;
+	}
+	
+	@PostMapping("cartAjaxInsert")
+	public ModelAndView cartAjaxInsert(Cart cart,ProductVO productVO) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		List<Integer> numCheck = service.cartOverlapCheck(cart);
+		int result = 0;
+		int check = 0;
+		if (numCheck.size() != 0) {
+			for (Integer integer : numCheck) {
+				if (!integer.equals(productVO.getPro_num())) {
+					check++;
+				}
+			}
+			
+			if (check == numCheck.size()) {
+				
+				productVO = proService.productGetInfo(productVO);
+				cart.setPro_info(productVO.getPro_name());
+				cart.setPro_image(productVO.getPro_image());
+				cart.setPro_price(productVO.getPro_price());
+				cart.setPro_count(1);
+				
+				result = service.cartInsert(cart);
+			}
+			
+			
+		}else {
+			productVO = proService.productGetInfo(productVO);
+			cart.setPro_info(productVO.getPro_name());
+			cart.setPro_image(productVO.getPro_image());
+			cart.setPro_price(productVO.getPro_price());
+			cart.setPro_count(1);
+			
+			result = service.cartInsert(cart);
+			
+			
+		}
+		
+		mv.addObject("msg", result);
+		mv.setViewName("common/common_ajax_result");
+		
+		return mv;
+	}
+	
+	@PostMapping("cartCheckInsert")
+	public ModelAndView cartCheckInsert(ProductVO productVO,Cart cart, String[] num)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		int result = 0;
+		for (String string : num) {
+			int check = 0;
+			
+			List<Integer> numCheck = service.cartOverlapCheck(cart);
+			
+			if (numCheck.size() != 0) {
+				for (Integer integer : numCheck) {
+					if (!integer.equals(Integer.parseInt(string))) {
+						check++;
+					}
+				}
+				
+				if (check == numCheck.size()) {
+					
+					productVO.setPro_num(Integer.parseInt(string));
+					productVO = proService.productGetInfo(productVO);
+					cart.setPro_num(productVO.getPro_num());
+					cart.setPro_image(productVO.getPro_image());
+					cart.setPro_info(productVO.getPro_name());
+					cart.setPro_price(productVO.getPro_price());
+					cart.setPro_count(1);
+					
+					
+					result = service.cartInsert(cart);
+				}
+				
+				
+				
+			}else {
+				productVO.setPro_num(Integer.parseInt(string));
+				productVO = proService.productGetInfo(productVO);
+				cart.setPro_num(productVO.getPro_num());
+				cart.setPro_image(productVO.getPro_image());
+				cart.setPro_info(productVO.getPro_name());
+				cart.setPro_price(productVO.getPro_price());
+				cart.setPro_count(1);
+				
+				
+				result = service.cartInsert(cart);
+			}
+			
+		}
+		
 		
 		mv.addObject("msg", result);
 		mv.setViewName("common/common_ajax_result");

@@ -22,6 +22,7 @@ public class ProductVO {
 	private String sumnale;
 	private String pro_main;
 	private ReviewVO reviewVO;
+	private String pro_image;
 	
 	
 	
@@ -155,6 +156,17 @@ public class ProductVO {
 
 	public void setImages(List<ImagesVO> images) {
 		this.images = images;
+	}
+
+	public String getPro_image() {
+		return pro_image;
+	}
+
+	public void setPro_image(String pro_image) {
+		if (pro_image == null) {
+			pro_image ="";
+		}
+		this.pro_image = pro_image;
 	}
 
 	
