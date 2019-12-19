@@ -30,6 +30,7 @@ public class ProductController {
 	private ProductService productService;
 
 	
+	
 	//상품등록 insert
 	@GetMapping(value = "productInsert")
 	public void productInsert()throws Exception {
@@ -142,14 +143,24 @@ public class ProductController {
 	
 	//상품셀렉트 
 	@GetMapping("productSelect")
-	public ModelAndView productSelect(ProductVO productVO)throws Exception{
+	public ModelAndView productSelect(ProductVO productVO, MPager pager,ReviewVO reviewVO)throws Exception{
 		
 		ModelAndView mv =new ModelAndView();
+		
+		int totalCount= productService.reviewCount(productVO);
+		
+		pager.makePager(totalCount);
+		List<ReviewVO>ar = productService.reviewList(productVO, pager);
+		
+		
+		//System.out.println(ar.get(0).getRev_contents());성공
 		
 		productVO =  productService.productSelect(productVO);
 		
 		productVO.setContents(productVO.getContents().replace("\n\r", "<br>"));
 		
+		mv.addObject("totalCount", totalCount);
+		mv.addObject("reviewList", ar);
 		mv.addObject("product", productVO);
 		mv.setViewName("product/productSelect");
 		

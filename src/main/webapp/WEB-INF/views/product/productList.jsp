@@ -62,8 +62,7 @@
 						<td>${product.pro_size}</td>
 						<td>${product.pro_vital}</td>
 						<td>${product.pro_date}</td>
-						<td><a href="./productUpdate?pro_num=${product.pro_num}">
-						<input type="button" value="정보 수정" ></a></td>
+						<td><a href="./productUpdate?pro_num=${product.pro_num}"><input type="button" value="정보 수정" ></a></td>
 					</tr>
 
 				</c:forEach>
@@ -114,8 +113,10 @@
 		if(kind == ''){
 			kind = "kt";
 		}
+		
 		$("#"+kind).prop("selected", true);
-	 	//페이징리스트
+	 	
+		//페이징리스트
 		$(".list").click(function() {
 			$("#curPage").val($(this).attr("id"));
 			$("#frm").submit();

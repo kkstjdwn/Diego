@@ -14,6 +14,18 @@ public class MPager {
 	private Integer totalBlock;
 	private Integer totalPage;
 	
+	private Integer pro_num;
+	
+	
+	
+	public Integer getPro_num() {
+		return pro_num;
+	}
+
+	public void setPro_num(Integer pro_num) {
+		this.pro_num = pro_num;
+	}
+
 	public Integer getStartRow() {
 		return startRow;
 	}

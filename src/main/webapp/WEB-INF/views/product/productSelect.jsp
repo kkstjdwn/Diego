@@ -138,7 +138,7 @@
 
 			<br>
 
-
+			<!-- 리뷰작성폼 -->
 			<div class="container">
 				<form action="./productReview" method="post" enctype="multipart/form-data">
 					<div class="form-group">
@@ -184,10 +184,40 @@
 
 
 			</div>
-
-
-
+			
+		<!--선택된상품의 리뷰리스트 -->
+		<div class="reviewList">
+					<p>추천순 리뷰(<span style="color: red">${totalCount}</span>)</p>
+					
+					
+				<c:forEach items="${reviewList}" var="rev">
+					<p>${rev.name }</p>
+					<p>${rev.star}<p>
+					<p>${rev.rev_contents}</p>
+				<c:forEach items="${rev.files }" var="ref">
+					<p>${ref.fname }</p>
+							
+				</c:forEach>
+				
+				</c:forEach>
+			
+			<div >
+				<ul class="pagination">
+					<c:if test="${pager.curBlock gt 1}">
+							<li><span id="${pager.startNum-1}" class="list">이전</span></li>
+					</c:if>
+					<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
+							<li><span id="${i}" class="list">${i}</span></li>
+					</c:forEach>
+					<c:if test="${pager.curBlock lt pager.totalBlock}">
+							<li><span id="${pager.lastNum+1}" class="list">다음</span></li>
+					</c:if>
+				</ul>
+			</div>
+	
 		</div>
+					
+	</div>
 		<a href="../qna/qnaWrite?pro_num=${product.pro_num}"
 			class="btn btn-primary">QNA WRITE</a> <a
 			href="./productUpdate?pro_num=${product.pro_num}"
@@ -220,7 +250,11 @@
 			count--;
 		});
 		
-		
+		//페이징리스트
+		$(".list").click(function() {
+			$("#curPage").val($(this).attr("id"));
+			$("#frm").submit();
+		});
 		
 	
 	

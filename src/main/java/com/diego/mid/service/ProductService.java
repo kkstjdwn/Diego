@@ -3,6 +3,7 @@ package com.diego.mid.service;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
@@ -13,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.diego.mid.dao.ImagesDAO;
 import com.diego.mid.dao.ProductDAO;
 import com.diego.mid.dao.RevFilesDAO;
+import com.diego.mid.dao.ReviewDAO;
 import com.diego.mid.model.product.ImagesVO;
 import com.diego.mid.model.product.ProductVO;
 import com.diego.mid.model.product.RevFilesVO;
@@ -34,6 +36,9 @@ public class ProductService {
 	
 	@Inject
 	private RevFilesDAO revFilesDAO;
+	
+	@Inject
+	private ReviewDAO reviewDAO;
 
 	@Inject
 	private ProductFile saver;
@@ -101,7 +106,6 @@ public class ProductService {
 	//상품선택
 	public ProductVO productSelect(ProductVO productVO)throws Exception{		
 		productVO = productDAO.productSelect(productVO);
-
 		List<ImagesVO>ar = imagesDAO.imagesList(productVO.getPro_num());
 
 		productVO.setImages(ar);
@@ -147,4 +151,21 @@ public class ProductService {
 		return result;
 
 	}
+	
+	//셀렉트된리뷰리스트
+	public  List<ReviewVO>reviewList(ProductVO productVO, MPager pager )throws Exception{
+		pager.makePager(productDAO.reviewCount(productVO));
+		pager.rowMake();
+		
+		return productDAO.reviewList(pager, productVO);
+	}
+	
+	//한상품리뷰갯수
+		public int reviewCount(ProductVO productVO)throws Exception{
+			
+			return productDAO.reviewCount(productVO);
+		}
+	
+	
+	
 }

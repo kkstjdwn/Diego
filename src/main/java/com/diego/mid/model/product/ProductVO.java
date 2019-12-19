@@ -20,15 +20,28 @@ public class ProductVO {
 	private String pro_color;//상품 색상
 	private String pro_vital;//상품 필수옵션
 	private String sumnale;
-	private String pro_main;
-	private Double totalstar;
 	
-	public Double getTotalstar() {
-		return totalstar;
+	private String pro_main;
+	private Double totalStar;
+	private Integer totalReview;
+
+	
+	
+
+	public Double getTotalStar() {
+		return totalStar;
 	}
 
-	public void setTotalstar(Double totalstar) {
-		this.totalstar = totalstar;
+	public void setTotalStar(Double totalStar) {
+		this.totalStar = totalStar;
+	}
+
+	public Integer getTotalReview() {
+		return totalReview;
+	}
+
+	public void setTotalReview(Integer totalReview) {
+		this.totalReview = totalReview;
 	}
 
 	private List<ReviewVO> reviewVO;

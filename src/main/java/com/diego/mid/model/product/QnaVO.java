@@ -16,16 +16,24 @@ public class QnaVO {
 	private Integer step;
 	private Integer ref;
 	private Integer depth;
-	private Integer r;
+	private String secret;
+	private String sec_num;
 	
 	
 	
-	public Integer getR() {
-		return r;
+	public String getSecret() {
+		return secret;
 	}
-	public void setR(Integer r) {
-		this.r = r;
+	public void setSecret(String secret) {
+		this.secret = secret;
 	}
+	public String getSec_num() {
+		return sec_num;
+	}
+	public void setSec_num(String sec_num) {
+		this.sec_num = sec_num;
+	}
+	
 	public String getWriter() {
 		return writer;
 	}

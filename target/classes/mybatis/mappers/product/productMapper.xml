@@ -67,6 +67,7 @@
 		P.pro_num=#{pro_num}
 	</select>
 
+
 	<resultMap type="ProductVO" id="image">
 		<id property="pro_num" column="pro_num" />
 		<result property="cat_ref" column="cat_ref" />
@@ -98,6 +99,43 @@
 
 	</resultMap>
 
+	<!--count -->
+	<select id="reviewCount" resultType="Integer" parameterType="ProductVO">
+		select count(rev_num) from review where pro_num=#{pro_num}
+		
+	</select>
+
+
+	 <!--셀렉트된 리뷰리스트  -->
+  	<select id="reviewList" resultMap="refiles" parameterType="map">
+  		select * from
+  		(select Q.*, rownum A from
+  		 (select * from (select R.*, F.fname, F.fnum from review  R full outer join revFiles F on R.rev_num= F.rev_num) 
+  		 where pro_num=#{pro.pro_num}) Q) 
+  		 where A between #{pager.startRow}and#{pager.lastRow}
+  	</select>
+  	
+  	<resultMap type="ReviewVO" id="refiles">
+  			<id property="rev_num" column="rev_num" />
+  			<result property="pro_num" column="pro_num" />
+  			<result property="id" column="id" />	
+			<result property="star" column="star" />
+			<result property="rev_contents" column="rev_contents" />
+			<result property="name" column="name" />
+			<result property="help" column="help" />
+			<result property="rev_date" column="rev_date" />
+			
+  		<collection property="files" javaType="List" ofType="RevFilesVO">		
+			<id property="fnum" column="fnum" />
+			<result property="rev_num" column="rev_num" />
+			<result property="fname" column="fname" />	
+				
+		</collection>
+  	
+  	
+  	</resultMap>
+
+	
 
 	<!--delete -->
 	<delete id="productDelete" parameterType="Integer">

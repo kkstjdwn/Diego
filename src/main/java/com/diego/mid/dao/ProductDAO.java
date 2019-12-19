@@ -1,6 +1,8 @@
 package com.diego.mid.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -42,7 +44,7 @@ public class ProductDAO {
 		return sqlSession.insert(NAMESPACE+"productInsert", productVO);
 	}	
 	
-	//count
+	//상품등록갯수count
 	public int productCount(MPager pager)throws Exception {
 		
 		return sqlSession.selectOne(NAMESPACE+"productCount", pager);
@@ -62,6 +64,8 @@ public class ProductDAO {
 		return sqlSession.selectOne(NAMESPACE+"productSelect", productVO);
 	}
 	
+	
+	
 	//update
 	public int productUpdate(ProductVO productVO)throws Exception{
 		
@@ -74,4 +78,28 @@ public class ProductDAO {
 			
 			return sqlSession.insert(NAMESPACE+"productReview",reviewVO );
 		}
+		
+	//셀렉트된리뷰리스트
+		public List<ReviewVO> reviewList(MPager pager, ProductVO productVO)throws Exception{
+			Map<String, Object> map= new HashMap<String, Object>();
+			map.put("pro", productVO);
+			map.put("pager", pager);
+			
+			
+			//System.out.println(productVO.getPro_num()+"pro_num입니다.");성공
+			pager= (MPager)map.get("pager");
+			
+			//System.out.println(pager.getStartRow());
+			//System.out.println(pager.getLastRow());
+			return sqlSession.selectList(NAMESPACE+"reviewList", map);
+		}
+		
+	//셀렉트된 리뷰리스트의개수
+		public int reviewCount(ProductVO productVO)throws Exception {
+			
+			return sqlSession.selectOne(NAMESPACE+"reviewCount", productVO);
+		}
+			
+	
+		
 }

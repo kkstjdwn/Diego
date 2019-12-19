@@ -21,15 +21,14 @@
 		</choose>
 	</sql>
 
-<!--리뷰첨부파일가져오기-->
+<!--리뷰첨부파일가져오기 잘안된다....-->
 <select id="photoReview" parameterType="Integer" resultType="RevFilesVO" >
 select * from revFiles where fnum = (select min(fnum) from revFiles group by rev_num having rev_num= #{rev_num})
 </select>
 
 <!-- 	select * from revFiles  -->
 
-
-
+	
 
 
   <!--(상품+이미지+리뷰+리뷰파일)리스트 -->
@@ -58,7 +57,7 @@ select * from revFiles where fnum = (select min(fnum) from revFiles group by rev
 		<result property="pro_vital" column="pro_vital" />
 		<result property="pro_main" column="pro_main" />
 		
-		<collection property="reviewVO" javaType="List" ofType="reviewVO">
+		<collection property="reviewVO" javaType="List" ofType="ReviewVO">
 			<id property="rev_num" column="rev_num" />
 			<result property="id" column="id" />	
 			<result property="star" column="star" />
@@ -68,7 +67,7 @@ select * from revFiles where fnum = (select min(fnum) from revFiles group by rev
 			<result property="rev_date" column="rev_date" />
 		</collection>
 		
-		<collection property="revFilesVO" javaType="List" ofType="revFilesVO">		
+		<collection property="revFilesVO" javaType="List" ofType="RevFilesVO">		
 			<id property="fnum" column="fnum" />
 			<result property="rev_num" column="rev_num" />
 			<result property="fname" column="fname" />	
@@ -102,12 +101,47 @@ select * from revFiles where fnum = (select min(fnum) from revFiles group by rev
 
   	
 	<!--별점평균-->
-	<select id="totalStar" resultType="Double" parameterType="reviewVO">
+	<select id="totalStar" resultType="Double" parameterType="ReviewVO">
 		select avg(star) from review where pro_num=#{pro_num}
 		
 	</select>
-
+	
+	<!--한상품에대한 리뷰갯수 -->
+	<select id="totalReview" resultType="Integer" parameterType="ReviewVO">
+		  select count(rev_num) from review where pro_num= #{pro_num}
+	</select>
   	
+  	<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~` -->
+  <!--리뷰 셀렉트  -->
+  	<select id="selectReview" resultMap="refiles" parameterType="ReviewVO">
+  		select R.*, F.fname, F.fnum
+  		from 
+  		review  R full outer join revFiles F
+  		on R.rev_num= F.rev_num
+  		where R.rev_num=#{rev_num}
+  	</select>
+  	
+  	<resultMap type="ReviewVO" id="refiles">
+  			<id property="rev_num" column="rev_num" />
+  			<result property="id" column="id" />	
+			<result property="star" column="star" />
+			<result property="rev_contents" column="rev_contents" />
+			<result property="name" column="name" />
+			<result property="help" column="help" />
+			<result property="rev_date" column="rev_date" />
+  		
+  		<collection property="files" javaType="List" ofType="RevFilesVO">		
+			<id property="fnum" column="fnum" />
+			<result property="rev_num" column="rev_num" />
+			<result property="fname" column="fname" />	
+			
+		<collection property=""></collection>
+			
+		
+		</collection>
+  	
+  	
+  	</resultMap>
 
   
   </mapper>

@@ -61,4 +61,16 @@ public class ReviewDAO {
 		
 	}
 	
+	//한상품리뷰갯수
+	public Integer totalReview(ReviewVO reviewVO)throws Exception{
+		
+		return sqlSession.selectOne(NAMESPACE+"totalReview", reviewVO);
+		
+	}
+	
+	//리뷰 셀렉트
+	public ReviewVO selectReview(ReviewVO reviewVO)throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"selectReview", reviewVO );
+	}
+	
 }

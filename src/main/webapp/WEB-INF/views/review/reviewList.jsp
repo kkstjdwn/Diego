@@ -10,6 +10,17 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <meta charset="UTF-8">
 <title>Review List</title>
+	<style type="text/css">
+			.modal-content{
+					
+					width: 1057px;
+					height: 769px;
+			}
+			
+			.
+	
+	
+	</style>
 <c:import url="../layout/bootStrap.jsp" />
 </head>
 <body>
@@ -23,14 +34,15 @@
 
 
 		<c:forEach items="${reviewList}" var="review" varStatus="status">
-
+			
 			<p><img src="../resources/product/images/${review.pro_main}"	style="width: 70%; height: 20%;"></p>
 			
 			<br>
 			<p>상품명: ${review.pro_name}</p>
 			<p>가격: ${review.pro_price}원</p>
 			<p>상품넘버: ${review.pro_num}</p>
-			<p>평균평점: ${review.totalstar}</p>
+			<p>평균평점: <b style="font-size: 20px">${review.totalStar}</b></p>
+			<p><b style="color: blue">${review.totalReview}</b>개의 리뷰</p>
 			<hr>
 			
 			<c:forEach items="${review.reviewVO}" var="rev" varStatus="status" begin="0" end="2" step="1">
@@ -41,13 +53,44 @@
 						
 						<c:if test="${rev.rev_num eq ref.rev_num and ref.fnum ne 0}" >
 							
-							<img src="../resources/product/photoReview/${ref.fname}" style="width: 70px; height: 70px;">
+							<a href="./reviewSelect?rev_num=${rev.rev_num}"><img src="../resources/product/photoReview/${ref.fname}" style="width: 70px; height: 70px;"></a>
 							
 						</c:if>				
 				</c:forEach>
 			
+				<p>${rev.rev_num}</p>
 				
-				<p style="color: red;">${rev.rev_contents}</p>
+				<a data-toggle="modal" data-target="#modalReview"><p style="color: red;">${rev.rev_contents}</p></a>
+				
+				<!-- Modal -->
+  				<div class="modal fade" id="modalReview" role="dialog">
+    				<div class="modal-dialog modal-lg">
+      					<div class="modal-content">
+        					<div class="modal-header">
+          							<button type="button" class="close" data-dismiss="modal">&times;</button>
+          							<h4 class="modal-title">Modal Header</h4>
+        					</div>
+        					<div class="modal-body">
+          						 <div class="form-group">
+		 								<label for="reviewImage" class="control-label">이미지:</label>
+		    							<img id="reviewImage" alt="" src="">
+		  						</div>
+		  
+		  						<div class="form-group">
+		 	   							<label for="reviewMessage" class="control-label">Message:</label>
+		    							<textarea class="form-control" id="reviewMessage"></textarea>
+		  						</div>
+          							
+          							
+        					</div>
+        				<div class="modal-footer">
+          							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        				</div>
+      					</div>
+    				</div>
+  				</div>
+			
+		
 				<hr>
 				
 			</c:forEach>
@@ -92,7 +135,7 @@
 
 	</div>
 
-
+	
 
 	<script type="text/javascript">
 		//서치	

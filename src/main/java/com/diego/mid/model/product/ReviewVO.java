@@ -16,6 +16,10 @@ public class ReviewVO {
 	private Date rev_date;//작성날짜
 	private String pro_main;//메인이미지
 	
+	private Integer fnum;
+	private String fname;
+
+
 	private List<RevFilesVO>files;// 포토리뷰처럼 섬머노트이용해서 사진도 올릴수있게..여러개 파일 저장.
 
 	public String getId() {

@@ -58,11 +58,13 @@ public class ReviewController {
 		for (ProductVO productVO : ar) {
 			reviewVO= new ReviewVO();
 			reviewVO.setPro_num(productVO.getPro_num());
+			productVO.setTotalReview(reviewService.totalReview(reviewVO));
 			Double d= reviewService.totalStar(reviewVO);
 			String total	=d.toString();
 			total=total.substring(0,3);
-			productVO.setTotalstar(Double.parseDouble(total));
+			productVO.setTotalStar(Double.parseDouble(total));
 		}
+		
 		
 //		List<RevFilesVO> ar2=new ArrayList<RevFilesVO>();
 //		
@@ -72,7 +74,7 @@ public class ReviewController {
 //				ar2.add(reviewService.photoReview(productVO.getReviewVO().get(i).getRev_num()));
 //			}
 //		}
-		
+//		
 		
 		/*
 		 * for(int i=0; i<ar3.size(); i++) {
@@ -80,7 +82,6 @@ public class ReviewController {
 		 * System.out.println(ar3.get(i).getFname());
 		 * System.out.println(ar3.get(i).getFnum()); }
 		 */
-		
 		
 		ModelAndView mv = new ModelAndView();
 		
@@ -95,6 +96,20 @@ public class ReviewController {
 		
 		return mv;
 		
+	}
+	
+	//리뷰셀렉트
+	@GetMapping("reviewSelect")
+	public ModelAndView  selectReview(ReviewVO reviewVO)throws Exception{
+		
+		ModelAndView mv= new ModelAndView();
+		
+		reviewVO= reviewService.selectReview(reviewVO);
+		
+		mv.addObject("selectReview", reviewVO);
+		mv.setViewName("review/reviewSelect");
+		
+		return mv;
 	}
 	
 }
