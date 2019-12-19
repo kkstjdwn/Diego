@@ -114,7 +114,7 @@
 				where pro_name like '%'||#{search}||'%'
 			</when>
 			<when test="kind == 'kc'">
-				where contnets like '%'||#{search}||'%'
+				where contents like '%'||#{search}||'%'
 			</when>
 		</choose>
 	</sql>
@@ -145,6 +145,73 @@
 		pro_num=#{pro_num}
 
 	</delete>
+	<!--%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<!--QNAList  -->
+	<sql id="qs">
+		<choose>
+			<when test="kind == 'kt'">
+				where title like '%'||#{search}||'%'
+			</when>
+			<when test="kind == 'kw'">
+				where writer like '%'||#{search}||'%'
+			</when>
+			<when test="kind == 'kc'">
+				where contents like '%'||#{search}||'%'
+			</when>
+		</choose>
+	</sql>
+	
+	<resultMap type="QnaManageVO" id="qnaListMap">
+	<id property="qna_num" column="qna_num" />
+		<result property="writer" column="writer" />
+		<result property="title" column="title" />
+		<result property="contents" column="contents" />
+		<result property="qna_img" column="qna_img" />
+		<result property="qna_date" column="qna_date" />
+		<result property="step" column="step" />
+		<result property="ref" column="ref" />
+		<result property="depth" column="depth" />
+		<result property="secret" column="secret" />
+		<result property="sec_num" column="sec_num" />
+		
+		<collection property="imagesVO" javaType="ImagesVO">
+			<id property="images_num" column="images_num" />
+			<result property="pro_main" column="pro_main" />
+			<result property="sumnale" column="sumnale" />
+			<result property="front" column="front" />
+			<result property="back" column="back" />
+			<result property="pro_model" column="pro_model" />
+			<result property="pro_full" column="pro_full" />
+			<result property="gif" column="gif" />
+			<result property="pro_info" column="pro_info" />
+			<result property="pro_sizecut" column="pro_sizecut" />
+		</collection>
+		
+		<collection property="productVO" javaType="ProductVO">
+			<id property="pro_num" column="pro_num" />
+			<result property="pro_name" column="pro_name" />
+			<result property="pro_price" column="pro_price" />
+			<result property="pro_count" column="pro_count" />
+			<result property="pro_sale" column="pro_sale" />
+			<result property="pro_date" column="pro_date" />
+			<result property="contents" column="contents" />
+			<result property="pro_warning" column="pro_warning" />
+			<result property="pro_size" column="pro_size" />
+			<result property="pro_color" column="pro_color" />
+			<result property="pro_vital" column="pro_vital" />
+		</collection>
+		
+	</resultMap>
+	
+	<select id="qnaList" resultMap="qnaListMap" parameterType="Pager">
+		 select * from(select Q.*, rownum A from (select * from (select R.*, F.sumnale, P.pro_name from qna R left join images F on R.pro_num = F.pro_num left join product P on R.pro_num = P.pro_num)<include refid="qs"></include>) Q) where A between #{startRow} and #{lastRow}
+	</select>
+	
+	<!--QNA Count  -->
+	<select id="qnaCount" resultType="Integer" parameterType="Pager">
+		select count(qna_num) from qna
+		<include refid="qs"></include>
+	</select>
 		
 
 </mapper>

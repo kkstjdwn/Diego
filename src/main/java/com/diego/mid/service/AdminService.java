@@ -11,6 +11,7 @@ import com.diego.mid.model.admin.AdminVO;
 import com.diego.mid.model.admin.ProManageVO;
 import com.diego.mid.model.member.MemberVO;
 import com.diego.mid.model.product.ProductVO;
+import com.diego.mid.model.product.QnaVO;
 import com.diego.mid.util.Pager;
 
 @Service
@@ -70,6 +71,19 @@ public class AdminService {
 	public int productDelete(ProManageVO proManageVO)throws Exception {
 		return adminDAO.productDelete(proManageVO);
 	}
-
+	////////////////////////////////////////////////////////
+	//QNA리스트
+		public List<QnaVO> qnaList(Pager pager)throws Exception{
+			
+			pager.makeRow();
+			pager.makePage(adminDAO.qnaCount(pager));
+			
+			return adminDAO.qnaList(pager);
+			
+		}
+		public int qnaCount(Pager pager )throws Exception{
+			
+			return adminDAO.qnaCount(pager);
+		}
 	
 }

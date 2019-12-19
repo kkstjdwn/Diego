@@ -92,7 +92,7 @@
 
 		insert into qna values(
 		#{writer}, qna_seq.nextval, #{pro_num}, #{title},
-		#{contents}, sysdate,
+		#{contents}, sysdate, #{secret},#{sec_num}
 		(select ref from qna where qna_num=#{qna_num}),
 		(select step from qna where qna_num=#{qna_num})+1,
 		(select depth from

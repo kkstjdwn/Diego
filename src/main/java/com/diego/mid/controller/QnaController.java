@@ -75,6 +75,7 @@ public class QnaController {
 		
 	}
 	
+	
 	//qna셀렉트
 	@GetMapping("qnaSelect")
 	public ModelAndView qnaSelect(QnaVO qnaVO, Integer pro_num)throws Exception {

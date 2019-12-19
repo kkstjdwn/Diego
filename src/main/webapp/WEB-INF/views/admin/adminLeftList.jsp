@@ -25,7 +25,7 @@
 							<li class="title"><a href="">Board</a></li>
 							<li class="sub"><a href="/mid/notice/noticeList">Notice</a></li>
 							<li class="sub"><a href="/mid/faq/faqList">FAQ</a></li>
-							<li class="sub"><a href="/mid/qna/qnaList">Q&A</a></li>
+							<li class="sub"><a href="/mid/admin/qnaList">Q&A</a></li>
 							<li class="sub"><a href="/mid/review/reviewList">Review</a></li>
 						</ul>
 						<ul>

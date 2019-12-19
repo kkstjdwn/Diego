@@ -19,6 +19,7 @@ import com.diego.mid.model.admin.AdminVO;
 import com.diego.mid.model.admin.ProManageVO;
 import com.diego.mid.model.member.MemberVO;
 import com.diego.mid.model.product.ProductVO;
+import com.diego.mid.model.product.QnaVO;
 import com.diego.mid.service.AdminService;
 import com.diego.mid.util.Pager;
 
@@ -178,5 +179,23 @@ public class AdminController {
 			
 			return mv;
 		}
-	
+		
+	////////////////////////////////////////////////////	
+	//QNA List
+		@GetMapping(value = "qnaList")
+		public ModelAndView qnaList(Pager pager)throws Exception {
+			
+			List<QnaVO>ar = adminService.qnaList(pager);
+		
+			
+			ModelAndView mv = new ModelAndView();
+			mv.addObject("count", adminService.qnaCount(pager));
+			mv.addObject("qnaList", ar);
+			mv.addObject("pager", pager);
+			
+			mv.setViewName("admin/qnaList");
+			
+			return mv;	
+		
+		}
 }

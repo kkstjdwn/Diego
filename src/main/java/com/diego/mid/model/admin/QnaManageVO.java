@@ -1,10 +1,13 @@
-package com.diego.mid.model.product;
+package com.diego.mid.model.admin;
 
 
 import java.sql.Date;
 import java.util.List;
 
-public class QnaVO {
+import com.diego.mid.model.product.ImagesVO;
+import com.diego.mid.model.product.ProductVO;
+
+public class QnaManageVO {
 
    private String writer;//작성자
    private Integer qna_num;//qna번호
@@ -18,10 +21,28 @@ public class QnaVO {
    private Integer depth;
    private String secret;
    private String sec_num;
+   private ImagesVO imagesVO;
+   private ProductVO productVO;
    
    
    
-   public String getSecret() {
+   
+   
+   
+   public ProductVO getProductVO() {
+	return productVO;
+}
+public void setProductVO(ProductVO productVO) {
+	this.productVO = productVO;
+}
+
+public ImagesVO getImagesVO() {
+	return imagesVO;
+}
+public void setImagesVO(ImagesVO imagesVO) {
+	this.imagesVO = imagesVO;
+}
+public String getSecret() {
       return secret;
    }
    public void setSecret(String secret) {

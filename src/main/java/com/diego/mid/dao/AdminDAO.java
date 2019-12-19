@@ -11,6 +11,7 @@ import com.diego.mid.model.admin.AdminVO;
 import com.diego.mid.model.admin.ProManageVO;
 import com.diego.mid.model.member.MemberVO;
 import com.diego.mid.model.product.ProductVO;
+import com.diego.mid.model.product.QnaVO;
 import com.diego.mid.util.Pager;
 
 @Repository
@@ -76,5 +77,20 @@ public class AdminDAO {
 			return session.delete(NAMESPACE+"productDelete", proManageVO);
 			
 		}
+		
+////////////////////////////////////////////////////
+	//QNA List
+		//리스트
+		public List<QnaVO> qnaList(Pager pager)throws Exception{
+			
+			return session.selectList(NAMESPACE+"qnaList", pager);
+		}
+		
+		//페이져카운트
+		public int qnaCount(Pager pager)throws Exception{
+			
+			return session.selectOne(NAMESPACE+"qnaCount", pager);
+		}
+		
 	
 }

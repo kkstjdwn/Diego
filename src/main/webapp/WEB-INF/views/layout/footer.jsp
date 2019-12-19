@@ -5,8 +5,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width"/>
 <link href="/mid/resources/css/footer.css" rel="stylesheet">
 <title>Insert title here</title>
+<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 </head>
 <body>
 	<footer class="footer">
@@ -77,11 +80,23 @@
 			</div>
 		</div>
 	</footer>
-		<div class="scrollTop" style="position:fixed;">
+	<div class="kakao_talk"><a href="javascript:void chatChannel()"><img src="/mid/resources/images/button/kakao_btn.png" style="cursor:pointer"/></a></div>
+			<div class="scrollTop" style="position:fixed;">
 			<a id="toparea" href="#top">
 				<img src="/mid/resources/images/uparrow.png" alt="상향 화살표" class="fas">
 			</a>
 		</div> 
+		<script type='text/javascript'>
+		  //<![CDATA[
+		    // 사용할 앱의 JavaScript 키를 설정해 주세요.
+		    Kakao.init('9eadba4ce8c7f57a73673d034c24eb3e');
+		    function chatChannel() {
+		      Kakao.Channel.chat({
+		        channelPublicId: '_NxexfRxb' // 카카오톡 채널 홈 URL에 명시된 id로 설정합니다.
+		      });
+		    }
+		  //]]>
+		</script>
 
 		<script>
 		/* 스크롤시 위로가기 버튼 */

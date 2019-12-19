@@ -123,3 +123,13 @@ footer button img {
    background-color: white;
    border-radius: 50%;
 }
+
+.kakao_talk {
+    position: fixed;
+    bottom: 80px;
+    right: 27px;
+}
+
+.kakao_talk img {
+    width: 45px;
+}
