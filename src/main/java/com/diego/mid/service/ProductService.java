@@ -109,4 +109,9 @@ public class ProductService {
 		return productDAO.reviewWrite(reviewVO);
 
 	}
+	
+	//상품 카운트
+	public int productCount(Pager pager)throws Exception{
+		return productDAO.productCount(pager);
+	}
 }

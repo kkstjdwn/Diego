@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.diego.mid.dao.ProductDAO;
 import com.diego.mid.model.product.ImagesVO;
 import com.diego.mid.model.product.ProductVO;
 import com.diego.mid.model.product.ReviewVO;
@@ -254,7 +255,25 @@ public class ProductController {
 			mv.setViewName("common/common_result");
 			return mv;
 		}
-	
+		//상품검색
+		@GetMapping(value = "proSearch")
+		public void proSearch()throws Exception{}
+		
+		@PostMapping(value = "proSearch")
+		private ModelAndView proSearch(Pager pager)throws Exception {
+			
+			List<ProductVO>ar= productService.productList(pager);
+			
+			ModelAndView mv = new ModelAndView();
+			mv.addObject("prosize", productService.productCount(pager));
+			mv.addObject("productList", ar);
+			mv.addObject("pager", pager);
+			mv.setViewName("product/proSearch");
+			
+			return mv;
+			
+
+		} 
 	
 }
 

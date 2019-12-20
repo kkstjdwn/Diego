@@ -21,10 +21,19 @@ public class ProductVO {
 	private String pro_vital;//상품 필수옵션
 	private String sumnale;
 	private String pro_main;
+	private String pro_image;
 	private ReviewVO reviewVO;
 	
 	
 	
+	public String getPro_image() {
+		return pro_image;
+	}
+
+	public void setPro_image(String pro_image) {
+		this.pro_image = pro_image;
+	}
+
 	public ReviewVO getReviewVO() {
 		return reviewVO;
 	}

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -65,7 +66,15 @@
 								</td>
 
 								<td style="text-align: center;">
-									<div class="writer2">${qna.writer}</div>
+									<div class="writer2">
+									<c:set var="writerLength" value="${fn:length(qna.writer)}"/>
+									<c:choose>
+									<c:when test="${qna.depth ne 0}"><c:out value="${fn:substring(qna.writer,1+1, writerLength)}"/></c:when>
+									<c:otherwise>
+									<c:out value="${fn:substring(qna.writer,0,1)}"/>*<c:out value="${fn:substring(qna.writer,1+1, writerLength)}"/>
+									</c:otherwise>
+									</c:choose>
+									</div>
 								</td>
 
 								<td style="text-align: right; padding-right: 20px">
@@ -83,7 +92,7 @@
 			
 			<div style="text-align: right; float: right; margin-top: 30px"
 				class="gRight">
-				<a href="" class=""><b>글쓰기</b></a>
+				<a href="../qna/qnaWrite" class=""><b>글쓰기</b></a>
 			</div>
 		</div>
 			<ul class="pagination paging">
@@ -113,7 +122,7 @@
 						<div class="form-group col-xs-2">
 							<select name="kind" class="form-control searchop">
 								<option id="kt" value="kt">Title</option>
-								<option id="kw" value="kt">Writer</option>
+								<option id="kw" value="kw">Writer</option>
 								<option id="kc" value="kc">Contents</option>
 							</select> 
 							<span class="inputbox">
