@@ -117,14 +117,22 @@
 
 						<!-- 로그인/로그아웃 메뉴 -->
 						<div id="log" class="gnb_on ">
-							<span style="cursor: pointer"> <a href="/mid/member/memberLogin">로그인</a></span> <a
-								href="/mid/member/memberInsert" class="register_btn"> 회원가입 </a>
+							<c:choose>
+								<c:when test="${!empty member }">
+									<span><a href="/mid/member/memberLogout">로그아웃</a></span> <span><a href="/mid/member/memberUpdate">나의 정보</a></span>
+								</c:when>
+								<c:otherwise>
+									<span><a href="/mid/member/memberLogin">로그인</a></span> <span><a href="/mid/member/memberInsert">회원가입</a></span>
+								</c:otherwise>
+							</c:choose>
 						</div>
 
 						<!-- 장바구니 -->
+					<c:if test="${!empty member }">
 						<div id="topcarticon" class="cart2 ">
-							<img src="/mid/resources/images/cart_wh.png" /> 장바구니 (0)
+							<img src="/mid/resources/images/cart_wh.png" /> 장바구니(${cc})
 						</div>
+					</c:if>
 
 
 						<div class="myshop_ico">
@@ -145,11 +153,20 @@
 			<!--  오른쪽 메뉴 -->
 				<div class="right_menu">
 					<div id="log">
-						<span><a href="/mid/member/memberLogin">로그인</a></span> <span><a href="/mid/member/memberInsert">회원가입</a></span>
+					<c:choose>
+						<c:when test="${!empty member }">
+							<span><a href="/mid/member/memberLogout">로그아웃</a></span> <span><a href="/mid/member/memberUpdate">나의 정보</a></span>
+						</c:when>
+						<c:otherwise>
+							<span><a href="/mid/member/memberLogin">로그인</a></span> <span><a href="/mid/member/memberInsert">회원가입</a></span>
+						</c:otherwise>
+					</c:choose>
 					</div>
+					<c:if test="${!empty member }">
 					<div id="topcart">
-						<img src="/mid/resources/images/cart.png">장바구니
+						<img src="/mid/resources/images/cart.png">장바구니(${cc })
 					</div>
+					</c:if>
 					<div class="myhsop">나의 쇼핑</div>
 					<div id="ham">
 						<img src="/mid/resources/images/hamb_icon.png">

@@ -20,6 +20,7 @@ import com.diego.mid.model.member.Point;
 import com.diego.mid.model.member.Wishlist;
 import com.diego.mid.model.product.ProductVO;
 import com.diego.mid.service.MemberManageService;
+import com.diego.mid.service.MemberService;
 import com.diego.mid.service.ProductService;
 import com.diego.mid.util.MPager;
 import com.diego.mid.util.Pager;
@@ -34,6 +35,8 @@ public class MemberManageController {
 	@Inject
 	private ProductService proService;
 	
+	@Inject
+	private MemberService memService;
 	
 	
 //@@@@@@@@@@@@@POINT@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -94,16 +97,29 @@ public class MemberManageController {
 	}
 	
 	@GetMapping("pointMyList")
-	public ModelAndView pointMyList(HttpSession session) throws Exception{
+	public ModelAndView pointMyList(HttpSession session,MPager pager) throws Exception{
+		if (pager.getCurPage() == null) {
+			pager.setCurPage(1);
+		}
 		ModelAndView mv = new ModelAndView();
 		Point point = new Point();
 		MemberVO vo = (MemberVO)session.getAttribute("member");
 		point.setId(vo.getId());
-		point = service.pointSelect(point);
-		mv.addObject("pointList", service.pointMyList(point));
-		mv.addObject("page", "My POINT");
+		List<Point> ar= service.pointMyList(point,pager);
+		mv.addObject("pointList", ar);
+		mv.addObject("total", ar.get(0).getTotal_point());
+		mv.addObject("pager", pager);
 		mv.setViewName("/member/memberManage/pointList");
 		
+		return mv;
+	}
+	
+	@PostMapping("pointListAjax")
+	public ModelAndView pointListAjax(Point point, MPager pager) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("pointList", service.pointMyList(point, pager));
+		mv.addObject("pager", pager);
+		mv.setViewName("/member/memberManage/pointListAjax");
 		return mv;
 	}
 	
@@ -360,7 +376,7 @@ public class MemberManageController {
 		productVO = proService.productGetInfo(productVO);
 		orders.setImage(productVO.getPro_image());
 		orders.setOrder_sum(orders.getPro_count()*orders.getPrice()-point.getPoint_value());
-		orders = service.orderInsert(orders, session);
+		orders = service.orderInsert(orders);
 		point.setOrder_num(orders.getOrder_num());
 		point.setContents(orders.getPro_info());
 		
@@ -384,6 +400,11 @@ public class MemberManageController {
 		
 		if (pInsert==1 && cUse == 1) {
 			result = 1;
+			MemberVO memberVO = (MemberVO)session.getAttribute("member");
+			int getPay = memService.getPay(memberVO);
+			memberVO.setTotal_pay(getPay+orders.getOrder_sum());
+			result = memService.setPay(memberVO);
+			
 		}else if(pInsert == 1 && cUse != 1) {
 			cUse = service.couponCancel(coupon);
 		}else if (pInsert != 1 && cUse == 1) {
@@ -415,7 +436,7 @@ public class MemberManageController {
 		productVO = proService.productGetInfo(productVO);
 		orders.setImage(productVO.getPro_image());
 		orders.setOrder_sum(orders.getPro_count()*orders.getPrice()-point.getPoint_value());
-		orders = service.orderInsert(orders, session);
+		orders = service.orderInsert(orders);
 		point.setOrder_num(orders.getOrder_num());
 		point.setContents(orders.getPro_info());
 		
@@ -439,6 +460,11 @@ public class MemberManageController {
 		
 		if (pInsert==1 && cUse == 1) {
 			result = 1;
+			MemberVO memberVO = (MemberVO)session.getAttribute("member");
+			int getPay = memService.getPay(memberVO);
+			memberVO.setTotal_pay(getPay+orders.getOrder_sum());
+			result=memService.setPay(memberVO);
+			
 		}else if(pInsert == 1 && cUse != 1) {
 			cUse = service.couponCancel(coupon);
 		}else if (pInsert != 1 && cUse == 1) {
@@ -589,6 +615,11 @@ public class MemberManageController {
 				point.setContents("주문 취소");
 				result = service.pointInsert(point);
 			}
+			
+			MemberVO memberVO = (MemberVO)session.getAttribute("member");
+			int getPay = memService.getPay(memberVO);
+			memberVO.setTotal_pay(getPay-orders.getOrder_sum());
+			result = memService.setPay(memberVO);
 		}
 		mv.addObject("msg", result);
 		mv.setViewName("common/common_ajax_result");

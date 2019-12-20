@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,39 +21,43 @@
 	line-height: 20px;
 }
 
-#count-up:hover{
+#count-up:hover {
 	border: 1px solid #008bcc;
-	border-bottom:none;
-}
-#count-down:hover{
-	border: 1px solid #008bcc;
-	border-top: none; 
+	border-bottom: none;
 }
 
-#order-insert{
-	width: 100px; 
-	height: 30px; 
-	background: #555555; 
-	color: white; 
-	border: 1px solid #555555; 
-	margin-top: 20px;"
+#count-down:hover {
+	border: 1px solid #008bcc;
+	border-top: none;
 }
-#order-insert:hover{
+
+#order-insert {
+	width: 100px;
+	height: 30px;
+	background: #555555;
+	color: white;
+	border: 1px solid #555555;
+	margin-top: 20px;
+	"
+}
+
+#order-insert:hover {
 	border: 2px solid #555555;
 	background: white;
 	color: #555555;
 	font-weight: bold;
 }
 
-#cart-insert{
-	width: 100px; 
-	height: 30px; 
-	color: #555555; 
-	border: 1px solid #555555; 
-	margin-top: 20px; 
+#cart-insert {
+	width: 100px;
+	height: 30px;
+	color: #555555;
+	border: 1px solid #555555;
+	margin-top: 20px;
 	background: white;
 }
-#cart-insert:hover{
+
+#cart-insert:hover {
 	border: 2px solid #555555;
 	font-weight: bold;
 }
@@ -74,14 +78,11 @@
 		<br>
 		<hr>
 		<br>
-		<div
-			style="width: 20%; float: left;height: 200px;">
-			<img
-				src="../../resources/product/images/${proVO.pro_image }"
+		<div style="width: 20%; float: left; height: 200px;">
+			<img src="../../resources/product/images/${proVO.pro_image }"
 				height="82px" width="82px" style="margin: 20px 0 0 20px;">
 		</div>
-		<div class="opt-div"
-			style="width: 80%; float: right; height: 200px;">
+		<div class="opt-div" style="width: 80%; float: right; height: 200px;">
 			<div style="width: 30%; float: left; margin-top: 20px;">
 				<p>OPTION</p>
 				<p>가격</p>
@@ -99,20 +100,32 @@
 						<option>B TYPE</option>
 					</select>
 				</p>
-				
-				<p style="color: #008bcc; font-weight: bold;"><fmt:formatNumber type="number" value="${proVO.pro_price }"></fmt:formatNumber>원</p>
-				<p style="position: relative;">
-					<input type="text" id="pro_count" value="1">
-					<img alt="count-up" src="../../resources/images/button/btn_count_up.gif" style="position:absolute; top: 1px; height: 10px; left: 150px;" id="count-up">
-					<img alt="count-up" src="../../resources/images/button/btn_count_down.gif" style="position:absolute; bottom: -1px; height: 10px; left: 150px;" id="count-down">
-						
-							
-						
+
+				<p style="color: #008bcc; font-weight: bold;">
+					<fmt:formatNumber type="number" value="${proVO.pro_price }"></fmt:formatNumber>
+					원
 				</p>
-				
-				<p><fmt:formatNumber type="number" value="${point.total_point }"></fmt:formatNumber> 포인트</p>
+				<p style="position: relative;">
+					<input type="text" id="pro_count" value="1"> <img
+						alt="count-up"
+						src="../../resources/images/button/btn_count_up.gif"
+						style="position: absolute; top: 1px; height: 10px; left: 150px;"
+						id="count-up"> <img alt="count-up"
+						src="../../resources/images/button/btn_count_down.gif"
+						style="position: absolute; bottom: -1px; height: 10px; left: 150px;"
+						id="count-down">
+
+
+
+				</p>
+
 				<p>
-					<input type="number" min="0" style="width: 165px;" value="0" id="point_value">
+					<fmt:formatNumber type="number" value="${point.total_point }"></fmt:formatNumber>
+					포인트
+				</p>
+				<p>
+					<input type="number" min="0" style="width: 165px;" value="0"
+						id="point_value">
 				</p>
 				<p>
 					<select style="width: 58%;" id="coupon">
@@ -121,20 +134,19 @@
 							<option value="${coupon.sales_value}" title="${coupon.coup_num }"
 								class="opt">${coupon.coup_name }(${coupon.discount }%)</option>
 						</c:forEach>
-					</select>
-					<input type="hidden" id="param" value="9999">
+					</select> <input type="hidden" id="param" value="9999">
 				</p>
 			</div>
 		</div>
-		
+
 		<div
-			style="width: 100%; margin: 10px 0; clear:both; height:24px; border-top: 1px solid #eaeaea; border-bottom: 1px solid #eaeaea;">
+			style="width: 100%; margin: 10px 0; clear: both; height: 24px; border-top: 1px solid #eaeaea; border-bottom: 1px solid #eaeaea;">
 			<p style="font-size: 11px; margin-left: 18px;">
 				총 주문 금액<span style="font-size: 9px;"> (수량)</span> : <span
-					style="color: #008bcc; font-size: 14px; font-weight: bold;" id="order_sum" title="${proVO.pro_price }">
-					<fmt:formatNumber type='number'>${proVO.pro_price }</fmt:formatNumber>
-					</span>원<span
-					style="color: #008bcc; font-size: 9px;">(수량)</span>
+					style="color: #008bcc; font-size: 14px; font-weight: bold;"
+					id="order_sum" title="${proVO.pro_price }"> <fmt:formatNumber
+						type='number'>${proVO.pro_price }</fmt:formatNumber>
+				</span>원<span style="color: #008bcc; font-size: 9px;">(수량)</span>
 			</p>
 		</div>
 		<div
@@ -144,7 +156,7 @@
 			<button id="cart-insert">장바구니담기</button>
 		</div>
 	</div>
-<script type="text/javascript">
+	<script type="text/javascript">
 	
 	var orderPass = true;
 
@@ -264,7 +276,7 @@ $("#order-insert").click(function() {
 				
 			});
 		}
-	});
+	}); 
 	
 </script>
 </body>

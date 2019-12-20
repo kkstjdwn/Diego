@@ -17,7 +17,7 @@
 <div class="left">
 	<div class="left-menu">
 		<ul class="left-list">
-			<li style="height: 30px; font-size: 13px; font-weight: bold;">Community</li>
+			<li style="height: 30px; font-size: 13px; font-weight: bold; color: black;">Community</li>
 			<li ><a href="#">Notice</a></li> 
 			<li ><a href="#">FAQ</a></li> 
 			<li ><a href="#">Q&amp;A</a></li> 
@@ -33,7 +33,7 @@
 			<li ><a href="../memberUpdate">My info</a></li></c:if>
 			<li ><a href="orderMyList">Order</a></li>
 			<li ><a href="#" style="color: black;">Wish list</a></li>
-			<li ><a href="#">Mileage</a></li>
+			<li ><a href="pointMyList">Mileage</a></li>
 			<li ><a href="#">My board</a></li>
 			<li ><a href="#">Delivery</a></li>
 		</ul>
@@ -139,7 +139,7 @@
 <!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
 </div>
 </section>
-<footer></footer>
+<c:import url="../../layout/footer.jsp"/>
 <script type="text/javascript">
 var check = false;
 var all = 0;

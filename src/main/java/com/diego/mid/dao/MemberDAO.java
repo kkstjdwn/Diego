@@ -40,5 +40,11 @@ public class MemberDAO {
 		return session.update(NAMESPACE+"memberRankUp",memberVO);
 	}
 	
+	public int getPay(MemberVO memberVO) throws Exception{
+		return session.selectOne(NAMESPACE+"getPay",memberVO);
+	}
 
+	public int setPay(MemberVO memberVO) throws Exception{
+		return session.update(NAMESPACE+"setPay",memberVO);
+	}
 }

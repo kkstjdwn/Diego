@@ -45,6 +45,7 @@ footer{
 	width: 1613px;
 	height: inherit;
 	float: left;
+	overflow: hidden;
 }
 
 .right-h1{
@@ -264,7 +265,7 @@ footer{
 	font-size: 12px;
 }
 .join-btn{
-	margin: 60px 0;
+	margin: 30px 0;
 	padding: 10px 0;
 	text-align: center;
 }
@@ -1154,36 +1155,93 @@ footer{
 	border-radius: 3px;
 }
 
+#cart-coupon-ajax{
+	cursor: pointer;
+}
 
 
+#cart-coupon-view{
+	display: none;
+}
 
+/*ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ*/
 
+.ptList-title{
+	width: 97%;
+	margin: 16px auto 0;
+	color: #555555;
+	font-size: 15px;
+	border-top: 2px solid #eaeaea;
+	border-bottom: 2px solid #eaeaea;
+	height: 30px;
+	padding: 20px 0 20px 45px; 
+}
 
+.pt-ajax-table{
+	width: 99%;
+	margin: 20px auto;
+}
 
+.pt-table{
+	width: 99%;
+	margin: 0 auto;
+	border-collapse: collapse;
+	font-size: 12px;
+	color: #353535;
+	text-align: center;
+}
 
+.pt-table th{
+	height: 18px;
+	padding: 14px 0 15px;
+	border: 1px solid #eaeaea;
+	border-left: 0;
+}
 
+.pt-table td{
+	height: 20px;
+	padding: 14px 0;
+	border-bottom: 1px solid #eaeaea;
+}
 
+.pt-date{
+	width: 15%;
+}
 
+.pt-orderNum{
+	width: 4%;
+}
 
+.pt-value{
+	width: 15%;
+}
 
+.pt-save{
+	width: 15%;
+}
 
+.pt-contents{
+	width: 40%;
+}
 
+.pt-totalPoint{
+	width: 10%;
+}
 
+.pt-menu-bar{
+	margin:30px auto 20px;
+	width: 99%;
+	height: 42px;
+	border-bottom: 1px solid #eaeaea;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.pt-menu-btn{
+	background: #555555;
+	color: white;
+	border: 0;
+	width: 200px;
+	height: 42px;
+}
 
 
 

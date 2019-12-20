@@ -46,11 +46,8 @@ public class MemberManageService {
 		return dao.wishOverlapCheck(wishlist);
 	}
 	
-	public Orders orderInsert(Orders orders,HttpSession session) throws Exception{
+	public Orders orderInsert(Orders orders) throws Exception{
 		orders.setOrder_num(dao.getOrderNum());
-		if (orders.getFname() !=null) {
-			orders.setImage(saver.save(session.getServletContext().getRealPath("/resources/product/orders"), orders.getFname()));
-		}
 		int result = dao.orderInsert(orders); 
 		if (result > 0) {
 			return orders;
@@ -122,8 +119,11 @@ public class MemberManageService {
 		return dao.pointInsert(point);
 	}
 	
-	public List<Point> pointMyList(Point point) throws Exception{
-		return dao.pointMyList(point);
+	public List<Point> pointMyList(Point point,MPager pager) throws Exception{
+		pager.setPerPager(10);
+		pager.makePager(dao.myListCount(point));
+		pager.rowMake();
+		return dao.pointMyList(point,pager);
 	}
 	
 	public List<Point> pointList() throws Exception{

@@ -17,7 +17,7 @@
 <div class="left">
 	<div class="left-menu">
 		<ul class="left-list">
-			<li style="height: 30px; font-size: 13px; font-weight: bold;">Community</li>
+			<li style="height: 30px; font-size: 13px; font-weight: bold; color: black;">Community</li>
 			<li ><a href="#">Notice</a></li> 
 			<li ><a href="#">FAQ</a></li> 
 			<li ><a href="#">Q&amp;A</a></li> 
@@ -33,7 +33,7 @@
 			<li ><a href="../memberUpdate">My info</a></li></c:if>
 			<li ><a href="orderMyList">Order</a></li>
 			<li ><a href="wishListSelectList">Wish list</a></li>
-			<li ><a href="#">Mileage</a></li>
+			<li ><a href="pointList">Mileage</a></li>
 			<li ><a href="#">My board</a></li>
 			<li ><a href="#">Delivery</a></li>
 		</ul>
@@ -48,9 +48,17 @@
 		</div>
 		<div class="cart-info-mem">
 			<p><strong>${member.name }</strong>님은, [${member.mem_rank }] 회원이십니다. </p>
-			<p style="margin-bottom: 10px;"><strong><fmt:formatNumber type="number">${up }</fmt:formatNumber></strong>원 이상 구매시 <strong>${x }</strong>% 추가적립 받으실수 있습니다. </p>
+			<p style="margin-bottom: 10px;">
+				<strong><fmt:formatNumber type="number">${up }</fmt:formatNumber></strong>원 이상 구매시 <strong>${x }</strong>% 추가적립 받으실수 있습니다. </p>
 			<hr>
-			<p style="margin-top: 10px;"><span style="margin-right: 30px;">가용 적립금 : <strong><fmt:formatNumber type="number">${point.total_point }</fmt:formatNumber></strong>원</span> <span>쿠폰 : <strong>${coupon.size() }</strong>&nbsp;개 </span> </p>
+			<p style="margin-top: 10px;">
+				<span style="margin-right: 30px;">가용 적립금 : <strong><fmt:formatNumber type="number">${point.total_point }</fmt:formatNumber></strong>원 &nbsp;</span>
+				<span>쿠폰 : <strong id="cart-coupon-ajax" onmousedown="viewCoup(this)" onmouseup="viewCount(this)">${coupon.size() }</strong>&nbsp;개</span> </p>
+				<span id="cart-coupon-view">
+				<c:forEach items="${coupon }" var="coup" varStatus="c">
+					${c.count }. ${coup.coup_name } (${coup.discount }%)<br>
+				</c:forEach>
+				</span>
 		</div>
 	</div>
 	<div class="cart-ajax">
@@ -202,7 +210,7 @@
 <!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
 </div>
 </section>
-<footer></footer>
+<c:import url="../../layout/footer.jsp"/>
 <script type="text/javascript">
 //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ뷰체커ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 	var viewCheck = 0;
@@ -501,6 +509,14 @@
 			}
 		});
 		
+		function viewCoup(s) {
+			s.innerHTML = $("#cart-coupon-view").text();
+		}
+		
+		function viewCount(s){
+			var size = ${coupon.size()};
+			s.innerHTML = size;
+		}
 		
 </script>
 </body>

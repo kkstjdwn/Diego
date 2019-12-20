@@ -116,9 +116,15 @@ public class MemberManegeDAO {
 		return sql.insert(POINT+"pointInsert",point);
 	}
 	
+	public int myListCount(Point point) throws Exception{
+		return sql.selectOne(POINT+"myListCount",point);
+	}
 	
-	public List<Point> pointMyList(Point point) throws Exception{
-		return sql.selectList(POINT+"pointMyList",point);
+	public List<Point> pointMyList(Point point,MPager pager) throws Exception{
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("point", point);
+		map.put("pager", pager);
+		return sql.selectList(POINT+"pointMyList",map);
 	}
 	
 	public List<Point> pointList() throws Exception{

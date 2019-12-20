@@ -19,7 +19,7 @@
 <div class="left">
 	<div class="left-menu">
 		<ul class="left-list">
-			<li style="height: 30px; font-size: 13px; font-weight: bold;">Community</li>
+			<li style="height: 30px; font-size: 13px; font-weight: bold; color: black;">Community</li>
 			<li ><a href="#">Notice</a></li> 
 			<li ><a href="#">FAQ</a></li> 
 			<li ><a href="#">Q&amp;A</a></li> 
@@ -35,7 +35,7 @@
 			<li ><a href="../memberUpdate">My info</a></li></c:if>
 			<li ><a href="#" style="color: black;">Order</a></li>
 			<li ><a href="wishListSelectList">Wish list</a></li>
-			<li ><a href="#">Mileage</a></li>
+			<li ><a href="pointMyList">Mileage</a></li>
 			<li ><a href="#">My board</a></li>
 			<li ><a href="#">Delivery</a></li>
 		</ul>
@@ -140,10 +140,10 @@
 			</c:forEach>
 			</tbody>
 		</table>
-	</div>
 <c:if test="${orderList.size() eq 0 }">
 	<p class="no-order"> 주문 내역이 없습니다</p>
 </c:if>
+	</div>
 <!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
 	<div class="or-pager">
 		<c:if test="${pager.curBlock gt 1 }">
@@ -178,7 +178,7 @@
 </section>
 
 
-<footer></footer>
+<c:import url="../../layout/footer.jsp"/>
 
 <script type="text/javascript">
 

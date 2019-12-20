@@ -36,7 +36,7 @@
 					</td>
 					<td class="or-image">
 						<a href="#">
-							<img alt="상품사진" src="../../resources/product/orders/c69a7cd57f808fa622d80fd6a2551b2c.jpg" width="80px" height="116px">
+							<img alt="상품사진" src="../../resources/product/images/${ord.image }" width="80px" height="116px">
 						</a>
 					</td>
 					<td class="or-pro_info" style="text-align: left; padding: 14px 10px 15px; vertical-align: sub;">

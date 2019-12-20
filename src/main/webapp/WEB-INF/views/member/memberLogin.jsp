@@ -10,10 +10,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body>
-	<header>
-		<h1>!</h1>
-	</header>
-
+<header></header>
 <section style="height: 1045px;">
 <div class="login-img">
 	<img alt="로그인 대문" src="../resources/images/login_bg.jpg" style="width: 100%; height: 100%">
@@ -79,7 +76,7 @@
 	</div>
 </div>
 </section>
-<footer></footer>
+<c:import url="../layout/footer.jsp"/>
 <script type="text/javascript">
 	
 	$("#login").click(function() {
@@ -119,7 +116,7 @@
 				if (data == "1") {
 					location.href="/mid/diego";
 				}else{
-					alert("똑바로 치세요");
+					alert("아이디와 비밀번호를 확인해주세요.");
 				}
 			}
 		});
