@@ -132,9 +132,15 @@
 				
 		</collection>
   	
-  	
   	</resultMap>
 
+ <!--리뷰삭제 -->
+ 	<delete id="reviewDelete" parameterType="Integer">
+ 			delete review where rev_num=#{rev_num}
+ 	
+ 	</delete>
+	
+	
 	
 
 	<!--delete -->

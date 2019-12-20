@@ -55,6 +55,7 @@ public class ReviewService {
 	
 	//리뷰 셀렉트
 	public ReviewVO selectReview(ReviewVO reviewVO)throws Exception{
+		//System.out.println(reviewVO.getRev_num());
 		return reviewDAO.selectReview(reviewVO);
 	}
 	

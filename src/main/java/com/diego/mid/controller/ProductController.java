@@ -152,7 +152,6 @@ public class ProductController {
 		pager.makePager(totalCount);
 		List<ReviewVO>ar = productService.reviewList(productVO, pager);
 		
-		
 		//System.out.println(ar.get(0).getRev_contents());성공
 		
 		productVO =  productService.productSelect(productVO);
@@ -229,18 +228,40 @@ public class ProductController {
 			
 			int result = productService.productReview(reviewVO, session, file);
 			
-			String msg="리뷰 저장이 실패했습니다.";
+			String msg="0";
 			
-			if(result >0) {
-				msg="리뷰 저장이 완료되었습니다.";
-				
+			if(result==1){
+				msg="1";
+			
 			}
 			mv.addObject("msg", msg);
-			mv.addObject("path", "../review/reviewList");
-			mv.setViewName("common/common_result");
+			
+			mv.setViewName("common/common_ajax_result");
 			return mv;
 		}
 	
+		//리뷰삭제
+		@GetMapping("reviewDelete")
+		public ModelAndView reviewDelete(ReviewVO reviewVO)throws Exception {
+			ModelAndView mv= new ModelAndView();
+			
+			
+			int result = productService.reviewDelete(reviewVO);
+			String msg="0";
+			
+			if(result==1){
+				msg="1";
+			
+			}
+			mv.addObject("msg", msg);
+			
+			mv.setViewName("common/common_ajax_result");
+			
+			return mv;
+		}
+		
+		
+		
 	
 }
 

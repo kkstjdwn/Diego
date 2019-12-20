@@ -166,6 +166,11 @@ public class ProductService {
 			return productDAO.reviewCount(productVO);
 		}
 	
-	
+	//리뷰삭제
+		public int reviewDelete(ReviewVO reviewVO)throws Exception {
+			
+			return productDAO.reviewDelete(reviewVO);
+		}
+		
 	
 }

@@ -89,7 +89,7 @@
 			kind = "kt";
 		}
 		$("#"+kind).prop("selected", true);
-	 	//페이징리스트
+	 	
 		$(".list").click(function() {
 			$("#curPage").val($(this).attr("id"));
 			$("#frm").submit();

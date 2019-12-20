@@ -2,21 +2,20 @@ package com.diego.mid.model.product;
 
 public class RevFilesVO {
 	
-	private int fnum;
-	private int rev_num;
+	private Integer fnum;
+	private Integer rev_num;
 	private String fname;
 	private String oname;
-	
-	public int getFnum() {
+	public Integer getFnum() {
 		return fnum;
 	}
-	public void setFnum(int fnum) {
+	public void setFnum(Integer fnum) {
 		this.fnum = fnum;
 	}
-	public int getRev_num() {
+	public Integer getRev_num() {
 		return rev_num;
 	}
-	public void setRev_num(int rev_num) {
+	public void setRev_num(Integer rev_num) {
 		this.rev_num = rev_num;
 	}
 	public String getFname() {
@@ -31,6 +30,7 @@ public class RevFilesVO {
 	public void setOname(String oname) {
 		this.oname = oname;
 	}
+	
 	
 
 

@@ -100,6 +100,11 @@ public class ProductDAO {
 			return sqlSession.selectOne(NAMESPACE+"reviewCount", productVO);
 		}
 			
-	
+	//리뷰 삭제
+		public int reviewDelete(ReviewVO reviewVO)throws Exception {
+			return sqlSession.delete(NAMESPACE+"reviewDelete", reviewVO);
+			
+		}
+		
 		
 }

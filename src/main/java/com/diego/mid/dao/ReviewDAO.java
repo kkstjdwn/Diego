@@ -70,6 +70,7 @@ public class ReviewDAO {
 	
 	//리뷰 셀렉트
 	public ReviewVO selectReview(ReviewVO reviewVO)throws Exception{
+		//System.out.println(reviewVO.getRev_num());
 		return sqlSession.selectOne(NAMESPACE+"selectReview", reviewVO );
 	}
 	

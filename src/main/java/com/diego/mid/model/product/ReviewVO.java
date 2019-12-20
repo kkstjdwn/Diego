@@ -19,8 +19,24 @@ public class ReviewVO {
 	private Integer fnum;
 	private String fname;
 
-
 	private List<RevFilesVO>files;// 포토리뷰처럼 섬머노트이용해서 사진도 올릴수있게..여러개 파일 저장.
+	
+	public Integer getFnum() {
+		return fnum;
+	}
+
+	public void setFnum(Integer fnum) {
+		this.fnum = fnum;
+	}
+
+	public String getFname() {
+		return fname;
+	}
+
+	public void setFname(String fname) {
+		this.fname = fname;
+	}
+
 
 	public String getId() {
 		return id;

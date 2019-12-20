@@ -53,7 +53,7 @@
 						
 						<c:if test="${rev.rev_num eq ref.rev_num and ref.fnum ne 0}" >
 							
-							<a href="./reviewSelect?rev_num=${rev.rev_num}"><img src="../resources/product/photoReview/${ref.fname}" style="width: 70px; height: 70px;"></a>
+							<a href="./selectReview?rev_num=${ref.rev_num}"><img src="../resources/product/photoReview/${ref.fname}" style="width: 70px; height: 70px;"></a>
 							
 						</c:if>				
 				</c:forEach>

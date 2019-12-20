@@ -8,12 +8,12 @@
 <title>Insert title here</title>
 </head>
 <body>
-		<p>작성자: ${selectReview.name}</p> 
-		<p>리뷰넘버:${selectReview.rev_num}</p>
-		<p>도움: ${selectReview.help}</p>
-		<p>평점:${selectReview.star}</p>
-		<p>리뷰콘텐츠: ${selectReview.rev_contents}</p>
-		<c:forEach items="${selectReview.files }" var="sf">
+		<p>작성자: ${reviewSelect.name}</p> 
+		<p>리뷰넘버:${reviewSelect.rev_num}</p>
+		<p>도움: ${reviewSelect.help}</p>
+		<p>평점:${reviewSelect.star}</p>
+		<p>리뷰콘텐츠: ${reviewSelect.rev_contents}</p>
+		<c:forEach items="${reviewSelect.files }" var="sf">
 		<p>${sf.fname}</p>
 		</c:forEach>
 	
