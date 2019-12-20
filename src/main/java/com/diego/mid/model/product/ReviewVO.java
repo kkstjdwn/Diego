@@ -14,10 +14,29 @@ public class ReviewVO {
 	private String name;//작성자이름
 	private Integer help;// 도움이되셨습니까? 네(1)아니오(0)
 	private Date rev_date;//작성날짜
-
 	private String pro_main;//메인이미지
-		
-	private List<ReviewFilesVO>files;// 포토리뷰처럼 섬머노트이용해서 사진도 올릴수있게..여러개 파일 저장.
+	
+	private Integer fnum;
+	private String fname;
+
+	private List<RevFilesVO>files;// 포토리뷰처럼 섬머노트이용해서 사진도 올릴수있게..여러개 파일 저장.
+	
+	public Integer getFnum() {
+		return fnum;
+	}
+
+	public void setFnum(Integer fnum) {
+		this.fnum = fnum;
+	}
+
+	public String getFname() {
+		return fname;
+	}
+
+	public void setFname(String fname) {
+		this.fname = fname;
+	}
+
 
 	public String getId() {
 		return id;
@@ -91,11 +110,11 @@ public class ReviewVO {
 		this.pro_main = pro_main;
 	}
 
-	public List<ReviewFilesVO> getFiles() {
+	public List<RevFilesVO> getFiles() {
 		return files;
 	}
 
-	public void setFiles(List<ReviewFilesVO> files) {
+	public void setFiles(List<RevFilesVO> files) {
 		this.files = files;
 	}
 	

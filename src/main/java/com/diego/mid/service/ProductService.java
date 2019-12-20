@@ -1,7 +1,9 @@
 package com.diego.mid.service;
 
 
+import java.sql.SQLException;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
@@ -11,9 +13,14 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.diego.mid.dao.ImagesDAO;
 import com.diego.mid.dao.ProductDAO;
+import com.diego.mid.dao.RevFilesDAO;
+import com.diego.mid.dao.ReviewDAO;
 import com.diego.mid.model.product.ImagesVO;
 import com.diego.mid.model.product.ProductVO;
+import com.diego.mid.model.product.RevFilesVO;
 import com.diego.mid.model.product.ReviewVO;
+import com.diego.mid.util.FileSaver;
+import com.diego.mid.util.MPager;
 import com.diego.mid.util.Pager;
 import com.diego.mid.util.ProductFile;
 
@@ -25,13 +32,23 @@ public class ProductService {
 
 	@Inject
 	private ImagesDAO imagesDAO;
+	
+	@Inject
+	private RevFilesDAO revFilesDAO;
+	
+	@Inject
+	private ReviewDAO reviewDAO;
 
 	@Inject
 	private ProductFile saver;
+	
+	@Inject
+	private FileSaver fileSaver;
 
 	//상품 추가 INSERT
 	public int productInsert(ProductVO productVO, MultipartFile [] imagesFiles ,HttpSession session )throws Exception{
-
+		
+		
 		//productVO.setPro_num(productDAO.getProNum());
 
 		//1. 파일을 저장할 실제경로
@@ -69,11 +86,11 @@ public class ProductService {
 	}
 
 	//상품 리스트
-	public List<ProductVO>productList(Pager pager)throws Exception{
+	public List<ProductVO>productList(MPager pager)throws Exception{
 
-		pager.makeRow();
-		pager.makePage(productDAO.productCount(pager));
-		System.out.println(productDAO.productCount(pager));
+		pager.rowMake();
+		pager.makePager(productDAO.productCount(pager));
+		//System.out.println(productDAO.productCount(pager));
 
 		return productDAO.productList(pager);
 	}
@@ -88,7 +105,6 @@ public class ProductService {
 	//상품선택
 	public ProductVO productSelect(ProductVO productVO)throws Exception{		
 		productVO = productDAO.productSelect(productVO);
-
 		List<ImagesVO>ar = imagesDAO.imagesList(productVO.getPro_num());
 
 		productVO.setImages(ar);
@@ -103,15 +119,60 @@ public class ProductService {
 
 	}
 
-	//리뷰 인서트
-	public int reviewWrite(ReviewVO reviewVO)throws Exception{
-		System.out.println(reviewVO.getRev_contents());
-		return productDAO.reviewWrite(reviewVO);
+	//리뷰작성
+	public int productReview(ReviewVO reviewVO, HttpSession session, MultipartFile [] file)throws Exception{
+		//System.out.println(reviewVO.getRev_contents());성공
+		//System.out.println("test");
+		
+		//1. 파일을 저장할 실제경로
+		String realPath = session.getServletContext().getRealPath("resources/product/photoReview");
+		
+		RevFilesVO revFilesVO = new RevFilesVO();
+		
+		int result= productDAO.productReview(reviewVO);
+		
+		revFilesVO.setRev_num(reviewVO.getRev_num());
+	
+		System.out.println(realPath);//찍힘.
+		
+		for (MultipartFile multipartFile : file) {
+			if (multipartFile.getSize() != 0) {				
+				revFilesVO.setFname(fileSaver.save(realPath, multipartFile));
+				revFilesVO.setOname(multipartFile.getOriginalFilename());
+				result = revFilesDAO.fileWrite(revFilesVO);
+		
+				if (result<1) {
+					throw new SQLException();
+				}
+			}
+		}
+		
+		return result;
 
 	}
 	
 	//상품 카운트
-	public int productCount(Pager pager)throws Exception{
+	public int productCount(MPager pager)throws Exception{
 		return productDAO.productCount(pager);
 	}
+	//셀렉트된리뷰리스트
+	public  List<ReviewVO>reviewList(ProductVO productVO, MPager pager )throws Exception{
+		pager.makePager(productDAO.reviewCount(productVO));
+		pager.rowMake();
+		
+		return productDAO.reviewList(pager, productVO);
+	}
+	
+	//한상품리뷰갯수
+		public int reviewCount(ProductVO productVO)throws Exception{
+			
+			return productDAO.reviewCount(productVO);
+		}
+	
+	//리뷰삭제
+		public int reviewDelete(ReviewVO reviewVO)throws Exception {
+			
+			return productDAO.reviewDelete(reviewVO);
+		}
+		
 }

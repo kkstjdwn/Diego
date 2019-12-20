@@ -4,14 +4,16 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Qna List</title>
 <c:import url="../layout/bootStrap.jsp" />
 </head>
 <body>
-	<c:import url="../layout/nav.jsp" />
+		<c:import url="../layout/header.jsp" />
 		<div class="container">
-		
+			<c:import url="../layout/leftList.jsp" />
 		<div class="jumbotron page-header">
 			<h1>Qna List</h1>
 		</div>
@@ -36,7 +38,7 @@
 						<td>${count-(pager.curPage-1)*pager.perPage-q.index}</td>
 						<td>
 						<c:catch>
-							 <c:forEach begin="1" end="${qna.depth}">↳</c:forEach>
+							 <c:forEach begin="1" end="${qna.depth}">↳답변:</c:forEach>
 						</c:catch>
 						<a href="./qnaSelect?qna_num=${qna.qna_num}&pro_num=${qna.pro_num}">${qna.title}</a></td>
 						<td>${qna.writer}</td>
@@ -81,23 +83,22 @@
 		</div>
 		
 		<script type="text/javascript">
+		//서치
 		var kind = '${pager.kind}'
-			if(kind == ''){
-				kind = "kt";
-			}
-			$("#"+kind).prop("selected", true);
-		
-		
+		if(kind == ''){
+			kind = "kt";
+		}
+		$("#"+kind).prop("selected", true);
+	 	
 		$(".list").click(function() {
 			$("#curPage").val($(this).attr("id"));
 			$("#frm").submit();
 		});
 		
 		
-		
 		</script>
 		
-		
+		<c:import url="../layout/footer.jsp" />
 		
 </body>
 </html>

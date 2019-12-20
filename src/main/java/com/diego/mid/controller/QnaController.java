@@ -3,7 +3,7 @@ package com.diego.mid.controller;
 import java.util.List;
 
 import javax.inject.Inject;
-import javax.servlet.http.HttpSession;
+
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,7 +16,9 @@ import com.diego.mid.model.product.ProductVO;
 import com.diego.mid.model.product.QnaVO;
 import com.diego.mid.service.ProductService;
 import com.diego.mid.service.QnaService;
-import com.diego.mid.util.Pager;
+import com.diego.mid.util.MPager;
+import com.diego.mid.util.PPager;
+
 
 @Controller
 @RequestMapping("/qna/**")
@@ -59,8 +61,8 @@ public class QnaController {
 	
 	//qna리스트
 	@GetMapping(value = "qnaList")
-	public ModelAndView qnaList(Pager pager)throws Exception {
-		
+	public ModelAndView qnaList(PPager pager)throws Exception {
+	
 		List<QnaVO>ar = qnaService.qnaList(pager);
 	
 		

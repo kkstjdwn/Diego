@@ -31,14 +31,7 @@
 		</div>
 				<img src="../resources/product/images/${images.pro_main}"style="width: 30%; height: 30%;"> 	
 		
-		<div class="form-group">
-			<label for="gif">GIF 이미지:</label> 
-		</div>
-				<img src="../resources/product/images/${images.gif}"style="width: 30%; height: 30%;"> 	
 		
-
-
-
 		<div class="form-group">
 			<label for="title">제목:</label> <b>${qna.title}</b>
 		</div>

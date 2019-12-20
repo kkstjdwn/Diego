@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import org.apache.ibatis.session.SqlSession;
+
 import org.springframework.stereotype.Service;
 
 import com.diego.mid.dao.ImagesDAO;
@@ -13,7 +13,8 @@ import com.diego.mid.dao.QnaDAO;
 import com.diego.mid.model.product.ImagesVO;
 import com.diego.mid.model.product.ProductVO;
 import com.diego.mid.model.product.QnaVO;
-import com.diego.mid.util.Pager;
+import com.diego.mid.util.PPager;
+
 
 @Service
 public class QnaService {
@@ -36,7 +37,7 @@ public class QnaService {
 	}
 
 	//리스트
-	public List<QnaVO> qnaList(Pager pager)throws Exception{
+	public List<QnaVO> qnaList(PPager pager)throws Exception{
 		
 		pager.makeRow();
 		pager.makePage(qnaDAO.qnaCount(pager));
@@ -44,8 +45,8 @@ public class QnaService {
 		return qnaDAO.qnaList(pager);
 		
 	}
-	//카운트
-	public int qnaCount(Pager pager )throws Exception{
+	//상품카운트
+	public int qnaCount(PPager pager )throws Exception{
 		
 		return qnaDAO.qnaCount(pager);
 	}

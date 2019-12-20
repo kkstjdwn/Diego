@@ -20,9 +20,9 @@ public class ProductVO {
 	private String pro_color;//상품 색상
 	private String pro_vital;//상품 필수옵션
 	private String sumnale;
+	
 	private String pro_main;
 	private String pro_image;
-	private ReviewVO reviewVO;
 	
 	
 	
@@ -34,11 +34,47 @@ public class ProductVO {
 		this.pro_image = pro_image;
 	}
 
-	public ReviewVO getReviewVO() {
+	private Double totalStar;
+	private Integer totalReview;
+
+	
+	
+
+	public Double getTotalStar() {
+		return totalStar;
+	}
+
+	public void setTotalStar(Double totalStar) {
+		this.totalStar = totalStar;
+	}
+
+	public Integer getTotalReview() {
+		return totalReview;
+	}
+
+	public void setTotalReview(Integer totalReview) {
+		this.totalReview = totalReview;
+	}
+
+	private List<ReviewVO> reviewVO;
+	
+	private List<RevFilesVO>revFilesVO;
+	
+	
+	
+	public List<RevFilesVO> getRevFilesVO() {
+		return revFilesVO;
+	}
+
+	public void setRevFilesVO(List<RevFilesVO> revFilesVO) {
+		this.revFilesVO = revFilesVO;
+	}
+
+	public List<ReviewVO> getReviewVO() {
 		return reviewVO;
 	}
 
-	public void setReviewVO(ReviewVO reviewVO) {
+	public void setReviewVO(List<ReviewVO> reviewVO) {
 		this.reviewVO = reviewVO;
 	}
 

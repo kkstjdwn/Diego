@@ -24,7 +24,7 @@
 	</sql>
 
 	<!--list -->
-	<select id="productList" parameterType="Pager"
+	<select id="productList" parameterType="MPager"
 		resultType="ProductVO">
 	select * from
 		(select P.*, rownum R from
@@ -40,8 +40,7 @@
 	</select>
 
 	<!--count -->
-	<select id="productCount" resultType="Integer"
-		parameterType="Pager">
+	<select id="productCount" resultType="Integer" parameterType="MPager">
 		select count(pro_num) from product
 		<include refid="sw"></include>
 	</select>
@@ -67,6 +66,7 @@
 		where
 		P.pro_num=#{pro_num}
 	</select>
+
 
 	<resultMap type="ProductVO" id="image">
 		<id property="pro_num" column="pro_num" />
@@ -99,6 +99,49 @@
 
 	</resultMap>
 
+	<!--count -->
+	<select id="reviewCount" resultType="Integer" parameterType="ProductVO">
+		select count(rev_num) from review where pro_num=#{pro_num}
+		
+	</select>
+
+
+	 <!--셀렉트된 리뷰리스트  -->
+  	<select id="reviewList" resultMap="refiles" parameterType="map">
+  		select * from
+  		(select Q.*, rownum A from
+  		 (select * from (select R.*, F.fname, F.fnum from review  R full outer join revFiles F on R.rev_num= F.rev_num) 
+  		 where pro_num=#{pro.pro_num}) Q) 
+  		 where A between #{pager.startRow}and#{pager.lastRow}
+  	</select>
+  	
+  	<resultMap type="ReviewVO" id="refiles">
+  			<id property="rev_num" column="rev_num" />
+  			<result property="pro_num" column="pro_num" />
+  			<result property="id" column="id" />	
+			<result property="star" column="star" />
+			<result property="rev_contents" column="rev_contents" />
+			<result property="name" column="name" />
+			<result property="help" column="help" />
+			<result property="rev_date" column="rev_date" />
+			
+  		<collection property="files" javaType="List" ofType="RevFilesVO">		
+			<id property="fnum" column="fnum" />
+			<result property="rev_num" column="rev_num" />
+			<result property="fname" column="fname" />	
+				
+		</collection>
+  	
+  	</resultMap>
+
+ <!--리뷰삭제 -->
+ 	<delete id="reviewDelete" parameterType="Integer">
+ 			delete review where rev_num=#{rev_num}
+ 	
+ 	</delete>
+	
+	
+	
 
 	<!--delete -->
 	<delete id="productDelete" parameterType="Integer">
@@ -118,11 +161,38 @@
 
 	</update>
 
+
 	<!--리뷰 write  -->
-  <insert id="reviewWrite" parameterType="ReviewVO">
-   insert into review(id, pro_num, rev_num,star,rev_contents,name,help,rev_date) values(
-    #{id},#{pro_num},rev_seq.nextval,#{star},#{rev_contents},#{name},#{help},sysdate)
+  <insert id="productReview" parameterType="ReviewVO">
+   <selectKey order="BEFORE" resultType="Integer" keyProperty="rev_num">
+			select rev_seq.nextval from dual
+		</selectKey>
+   
+   insert into review
+   (id, pro_num, rev_num,star,rev_contents,name,help,rev_date) values(
+    #{id},#{pro_num},#{rev_num},#{star},#{rev_contents},#{name},#{help},sysdate)
    </insert>	
+	
+	
+	<resultMap type="ReviewVO" id="revFile">
+  	<id property="rev_num" column="rev_num"/>
+  	<result property="id" column="id"/>
+  	<result property="star" column="star"/>
+  	<result property="rev_contents" column="rev_contents"/>
+  	<result property="name" column="name"/>
+  	<result property="help" column="help"/>
+  	<result property="rev_date" column="rev_date"/>
+  	<result property="pro_main" column="pro_main"/>
+  	<collection property="files" javaType="java.util.List" ofType="RevFilesVO">
+  		<id property="fnum" column="fnum"/>
+  		<result property="fname" column="fname"/>
+  		<result property="oname" column="oname"/>
+  	</collection>
+	
+	 </resultMap>
+	
+	
+	
 
 </mapper>
   

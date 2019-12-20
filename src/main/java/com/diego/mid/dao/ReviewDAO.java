@@ -8,7 +8,10 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.diego.mid.model.product.ProductVO;
+import com.diego.mid.model.product.RevFilesVO;
 import com.diego.mid.model.product.ReviewVO;
+import com.diego.mid.util.MPager;
+import com.diego.mid.util.PPager;
 import com.diego.mid.util.Pager;
 
 @Repository
@@ -23,27 +26,52 @@ public class ReviewDAO {
 		
 		return sqlSession.insert(NAMESPACE+"reviewWrite",reviewVO );
 	}
-	//리뷰리스트1 상품리스트불러오기
-	public List<ProductVO> productList(Pager pager)throws Exception{
-		
-		return sqlSession.selectList(NAMESPACE+"productList", pager);
-	}	
 	
-	//리뷰리스트2 페이징된답글리스트불러오기
-	public List<ReviewVO> reviewList(Pager pager)throws Exception{
+	
+	//(상품+이미지+리뷰+리뷰파일)리스트
+	
+	 public List<ProductVO> reviewList(PPager pager)throws Exception{ 
+
+		 return sqlSession.selectList(NAMESPACE+"reviewList",pager); 
+		 
+	 }
+	 
+	//리뷰첨부파일가져오기
+	 public RevFilesVO photoReview(Integer rev_num)throws Exception{
+
+		 return sqlSession.selectOne(NAMESPACE+"photoReview",rev_num);	
+		 
+	 }
+
+//	//리뷰카운트 
+//	public int reviewCount(Pager pager)throws Exception {
+//		
+//		return sqlSession.selectOne(NAMESPACE+"reviewCount", pager);
+//	}
+	
+	//프로덕트카운트
+	public int productCount(PPager pager)throws Exception{
 		
-		return sqlSession.selectList(NAMESPACE+"reviewList", pager);
+		return sqlSession.selectOne(NAMESPACE+"productCount",pager);
 	}
 	
-	//리뷰리스트3 전체리뷰불러오기
-	public List<ReviewVO> revAll(ReviewVO reviewVO)throws Exception{
-		return sqlSession.selectList(NAMESPACE+"revAll", reviewVO);
-	}
-	
-	
-	//리뷰카운트 
-	public int reviewCount(Pager pager)throws Exception {
+	//별점평균
+	public double totalStar(ReviewVO reviewVO)throws Exception {
+		 return sqlSession.selectOne(NAMESPACE+"totalStar",reviewVO);
 		
-		return sqlSession.selectOne(NAMESPACE+"reviewCount", pager);
 	}
+	
+	//한상품리뷰갯수
+	public Integer totalReview(ReviewVO reviewVO)throws Exception{
+		
+		return sqlSession.selectOne(NAMESPACE+"totalReview", reviewVO);
+		
+	}
+	
+	//리뷰 셀렉트
+	public ReviewVO selectReview(ReviewVO reviewVO)throws Exception{
+		//System.out.println(reviewVO.getRev_num());
+		return sqlSession.selectOne(NAMESPACE+"selectReview", reviewVO );
+	}
+	
 }

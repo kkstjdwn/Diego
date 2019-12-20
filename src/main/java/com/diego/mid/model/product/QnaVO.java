@@ -5,7 +5,6 @@ import java.sql.Date;
 import java.util.List;
 
 public class QnaVO {
-
    private String writer;//작성자
    private Integer qna_num;//qna번호
    private Integer pro_num;//상품번호
@@ -94,11 +93,6 @@ public class QnaVO {
    public void setDepth(Integer depth) {
       this.depth = depth;
    }
-   
-   
-   
-   
-
-
+ 
    
 }

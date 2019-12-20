@@ -20,8 +20,10 @@ import com.diego.mid.model.product.ImagesVO;
 import com.diego.mid.model.product.ProductVO;
 import com.diego.mid.model.product.ReviewVO;
 import com.diego.mid.service.ProductService;
-
+import com.diego.mid.util.MPager;
 import com.diego.mid.util.Pager;
+
+
 
 @Controller
 @RequestMapping("/product/**")
@@ -31,6 +33,7 @@ public class ProductController {
 	private ProductService productService;
 
 	
+	
 	//상품등록 insert
 	@GetMapping(value = "productInsert")
 	public void productInsert()throws Exception {
@@ -39,7 +42,7 @@ public class ProductController {
 	@PostMapping(value ="productInsert")
 	public ModelAndView productInsert(ProductVO productVO, MultipartFile[] imagesFiles, HttpSession session )throws Exception {
 
-		System.out.println("test");
+		
 		ModelAndView mv= new ModelAndView();
 		int result = productService.productInsert(productVO,imagesFiles, session );
 		
@@ -125,7 +128,7 @@ public class ProductController {
 	
 	//상품리스트
 	@RequestMapping(value = "productList", method = {RequestMethod.GET, RequestMethod.POST})
-	private ModelAndView productList(Pager pager)throws Exception {
+	private ModelAndView productList(MPager pager)throws Exception {
 		
 		List<ProductVO>ar= productService.productList(pager);
 		
@@ -176,14 +179,23 @@ public class ProductController {
 	
 	//상품셀렉트 
 	@GetMapping("productSelect")
-	public ModelAndView productSelect(ProductVO productVO)throws Exception{
+	public ModelAndView productSelect(ProductVO productVO, MPager pager,ReviewVO reviewVO)throws Exception{
 		
 		ModelAndView mv =new ModelAndView();
+		
+		int totalCount= productService.reviewCount(productVO);
+		
+		pager.makePager(totalCount);
+		List<ReviewVO>ar = productService.reviewList(productVO, pager);
+		
+		//System.out.println(ar.get(0).getRev_contents());성공
 		
 		productVO =  productService.productSelect(productVO);
 		
 		productVO.setContents(productVO.getContents().replace("\n\r", "<br>"));
 		
+		mv.addObject("totalCount", totalCount);
+		mv.addObject("reviewList", ar);
 		mv.addObject("product", productVO);
 		mv.setViewName("product/productSelect");
 		
@@ -233,26 +245,34 @@ public class ProductController {
 	
 		//리뷰작성
 		@GetMapping(value = "productReview")
-		public void reviewWrite()throws Exception {
+		public void productReview()throws Exception {
 				
 		}
 		
 		@PostMapping(value = "productReview")
-		public ModelAndView reviewWrite(ReviewVO reviewVO)throws Exception {
-			
+		public ModelAndView productReview(ReviewVO reviewVO, HttpSession session,  MultipartFile [] file)throws Exception {
+			//System.out.println("test");//나옴.
 			//System.out.println(reviewVO.getContents()); 들어옴
+
 			ModelAndView mv = new ModelAndView();
-			int result = productService.reviewWrite(reviewVO);
 			
-			String msg="리뷰 저장이 실패했습니다.";
+			session.getServletContext().getRealPath("resources/product/photoReview");
 			
-			if(result==1) {
-				msg="리뷰 저장이 완료되었습니다.";
-				
+//			for (int i = 0; i < file.length; i++) {
+//				System.out.println(file[i].getOriginalFilename());
+//			}
+			
+			int result = productService.productReview(reviewVO, session, file);
+			
+			String msg="0";
+			
+			if(result==1){
+				msg="1";
+			
 			}
 			mv.addObject("msg", msg);
-			mv.addObject("path", "../review/reviewList");
-			mv.setViewName("common/common_result");
+			
+			mv.setViewName("common/common_ajax_result");
 			return mv;
 		}
 		//상품검색
@@ -260,7 +280,7 @@ public class ProductController {
 		public void proSearch()throws Exception{}
 		
 		@PostMapping(value = "proSearch")
-		private ModelAndView proSearch(Pager pager)throws Exception {
+		private ModelAndView proSearch(MPager pager)throws Exception {
 			
 			List<ProductVO>ar= productService.productList(pager);
 			
@@ -274,6 +294,27 @@ public class ProductController {
 			
 
 		} 
+	
+		//리뷰삭제
+		@GetMapping("reviewDelete")
+		public ModelAndView reviewDelete(ReviewVO reviewVO)throws Exception {
+			ModelAndView mv= new ModelAndView();
+			
+			
+			int result = productService.reviewDelete(reviewVO);
+			String msg="0";
+			
+			if(result==1){
+				msg="1";
+			
+			}
+			mv.addObject("msg", msg);
+			
+			mv.setViewName("common/common_ajax_result");
+			
+			return mv;
+		}
+		
 	
 }
 
