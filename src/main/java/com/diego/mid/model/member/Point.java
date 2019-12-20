@@ -5,6 +5,7 @@ import java.sql.Date;
 public class Point {
 	private String id;
 	private Integer point_value;
+	private Integer point_save;
 	private Date point_date;
 	private String contents;
 	private Integer total_point; 
@@ -48,6 +49,12 @@ public class Point {
 	}
 	public void setOrder_num(Integer order_num) {
 		this.order_num = order_num;
+	}
+	public Integer getPoint_save() {
+		return point_save;
+	}
+	public void setPoint_save(Integer point_save) {
+		this.point_save = point_save;
 	}
 	
 }

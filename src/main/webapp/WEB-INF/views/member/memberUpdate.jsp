@@ -9,17 +9,18 @@
 <link href="../resources/css/member.css" rel="stylesheet">
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<c:import url="../common/calendar.jsp"/>
 <link>
 </head>
 <body>
 <header></header>
-<section style="width: 100%; height: 1200px;">
+<section style="width: 100%; height: 1200px; overflow: hidden;">
 <div class="main">
 <!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
 <div class="left" style="height: 985px;">
 	<div class="left-menu">
 		<ul class="left-list">
-			<li style="height: 30px; font-size: 13px;">Community</li>
+			<li style="height: 30px; font-size: 13px; font-weight: bold;">Community</li>
 			<li ><a href="#">Notice</a></li> 
 			<li ><a href="#">FAQ</a></li> 
 			<li ><a href="#">Q&amp;A</a></li> 
@@ -27,15 +28,15 @@
 			<li ><a href="#">Review</a></li> 
 		</ul>
 		<ul class="left-list">
-			<li style="height: 30px;"><a href="#" style="color: black; font-size: 13px;">Event</a></li>
+			<li style="height: 30px;"><a href="#" style="color: black; font-size: 13px; font-weight: bold;">Event</a></li>
 		</ul>
 		<ul class="left-list">
-			<li style="height: 30px;"><a href="#" style="color: black; font-size: 13px;">My page</a></li>
+			<li style="height: 30px;"><a href="#" style="color: black; font-size: 13px; font-weight: bold;">My page</a></li>
 			<c:if test="${!empty member }">
 			<li ><a href="#" style="color: black;">My info</a></li></c:if>
 			<li ><a href="memberManage/orderMyList">Order</a></li>
-			<li ><a href="#">Wish list</a></li>
-			<li ><a href="#">Mileage</a></li>
+			<li ><a href="memberManage/wishListSelectList">Wish list</a></li>
+			<li ><a href="memberManage/pointMyList">Mileage</a></li>
 			<li ><a href="#">My board</a></li>
 			<li ><a href="#">Delivery</a></li>
 		</ul>
@@ -64,7 +65,7 @@
 	</tr>
 	<tr>
 		<th>비밀번호 <img alt="필수" src="../resources/images/ico_required.gif"></th>
-		<td><input name="pw" id="pw" type="password" placeholder="Enter pw" maxlength="16">
+		<td><input name="pw" id="pw" type="password" placeholder="Enter pw" maxlength="16" required="required">
 		<span></span>
 		 (영문소문자/숫자, 4~16자)</td>
 		</tr>
@@ -96,15 +97,15 @@
 				      	<option class="opt">019</option>
 				      </select>
 				      <span class="phone">-</span>
-				      <input id="phone" class="phone" type="text" maxlength="4" value="${p2 }">
+				      <input id="phone" class="phone" type="text" maxlength="4" value="${p2 }" required="required">
 				      <span class="phone">-</span>
-				      <input id="phone" class="phone" type="text" maxlength="4" value="${p3 }">
+				      <input id="phone" class="phone" type="text" maxlength="4" value="${p3 }" required="required">
 				      <input type="hidden" name="phone" id="ph-number">
 		</td>
 	</tr>
 	<tr>
 		<th>이메일<img alt="필수" src="../resources/images/ico_required.gif"></th>
-		<td><input type="text" name="email" value="${member.email }"></td>
+		<td><input type="text" name="email" value="${member.email }" required="required"></td>
 	</tr>
 	<tr>
 		<th>이메일 수신여부<img alt="필수" src="../resources/images/ico_required.gif"></th>
@@ -116,7 +117,7 @@
 	<table class="info-table">
 	<tr>
 	<th>기념일</th>
-	<td><input type="text" name="ad_birth" value="${member.ad_birth }">
+	<td><input type="text" name="ad_birth" value="${member.ad_birth }" id="ad_birth">
 	</td>
 	</tr>
 	<tr>
@@ -146,9 +147,9 @@
 	</tr>
 	</table>
 	<div class="join-btn">
-		<button id="btn" class="btn" type="submit" style="background-color: #363636; color: white; border: none;">회원정보수정</button>
-		<button class="btn" onclick="back()">취소</button>
-		<button class="btn" onclick="del()" style="float: right;">회원 탈퇴</button>
+		<button id="member-btn" type="submit">회원정보수정</button>
+		<button class="mem-btn" onclick="back()">취소</button>
+		<button class="mem-btn" onclick="del()" style="float: right;">회원 탈퇴</button>
 		
 	</div>
 	</form>
@@ -156,7 +157,7 @@
 <!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
 </div>
 </section>
-<footer></footer>
+<c:import url="../layout/footer.jsp"/>
 <script type="text/javascript">
 
 	$(".opt").each(function() {
@@ -176,11 +177,11 @@
 	}
 	
 	function del() {
-		$.ajax({
+		$.ajax({ 
 			type 	: "POST",
 			url		: "memberDelete",
 			data	: {
-				id : ${member.id}
+				id : ${member.id} 
 			},
 			success	: function(data) {
 				data = data.trim();
@@ -212,6 +213,12 @@
 		});
 			$("#ph-number").prop("value",phone);
 	}
+	
+	$(function() {
+	    $("#ad_birth").datepicker({
+	    	dateFormat : "yy-mm-dd"
+	    });
+	});
 </script>
 </body>
 </html>

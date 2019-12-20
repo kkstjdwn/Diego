@@ -52,7 +52,7 @@
 			select product_seq.nextval from dual
 		</selectKey>
 		insert into product
-		values(#{pro_num},#{cat_ref},#{pro_name},#{pro_price},#{pro_count},0,sysdate,#{contents},#{pro_warning},#{pro_size},#{pro_color},#{pro_vital})
+		values(#{pro_num},#{cat_ref},#{pro_name},#{pro_price},#{pro_count},0,sysdate,#{contents},#{pro_warning},#{pro_size},#{pro_color},#{pro_vital},#{pro_image})
 	</insert>
 
 	<!--select -->
@@ -81,6 +81,7 @@
 		<result property="pro_size" column="pro_size" />
 		<result property="pro_color" column="pro_color" />
 		<result property="pro_vital" column="pro_vital" />
+		<result property="pro_image" column="pro_image" />
 
 		<collection property="images" javaType="List"
 			ofType="ImagesVO">
@@ -194,6 +195,12 @@
 	
 	
 
+
+	<select id="productGetInfo" parameterType="ProductVO" resultType="ProductVO">
+		
+		select * from product where pro_num = #{pro_num}
+		
+	</select>
 </mapper>
   
   

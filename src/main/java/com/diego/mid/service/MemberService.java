@@ -49,5 +49,13 @@ public class MemberService {
 		}
 		return dao.memberRankUp(memberVO);
 	}
+	
+	public int getPay(MemberVO memberVO) throws Exception{
+		return dao.getPay(memberVO);
+	}
+	
+	public int setPay(MemberVO memberVO) throws Exception{
+		return dao.setPay(memberVO);
+	}
 
 }

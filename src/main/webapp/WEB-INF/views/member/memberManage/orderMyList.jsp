@@ -10,17 +10,16 @@
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <c:import url="../../common/calendar.jsp"/>
-<link>
 </head>
 <body>
 <header></header>
 <section style="width: 100%; overflow: hidden;">
-<div class="main" style="height: auto; margin-top: 74px;">
+<div class="main" style="height: auto;">
 <!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
 <div class="left">
 	<div class="left-menu">
 		<ul class="left-list">
-			<li style="height: 30px; font-size: 13px;">Community</li>
+			<li style="height: 30px; font-size: 13px; font-weight: bold; color: black;">Community</li>
 			<li ><a href="#">Notice</a></li> 
 			<li ><a href="#">FAQ</a></li> 
 			<li ><a href="#">Q&amp;A</a></li> 
@@ -28,15 +27,15 @@
 			<li ><a href="#">Review</a></li> 
 		</ul>
 		<ul class="left-list">
-			<li style="height: 30px;"><a href="#" style="color: black; font-size: 13px;">Event</a></li>
+			<li style="height: 30px;"><a href="#" style="color: black; font-size: 13px; font-weight: bold;">Event</a></li>
 		</ul>
 		<ul class="left-list">
-			<li style="height: 30px;"><a href="#" style="color: black; font-size: 13px;">My page</a></li>
+			<li style="height: 30px;"><a href="#" style="color: black; font-size: 13px; font-weight: bold;">My page</a></li>
 			<c:if test="${!empty member }">
 			<li ><a href="../memberUpdate">My info</a></li></c:if>
 			<li ><a href="#" style="color: black;">Order</a></li>
-			<li ><a href="#">Wish list</a></li>
-			<li ><a href="#">Mileage</a></li>
+			<li ><a href="wishListSelectList">Wish list</a></li>
+			<li ><a href="pointMyList">Mileage</a></li>
 			<li ><a href="#">My board</a></li>
 			<li ><a href="#">Delivery</a></li>
 		</ul>
@@ -119,7 +118,7 @@
 					</td>
 					<td class="or-image">
 						<a href="#">
-							<img alt="상품사진" src="../../resources/product/orders/c69a7cd57f808fa622d80fd6a2551b2c.jpg" width="80px" height="116px">
+							<img alt="상품사진" src="../../resources/product/images/${ord.image }" width="80px" height="116px">
 						</a>
 					</td>
 					<td class="or-pro_info" style="text-align: left; padding: 14px 10px 15px; vertical-align: sub;">
@@ -130,7 +129,7 @@
 						${ord.pro_count }
 					</td>
 					<td class="or-price">
-					<fmt:formatNumber value="${ord.price }" type="number"></fmt:formatNumber>원</td>
+					<fmt:formatNumber value="${ord.order_sum }" type="number"></fmt:formatNumber>원</td>
 					<td class="or-order_status">
 						${ord.order_status }
 					</td>
@@ -141,10 +140,10 @@
 			</c:forEach>
 			</tbody>
 		</table>
-	</div>
 <c:if test="${orderList.size() eq 0 }">
 	<p class="no-order"> 주문 내역이 없습니다</p>
 </c:if>
+	</div>
 <!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
 	<div class="or-pager">
 		<c:if test="${pager.curBlock gt 1 }">
@@ -179,7 +178,7 @@
 </section>
 
 
-<footer></footer>
+<c:import url="../../layout/footer.jsp"/>
 
 <script type="text/javascript">
 

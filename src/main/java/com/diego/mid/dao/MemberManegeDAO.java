@@ -1,15 +1,19 @@
 package com.diego.mid.dao;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
+
+import com.diego.mid.model.member.Cart;
 import com.diego.mid.model.member.Coupon;
 import com.diego.mid.model.member.Orders;
 import com.diego.mid.model.member.Point;
 import com.diego.mid.model.member.Wishlist;
+import com.diego.mid.util.MPager;
 
 @Repository
 public class MemberManegeDAO {
@@ -20,26 +24,44 @@ public class MemberManegeDAO {
 	private static final String POINT = "pointMapper.";
 	private static final String ORDER = "orderMapper.";
 	private static final String WISHLIST = "wishListMapper.";
+	private static final String CART = "cartMapper.";
 	
 	public int wishListInsert(Wishlist wishlist) throws Exception{
 		return sql.insert(WISHLIST+"wishListInsert",wishlist);
 	}
 	
-	public List<Wishlist> wishListSelectList(Wishlist wishlist) throws Exception{
-		return sql.selectList(WISHLIST+"wishListSelectList",wishlist);
+	public int wishListCount(Wishlist wishlist) throws Exception{
+		return sql.selectOne(WISHLIST+"wishListCount",wishlist);
+	}
+	
+	public List<Wishlist> wishListSelectList(Wishlist wishlist,MPager pager) throws Exception{
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("wish", wishlist);
+		map.put("pager", pager);
+		return sql.selectList(WISHLIST+"wishListSelectList",map);
 	}
 	
 	public int wishListDelete(Wishlist wishlist)throws Exception{
 		return sql.delete(WISHLIST+"wishListDelete",wishlist);
 	}
 	
-	public Integer wishListGetSum(Wishlist wishlist) throws Exception{
-		return sql.selectOne(WISHLIST+"wishListGetSum",wishlist);
+	public int wishListClean(Wishlist wishlist) throws Exception{
+		return sql.delete(WISHLIST+"wishListClean",wishlist);
 	}
 	
-	public Integer wishListSetSum(Wishlist wishlist) throws Exception{
-		return sql.update(WISHLIST+"wishListSetSum",wishlist);
+	public List<Integer> wishOverlapCheck(Wishlist wishlist) throws Exception{
+		return sql.selectList(WISHLIST+"overlapCheck",wishlist);
 	}
+	
+	
+//	
+//	public Integer wishListGetSum(Wishlist wishlist) throws Exception{
+//		return sql.selectOne(WISHLIST+"wishListGetSum",wishlist);
+//	}
+//	
+//	public Integer wishListSetSum(Wishlist wishlist) throws Exception{
+//		return sql.update(WISHLIST+"wishListSetSum",wishlist);
+//	}
 	
 	public int getOrderNum() throws Exception{
 		return sql.selectOne(ORDER+"getOrderNum");
@@ -94,9 +116,15 @@ public class MemberManegeDAO {
 		return sql.insert(POINT+"pointInsert",point);
 	}
 	
+	public int myListCount(Point point) throws Exception{
+		return sql.selectOne(POINT+"myListCount",point);
+	}
 	
-	public List<Point> pointMyList(Point point) throws Exception{
-		return sql.selectList(POINT+"pointMyList",point);
+	public List<Point> pointMyList(Point point,MPager pager) throws Exception{
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("point", point);
+		map.put("pager", pager);
+		return sql.selectList(POINT+"pointMyList",map);
 	}
 	
 	public List<Point> pointList() throws Exception{
@@ -136,19 +164,40 @@ public class MemberManegeDAO {
 	}
 	
 	
+	public int cartInsert(Cart cart) throws Exception{
+		return sql.insert(CART+"cartInsert",cart);
+	}
 	
+	public int cartDelete(Cart cart) throws Exception{
+		return sql.delete(CART+"cartDelete",cart);
+	}
 	
+	public int cartUpdate (Cart cart) throws Exception{
+		return sql.update(CART+"cartUpdate",cart);
+	}
 	
+	public Cart cartSelect(Cart cart) throws Exception{
+		return sql.selectOne(CART+"cartSelect",cart);
+	}
 	
+	public List<Cart> cartList(Cart cart,MPager pager) throws Exception{
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("cart", cart);
+		map.put("pager", pager);
+		return sql.selectList(CART+"cartList",map);
+	}
 	
+	public int cartListCoint(Cart cart) throws Exception{
+		return sql.selectOne(CART+"cartListCount",cart);
+	}
 	
+	public int cartClean(Cart cart) throws Exception{
+		return sql.delete(CART+"cartClean",cart);
+	}
 	
-	
-	
-	
-	
-	
-	
+	public List<Integer> cartOverlapCheck(Cart cart) throws Exception{
+		return sql.selectList(CART+"overlapCheck",cart);
+	}
 	
 	
 	

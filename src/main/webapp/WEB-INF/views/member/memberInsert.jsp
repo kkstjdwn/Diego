@@ -11,12 +11,12 @@
 <body>
 <header></header>
 <section style="width: 100%; height: 1500px;">
-<div class="main">
+<div class="main" style="margin-top: 150px;">
 	<div class="left">
 <!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
 	<div class="left-menu">
 		<ul class="left-list">
-			<li style="height: 30px; font-size: 13px;">Community</li>
+			<li style="height: 30px; font-size: 13px; color: black;">Community</li>
 			<li ><a href="#">Notice</a></li> 
 			<li ><a href="#">FAQ</a></li> 
 			<li ><a href="#">Q&amp;A</a></li> 
@@ -40,7 +40,7 @@
 <!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
 	</div>
 <!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
-	<div class="right">
+	<div class="right" style="height: auto;">
 		<h1 style="color: black; margin-bottom: 55px; text-align: center; font-size: 20px; font-weight: normal;">회원 가입</h1>
 		<div style="height: 1285px;">
 <!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->		
@@ -50,13 +50,13 @@
 					<tr>
 					<th>아이디 <img alt="필수" src="../resources/images/ico_required.gif">
 					</th>
-					<td><input name="id" id="id" type="text" placeholder="Enter id" maxlength="16">
+					<td><input name="id" id="id" type="text" placeholder="Enter id" maxlength="16" required="required">
 					<span>아이디를 입력해주세요</span>
 					 (영문소문자/숫자, 4~16자)</td>
 					</tr>
 					<tr>
 					<th>비밀번호 <img alt="필수" src="../resources/images/ico_required.gif"></th>
-					<td><input name="pw" id="pw" type="password" placeholder="Enter pw" maxlength="16">
+					<td><input name="pw" id="pw" type="password" placeholder="Enter pw" maxlength="16" required="required">
 					<span></span>
 					 (영문소문자/숫자, 4~16자)</td>
 					</tr>
@@ -66,7 +66,7 @@
 					</tr>
 					<tr>
 					<th>이름 <img alt="필수" src="../resources/images/ico_required.gif"></th>
-					<td><input name="name" type="text" id="name" placeholder="Enter name" maxlength="6"></td>
+					<td><input name="name" type="text" id="name" placeholder="Enter name" maxlength="6" required="required"></td>
 					</tr>
 					<tr>
 					<th>휴대전화</th>
@@ -80,22 +80,22 @@
 				      	<option>019</option>
 				      </select>
 				      <span class="phone">-</span>
-				      <input id="phone" class="phone" type="text" maxlength="4">
+				      <input id="phone" class="phone" type="text" maxlength="4" required="required">
 				      <span class="phone">-</span>
-				      <input id="phone" class="phone" type="text" maxlength="4">
+				      <input id="phone" class="phone" type="text" maxlength="4" required="required">
 				      <input type="hidden" name="phone" id="ph-number">
 				    </td>
 					</tr>
 					<tr>
 					<th>이메일 <img alt="필수" src="../resources/images/ico_required.gif"></th>
-					<td><input type="email" class="form-control" id="email" placeholder="Enter email" name="email"></td>
+					<td><input type="email" class="form-control" id="email" placeholder="Enter email" name="email" required="required"></td>
 					</tr>
 				</table>
 <!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
 				<h1 style="padding: 50px 0 10px; font-size: 16px; color: black; text-align: left; font-weight: normal;">전체 동의</h1>
 				<div style="width: 100%; color: black;">
 					<div class="join-all-check">
-					<p class="join-check-p"><input type="checkbox" id="all-check" style="width: 22px; height: 22px;">
+					<p class="join-check-p"><input type="checkbox" id="all-check" style="width: 22px; height: 22px;" required="required">
 					<strong>&nbsp;이용약관 및 개인정보수집 및 이용, 쇼핑정보 수신(선택)에 모두 동의합니다.</strong>
 					</p>
 					</div>
@@ -106,7 +106,7 @@
 						</div>
 						<p style="padding-top: 7px;">
 						<span>이용약관에 동의하십니까?</span>
-						<input type="checkbox" id="check1" style="vertical-align: middle;">
+						<input type="checkbox" id="check1" style="vertical-align: middle;" required="required">
 						<span>동의함</span>
 						</p>
 					</div>
@@ -117,7 +117,7 @@
 						</div>
 						<p style="padding-top: 7px;">
 						<span>개인정보 수집 및 이용에 동의하십니까?</span>
-						<input type="checkbox" id="check2" style="vertical-align: middle;">
+						<input type="checkbox" id="check2" style="vertical-align: middle;" required="required">
 						<span>동의함</span>
 						</p>
 					</div>
@@ -140,7 +140,7 @@
 					</div>
 <!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
 					<div class="join-btn">
-					<button id="btn" class="btn" type="submit" style="background: #555555; color: white; border-radius: 3px;">회원가입</button>
+					<button id="btn" class="btn" type="submit" style="background: #555555; color: white; border-radius: 3px; width: 150px; height: 35px; border: 0;">회원가입</button>
 					</div>
 				</div>
 <!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
@@ -151,7 +151,7 @@
 </div>
 </section>      
 <!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
-<footer></footer>
+<c:import url="../layout/footer.jsp"/>
 <script type="text/javascript">
 		var phone =  "";
 		

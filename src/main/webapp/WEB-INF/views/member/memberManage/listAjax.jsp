@@ -3,7 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <div class="order-title">
 <c:choose>
-	<c:when test="${h1 eq 'A' }">
+	<c:when test="${h1 ne 'IC' }">
 		<h3 style="height: 16px; font-size: 12px;">주문 상품 조회</h3>
 	</c:when>
 	<c:otherwise>
@@ -36,7 +36,7 @@
 					</td>
 					<td class="or-image">
 						<a href="#">
-							<img alt="상품사진" src="../../resources/product/orders/c69a7cd57f808fa622d80fd6a2551b2c.jpg" width="80px" height="116px">
+							<img alt="상품사진" src="../../resources/product/images/${ord.image }" width="80px" height="116px">
 						</a>
 					</td>
 					<td class="or-pro_info" style="text-align: left; padding: 14px 10px 15px; vertical-align: sub;">
@@ -47,7 +47,7 @@
 						${ord.pro_count }
 					</td>
 					<td class="or-price">
-					<fmt:formatNumber value="${ord.price }" type="number"></fmt:formatNumber>원</td>
+					<fmt:formatNumber value="${ord.order_sum }" type="number"></fmt:formatNumber>원</td>
 					<td class="or-order_status">
 						${ord.order_status }
 					</td>

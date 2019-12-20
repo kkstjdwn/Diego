@@ -114,6 +114,8 @@
 				<label for="sumnale">Product Sumnale Images:</label>
 				<div>
 					<input type="file" class="form-control " id="sumnale" name="imagesFiles">
+<!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ상품사진히든인풋 -->
+					<input type="hidden" name="pro_image" value="-" >
 				</div>
 
 				<label for="front">Product Front Images:</label>

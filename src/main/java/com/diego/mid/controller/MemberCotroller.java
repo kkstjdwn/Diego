@@ -1,5 +1,7 @@
 package com.diego.mid.controller;
 
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
@@ -9,6 +11,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.diego.mid.model.member.Cart;
 import com.diego.mid.model.member.MemberVO;
 import com.diego.mid.model.member.Point;
 import com.diego.mid.service.MemberManageService;
@@ -71,25 +75,43 @@ public class MemberCotroller {
 		memberVO = service.memberLogin(memberVO);
 		String msg = "0";
 		if (memberVO != null) {
+			int ru = service.memberRankUp(memberVO);
+			if (ru == 1) {
+				memberVO = service.memberLogin(memberVO);
+			}
 			msg = "1";
 			session.setAttribute("member", memberVO);
 
 			int up = 20000;
 			int x = 2;
+			int ps = 1;
 			if (memberVO.getMem_rank().equals("SILVER")) {
+				ps =2;
 				x = 5;
 				up=100000;
 			}else if (memberVO.getMem_rank().equals("GOLD")) {
+				ps = 5;
 				x = 10;
 				up=300000;
 			}else if (memberVO.getMem_rank().equals("DIAMOND")) {
+				ps = 10;
 				x = 15;
 				up=100000000;
 			}
-			session.setAttribute("p1", memberVO.getPhone().substring(0, 3));
-			session.setAttribute("p2", memberVO.getPhone().substring(3, 7));
-			session.setAttribute("p3", memberVO.getPhone().substring(7));
+			
+			Cart cart = new Cart();
+			cart.setId(memberVO.getId());
+			List<Integer> cr = manageSevice.cartOverlapCheck(cart);
+			
+			session.setAttribute("cc", cr.size());
+			System.out.println("memberPhone = "+memberVO.getPhone());
+			if (memberVO.getPhone().length()>2) {				
+				session.setAttribute("p1", memberVO.getPhone().substring(0, 3));
+				session.setAttribute("p2", memberVO.getPhone().substring(3, 7));
+				session.setAttribute("p3", memberVO.getPhone().substring(7));
+			}
 			session.setAttribute("x", x);
+			session.setAttribute("ps", ps);
 			session.setAttribute("up", up);
 		}
 		mv.addObject("msg", msg);

@@ -10,10 +10,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body>
-	<header>
-		<h1>!</h1>
-	</header>
-
+<header></header>
 <section style="height: 1045px;">
 <div class="login-img">
 	<img alt="로그인 대문" src="../resources/images/login_bg.jpg" style="width: 100%; height: 100%">
@@ -37,7 +34,7 @@
 						<label style="color: #2e2e2e; font-size: 14px;">Your ID</label>
 					</div>
 					<div>
-						<input class="login-form-id-ip" type="text" id="id">
+						<input class="login-form-id-ip" type="text" id="id" autofocus="autofocus">
 					</div>
 				</div>
 				<div class="login-form-pw">
@@ -79,8 +76,9 @@
 	</div>
 </div>
 </section>
-<footer></footer>
+<c:import url="../layout/footer.jsp"/>
 <script type="text/javascript">
+	
 	$("#login").click(function() {
 		$.ajax({
 			type : "POST",
@@ -103,7 +101,35 @@
 	$("#insert").click(function() {
 		location.href="/mid/member/memberInsert";
 	});
+	
+	
+	function login() {
+		$.ajax({
+			type : "POST",
+			url : "memberLogin",
+			data : {
+				id : $("#id").val(),
+				pw : $("#pw").val()
+			},
+			success : function(data) {
+				data = data.trim();
+				if (data == "1") {
+					location.href="/mid/diego";
+				}else{
+					alert("아이디와 비밀번호를 확인해주세요.");
+				}
+			}
+		});
+	}
+	
+	$("#pw").keyup(function(e){
+		if(e.keyCode == 13){
+			login(); 
+			}
+		});
 
+		
+		
 </script>
 
 </body>

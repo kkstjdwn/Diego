@@ -2,8 +2,7 @@ package com.diego.mid.util;
 
 public class MPager {
 	private Integer curPage;
-
-	private final Integer PERPAGE = 4;
+	private Integer perPager = 4;
 	private String kind;
 	private String search;
 	private Integer startRow;
@@ -108,11 +107,20 @@ public class MPager {
 	public void setCurPage(Integer curPage) {
 		this.curPage = curPage;
 	}
+	
+
+	public Integer getPerPager() {
+		return perPager;
+	}
+
+	public void setPerPager(Integer perPager) {
+		this.perPager = perPager;
+	}
 
 	//DB
 	public void rowMake() {
-		startRow = (this.getCurPage()-1)*this.PERPAGE + 1;
-		lastRow = this.getCurPage() * this.PERPAGE;
+		startRow = (this.getCurPage()-1)*this.perPager + 1;
+		lastRow = this.getCurPage() * this.perPager;
 		
 	}
 	
@@ -120,8 +128,8 @@ public class MPager {
 	public void makePager(int totalCount ) {
 		//1.totalCount --> 매개변수
 		//2.totalPage
-		this.totalPage = totalCount/this.PERPAGE;
-		if (totalCount%PERPAGE!=0) {
+		this.totalPage = totalCount/this.perPager;
+		if (totalCount%perPager!=0) {
 			totalPage++;
 		}
 		

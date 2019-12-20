@@ -14,7 +14,11 @@
 	<c:import url="../layout/nav.jsp" />
 	<div class="container">
 		<div class="jumbotron page-header">
-			<h1>Product Info</h1>
+			<h1>Product Info 
+			<c:if test="${!empty member }">
+			<button id="insert-cart" value="${product.pro_num }">장바구니</button>
+			</c:if>
+			</h1>
 		</div>
 
 
@@ -396,8 +400,32 @@
 				
 			}); */
 
-//----------------------------------------------------------------------------------------------------------------------------------			
-</script>
+			$("#insert-cart").click(function() {
+				var id ="${member.id}";
+				var pro_num = $(this).val();
+				
+				if (confirm("장바구니에 담으시겠습니까?")) {
+					$.ajax({
+						type		: "POST",
+						url			: "../member/memberManage/cartAjaxInsert",
+						data 		: {
+							id		: id,
+							pro_num	: pro_num
+						},
+						success	: function(d) {
+							d = d.trim();
+							if (d == 1) {
+								if (confirm("장바구니에 담겼습니다. 장바구니로 이동하시겠습니까?")) {
+									location.href = "../member/memberManage/cartList";
+								}
+							}else{
+								alert("이미 담겨 있습니다.");
+							}
+						}
+						});
+					}
+				});
+	</script>
 
 
 </body>

@@ -8,6 +8,7 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Service;
 import com.diego.mid.dao.MemberManegeDAO;
+import com.diego.mid.model.member.Cart;
 import com.diego.mid.model.member.Coupon;
 import com.diego.mid.model.member.Orders;
 import com.diego.mid.model.member.Point;
@@ -22,29 +23,31 @@ public class MemberManageService {
 	@Inject
 	private MemberManegeDAO dao;
 
-	public int wishListInsert(Wishlist wishlist, HttpSession session) throws Exception{
-		String realPath = session.getServletContext().getRealPath("/resources/product/wishList");
-		if (wishlist.getFname()!=null) {
-			wishlist.setImage(saver.save(realPath, wishlist.getFname()));			
-		}
-		
+	
+	public int wishListInsert(Wishlist wishlist) throws Exception{
 		return dao.wishListInsert(wishlist);
 	}
 	
-	public List<Wishlist> wishListSelectList(Wishlist wishlist) throws Exception{
-		return dao.wishListSelectList(wishlist);
+	public List<Wishlist> wishListSelectList(Wishlist wishlist,MPager pager) throws Exception{
+		pager.makePager(dao.wishListCount(wishlist));
+		pager.rowMake();
+		return dao.wishListSelectList(wishlist,pager);
 	}
 	
 	public int wishListDelete(Wishlist wishlist)throws Exception{
 		return dao.wishListDelete(wishlist);
 	}
 	
-	public Orders orderInsert(Orders orders,HttpSession session) throws Exception{
+	public int wishListClean(Wishlist wishlist) throws Exception{
+		return dao.wishListClean(wishlist);
+	}
+	
+	public List<Integer> wishOverlapCheck(Wishlist wishlist) throws Exception{
+		return dao.wishOverlapCheck(wishlist);
+	}
+	
+	public Orders orderInsert(Orders orders) throws Exception{
 		orders.setOrder_num(dao.getOrderNum());
-		if (orders.getFname() !=null) {
-			orders.setImage(saver.save(session.getServletContext().getRealPath("/resources/product/orders"), orders.getFname()));
-		}
-		orders.setOrder_sum(orders.getPro_count()*orders.getPrice());
 		int result = dao.orderInsert(orders); 
 		if (result > 0) {
 			return orders;
@@ -109,23 +112,34 @@ public class MemberManageService {
 		if(point.getPoint_value()<0) {
 			point.setPoint_value(point.getPoint_value() * -1);
 		}
-		point.setTotal_point(point.getPoint_value() + point.getTotal_point());
+		if (point.getPoint_save() >0) {
+			point.setPoint_save(point.getPoint_save() * -1);
+		}
+		point.setTotal_point(point.getPoint_value() + point.getTotal_point()+ point.getPoint_save());
 		return dao.pointInsert(point);
 	}
 	
-	public List<Point> pointMyList(Point point) throws Exception{
-		return dao.pointMyList(point);
+	public List<Point> pointMyList(Point point,MPager pager) throws Exception{
+		pager.setPerPager(10);
+		pager.makePager(dao.myListCount(point));
+		pager.rowMake();
+		return dao.pointMyList(point,pager);
 	}
 	
 	public List<Point> pointList() throws Exception{
 		return dao.pointList();
 	}
 	
+	public int pointSave(Point point) throws Exception{
+		point.setTotal_point(point.getTotal_point()+point.getPoint_save());
+		return dao.pointInsert(point);
+	}
+	
 	public int pointUse(Point point) throws Exception{
 		if (point.getPoint_value() > 0) {
 			point.setPoint_value(point.getPoint_value() * -1);
 		}
-		point.setTotal_point(point.getPoint_value() + point.getTotal_point());
+		point.setTotal_point(point.getPoint_value() + point.getTotal_point()+point.getPoint_save());
 		
 		return dao.pointInsert(point);
 	}
@@ -174,6 +188,49 @@ public class MemberManageService {
 		coupon.setUse("X");
 		return dao.couponUse(coupon);
 	}
+//////////////////////////////////////////////////////////////////////////////////////////
+	
+	
+	public int cartInsert(Cart cart) throws Exception{
+		return dao.cartInsert(cart);
+	}
+	
+	public int cartUpdate(Cart cart) throws Exception{
+		return dao.cartUpdate(cart);
+	}
+	
+	public int cartDelete(Cart cart) throws Exception{
+		return dao.cartDelete(cart);
+	}
+	
+	public Cart cartSelect(Cart cart) throws Exception{
+		return dao.cartSelect(cart);
+	}
+	
+	public List<Cart> cartList(Cart cart,MPager pager) throws Exception{
+		pager.makePager(dao.cartListCoint(cart));
+		pager.rowMake();
+		return dao.cartList(cart,pager);
+	}
+	
+	public int cartClean(Cart cart) throws Exception{
+		return dao.cartClean(cart);
+	}
+	
+	public List<Integer> cartOverlapCheck(Cart cart) throws Exception{
+		return dao.cartOverlapCheck(cart);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 }
