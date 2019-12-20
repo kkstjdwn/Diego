@@ -12,7 +12,7 @@
 <c:import url="../../common/calendar.jsp"/>
 </head>
 <body>
-<header></header>
+<c:import url="../../layout/header.jsp"/>
 <section style="width: 100%; overflow: hidden;">
 <div class="main" style="height: auto;">
 <!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->

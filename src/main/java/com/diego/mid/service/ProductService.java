@@ -92,7 +92,7 @@ public class ProductService {
 
 	//상품 리스트
 	public List<ProductVO>productList(MPager pager)throws Exception{
-
+		System.out.println("test");
 		pager.rowMake();
 		pager.makePager(productDAO.productCount(pager));
 		//System.out.println(productDAO.productCount(pager));

@@ -24,14 +24,14 @@ public class ProductVO {
 	private String pro_main;
 	private String pro_image;
 	
-
+	private List<ReviewVO> reviewVO;
+	
+	private List<RevFilesVO>revFilesVO;
 
 	private Double totalStar;
 	private Integer totalReview;
 
 	
-	
-
 	public Double getTotalStar() {
 		return totalStar;
 	}
@@ -48,10 +48,7 @@ public class ProductVO {
 		this.totalReview = totalReview;
 	}
 
-	private List<ReviewVO> reviewVO;
-	
-	private List<RevFilesVO>revFilesVO;
-	
+
 	
 	
 	public List<RevFilesVO> getRevFilesVO() {

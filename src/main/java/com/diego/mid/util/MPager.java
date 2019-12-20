@@ -12,11 +12,33 @@ public class MPager {
 	private Integer curBlock;
 	private Integer totalBlock;
 	private Integer totalPage;
-	
 	private Integer pro_num;
+	private String fcat_code;
+	private String cat_ref;
 	
 	
 	
+	public String getFcat_code() {
+		if( fcat_code == null) {
+			 fcat_code="%%";
+		}
+		return fcat_code;
+	}
+
+	public void setFcat_code(String fcat_code) {
+		this.fcat_code = fcat_code;
+	}
+
+	public String getCat_ref() {
+		if( cat_ref == null) {
+			cat_ref="%%";}
+		return cat_ref;
+	}
+
+	public void setCat_ref(String cat_ref) {
+		this.cat_ref = cat_ref;
+	}
+
 	public Integer getPro_num() {
 		return pro_num;
 	}
