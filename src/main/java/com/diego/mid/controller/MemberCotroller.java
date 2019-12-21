@@ -104,7 +104,6 @@ public class MemberCotroller {
 			List<Integer> cr = manageSevice.cartOverlapCheck(cart);
 			
 			session.setAttribute("cc", cr.size());
-			System.out.println("memberPhone = "+memberVO.getPhone());
 			if (memberVO.getPhone().length()>2) {				
 				session.setAttribute("p1", memberVO.getPhone().substring(0, 3));
 				session.setAttribute("p2", memberVO.getPhone().substring(3, 7));

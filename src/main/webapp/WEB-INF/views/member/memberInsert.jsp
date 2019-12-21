@@ -9,7 +9,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body>
-<header></header>
+<c:import url="../layout/header.jsp"/>
 <section style="width: 100%; height: 1500px;">
 <div class="main" style="margin-top: 150px;">
 	<div class="left">

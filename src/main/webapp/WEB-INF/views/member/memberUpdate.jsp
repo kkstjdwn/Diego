@@ -13,7 +13,7 @@
 <link>
 </head>
 <body>
-<header></header>
+<c:import url="../layout/header.jsp"/>
 <section style="width: 100%; height: 1200px; overflow: hidden;">
 <div class="main">
 <!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
