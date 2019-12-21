@@ -200,7 +200,7 @@
 					
 					<th>작성자명</th>
 					<th>상품넘버</th>
-					
+					<th>리뷰넘버</th>
 					<th>별점</th>
 					<th>날짜</th>
 					<th>내용</th>
@@ -216,9 +216,10 @@
 			<tbody>
 				<c:forEach items="${reviewList}" var="rev">
 					<input type="hidden" id="rev_num" value="${rev.rev_num }" >
-				<tr class="warning">				
+				<tr class="warning">			
 					<td><p>${rev.name }</p></td>
 					<td><p>${rev.pro_num }</p></td>
+					<td><p>${rev.rev_num }</p></td>
 					<td><p><c:forEach begin="0" end="${rev.star-1}">★</c:forEach>
 					<c:choose>
 						<c:when test="${rev.star eq 5}">아주 좋아요</c:when> 
