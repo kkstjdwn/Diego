@@ -1,6 +1,7 @@
 package com.diego.mid.controller;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import javax.inject.Inject;
@@ -924,4 +925,43 @@ public class MemberManageController {
 	}
 	
 	//@@@@@@@@@@@@@CART@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+	
+	//@@@@@@@@@@@@@PAY@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+	
+	
+	@GetMapping("payPage")
+	public ModelAndView payPage(HttpSession session,String[] pro_num) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		List<ProductVO> ar = new ArrayList<ProductVO>();
+		for (String pNum : pro_num) {
+			int getNum	= Integer.parseInt(pNum);
+			ProductVO vo = new ProductVO();
+			vo.setPro_num(getNum);
+			vo = proService.productGetInfo(vo);
+			ar.add(vo);
+		}
+		MemberVO memVO = (MemberVO)session.getAttribute("member"); 
+		Point point = new Point();
+		Coupon coupon = new Coupon();
+		point.setId(memVO.getId());
+		coupon.setId(memVO.getId());
+		mv.addObject("list", ar);
+		mv.addObject("point", service.pointSelect(point));
+		mv.addObject("coupon", service.couponMyList(coupon));
+		
+		return mv;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

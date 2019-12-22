@@ -1244,11 +1244,17 @@ footer{
 }
 
 
+/*ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ*/
 
-
-
-
-
+#kakao-pay-btn{
+	width: 200px;
+	height: 43px;
+	background: #555555;
+	color: white;
+	border: 1px solid #555555;
+	margin: 0 auto;
+	
+}
 
 
 
