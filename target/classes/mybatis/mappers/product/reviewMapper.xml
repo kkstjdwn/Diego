@@ -111,8 +111,6 @@ select * from revFiles where fnum = (select min(fnum) from revFiles group by rev
 		  select count(rev_num) from review where pro_num= #{pro_num}
 	</select>
   	
-  	<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~` -->
-  
   <!--리뷰 셀렉트  -->
   	<select id="selectReview" resultMap="refiles" parameterType="ReviewVO">
   		select R.*, F.fnum, F.rev_num, F.fname 
@@ -142,6 +140,8 @@ select * from revFiles where fnum = (select min(fnum) from revFiles group by rev
   	
   	
   	</resultMap>
+
+
 
   
   </mapper>

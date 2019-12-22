@@ -111,7 +111,7 @@ public class ProductService {
 	public ProductVO productSelect(ProductVO productVO)throws Exception{		
 		productVO = productDAO.productSelect(productVO);
 		List<ImagesVO>ar = imagesDAO.imagesList(productVO.getPro_num());
-
+		
 		productVO.setImages(ar);
 		return productDAO.productSelect(productVO);
 
@@ -179,6 +179,13 @@ public class ProductService {
 			
 			return productDAO.reviewDelete(reviewVO);
 		}
+		
+	//리뷰 업데이트
+		public int reviewUpdate(ReviewVO reviewVO)throws Exception{
+		
+			return productDAO.reviewUpdate(reviewVO); 
+		}
+		
 		
 	public ProductVO productGetInfo(ProductVO productVO) throws Exception{
 		return productDAO.productGetInfo(productVO);

@@ -84,6 +84,10 @@
 			<label for="pro_vital">Product Option:</label> <b>${product.pro_vital}
 			</b>
 		</div>
+		
+		<div  class="form-group">
+			<h2>${totalCount}개 리뷰 평점 : ${product.totalStar}</h2>	
+		</div>
 
 		<div>
 			<c:forEach items="${product.images}" var="image">
@@ -144,7 +148,7 @@
 
 			<!-- 리뷰작성폼 -->
 			<div class="container">
-				<form action="./productReview" method="post" enctype="multipart/form-data">
+				<form action="./productReview" method="post" enctype="multipart/form-data"> 
 					
 					<div class="form-group">
 						<input type="text" value="${admin.admin_id}" name="id" readonly="readonly" id="review_id">
@@ -154,8 +158,7 @@
 						<label
 							for="contents">Review</label> 
 							<a href="../review/reviewList" class="btn btn-info">후기게시판</a>
-						<textarea class="form-control" rows="10" id="rev_contents"
-							name="rev_contents" id="review_contents"></textarea>
+						<textarea class="form-control" rows="10" id="rev_contents"name="rev_contents" ></textarea>
 						<br>
 						
 						<div id="filebox">
@@ -186,7 +189,7 @@
 							</div>
 					</div>
 				
-				</form>
+		</form>
 
 
 			</div>
@@ -235,8 +238,8 @@
 					<td><p>${rev.rev_date }</p></td>
 					<td><p>${rev.rev_contents}</p></td>
 				<c:forEach items="${rev.files }" var="ref">
-					<td><p>${ref.fname }</p></td>
-							
+					<td><p><img src="../resources/product/photoReview/${ref.fname }" style="width: 20%; height: 20%;"></p></td>
+					
 				</c:forEach>
 					
 				</tr>
@@ -339,49 +342,41 @@
 	
 //----------------------------------------------------------------------------------------------------------------------------------
 		//리뷰작성
-		$(".rwrite").click(function() {
-			if(confirm("리뷰를 저장하시겠습니까?")){
+// 		$(".rwrite").click(function() {
+	
+// 			if(confirm("리뷰를 저장하시겠습니까?")){
 				
-				$.ajax({
-					type: "POST", 
-					enctype: 'multipart/form-data',
-					url: "productReview", 
-					data: { 
-						id : $("#review_id").val(),
-						pro_num: $("#review_pronum").val(),
-						star : $("#review_star").val(),
-						name: $("#review_name").val(),
-						help : $("#review_help").val(),
-						rev_contents : $("#review_contents").val()
-					},  	
-					
-					processData: false, 
-					contentType: false, 
-					success: function (data) {
-						data= data.trim();
-						if (data==1) {
-							alert("리뷰 저장이 완료되었습니다.")
-							location.reload();
-						}else{
-							alert("리뷰 저장이 실패했습니다.")
+// 				$.ajax({
+// 					type: "POST", 
+// 					url: "productReview", 
+// 					data: { 
+// 						id : $("#review_id").val(),
+// 						pro_num: $("#review_pronum").val(),
+// 						star : $("#review_star").val(),
+// 						name: $("#review_name").val(),
+// 						help : $("#review_help").val(),
+// 						rev_contents : $("#rev_contents").val()
+// 					},  		
+				
+// 					success : function(data) {
+// 						data= data.trim();
+// 						if (data==1) {
+// 							alert("저장된 리뷰가 완벽히 삭제되었습니다.")
+// 							location.reload();
+// 						}else{
+// 							alert("저장된 리뷰가 삭제되지 않았습니다.")
 							
-						}
-						
-					}
-
+// 						}
+							
+// 					}
 					
 					
 					
-				});
+// 				});
 				
-				
-				
-				
-				
-			}
+// 			}
 			
-			
-		});
+// 		});
 		
 		
 //----------------------------------------------------------------------------------------------------------------------------------	

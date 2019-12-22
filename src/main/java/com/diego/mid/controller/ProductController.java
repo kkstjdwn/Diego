@@ -20,6 +20,7 @@ import com.diego.mid.model.product.ImagesVO;
 import com.diego.mid.model.product.ProductVO;
 import com.diego.mid.model.product.ReviewVO;
 import com.diego.mid.service.ProductService;
+import com.diego.mid.service.ReviewService;
 import com.diego.mid.util.MPager;
 import com.diego.mid.util.Pager;
 
@@ -32,7 +33,8 @@ public class ProductController {
 	@Inject
 	private ProductService productService;
 
-	
+	@Inject
+	private ReviewService reviewService;
 	
 	//상품등록 insert
 	@GetMapping(value = "productInsert")
@@ -192,6 +194,13 @@ public class ProductController {
 		
 		productVO =  productService.productSelect(productVO);
 		
+		reviewVO= new ReviewVO();
+		reviewVO.setPro_num(productVO.getPro_num());
+		Double d= reviewService.totalStar(reviewVO);
+		String total= d.toString();
+		total= total.substring(0,3);
+		productVO.setTotalStar(Double.parseDouble(total));
+		
 		productVO.setContents(productVO.getContents().replace("\n\r", "<br>"));
 		
 		mv.addObject("totalCount", totalCount);
@@ -264,17 +273,52 @@ public class ProductController {
 			
 			int result = productService.productReview(reviewVO, session, file);
 			
-			String msg="0";
+			String msg="리뷰저장이 실패되었습니다.";
 			
 			if(result==1){
-				msg="1";
+				msg="저장가 완벽히 저장되었습니다.";
 			
 			}
 			mv.addObject("msg", msg);
-			
-			mv.setViewName("common/common_ajax_result");
+			mv.addObject("path","productSelect?pro_num="+reviewVO.getPro_num());//성공되었을때 프로넘을 받아서 현재페이지로다시오기
+			mv.setViewName("common/common_result");
 			return mv;
 		}
+		
+		//리뷰 업데이트
+		@GetMapping("reviewUpadate")
+		public ModelAndView reviewUpdate(ReviewVO reviewVO, Integer rev_num)throws Exception{
+			
+			reviewVO.setRev_num(rev_num);
+			ModelAndView mv = new ModelAndView();
+			
+			reviewVO= reviewService.selectReview(reviewVO);
+			mv.addObject("review", reviewVO);
+			mv.setViewName("review/reviewUpdate");
+			return mv;
+		}
+		
+		@PostMapping("reviewUpdate")
+		public ModelAndView reviewUpdate2(ReviewVO reviewVO, ProductVO productVO)throws Exception{
+			
+			int result = productService.reviewUpdate(reviewVO);
+			ModelAndView mv= new ModelAndView();
+			
+			String msg="리뷰 수정이 실패했습니다.";
+			if(result==1) {
+				msg="리뷰 수정이 완료되었습니다.";
+			}
+			
+			mv.addObject("msg", msg);
+			mv.addObject("path", "productSelect?pro_num="+reviewVO.getPro_num());
+			mv.setViewName("common/common_result");
+			
+			return mv;
+		}
+		
+		
+		
+		
 		//상품검색
 		@GetMapping(value = "proSearch")
 		public void proSearch()throws Exception{}
