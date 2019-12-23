@@ -11,7 +11,7 @@
 	<header>
 		<div id="top">
 			<div id="topinner">
-				<div id="logo" class=""><a href=""><img alt="h_logo" src="/mid/resources/images/h_logo.png"></a></div>
+				<div id="logo" class=""><a href="/mid/makeDiv"><img alt="h_logo" src="/mid/resources/images/h_logo.png"></a></div>
 				<div id="menubar">
 					<nav>
 						<div class="container">
@@ -55,7 +55,7 @@
 					style="display: none; height: 320px; padding-top: 0px; margin-top: 0px; padding-bottom: 0px; margin-bottom: 0px;">
 
 					<h1 class="gnb_logo">
-						<a href="/"><img
+						<a href="/mid/makeDiv"><img
 							src="/mid/resources/images/marciodiego_logo_fix.png" alt="마르시오디에고 로고" /></a>
 					</h1>
 					<ul class="menu_list gnb_menu">

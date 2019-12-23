@@ -239,42 +239,12 @@
 	
 	
 	$("#all-list").click(function() {
-// 		var d = $("#cal-left").val();
-// 		$.ajax({
-// 			type	: "GET",
-// 			url		: "orderAllList",
-// 			data	: {
-// 				id		: "${member.id}",
-// 				order_date : d
-				
-// 			},
-// 			success	: function(data) {
-// 				$(".ajax-table").html(data);
-// 				$("#all-list").prop("class", "btn-list-sel");
-// 				$("#can-list").prop("class", "btn-list");
-// 				$("#order_status").prop("hidden", false);
-// 				alert(page);
-// 			}
-// 		});
+
 		list("orderAllList",1,$(this).prop("name"));
 	});
 	
 	$("#can-list").click(function() {
-// 		var d = $("#cal-left").val();
-// 		$.ajax({
-// 			type	: "GET",
-// 			url		: "orderCancelList",
-// 			data	: {
-// 				id		: "${member.id}",
-// 				order_date : d
-// 			},
-// 			success	: function(data) {
-// 				$(".ajax-table").html(data);
-// 				$("#can-list").prop("class", "btn-list-sel");
-// 				$("#all-list").prop("class", "btn-list");
-// 				$("#order_status").prop("hidden", true);
-// 			}
-// 		});
+
 		list("orderCancelList",1,$(this).prop("name"));
 	});
 	

@@ -974,17 +974,12 @@ public class MemberManageController {
 		
 	}
 	
-	@PostMapping("kakaoPay")
+	@PostMapping("kakaoPay")  
 	public String kakaoPay(Orders orders,Point point,HttpSession session,Coupon coupon) throws Exception{
 		orders.setOrder_num(service.getOrderNum());
 		orders = service.orderInsert(orders);
 		point.setOrder_num(orders.getOrder_num());
 		point.setContents(orders.getPro_info());
-		
-		System.out.println("totalp = "+point.getTotal_point());
-		System.out.println("pointval = "+point.getPoint_value());
-		System.out.println("pointsav = "+point.getPoint_save());
-		
 		
 		int result = 0;
 		int pInsert = 0;
