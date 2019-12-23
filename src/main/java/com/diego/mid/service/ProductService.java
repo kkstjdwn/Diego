@@ -92,7 +92,7 @@ public class ProductService {
 
 	//상품 리스트
 	public List<ProductVO>productList(MPager pager)throws Exception{
-		System.out.println("test");
+		//System.out.println("test");
 		pager.rowMake();
 		pager.makePager(productDAO.productCount(pager));
 		//System.out.println(productDAO.productCount(pager));
@@ -111,7 +111,7 @@ public class ProductService {
 	public ProductVO productSelect(ProductVO productVO)throws Exception{		
 		productVO = productDAO.productSelect(productVO);
 		List<ImagesVO>ar = imagesDAO.imagesList(productVO.getPro_num());
-
+		
 		productVO.setImages(ar);
 		return productDAO.productSelect(productVO);
 
@@ -179,6 +179,32 @@ public class ProductService {
 			
 			return productDAO.reviewDelete(reviewVO);
 		}
+		
+	
+		
+	//리뷰 업데이트
+		public int reviewUpdate(ReviewVO reviewVO, HttpSession session, MultipartFile [] file)throws Exception{
+			
+			//1. 파일을 저장할 실제경로
+			String realPath = session.getServletContext().getRealPath("resources/product/photoReview");
+			System.out.println(realPath);
+			
+			RevFilesVO revFilesVO = new RevFilesVO();
+			revFilesVO.setRev_num(reviewVO.getRev_num());
+			
+			//System.out.println(reviewVO.getRev_num());
+			
+			for (MultipartFile multipartFile : file) {
+								
+					revFilesVO.setFname(fileSaver.save(realPath, multipartFile));
+					revFilesVO.setOname(multipartFile.getOriginalFilename());
+					revFilesDAO.fileWrite(revFilesVO);
+		
+			}
+			
+			return productDAO.reviewUpdate(reviewVO); 
+		}
+		
 		
 	public ProductVO productGetInfo(ProductVO productVO) throws Exception{
 		return productDAO.productGetInfo(productVO);

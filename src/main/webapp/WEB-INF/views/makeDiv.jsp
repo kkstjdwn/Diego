@@ -26,34 +26,43 @@
 
 <section>
 	<div style=" height: 1598px; background-color: black;" class="se-name">
-		<h1 class="se-h1">BEST SELLER</h1>
+		<h1 class="se-h1">BEST SELLER.</h1>
 		<ul class="pro">
-			<c:forEach begin="1" end="8" var="v">
+		
+			
+		
+			
+		
+			
+			<c:forEach items="${productList}" var="p" varStatus="v">	<!-- here!! -->
 				<li class="pro-li">
-					<c:if test="${v % 4 eq 0  }">
+				
+					<c:if test="${v.count % 4 eq 0  }">
 						<div class="pro-li-div_nm">
-							<p class="pro-li-div-a"></p>
-							<p class="pro-li-div-p"></p>
+							<p class="pro-li-div-a"><img src="../resources/product/images/${p.sumnale}"></p>
+							<p class="pro-li-div-p">${p.pro_name }</p>
 							<ul class="pro-li-div-ul">
-								<li style="width: inherit; height: 36px; padding-bottom: 23px; background-color: orange;"></li>
-								<li style="height: 18px; display: inline-block; background-color: orange;">12</li>
-								<li style="height: 18px; display: inline-block; background-color: orange;">22</li>
+								<li style="width: inherit; height: 36px; padding-bottom: 23px; background-color: orange;">${p.contents}</li>
+								<li style="height: 18px; display: inline-block; background-color: orange; text-decoration: line-through;">${p.beforeSale}원</li>
+								<li style="height: 18px; display: inline-block; background-color: orange;">${p.pro_price}원</li>
 							</ul>
 						</div>
 					</c:if> 
-					<c:if test="${v % 4 ne 0 }">
+				
+					<c:if test="${v.count % 4 ne 0 }">
 						<div class="pro-li-div">
-							<p class="pro-li-div-a"></p>
-							<p class="pro-li-div-p"></p>
+							<p class="pro-li-div-a"><img src="../resources/product/images/${p.sumnale}"></p>
+							<p class="pro-li-div-p">${p.pro_name }</p>
 							<ul class="pro-li-div-ul">
-								<li style="width: inherit; height: 36px; padding-bottom: 23px; background-color: orange;"></li>
-								<li style="height: 18px; display: inline-block; background-color: orange;">12</li>
-								<li style="height: 18px; display: inline-block; background-color: orange;">22</li>
+								<li style="width: inherit; height: 36px; padding-bottom: 23px; background-color: orange;">${p.contents}</li>
+								<li style="height: 18px; display: inline-block; background-color: orange; text-decoration: line-through;">${p.beforeSale}원</li>
+								<li style="height: 18px; display: inline-block; background-color: orange;">${p.pro_price}원</li>
 							</ul>
 						</div>
 					</c:if>
 				</li>
 			</c:forEach>
+		
 		</ul>
 	</div>
 </section>
@@ -92,7 +101,11 @@
 
 <section style="padding-bottom: 200px;">
 
-<div class="sps-gift"></div>
+<div class="sps-gift">
+
+<img alt="grm1" src="resources/images/main_benefit.jpg">
+
+</div>
 
 
 </section>
@@ -103,27 +116,27 @@
 	<div class="se-name" style="background-color: yellow;">
 		<h1 class="se-h1">NEW PRODUCTS.</h1>
 		<ul class="pro">
-			<c:forEach begin="1" end="40" var="v">
+			<c:forEach items="${newPro}" var="np" varStatus="v">
 				<li class="pro-li">
-					<c:if test="${v % 4 eq 0  }">
+					<c:if test="${v.count % 4 eq 0  }">
 						<div class="pro-li-div_nm">
-							<p class="pro-li-div-a"></p>
-							<p class="pro-li-div-p"></p>
+							<p class="pro-li-div-a"><img src="../resources/product/images/${np.sumnale}"></p>
+							<p class="pro-li-div-p">${np.pro_name }</p>
 							<ul class="pro-li-div-ul">
-								<li style="width: inherit; height: 36px; padding-bottom: 23px; background-color: orange;"></li>
-								<li style="height: 18px; display: inline-block; background-color: orange;">12</li>
-								<li style="height: 18px; display: inline-block; background-color: orange;">22</li>
+								<li style="width: inherit; height: 36px; padding-bottom: 23px; background-color: orange;">${np.contents}</li>
+								<li style="height: 18px; display: inline-block; background-color: orange; text-decoration: line-through;">${np.beforeSale}원</li>
+								<li style="height: 18px; display: inline-block; background-color: orange;">${np.pro_price}원</li>
 							</ul> 
 						</div>
 					</c:if> 
-					<c:if test="${v % 4 ne 0 }">
+					<c:if test="${v.count % 4 ne 0 }">
 						<div class="pro-li-div">
-							<p class="pro-li-div-a"></p>
-							<p class="pro-li-div-p"></p>
+							<p class="pro-li-div-a"><img src="../resources/product/images/${np.sumnale}"></p>
+							<p class="pro-li-div-p">${np.pro_name }</p>
 							<ul class="pro-li-div-ul">
-								<li style="width: inherit; height: 36px; padding-bottom: 23px; background-color: orange;"></li>
-								<li style="height: 18px; display: inline-block; background-color: orange;">12</li>
-								<li style="height: 18px; display: inline-block; background-color: orange;">22</li>
+								<li style="width: inherit; height: 36px; padding-bottom: 23px; background-color: orange; ">${np.contents}</li>
+								<li style="height: 18px; display: inline-block; background-color: orange; text-decoration: line-through;">${np.beforeSale}원</li>
+								<li style="height: 18px; display: inline-block; background-color: orange;">${np.pro_price}원</li>
 							</ul>
 						</div>
 					</c:if>
@@ -137,6 +150,7 @@
 
 <section style="margin-bottom: 250px; padding-bottom: 0;">
 	<div class="add-join">
+<!-- 	<img src="resources/images/main_collection.jpg">  -->
 		<a href="#" style="text-decoration: none;">
 			<div class="add-join-div">
 				<h1 style="font-size: 28px; padding-bottom: 15px;">마르시오디에고 신규 회원 혜택</h1>
@@ -153,12 +167,12 @@
 
 <section style="padding-top: 350px; padding-bottom: 190px;">
 <div class="ctg">
-	<div class="ctg-div">
+	<div class="ctg-div-cl">
 		<div class="ctg-div-name">
 		<h1>Clothing</h1>
 		</div>
 	</div>
-	<div class="ctg-div">
+	<div class="ctg-div-ac">
 		<div class="ctg-div-name">
 		<h1>Accessory</h1>
 		</div>
@@ -176,19 +190,20 @@
 <section style="margin: 0; padding: 0; height: 1000px; background-color: navy;">
 	<div class="rev">
 	<ul>
-	<c:forEach begin="1" end="12" var="r">
+	<c:forEach items="${reviewList}" var="review" varStatus="r">
+	<c:forEach items="${review.reviewVO}" var="rev" >
 	<li class="rev-li">
 	<p class="rev-li-img"></p>
 	<div class="rev-li-mem">
-		<div class="rev-li-mem-tt">리뷰제목</div>
-		<div class="rev-li-mem-nk">***</div>
+		<div class="rev-li-mem-tt">${rev.rev_contents}</div>
+		<div class="rev-li-mem-nk"></div>
 	</div>
 	<div class="rev-li-info">
 		<div class="rev-li-info-img">
 			<p></p>
 		</div>
 		<div class="rev-li-info-div">
-		<div class="rev-li-info-tt">상품명</div>
+		<div class="rev-li-info-tt" >${review.pro_name}</div>
 		<div class="rev-li-info-fb">
 			<span>리뷰<strong class="st">갯수</strong></span>
 			<span>평점<strong class="st">점수</strong></span>
@@ -196,6 +211,7 @@
 		</div>
 	</div>
 	</li>
+	</c:forEach>
 	</c:forEach>
 	</ul>
 	</div>

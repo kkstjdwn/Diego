@@ -58,9 +58,9 @@
 						</c:if>				
 				</c:forEach>
 			
-				<p>${rev.rev_num}</p>
+			
 				
-				<a data-toggle="modal" data-target="#modalReview"><p style="color: red;">${rev.rev_contents}</p></a>
+				<a href="./selectReview?rev_num=${rev.rev_num}"><p style="color: red;">${rev.rev_contents}</p></a>
 				
 				<!-- Modal -->
   				<div class="modal fade" id="modalReview" role="dialog">

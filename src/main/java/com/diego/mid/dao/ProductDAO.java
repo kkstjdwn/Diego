@@ -105,6 +105,12 @@ public class ProductDAO {
 			return sqlSession.delete(NAMESPACE+"reviewDelete", reviewVO);
 			
 		}
+	//리뷰 업데이트
+		public int reviewUpdate(ReviewVO reviewVO)throws Exception {
+			
+			return sqlSession.update(NAMESPACE+"reviewUpdate", reviewVO);
+		}
+		
 	//상품정보가져오기
 	public ProductVO productGetInfo(ProductVO productVO) throws Exception{
 		return sqlSession.selectOne(NAMESPACE+"productGetInfo",productVO);

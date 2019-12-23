@@ -18,8 +18,10 @@ import org.springframework.web.servlet.ModelAndView;
 import com.diego.mid.dao.ProductDAO;
 import com.diego.mid.model.product.ImagesVO;
 import com.diego.mid.model.product.ProductVO;
+import com.diego.mid.model.product.RevFilesVO;
 import com.diego.mid.model.product.ReviewVO;
 import com.diego.mid.service.ProductService;
+import com.diego.mid.service.ReviewService;
 import com.diego.mid.util.MPager;
 import com.diego.mid.util.Pager;
 
@@ -32,7 +34,8 @@ public class ProductController {
 	@Inject
 	private ProductService productService;
 
-	
+	@Inject
+	private ReviewService reviewService;
 	
 	//상품등록 insert
 	@GetMapping(value = "productInsert")
@@ -132,13 +135,13 @@ public class ProductController {
 	@RequestMapping(value = "productList", method = {RequestMethod.GET, RequestMethod.POST})
 	private ModelAndView productList(MPager pager)throws Exception {
 		List<ProductVO>ar= productService.productList(pager);
-		System.out.println(ar.get(0).getPro_main()+"=proMain");
+		//System.out.println(ar.get(0).getPro_main()+"=proMain");
 		ModelAndView mv = new ModelAndView();
 		
 		mv.addObject("productList", ar);
 		mv.addObject("pager", pager);
 		mv.setViewName("product/productList");
-		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+		
 		
 		return mv;
 		
@@ -188,11 +191,18 @@ public class ProductController {
 		int totalCount= productService.reviewCount(productVO);
 		
 		pager.makePager(totalCount);
+		productVO =  productService.productSelect(productVO);
 		List<ReviewVO>ar = productService.reviewList(productVO, pager);
-		
+		for (ReviewVO reviewVO2 : ar) {
+			reviewVO= new ReviewVO();
+			reviewVO.setPro_num(productVO.getPro_num());
+			Double d= reviewService.totalStar(reviewVO);
+			String total= d.toString();
+			total= total.substring(0,3);
+			productVO.setTotalStar(Double.parseDouble(total));
+		}
 		//System.out.println(ar.get(0).getRev_contents());성공
 		
-		productVO =  productService.productSelect(productVO);
 		
 		productVO.setContents(productVO.getContents().replace("\n\r", "<br>"));
 		
@@ -266,17 +276,56 @@ public class ProductController {
 			
 			int result = productService.productReview(reviewVO, session, file);
 			
-			String msg="0";
+			String msg="리뷰저장이 실패되었습니다.";
 			
 			if(result==1){
-				msg="1";
+				msg="저장가 완벽히 저장되었습니다.";
 			
 			}
 			mv.addObject("msg", msg);
-			
-			mv.setViewName("common/common_ajax_result");
+			mv.addObject("path","productSelect?pro_num="+reviewVO.getPro_num());//성공되었을때 프로넘을 받아서 현재페이지로다시오기
+			mv.setViewName("common/common_result");
 			return mv;
 		}
+		
+		//리뷰 업데이트
+		@GetMapping("reviewUpdate")
+		public ModelAndView reviewUpdate(ReviewVO reviewVO, Integer rev_num, RevFilesVO revFilesVO)throws Exception{
+			reviewVO.setRev_num(reviewVO.getRev_num());
+			reviewVO= reviewService.selectReview(reviewVO, revFilesVO);
+
+			ModelAndView mv = new ModelAndView();
+			
+			//System.out.println(reviewVO.getRev_num());  성공
+			int size= reviewVO.getFiles().size();
+			mv.addObject("size", size);
+			mv.addObject("review", reviewVO);
+			mv.setViewName("product/reviewUpdate");
+			
+			return mv;
+		}
+		
+		@PostMapping("reviewUpdate")
+		public ModelAndView reviewUpdate2(ReviewVO reviewVO, HttpSession session, MultipartFile [] file)throws Exception{
+			
+			int result = productService.reviewUpdate(reviewVO, session, file);
+			ModelAndView mv= new ModelAndView();
+			
+			String msg="리뷰 수정이 실패했습니다.";
+			if(result==1) {
+				msg="리뷰 수정이 완료되었습니다.";
+			}
+			
+			mv.addObject("msg", msg);
+			mv.addObject("path", "productSelect?pro_num="+reviewVO.getPro_num());
+			mv.setViewName("common/common_result");
+			
+			return mv;
+		 }
+		
+		
+		
+		
 		//상품검색
 		@GetMapping(value = "proSearch")
 		public void proSearch()throws Exception{}
