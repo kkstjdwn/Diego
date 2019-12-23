@@ -16,7 +16,7 @@
 
 <!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
 
-<section style="width: 100%; height: 1319px; background-color: white; padding-bottom: 0; margin-top:74px;">
+<section style="width: 100%; height: 1319px;padding-bottom: 0; margin-top:74px;">
 	<div style="width: 100%; height: 969px; background:url('resources/images/mainb_01.jpg');">
 	</div>
 </section>
@@ -24,7 +24,7 @@
 <!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
 
 <section>
-	<div style=" height: 1598px; background-color: white;" class="se-name">
+	<div style=" height: 1598px;class="se-name">
 		<h1 class="se-h1">BEST SELLER.</h1>
 		<ul class="pro">
 		
@@ -41,9 +41,9 @@
 							<p class="pro-li-div-a"><img src="resources/product/images/${p.sumnale}"></p>
 							<p class="pro-li-div-p">${p.pro_name }</p>
 							<ul class="pro-li-div-ul">
-								<li style="width: inherit; height: 36px; padding-bottom: 23px; background-color: orange;">${p.contents}</li>
-								<li style="height: 18px; display: inline-block; background-color: orange; text-decoration: line-through;">${p.beforeSale}원</li>
-								<li style="height: 18px; display: inline-block; background-color: orange;">${p.pro_price}원</li>
+								<li style="width: inherit; height: 36px; padding-bottom: 23px;">${p.contents}</li>
+								<li style="height: 18px; display: inline-block;text-decoration: line-through;">${p.beforeSale}원</li>
+								<li style="height: 18px; display: inline-block;">${p.pro_price}원</li>
 							</ul>
 						</div>
 					</c:if> 
@@ -53,9 +53,9 @@
 							<p class="pro-li-div-a"><img src="resources/product/images/${p.sumnale}"></p>
 							<p class="pro-li-div-p">${p.pro_name }</p>
 							<ul class="pro-li-div-ul">
-								<li style="width: inherit; height: 36px; padding-bottom: 23px; background-color: orange;">${p.contents}</li>
-								<li style="height: 18px; display: inline-block; background-color: orange; text-decoration: line-through;">${p.beforeSale}원</li>
-								<li style="height: 18px; display: inline-block; background-color: orange;">${p.pro_price}원</li>
+								<li style="width: inherit; height: 36px; padding-bottom: 23px;">${p.contents}</li>
+								<li style="height: 18px; display: inline-block;  text-decoration: line-through;">${p.beforeSale}원</li>
+								<li style="height: 18px; display: inline-block; ">${p.pro_price}원</li>
 							</ul>
 						</div>
 					</c:if>
@@ -69,7 +69,7 @@
 <!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
 
 <section>
-	<div style="height: 1112.5px; background-color: red;" class="se-name">
+	<div style="height: 1112.5px; " class="se-name">
 		<h1 class="se-h1">GROOMING</h1>
 			<ul>
 				<li>
@@ -102,7 +102,7 @@
 
 <div class="sps-gift">
 
-<img alt="grm1" src="resources/images/main_benefit.jpg">
+<img alt="grm1" src="resources/images/main_benefit.jpg" width="100%">
 
 </div>
 
@@ -112,7 +112,8 @@
 <!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
 
 <section style="height: auto; padding-bottom: 100px;">
-	<div class="se-name" style="background-color: white;">
+
+	<div class="se-name"">
 		<h1 class="se-h1">NEW PRODUCTS.</h1>
 		<ul class="pro">
 			<c:forEach items="${newPro}" var="np" varStatus="v">
@@ -122,9 +123,9 @@
 							<p class="pro-li-div-a"><img src="resources/product/images/${np.sumnale}"></p>
 							<p class="pro-li-div-p">${np.pro_name }</p>
 							<ul class="pro-li-div-ul">
-								<li style="width: inherit; height: 36px; padding-bottom: 23px; background-color: orange;">${np.contents}</li>
-								<li style="height: 18px; display: inline-block; background-color: orange; text-decoration: line-through;">${np.beforeSale}원</li>
-								<li style="height: 18px; display: inline-block; background-color: orange;">${np.pro_price}원</li>
+								<li style="width: inherit; height: 36px; padding-bottom: 23px;">${np.contents}</li>
+								<li style="height: 18px; display: inline-block; text-decoration: line-through;">${np.beforeSale}원</li>
+								<li style="height: 18px; display: inline-block; ">${np.pro_price}원</li>
 							</ul> 
 						</div>
 					</c:if> 
@@ -133,9 +134,9 @@
 							<p class="pro-li-div-a"><img src="resources/product/images/${np.sumnale}"></p>
 							<p class="pro-li-div-p">${np.pro_name }</p>
 							<ul class="pro-li-div-ul">
-								<li style="width: inherit; height: 36px; padding-bottom: 23px; background-color: orange; ">${np.contents}</li>
-								<li style="height: 18px; display: inline-block; background-color: orange; text-decoration: line-through;">${np.beforeSale}원</li>
-								<li style="height: 18px; display: inline-block; background-color: orange;">${np.pro_price}원</li>
+								<li style="width: inherit; height: 36px; padding-bottom: 23px;">${np.contents}</li>
+								<li style="height: 18px; display: inline-block;  text-decoration: line-through;">${np.beforeSale}원</li>
+								<li style="height: 18px; display: inline-block; ">${np.pro_price}원</li>
 							</ul>
 						</div>
 					</c:if>
@@ -187,7 +188,7 @@
 
 <!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
 
-<section style="margin: 0; padding: 0; height: 1000px; background-color: navy;">
+<section style="margin: 0; padding: 0; height: 1000px;">
 	<div class="rev">
 	<ul>
 	<c:forEach items="${reviewList}" var="review" varStatus="r" >
@@ -218,18 +219,11 @@
 	</ul>
 	</div>
 	<div class="rev-page">
-		<a href="#"> < </a>
-		<c:forEach begin="1" end="8" var="p">
-		<a href="#"> ${p } </a>
-		</c:forEach>
-		<a href="#"> > </a>
 	</div>
 </section>
 
 <!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
 
-<footer> 
-<h1 style="font-size: 50px;">푸~~~~~~~~~~~~~~~~~~~터</h1>
-</footer>
+<c:import url="layout/footer.jsp"/>
 </body>
 </html>
