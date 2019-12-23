@@ -17,9 +17,9 @@
 	<div class="left-menu">
 		<ul class="left-list">
 			<li style="height: 30px; font-size: 13px; color: black;">Community</li>
-			<li ><a href="#">Notice</a></li> 
-			<li ><a href="#">FAQ</a></li> 
-			<li ><a href="#">Q&amp;A</a></li> 
+			<li ><a href="/mid/notice/noticeList">Notice</a></li> 
+			<li ><a href="/mid/faq/faqList">FAQ</a></li> 
+			<li ><a href="/mid/admin/qnaList">Q&amp;A</a></li> 
 			<li ><a href="#">Photo review</a></li> 
 			<li ><a href="#">Review</a></li> 
 		</ul>
@@ -29,10 +29,10 @@
 		<ul class="left-list">
 			<li style="height: 30px;"><a href="#" style="color: black; font-size: 13px;">My page</a></li>
 			<c:if test="${!empty member }">
-			<li ><a href="#">My info</a></li></c:if>
-			<li ><a href="#">Order</a></li>
-			<li ><a href="#">Wish list</a></li>
-			<li ><a href="#">Mileage</a></li>
+			<li ><a href="memberUpdate">My info</a></li></c:if>
+			<li ><a href="memberManage/orderMyList">Order</a></li>
+			<li ><a href="memberManage/wishListSelectList">Wish list</a></li>
+			<li ><a href="memberManage/pointList">Mileage</a></li>
 			<li ><a href="#">My board</a></li>
 			<li ><a href="#">Delivery</a></li>
 		</ul>
