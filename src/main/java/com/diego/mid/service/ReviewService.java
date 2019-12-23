@@ -21,7 +21,8 @@ public class ReviewService {
 	@Inject 
 	private ReviewDAO reviewDAO;
 	
-
+	@Inject 
+	private RevFilesDAO revFilesDAO;
 	//리뷰 인서트
 	public int reviewWrite(ReviewVO reviewVO)throws Exception{
 		return reviewDAO.reviewWrite(reviewVO);
@@ -54,8 +55,15 @@ public class ReviewService {
 	}
 	
 	//리뷰 셀렉트
-	public ReviewVO selectReview(ReviewVO reviewVO)throws Exception{
-		//System.out.println(reviewVO.getRev_num());
+	public ReviewVO selectReview(ReviewVO reviewVO, RevFilesVO revFilesVO)throws Exception{
+		System.out.println(reviewVO.getRev_num()+"= 서비스");
+		
+		revFilesVO.setRev_num(reviewVO.getRev_num());
+		
+		List<RevFilesVO> ar = revFilesDAO.fileList(revFilesVO);
+		
+		reviewVO.setFiles(ar);
+		//System.out.println(reviewVO.getRev_num()+"= 서비스2");
 		return reviewDAO.selectReview(reviewVO);
 	}
 	

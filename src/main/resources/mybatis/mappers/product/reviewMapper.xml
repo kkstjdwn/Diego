@@ -113,9 +113,7 @@ select * from revFiles where fnum = (select min(fnum) from revFiles group by rev
   	
   <!--리뷰 셀렉트  -->
   	<select id="selectReview" resultMap="refiles" parameterType="ReviewVO">
-  		select R.*, F.fnum, F.rev_num, F.fname 
-  		from review  R full outer join revFiles F 
-  		on R.rev_num= F.rev_num where R.rev_num=#{rev_num}
+  		select R.*, F.fnum, F.fname, F.oname from review R full outer join revFiles F on R.rev_num= F.rev_num where R.rev_num=#{rev_num}
   	</select>
   	
   	<resultMap type="ReviewVO" id="refiles">
@@ -126,18 +124,16 @@ select * from revFiles where fnum = (select min(fnum) from revFiles group by rev
 			<result property="rev_contents" column="rev_contents" />
 			<result property="name" column="name" />
 			<result property="help" column="help" />
-			<result property="rev_date" column="rev_date" />
   		
   		<collection property="files" javaType="List" ofType="RevFilesVO">		
-			<id property="fnum" column="fnum" />
-			<result property="rev_num" column="rev_num"/>
+			<id property="fnum" column="fnum" />	
 			<result property="fname" column="fname" />	
-			
-		<collection property=""></collection>
-			
+			<result property="oname" column="oname" />
 		
 		</collection>
   	
+  		
+  		
   	
   	</resultMap>
 

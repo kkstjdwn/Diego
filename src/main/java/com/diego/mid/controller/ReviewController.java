@@ -100,13 +100,15 @@ public class ReviewController {
 	
 	//리뷰셀렉트
 	@GetMapping("selectReview")
-	public ModelAndView selectReview(ReviewVO reviewVO)throws Exception{
-		//System.out.println(reviewVO.getRev_num());
+	public ModelAndView selectReview(ReviewVO reviewVO, RevFilesVO revFilesVO)throws Exception{
 		ModelAndView mv= new ModelAndView();
-
-		reviewVO=reviewService.selectReview(reviewVO);
 		
-		mv.addObject("selectReview", reviewVO);
+		//System.out.println(reviewVO.getRev_num()+" = controller");
+	
+		reviewVO=reviewService.selectReview(reviewVO, revFilesVO);
+		
+		
+		mv.addObject("review", reviewVO);
 		mv.setViewName("review/selectReview");
 		
 		return mv;

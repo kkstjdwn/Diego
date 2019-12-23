@@ -10,5 +10,8 @@
   			insert into revFiles values(revFiles_seq.nextval, #{rev_num},#{fname},#{oname})
   		</insert>
   
-  
+  		<select id="fileList" parameterType="RevFilesVO" resultType="RevFilesVO">
+  			select * from revFiles where rev_num=#{rev_num}
+  		</select>
+  		
   </mapper>

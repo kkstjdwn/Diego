@@ -3,6 +3,7 @@ package com.diego.mid.model.product;
 import java.sql.Date;
 import java.util.List;
 
+import org.omg.CORBA.OMGVMCID;
 import org.springframework.web.multipart.MultipartFile;
 
 public class ProductVO {
@@ -21,15 +22,38 @@ public class ProductVO {
 	private String pro_vital;//상품 필수옵션
 	private String sumnale;
 	
+	private String sec_name;
+	private Integer beforeSale;
+	
 	private String pro_main;
 	private String pro_image;
 	
 	private List<ReviewVO> reviewVO;
 	
 	private List<RevFilesVO>revFilesVO;
-
+	
 	private Double totalStar;
 	private Integer totalReview;
+	
+	
+	
+	
+	public String getSec_name() {
+		return sec_name;
+	}
+
+	public void setSec_name(String sec_name) {
+		this.sec_name = sec_name;
+	}
+
+	public Integer getBeforeSale() {
+		return beforeSale;
+	}
+
+	public void setBeforeSale(Integer beforeSale) {
+		this.beforeSale = beforeSale;
+	}
+
 
 	
 	public Double getTotalStar() {

@@ -63,6 +63,7 @@
 						<td>${product.pro_vital}</td>
 						<td>${product.pro_date}</td>
 						<td><a href="./productUpdate?pro_num=${product.pro_num}"><input type="button" value="정보 수정" ></a>
+							
 							<c:if test="${!empty member }">
 							<button class="insert-wishList" value="${product.pro_num }">관심상품</button>
 							</c:if>
