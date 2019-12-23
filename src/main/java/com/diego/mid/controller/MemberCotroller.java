@@ -25,7 +25,7 @@ public class MemberCotroller {
 	private MemberService service;
 	
 	@Inject
-	private MemberManageService manageSevice;
+	private MemberManageService manageService;
 	
 	@GetMapping("memberInsert")
 	public void memberInsert() {
@@ -51,7 +51,7 @@ public class MemberCotroller {
 			point.setOrder_num(0);
 			point.setPoint_value(5000);
 			point.setContents("가입축하 포인트");
-			result = manageSevice.pointInsert(point);
+			result = manageService.pointInsert(point);
 			if (result > 0) {
 				msg = "가입을 축하드립니다!";
 				path = "/mid/member/memberLogin";
@@ -101,7 +101,7 @@ public class MemberCotroller {
 			
 			Cart cart = new Cart();
 			cart.setId(memberVO.getId());
-			List<Integer> cr = manageSevice.cartOverlapCheck(cart);
+			List<Integer> cr = manageService.cartOverlapCheck(cart);
 			
 			session.setAttribute("cc", cr.size());
 			if (memberVO.getPhone().length()>2) {				

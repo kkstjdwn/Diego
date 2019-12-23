@@ -17,7 +17,7 @@
   
   <update id="orderUpdate" parameterType="orders">
   
-  	update orders set pro_count = #{pro_count}, order_sum=#{order_sum}, order_result = #{order_result}, order_status=#{order_status}
+  	update orders set order_result = #{order_result}, order_status=#{order_status}
   	where order_num = #{order_num}
   
   </update>
@@ -25,6 +25,12 @@
   <select id="orderSelect" parameterType="orders" resultType="orders">
   	
   	select * from orders where order_num = #{order_num}
+  
+  </select>
+  
+  <select id="getLastOrder" parameterType="orders" resultType="orders">
+  	
+  	select * from orders where order_num = (select max(order_num) from orders where id=#{id})
   
   </select>
   

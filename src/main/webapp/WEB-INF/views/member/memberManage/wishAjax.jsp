@@ -22,7 +22,7 @@
 			<c:forEach items="${wishList }" var="wish" varStatus="i">
 				<tr>
 					<td class="ws-checkBox" style="border-left: 0; height: 116px;">
-						<input type="checkbox" class="wishCheck wish${i.index }" value="${wish.wish_num }">
+						<input type="checkbox" class="wishCheck wish${i.index }" value="${wish.wish_num }" title="${wish.pro_num }">
 					</td>
 					<td class="ws-image">
 						<img alt="위시리스트 사진" src="../../resources/product/images/${wish.image }" height="116px" width="80px">

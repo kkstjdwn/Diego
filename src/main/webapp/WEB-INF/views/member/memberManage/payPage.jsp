@@ -77,61 +77,60 @@
 				<table class="cart-table">
 					<thead>
 						<tr>
-							<th class="cart-checkBox" style="border-left: 0;"><input type="checkbox" id="checkAll" size="13px"></th>
+							<th class="cart-checkBox" style="border-left: 0;"><input type="checkbox" id="checkAll" size="13px" width="80px"></th>
 							<th class="cart-image">이미지</th>
-							<th class="cart-pro_info">상품정보</th>
-							<th class="cart-price">판매가</th>
+							<th class="cart-pro_info" width="1000px">상품정보</th>
+							<th class="cart-price" style="width: 200px;">판매가</th>
 							<th class="cart-count">수량</th>
-							<th class="cart-point">적립금</th>
-							<th class="cart-deli">배송구분</th>
-							<th class="cart-deli-cost">배송비</th>
-							<th class="cart-sum">합계</th>
-							<th class="cart-btn-group" style="border-right: 0;">선택</th>
+							<th class="cart-point" style="width: 200px;">적립금</th>
+							<th class="cart-deli-cost" style="border-right: 0;">배송비</th>
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach items="${cartList }" var="cart" varStatus="i">
+						<c:forEach items="${list }" var="pro" varStatus="i">
 							<tr>
-								<td class="cart-checkBox" style="border-left:0;">
-									<input type="checkbox" class="cartCheck cart${i.index }" value="${cart.cart_num }" title="${i.index }" name="${cart.pro_num }">
+								<td class="cart-checkBox" style="border-left:0; width: 80px;">
+									<input type="checkbox" class="cartCheck cart${i.index }" value="${pro.pro_num }" title="${i.index }">
 								</td>
 								<td class="cart-image">
-									<img alt="장바구니 사진" src="../../resources/product/images/${cart.pro_image }" height="116px" width="80px">
+									<img alt="장바구니 사진" src="../../resources/product/images/${pro.pro_image }" height="116px" width="80px">
 								</td>
-								<td class="cart-pro_info" style="text-align: left;">
-									<a href="#" style="font-weight: bold; color: black; text-decoration: none; margin-left: 10px;">${cart.pro_info } </a>
+								<td class="cart-pro_info" style="text-align: left; width: 1000px;">
+									<a href="#" style="font-weight: bold; color: black; text-decoration: none; margin-left: 10px;">${pro.pro_name} </a>
 								</td>
-								<td class="cart-price">
-									<input type="hidden" class="cart-pro_price${i.index }" value="${cart.pro_price }">
-									<strong><fmt:formatNumber value="${cart.pro_price }" type="number"></fmt:formatNumber>원</strong>
+								<td class="cart-price" style="width: 200px;">
+									<input type="hidden" class="cart-pro_price${i.index }" value="${pro.pro_price }">
+									<strong><fmt:formatNumber value="${pro.pro_price }" type="number"></fmt:formatNumber>원</strong>
 								</td>
 								<td class="cart-count">
 									<p style="position: relative;">
 									<input type="number" min="1" class="cart-pro_count${i.index } count-check" value="1" style="height: 21px; width: 29px; border-radius: 3px; line-height: 21px; border: 1px solid #eaeaea;">
 									</p>
 								</td>
-								<td class="cart-point" >
+								<td class="cart-point" style="width: 200px;">
 									<span style="background: #b88cc5; color: white; border: 0; border-radius: 3px; font-size: 8px; height: 12px;">적</span>
-									<fmt:formatNumber value="${ps * 0.01 * cart.pro_price}" type="number"></fmt:formatNumber>원
+									<input type="hidden" class="point-saves" value="${ps * 0.01 * pro.pro_price}">
+									<fmt:formatNumber value="${ps * 0.01 * pro.pro_price}" type="number"></fmt:formatNumber>원
 								</td>
-								<td class="cart-deli">${cart.delivery }</td>
-								<td class="cart-deli-cost">${cart.delivery_cost }</td>
-								<td class="cart-sum">
-									<strong><fmt:formatNumber value="${cart.pro_price }" type="number"></fmt:formatNumber>원</strong>
-								</td>
-								<td class="cart-btn-group" style="border-right: 0;">
-									<button type="button" class="cart-btn cart-order-btn" value="${cart.pro_num }" title="X">주문하기</button><br>
-									<button type="button" class="cart-btn cart-wish-btn" value="${cart.pro_num }">관심상품등록</button><br>
-									<button type="button" class="cart-btn cart-del-btn" value="${cart.cart_num }">삭제</button><br>
-								</td>
-							
-							
+								<td class="cart-deli-cost" style="border-right: 0;">무료</td>
 							</tr>
 						
 						</c:forEach>
 					</tbody>
 				</table>
-				<h1 style="margin:20px 20px 0; text-align: center; font-size: 13px; color: #555555;">상품구매금액 <span class="cart-sum-sp" style="color: black;"></span>원 + 배송비 0 (무료) = 합계 : <strong style="font-size: 17px; color: black;"><span class="cart-sum-sp" ></span></strong>원 </h1>
+<!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
+				<h1 style="margin:20px 20px 0; text-align: center; font-size: 13px; color: #555555;">상품구매금액 <span class="cart-sum-sp" style="color: black;"></span>원 + 배송비 0 (무료) x&nbsp;
+				<span>
+					<select class="coup_num" id="coupon">
+						<option value="1">사용할 쿠폰을 선택하세요</option>
+						<c:forEach items="${coupon }" var="coupon" varStatus="i">
+							<option value="${coupon.sales_value}" title="${coupon.coup_num }"
+								class="copt">${coupon.coup_name }(${coupon.discount }%)</option>
+						</c:forEach>
+					</select> 
+				</span>= 합계 : <strong style="font-size: 17px; color: black;"><span class="cart-sum-final" ></span></strong>원 </h1>
+				<p style="text-align: left;"><button id="pay-check-del">삭제하기</button></p>
+<!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
 				<div class="cart-warning">
 					<p style="margin-left: 33px; padding: 8px 0; color: #f76560">
 					<span style="border: 1px solid #eaeaea; color: red; padding: 1px 4px; font-size: 11px; border-radius: 3px;">!</span>&nbsp;상품의 옵션 및 수량 변경은 상품상세 또는 장바구니에서 가능합니다.</p>
@@ -173,7 +172,11 @@
 						</tr>
 						<tr>
 							<th>이메일<img alt="필수" src="../../resources/images/ico_required.gif"></th>
-							<td><input type="text" name="email" value="${member.email }" required="required"></td>
+							<td>
+								<input type="text" name="email" value="${member.email }" required="required">
+								<p style="color: #707070;">이메일을 통해 주문처리과정을 보내드립니다.</p>
+								<p style="color: #707070;">이메일 주소란에는 반드시 수신가능한 이메일주소를 입력해 주세요.</p>
+							</td>
 						</tr>
 						<tr>
 							<th>배송 메시지</th>
@@ -201,16 +204,16 @@
 						</thead>
 						<tbody>
 							<tr>
-								<td class="cart-view-pro" style="border-left: 0;"><span class="cart-view-sp">0</span>원</td>
-								<td class="cart-view-deli">+ 0원</td>
-								<td class="cart-view-price" style="border-right: 0;"><span class="cart-view-sp2">0</span>원</td>
+								<td class="cart-view-pro" style="border-left: 0;"><span class="cart-view-sp"></span>원</td>
+								<td class="cart-view-deli">-<span class="cart-view-sp1">0</span>원</td>
+								<td class="cart-view-price" style="border-right: 0;"><span class="cart-view-sp2"></span>원</td>
 							</tr>
 						</tbody>
 					</table>
 					<table class="info-table">
 						<tr>
 							<th>적립금</th>
-							<td> <input type="number" min="0" width="200px" style="text-align: right;">원 <span>(총 사용가능 적립금 : <span style="color: #f76560">${point.total_point }</span>원)</span><br>
+							<td> <input id="pay-point_value" name="point_value" type="number" min="0" width="200px" style="text-align: right;" value="0">원 <span>(총 사용가능 적립금 : <span style="color: #f76560;">${point.total_point }</span>원)</span><br>
 								<p>- 적립금은 최소 1,000 이상일 때 결제가 가능합니다.</p>
 								<p>- 최대 사용금액은 제한이 없습니다.</p>
 								<p>- 적립금으로만 결제할 경우, 결제금액이 0으로 보여지는 것은 정상이며 [결제하기] 버튼을 누르면 주문이 완료됩니다.</p>
@@ -242,20 +245,20 @@
 <!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
 	<div class="kakao-pay-div">
 	<br><p style="color: black; font-size: 12px; margin-left: 20px; font-weight: bold; text-align: left;">결제 수단</p>
-	<table class="cart-view-table">
+	<table class="cart-view-table" style="margin: 10px 0 20px 20px;">
 		<thead>
 			<tr>
-				<th>
+				<th width="1290px">
 					<input type="radio" checked="checked">&nbsp;카카오페이
 				</th>
-				<th>
-					카카오페이(간편결제) 최종결제 금액
+				<th style="width: 260px;">
+					카카오페이(간편결제) 최종결제금액
 				</th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr>
-				<td>
+				<td width="1290px;">
 					<p style="margin-left: 33px; padding: 8px 0; font-size: 12px;">
 						<span style="border: 1px solid #eaeaea; color: red; padding: 1px 4px; font-size: 11px; border-radius: 3px;">!</span>
 						&nbsp;휴대폰에 설치된 카카오톡 앱에서 비밀번호 입력만으로 빠르고 안전하게 결제가 가능한 서비스 입니다.</p>
@@ -269,10 +272,35 @@
 						<span style="border: 1px solid #eaeaea; color: red; padding: 1px 4px; font-size: 11px; border-radius: 3px;">!</span>
 						&nbsp;BC카드 중 신한, 하나, 국민카드는 결제가 불가능합니다.</p>
 				</td>
-				<td style="font-size: 12px;">
-					<p style="text-align: right; font-size: 20px; font-weight: bold; color: black;">총결제금액 : 00000원</p>
-					<button id="kakao-pay-btn">결제하기</button><br>
-					총 적립예정 금액 00000원<br>
+				<td style="font-size: 12px; width: 260px; text-align: center;">
+					<p style="text-align: right; font-size: 30px; font-weight: bold; color: black;"><span class="kakao-pay-final">0</span> 원</p>
+					<br>
+					<form action="kakaoPay" method="post" onsubmit="return kPay()" >
+<!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ히든그룹 -->
+					<input type="hidden" name="id" value="${member.id }">
+					<c:choose>
+						<c:when test="${list.size() eq 1 }">
+							<input type="hidden" name="pro_info" value="${list.get(0).getPro_name() }">
+						</c:when>
+						<c:otherwise>
+							<input type="hidden" name="pro_info" value="${list.get(0).getPro_name() }외 ${list.size()-1} 건">
+						</c:otherwise>
+					</c:choose>
+					<input type="hidden" name="pro_count" value="${list.size() }">
+					<input type="hidden" name="order_sum" id="pay-order_sum" value="">
+					<input type="hidden" name ="image" id="pro_image" value="${list.get(0).getPro_image() }">
+					<input type="hidden" name ="pro_num" id="pro_num" value="${list.get(0).getPro_num() }">
+					<input type="hidden" name="price" id="order-price">
+					<input type="hidden" name="coup_num" id="param" value="9999">
+					<input type="hidden" name="point_save" id="pt-sv">
+					<input id="param-point_value" name="point_value" type="hidden" value="0">
+					<input type="hidden" name="total_point" value="${point.total_point }">
+					<button type="submit" id="kakao-pay-btn">결제하기</button><br>
+<!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ히든그룹 -->
+					</form>
+					<br>
+					<p style="text-align: left; margin-left: 30px;">총 적립예정금액 <span class="final-point-save" style="color: #f76560;"></span>원</p>
+					<br>
 				</td>
 			</tr>
 		</tbody>
@@ -342,103 +370,144 @@
 </section>	
 <c:import url="../../layout/footer.jsp"/>	
 <script type="text/javascript">
-	
-	var orderPass = true;
-
-	
-	function getSum() {
-		var price = ${proVO.pro_price}*1;
-		var total = ${point.total_point}*1;
-		var point = $("#point_value").val()*1;
-		if (total < point) {
-			orderPass = false;
-			alert("안통해!");
-			$("#point_value").prop("value","0");
-			point = 0;
-			var sum = price * $("#pro_count").val() * $("#coupon").val() - point;
-			$("#order_sum").text(sum);
-			$("#point_value").focus();
-		}else{
-			orderPass = true;
-		var sum = price * $("#pro_count").val() * $("#coupon").val() - point;
-		$("#order_sum").text(sum);
-		}
-	}
-	
-$(".value-div").change(function() {
-	getSum();
-});
-
-$("#count-up").click(function() {
-	$("#pro_count").prop("value",$("#pro_count").val()*1+1);
-	getSum();
-});
-
-$("#count-down").click(function() {
-	if ($("#pro_count").val() == 1) {
-		alert("최소 주문수량은 1개 입니다.");
-	}else{
-	$("#pro_count").prop("value",$("#pro_count").val()*1-1);
-	getSum();		
-	}
-	
-});
-
-$("#coupon").change(function() {
-	$(".opt").each(function() {
-		if ($(this).prop("selected")) {
-			$("#param").prop("value",$(this).prop("title"));
-		}
-	});
-});
-
-$("#order-insert").click(function() {
-	if (orderPass) {
-		var id = "${member.id}";
-		var pro_num	= ${proVO.pro_num};
-		var pro_info = "${proVO.pro_name}";
-		var price = ${proVO.pro_price};
-		var coup_num = $("#param").val();
-		var total_point = ${point.total_point};
-		$.ajax({
-			type	: "POST",
-			url		: "orderInsertAjax",
-			data	: {
-				id : id,
-				pro_num		: pro_num,
-				pro_info 	: pro_info,
-				pro_count	: $("#pro_count").val(),
-				price		: price,
-				point_value	: $("#point_value").val(),
-				coup_num	: coup_num,
-				total_point : total_point
-				
-			},
-			success	: function(data) {
-				data = data.trim();
-				if (data == "1") {
-					$(".wish-order-btn",opener.document).prop("title","O");
-					alert("주문 성공");
-					self.close();
-				}else{
-					$(".wish-order-btn",opener.document).prop("title","X");
-					alert("주문 실패");
-					self.close();
-				}
+  var checkSize = ${list.size()};
+  var checkAll = 0;
+  
+  $("#pay-check-del").click(function() {
+	  if (checkSize==1) {
+		
+		$(".cartCheck").each(function() {
+			if ($(this).prop("checked")) {
+				$(this).parent().parent().remove();
+				checkSize--;
+				alert("주문을 취소하셨습니다.");
+				location.href = "/mid/makeDiv";
 			}
 		});
+		
 	}else{
-		alert("주문 금액을 다시 확인해 주세요");
-	}
-});
-	
-	$("#point_value").change(function() {
-		if ($(this).val()==0) {
-			$(this).prop("value",0);
+		
+		$(".cartCheck").each(function() {
+			if ($(this).prop("checked")) {
+				$(this).parent().parent().remove();
+				checkSize--;
+				if (checkSize==0) {
+					alert("주문을 취소하셨습니다.");					
+					location.href = "/mid/makeDiv";	
+					}
+				}
+			});
+		
+		}
+	  getPay();
+	});
+  
+  $("#checkAll").click(function() {
+	  if (!$(this).prop("checked")) {
+		  $(".cartCheck").prop("checked",false);
+		  	checkAll = 0;
+		}else{
+			$(".cartCheck").prop("checked","checked");
+			checkAll = checkSize;
 		}
 	});
   
-	
+  $(".cartCheck").click(function() {
+	  checkAll=0;
+	  $(".cartCheck").each(function() {
+			if ($(this).prop("checked")) {
+				checkAll++;
+			}else{
+				checkAll--;
+			}
+		});
+	  
+	  	if (checkAll == checkSize) {
+			$("#checkAll").prop("checked",true);
+		}else{
+			$("#checkAll").prop("checked",false);			
+		}
+	});
+  
+  $(".cart-table-div").change(function() {
+		getPay();
+	});
+  
+  $("#pay-point_value").change(function() {
+	  var tp = ${point.total_point};
+	  if ($(this).val() > tp) {
+			$(this).prop("value",tp);
+			$("#param-point_value").prop("value",tp);
+		}else{
+			$("#param-point_value").prop("value",$(this).val());
+		}
+			getPay();
+		});
+  
+  	function getPay() {
+  		var coup = $("#coupon").val()*1;
+		var sum = getSum();
+		var pay = sum * coup;
+		var point = $("#pay-point_value").val()*1;
+	 	$(".cart-sum-final").text(pay);
+	 	$(".cart-view-sp").text(sum);
+	 	$(".cart-view-sp1").text(sum-pay);
+	 	$(".cart-view-sp2").text(pay);
+	 	$(".kakao-pay-final").text(pay-point);
+	 	$("#pay-order_sum").prop("value",pay-point);
+	}	
+  
+  	
+  	$(document).ready(function() {
+		$(".cart-sum-final").text(getSum());
+		$(".cart-view-sp").text(getSum());
+		$(".cart-view-sp2").text(getSum());
+		$(".kakao-pay-final").text(getSum());
+		var fps = 0;
+		$(".point-saves").each(function() {
+			fps = fps + $(this).val()*1;
+		});
+		$(".final-point-save").text(fps);
+		$("#pt-sv").prop("value",fps);
+		$("#pay-order_sum").prop("value",getSum());
+		$("#order-price").prop("value",getSum());
+	});
+  	
+  function getSum() {
+  		var size = ${list.size()};
+  	  var sum = 0;
+  	  for (var i = 0; i < size; i++) {
+  		  if ($(".cart-pro_price"+i).val()!=null) {
+	  		var price = $(".cart-pro_price"+i).val()*1;
+	  		var count = $(".cart-pro_count"+i).val()*1;
+	  		sum = sum + price * count;
+	  		
+			}
+  		}
+  		$(".cart-sum-sp").text(sum);
+  		var fps = 0;
+		$(".point-saves").each(function() {
+			fps = fps + $(this).val()*1;
+		});
+		$(".final-point-save").text(fps);
+  		return sum;
+	}
+  
+  function kPay() {
+	  if (confirm("카카오페이로 연결하시겠습니까?")) {
+			return true;
+		}else{
+			return false;		
+		}
+	}
+  $("#coupon").change(function() {
+		$(".copt").each(function() {
+			if ($(this).prop("selected")) {
+				$("#param").prop("value",$(this).prop("title"));
+				console.log($("#param").val());
+			}
+		});
+	});
 </script>
 </body>
 </html>
