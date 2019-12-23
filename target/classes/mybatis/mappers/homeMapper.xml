@@ -50,14 +50,14 @@
 		
 		select * from
 		(select P.*, rownum R from
-		  (select * from 
-			(select * from product A where rownum<![CDATA[<]]> 17
-			)<include refid="sw"/> 
-			order by pro_date desc) P
-			) 
-			where R between #{startRow} and #{lastRow}
+            (select  * FROM 
+              (select A.* ,B.sumnale, B.pro_main from product A, images B
+                 where A.pro_num = B.pro_num and  rownum <![CDATA[<]]> 17
+            )<include refid="sw"/> 
+            order by pro_date desc) P 
+            )
+           where R between  #{startRow} and #{lastRow}
 		
-
 	</select>
   
   	<!--리뷰 리스트 -->

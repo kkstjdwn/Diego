@@ -16,7 +16,7 @@
 
 <!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
 
-<section style="width: 100%; height: 1319px; background-color: blue; padding-bottom: 0; margin-top:74px;">
+<section style="width: 100%; height: 1319px; background-color: white; padding-bottom: 0; margin-top:74px;">
 	<div style="width: 100%; height: 969px; background:url('resources/images/mainb_01.jpg');">
 	</div>
 </section>
@@ -24,7 +24,7 @@
 <!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
 
 <section>
-	<div style=" height: 1598px; background-color: black;" class="se-name">
+	<div style=" height: 1598px; background-color: white;" class="se-name">
 		<h1 class="se-h1">BEST SELLER.</h1>
 		<ul class="pro">
 		
@@ -38,7 +38,7 @@
 				
 					<c:if test="${v.count % 4 eq 0  }">
 						<div class="pro-li-div_nm">
-							<p class="pro-li-div-a"><img src="../resources/product/images/${p.sumnale}"></p>
+							<p class="pro-li-div-a"><img src="resources/product/images/${p.sumnale}"></p>
 							<p class="pro-li-div-p">${p.pro_name }</p>
 							<ul class="pro-li-div-ul">
 								<li style="width: inherit; height: 36px; padding-bottom: 23px; background-color: orange;">${p.contents}</li>
@@ -50,7 +50,7 @@
 				
 					<c:if test="${v.count % 4 ne 0 }">
 						<div class="pro-li-div">
-							<p class="pro-li-div-a"><img src="../resources/product/images/${p.sumnale}"></p>
+							<p class="pro-li-div-a"><img src="resources/product/images/${p.sumnale}"></p>
 							<p class="pro-li-div-p">${p.pro_name }</p>
 							<ul class="pro-li-div-ul">
 								<li style="width: inherit; height: 36px; padding-bottom: 23px; background-color: orange;">${p.contents}</li>
@@ -112,14 +112,14 @@
 <!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
 
 <section style="height: auto; padding-bottom: 100px;">
-	<div class="se-name" style="background-color: yellow;">
+	<div class="se-name" style="background-color: white;">
 		<h1 class="se-h1">NEW PRODUCTS.</h1>
 		<ul class="pro">
 			<c:forEach items="${newPro}" var="np" varStatus="v">
 				<li class="pro-li">
 					<c:if test="${v.count % 4 eq 0  }">
 						<div class="pro-li-div_nm">
-							<p class="pro-li-div-a"><img src="../resources/product/images/${np.sumnale}"></p>
+							<p class="pro-li-div-a"><img src="resources/product/images/${np.sumnale}"></p>
 							<p class="pro-li-div-p">${np.pro_name }</p>
 							<ul class="pro-li-div-ul">
 								<li style="width: inherit; height: 36px; padding-bottom: 23px; background-color: orange;">${np.contents}</li>
@@ -130,7 +130,7 @@
 					</c:if> 
 					<c:if test="${v.count % 4 ne 0 }">
 						<div class="pro-li-div">
-							<p class="pro-li-div-a"><img src="../resources/product/images/${np.sumnale}"></p>
+							<p class="pro-li-div-a"><img src="resources/product/images/${np.sumnale}"></p>
 							<p class="pro-li-div-p">${np.pro_name }</p>
 							<ul class="pro-li-div-ul">
 								<li style="width: inherit; height: 36px; padding-bottom: 23px; background-color: orange; ">${np.contents}</li>
@@ -149,8 +149,9 @@
 
 <section style="margin-bottom: 250px; padding-bottom: 0;">
 	<div class="add-join">
-<!-- 	<img src="resources/images/main_collection.jpg">  -->
+
 		<a href="#" style="text-decoration: none;">
+			
 			<div class="add-join-div">
 				<h1 style="font-size: 28px; padding-bottom: 15px;">마르시오디에고 신규 회원 혜택</h1>
 				<p>오직 신규 회원에게만 드리는 혜택</p>
@@ -189,17 +190,18 @@
 <section style="margin: 0; padding: 0; height: 1000px; background-color: navy;">
 	<div class="rev">
 	<ul>
-	<c:forEach items="${reviewList}" var="review" varStatus="r">
+	<c:forEach items="${reviewList}" var="review" varStatus="r" >
 	<c:forEach items="${review.reviewVO}" var="rev" >
+	<c:forEach items="${review.revFilesVO}" var="ref" varStatus="f" >
 	<li class="rev-li">
-	<p class="rev-li-img"></p>
+	<p class="rev-li-img"><img src="resources/product/photoReview/${ref.fname}" style="width: 215px; height: 237px;"></p>
 	<div class="rev-li-mem">
 		<div class="rev-li-mem-tt">${rev.rev_contents}</div>
-		<div class="rev-li-mem-nk"></div>
+		<div class="rev-li-mem-nk">${review.sec_name}</div>
 	</div>
 	<div class="rev-li-info">
 		<div class="rev-li-info-img">
-			<p></p>
+			<p><img src="resources/product/images/${review.pro_main}" style="width: 33px; height: 33px;"></p>
 		</div>
 		<div class="rev-li-info-div">
 		<div class="rev-li-info-tt" >${review.pro_name}</div>
@@ -210,6 +212,7 @@
 		</div>
 	</div>
 	</li>
+	</c:forEach>
 	</c:forEach>
 	</c:forEach>
 	</ul>

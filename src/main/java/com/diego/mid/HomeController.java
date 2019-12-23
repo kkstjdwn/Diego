@@ -77,26 +77,34 @@ public class HomeController {
 		//System.out.println(ar.get(0).getPro_main()+"=proMain");
 		pager.setPerPager(20);
 		List<ProductVO> ar2 = homeService.newProduct(pager);
+		//System.out.println(ar2.get(0).getSumnale());
 		for (ProductVO productVO : ar2) {
 			String before = String.valueOf(productVO.getPro_price()*1.4);
 			int last=before.lastIndexOf('.');
 		 	int bf =Integer.parseInt((before.substring(0,last)));
 			productVO.setBeforeSale(bf);
 		}
-		pager.setPerPager(20);
+		pager.setPerPager(10);
 		List<ProductVO>ar3 = homeService.reviewList(pager);
-//		for (ProductVO productVO : ar3) {
-//			
-//			for(int i=0; i<ar.size();i++) {
-//			String name=productVO.getReviewVO().get(i).getName();
-//			name=name.substring(0, 1)+"**";
-//			//System.out.println(name);
-//			productVO.setSec_name(name);
-//			
-//	
-//			
-//			}
-//		}
+		
+		for (ProductVO productVO : ar3) {
+			
+			for(int i=0; i<ar.size();i++) {
+		try {
+			String name=productVO.getReviewVO().get(i).getName();
+			name=name.substring(0, 1)+"**";
+			//System.out.println(name);
+			productVO.setSec_name(name);
+			
+			
+		} catch (Exception e) {
+			
+		}
+			
+	
+			
+			}
+		}
 		
 		mv.addObject("reviewList", ar3);
 		mv.addObject("newPro", ar2);
