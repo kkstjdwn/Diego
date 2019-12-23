@@ -21,9 +21,9 @@
 <body>
 	<c:import url="../layout/nav.jsp" />
 	<div class="container">
-		<div class="jumbotron page-header">
+		<div class="page-header">
 			<h1>
-				Product Info
+				
 				<c:if test="${!empty member }">
 					<button id="insert-cart" value="${product.pro_num }">장바구니</button>
 				</c:if>
@@ -36,27 +36,20 @@
 
 		<div class="form-group">
 			
-			<b>${product.pro_name}</b>
+			<p>${product.pro_name}</p>
 		</div>
 		<div class="form-group">
-			<b>${product.contents}</b>
+			<p >${product.contents}</p>
 		</div>
 		
 		<div class="form-group">
-			<p style="text-decoration: line-through;">${product.beforeSale}</p>
+			<p style="text-decoration: line-through;">${product.beforeSale}원</p>
 		</div>
 
 		<div class="form-group">
-			<b>${product.pro_price}</b>
+			<b>${product.pro_price}원</b>
 		</div>
 
-		
-
-
-
-		<div class="form-group">
-			<h2>${totalCount}개리뷰 평점 : ${product.totalStar}</h2>
-		</div>
 
 		<div>
 			<c:forEach items="${product.images}" var="image">
@@ -66,71 +59,13 @@
 					<img src="../resources/product/images/${image.pro_main}">
 
 				</div>
-				<div>
-					
-					 <br> 
-					 <img src="../resources/product/images/${image.sumnale}">
-
-				</div>
-				<div>
-					
-					 <br> 
-					<img src="../resources/product/images/${image.front}">
-
-				</div>
-				<div>
-					
-					 <br>
-					 <img src="../resources/product/images/${image.back}">
-
+				
+				<div class="form-group">
+					<br> 
+					<h2>${totalCount}개리뷰 평점 : ${product.totalStar}</h2>
 				</div>
 				
-				<div>
-					
-					 <br> 
-					 <img src="../resources/product/images/${image.pro_model}">
-
-				</div>
-
-				<div>
-					<br>
-					 <img src="../resources/product/images/${image.pro_full}">
-
-				</div>
-
-				<div>
-					<br> 
-					<img src="../resources/product/images/${image.gif}">
-
-				</div>
-
-				<div>
-					<br>
-					 <img src="../resources/product/images/${image.pro_info}">
-
-				</div>
-
-				<div>
-					<br> 
-					<img src="../resources/product/images/${image.pro_sizecut}">
-
-				</div>
-
-
-			</c:forEach>
-
-			<br>
-			<div class="iback">
-				<iframe width="594" height="334"
-					src="https://www.youtube.com/embed/Nmv9OyqOO7Y?autoplay=1" frameborder="0"
-					allow="autoplay; encrypted-media" allowfullscreen ></iframe>
-			</div>
-
-
-
-
-
-			<!-- 리뷰작성폼 -->
+				<!--~~~~~~~~~~리뷰~~~~~~~~~~~  -->		
 			<div class="container">
 				<form action="./productReview" method="post"
 					enctype="multipart/form-data">
@@ -140,8 +75,7 @@
 							readonly="readonly" id="review_id"> 
 						<input type="hidden"
 							value="${product.pro_num}" name="pro_num" id="review_pronum">
-						<input type="hidden" value="${admin.admin_name}" name="name"
-							id="review_name"> 
+						<input type="hidden" value="${member.name}" name="name" id="review_name"> 
 						<input type="hidden" value="0"
 							name="help" id="review_help"> 
 						<label for="contents">Review</label>
@@ -185,26 +119,24 @@
 
 
 			</div>
-
-			<br>
+				
+		<!--~~~~~~~~~~리뷰~~~~~~~~~~~  -->		
 			<hr>
-
-			<!--선택된상품의 리뷰리스트 -->
+		<!--선택된상품의 리뷰리스트 -->
 			<div class="reviewList">
-				<h1>
-					<b>추천순 리뷰(<span style="color: red">${totalCount}</span>)
+				<h4>
+					<b>추천순 리뷰(<span>${totalCount}</span>)개
 					</b>
-				</h1>
-				<hr>
+				</h4>
+				
 				<br>
 
 
 
 				<c:forEach items="${reviewList}" var="rev">
-					<input type="hidden" id="rev_num" value="${rev.rev_num }">
+					<input type="hidden" id="rev_num" value="${rev.rev_num}">
 
-					<p style="color: blue">${rev.name}</p>
-					<p>${rev.rev_num }</p>
+					<p>작성자 ${product.sec_name}</p>
 					<p>
 						<c:forEach begin="0" end="${rev.star-1}">★</c:forEach>
 						<c:choose>
@@ -215,7 +147,8 @@
 							<c:when test="${rev.star eq 1}">별로에요</c:when>
 						</c:choose>
 					</p>
-					<p>${rev.rev_date }</p>
+					
+					
 					<p>${rev.rev_contents}</p>
 					<c:forEach items="${rev.files }" var="ref">
 						<p>
@@ -255,6 +188,44 @@
 				</div>
 
 			</div>
+	
+		<!--선택된상품의 리뷰리스트 -->
+				<div>
+					
+					 <br> 
+					<img src="../resources/product/images/${image.front}">
+
+				</div>
+				<div>
+					
+				<br>
+			<div class="iback">
+				<iframe width="594" height="334"
+					src="https://www.youtube.com/embed/Nmv9OyqOO7Y?autoplay=1" frameborder="0"
+					allow="autoplay; encrypted-media" allowfullscreen ></iframe>
+			</div>
+				
+					
+					 <br>
+					 <img src="../resources/product/images/${image.back}">
+
+				</div>
+				
+				<div>
+					
+					 <br> 
+					 <img src="../resources/product/images/${image.pro_model}">
+
+				</div>
+
+			
+			</c:forEach>
+
+			
+			<br>
+			<hr>
+
+			
 
 		</div>
 		<a href="../qna/qnaWrite?pro_num=${product.pro_num}"

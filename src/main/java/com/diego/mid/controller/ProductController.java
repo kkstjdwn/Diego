@@ -202,6 +202,14 @@ public class ProductController {
 				total= total.substring(0,3);
 				productVO.setTotalStar(Double.parseDouble(total));
 				
+				for (int i = 0; i < ar.size(); i++) {
+					
+					String name= ar.get(i).getName();
+					//System.out.println(name);
+					name=name.substring(0, 1)+"**";
+					productVO.setSec_name(name);
+				}
+				
 			} catch (Exception e) {
 				
 			}
@@ -211,6 +219,8 @@ public class ProductController {
 		int last=before.lastIndexOf('.');
 	 	int bf =Integer.parseInt((before.substring(0,last)));
 		productVO.setBeforeSale(bf);
+		
+		
 		
 		//System.out.println(ar.get(0).getRev_contents());성공
 		

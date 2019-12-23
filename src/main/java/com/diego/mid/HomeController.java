@@ -59,7 +59,7 @@ public class HomeController {
 		
 		model.addAttribute("serverTime", formattedDate );
 		
-		return "/makeDiv";
+		return "home";
 	}
 	
 	@GetMapping("/diego")
@@ -80,16 +80,16 @@ public class HomeController {
 			productVO.setBeforeSale(bf);
 		}
 		//System.out.println(ar.get(0).getPro_main()+"=proMain");
-		pager.setPerPager(20);
+		pager.setPerPager(24);
 		List<ProductVO> ar2 = homeService.newProduct(pager);
-		//System.out.println(ar2.get(0).getSumnale());
 		for (ProductVO productVO : ar2) {
+//			System.out.println(ar2.get(0).getSumnale());
 			String before = String.valueOf(productVO.getPro_price()*1.4);
 			int last=before.lastIndexOf('.');
 		 	int bf =Integer.parseInt((before.substring(0,last)));
 			productVO.setBeforeSale(bf);
 		}
-		pager.setPerPager(10);
+		pager.setPerPager(12);
 		List<ProductVO>ar3 = homeService.reviewList(pager);
 		for (ProductVO productVO : ar3) {
 			for(int i=0; i<ar.size();i++) {

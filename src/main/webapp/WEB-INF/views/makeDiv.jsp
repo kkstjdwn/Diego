@@ -38,7 +38,7 @@
 				
 					<c:if test="${v.count % 4 eq 0  }">
 						<div class="pro-li-div_nm">
-							<p class="pro-li-div-a"><img src="resources/product/images/${p.sumnale}"></p>
+							<p class="pro-li-div-a"><img src="resources/product/images/${p.sumnale}" height="543.2px"></p>
 							<p class="pro-li-div-p">${p.pro_name }</p>
 							<ul class="pro-li-div-ul">
 								<li style="width: inherit; height: 36px; padding-bottom: 23px;">${p.contents}</li>
@@ -50,7 +50,7 @@
 				
 					<c:if test="${v.count % 4 ne 0 }">
 						<div class="pro-li-div">
-							<p class="pro-li-div-a"><img src="resources/product/images/${p.sumnale}"></p>
+							<p class="pro-li-div-a"><img src="resources/product/images/${p.sumnale}" height="543.2px"></p>
 							<p class="pro-li-div-p">${p.pro_name }</p>
 							<ul class="pro-li-div-ul">
 								<li style="width: inherit; height: 36px; padding-bottom: 23px;">${p.contents}</li>
@@ -123,7 +123,7 @@
 				<li class="pro-li">
 					<c:if test="${v.count % 4 eq 0  }">
 						<div class="pro-li-div_nm">
-							<p class="pro-li-div-a"><img src="resources/product/images/${np.sumnale}"></p>
+							<p class="pro-li-div-a"><img src="resources/product/images/${np.sumnale}" width="543.2px"></p>
 							<p class="pro-li-div-p">${np.pro_name }</p>
 							<ul class="pro-li-div-ul">
 								<li style="width: inherit; height: 36px; padding-bottom: 23px;">${np.contents}</li>
@@ -134,7 +134,7 @@
 					</c:if> 
 					<c:if test="${v.count % 4 ne 0 }">
 						<div class="pro-li-div">
-							<p class="pro-li-div-a"><img src="resources/product/images/${np.sumnale}"></p>
+							<p class="pro-li-div-a"><img src="resources/product/images/${np.sumnale}" width="543.2px"></p>
 							<p class="pro-li-div-p">${np.pro_name }</p>
 							<ul class="pro-li-div-ul">
 								<li style="width: inherit; height: 36px; padding-bottom: 23px;">${np.contents}</li>
@@ -157,7 +157,7 @@
 		<a href="#" style="text-decoration: none;">
 			
 			<div class="add-join-div">
-				<h1 style="font-size: 28px; padding-bottom: 15px;">마르시오디에고 신규 회원 혜택</h1>
+				<h1 style="font-size: 28px; padding-bottom: 15px; color: white;" >마르시오디에고 신규 회원 혜택</h1>
 				<p>오직 신규 회원에게만 드리는 혜택</p>
 				<p>신규 회원 가입 시 즉시 사용할 수 있는</p>
 				<p>2,000포인트를 지급합니다.</p>
