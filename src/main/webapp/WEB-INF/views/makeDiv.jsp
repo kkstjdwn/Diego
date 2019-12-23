@@ -69,7 +69,7 @@
 <!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
 
 <section>
-	<div style="height: 1112.5px; background-color: red;" class="se-name">
+	<div style="height: 1112.5px; background-color: white;" class="se-name">
 		<h1 class="se-h1">GROOMING</h1>
 			<ul>
 				<li>
@@ -77,9 +77,9 @@
 						<p class="grm-div-a">
 							<img alt="grm1" src="resources/images/skin01.jpg">
 						</p>
-						<h3 class="grm-div-h3">~</h3>
-						<p class="grm-div-p">@</p>
-						<span class="grm-div-span">SPECIAL PRICE</span>
+						<h3 class="grm-div-h3">마르시오디에고 올인원 피부관리 솔루션</h3>
+						<p class="grm-div-p">THE MAN PERFECTION SKIN BREW</p>
+						<span class="grm-div-span" style="color: red">SPECIAL PRICE</span>
 					</div>
 				</li>
 				<li>
@@ -87,9 +87,9 @@
 						<p class="grm-div-a">
 							<img alt="grm1" src="resources/images/skin02.jpg">
 						</p>
-						<h3 class="grm-div-h3">~</h3>
-						<p class="grm-div-p">@</p>
-						<span class="grm-div-span">SPECIAL PRICE</span>
+						<h3 class="grm-div-h3">머리부터 발끝까지 오직 남성만을 위한 올인원 바디워시</h3>
+						<p class="grm-div-p">WASH OUT ALL IN ONE</p>
+						<span class="grm-div-span" style="color: red">SPECIAL PRICE</span>
 					</div>
 				</li>
 			</ul>
@@ -187,14 +187,16 @@
 
 <!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
 
-<section style="margin: 0; padding: 0; height: 1000px; background-color: navy;">
+<section style="margin: 0; padding: 0; height: 1000px; ">
 	<div class="rev">
 	<ul>
 	<c:forEach items="${reviewList}" var="review" varStatus="r" >
-	<c:forEach items="${review.reviewVO}" var="rev" >
-	<c:forEach items="${review.revFilesVO}" var="ref" varStatus="f" >
+	<c:forEach items="${review.reviewVO}" var="rev" varStatus="f">
+	
 	<li class="rev-li">
-	<p class="rev-li-img"><img src="resources/product/photoReview/${ref.fname}" style="width: 215px; height: 237px;"></p>
+		
+	<p class="rev-li-img"><img src="resources/product/photoReview/${review.revFilesVO[f.index].fname}" style="width: 215px; height: 237px;"></p>
+		
 	<div class="rev-li-mem">
 		<div class="rev-li-mem-tt">${rev.rev_contents}</div>
 		<div class="rev-li-mem-nk">${review.sec_name}</div>
@@ -206,13 +208,13 @@
 		<div class="rev-li-info-div">
 		<div class="rev-li-info-tt" >${review.pro_name}</div>
 		<div class="rev-li-info-fb">
-			<span>리뷰<strong class="st">갯수</strong></span>
-			<span>평점<strong class="st">점수</strong></span>
+			<span>리뷰<strong class="st">${review.totalReview}</strong></span>
+			<span>평점<strong class="st">${review.totalStar}</strong></span>
 		</div>
 		</div>
 	</div>
 	</li>
-	</c:forEach>
+	
 	</c:forEach>
 	</c:forEach>
 	</ul>
@@ -228,8 +230,8 @@
 
 <!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
 
-<footer> 
-<h1 style="font-size: 50px;">푸~~~~~~~~~~~~~~~~~~~터</h1>
-</footer>
+
+	<c:import url="layout/footer.jsp" />
+
 </body>
 </html>

@@ -84,14 +84,14 @@ section{
 .grm-div{
 	width: 49%;
 	height: 670px; 
-	background-color: aqua;
+	background-color: white;
 	float: left; 
 }
 
 .grm-div-a{
 	width: 100%;
 	height: 586px;
-	background-color: fuchsia;
+	background-color: white;
 }
 
 .grm-div-h3{
@@ -99,18 +99,19 @@ section{
 	font-size: 16px;
 	padding: 18px 0 0;
 	margin-bottom : 2px;
-	background-color: teal;
+	background-color: white;
 }
 .grm-div-p{
 	font-size: 12px;
 	color: #555555;
 	margin-bottom: 10px;
-	background-color: teal;
+	background-color: white;
 }
 .grm-div-span{
 	color: #ff0000;
 	font-size: 14px;
-	background-color: teal;
+	background-color: white;
+	font-weight: bold;
 }
 
 /*ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ */
@@ -187,14 +188,14 @@ section{
 	width: 1434px;
 	height:832px;
 	margin:auto;
-	background-color: fuchsia;
+	background-color:white;
 }
 
 .rev-li{
 	width: 217px;
 	height:366px;
 	float:left;
-	background-color:black;
+	
 	border: 1px solid #e5e5e5;
 	padding: 0;
 	margin: 0 10px 50px 10px;
@@ -204,13 +205,12 @@ section{
 
 .rev-li-img{
 	width: 215px;
-	background-color:purple;
+	
 	height: 237px;
 }
 
 .rev-li-mem{
 	height: 32px;
-	background-color : gray;
 	padding: 12px 2px 15px 2px;
 	margin: 0 10px;
 	border-bottom: 1px solid #f3f3f3;
@@ -222,7 +222,6 @@ section{
 	font-size: 12px;
 	line-height: 1;
 	padding-bottom: 5px;
-	background-color: aqua;
 }
 
 .rev-li-mem-nk{
@@ -232,20 +231,18 @@ section{
 	padding: 0;
 	margin-right: 75px;
 	overflow: hidden;
-	background-color: blue;
 }
 
 .rev-li-info{
 	margin: 0;
 	padding: 13px 11px;
 	height: 40px;
-	background-color: red;
+	
 }
 
 .rev-li-info-img {
 	width: 33px;
 	height: 33px;
-	background-color: white;
 	float: left;
 }
 
@@ -253,7 +250,6 @@ section{
 	margin-left: 45px;
 	font-size: 11px;
 	padding-top: 2px;
-	background-color: white;
 }
 .rev-li-info-tt{
 	font-size: 10px;
@@ -287,10 +283,3 @@ section{
 
 /*ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ */
 
-footer{
-	width: 100%;
-	height: 969px;
-	background-color: maroon;
-	color: white;
-	text-align: center;
-}

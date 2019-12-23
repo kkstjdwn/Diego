@@ -194,13 +194,24 @@ public class ProductController {
 		productVO =  productService.productSelect(productVO);
 		List<ReviewVO>ar = productService.reviewList(productVO, pager);
 		for (ReviewVO reviewVO2 : ar) {
-			reviewVO= new ReviewVO();
-			reviewVO.setPro_num(productVO.getPro_num());
-			Double d= reviewService.totalStar(reviewVO);
-			String total= d.toString();
-			total= total.substring(0,3);
-			productVO.setTotalStar(Double.parseDouble(total));
+			try {
+				reviewVO= new ReviewVO();
+				reviewVO.setPro_num(productVO.getPro_num());
+				Double d= reviewService.totalStar(reviewVO);
+				String total= d.toString();
+				total= total.substring(0,3);
+				productVO.setTotalStar(Double.parseDouble(total));
+				
+			} catch (Exception e) {
+				
+			}
 		}
+	
+		String before = String.valueOf(productVO.getPro_price()*1.4);
+		int last=before.lastIndexOf('.');
+	 	int bf =Integer.parseInt((before.substring(0,last)));
+		productVO.setBeforeSale(bf);
+		
 		//System.out.println(ar.get(0).getRev_contents());성공
 		
 		

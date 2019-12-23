@@ -18,7 +18,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.diego.mid.model.product.ProductVO;
+import com.diego.mid.model.product.ReviewVO;
 import com.diego.mid.service.ProductService;
+import com.diego.mid.service.ReviewService;
 import com.diego.mid.service.HomeService;
 import com.diego.mid.util.MPager;
 
@@ -34,6 +36,9 @@ public class HomeController {
 	
 	@Inject
 	private ProductService productService;
+	
+	@Inject
+	private ReviewService reviewService;
 	
 	@Inject
 	private HomeService homeService;
@@ -63,7 +68,7 @@ public class HomeController {
 	}
 
 	@GetMapping( value = "/makeDiv")
-	public ModelAndView makeDiv(MPager pager) throws Exception {
+	public ModelAndView makeDiv(MPager pager, ReviewVO reviewVO) throws Exception {
 		
 		ModelAndView mv= new ModelAndView();
 		pager.setPerPager(40);
@@ -86,15 +91,21 @@ public class HomeController {
 		}
 		pager.setPerPager(10);
 		List<ProductVO>ar3 = homeService.reviewList(pager);
-		
 		for (ProductVO productVO : ar3) {
-			
 			for(int i=0; i<ar.size();i++) {
 		try {
 			String name=productVO.getReviewVO().get(i).getName();
 			name=name.substring(0, 1)+"**";
 			//System.out.println(name);
 			productVO.setSec_name(name);
+			reviewVO= new ReviewVO();
+			reviewVO.setPro_num(productVO.getPro_num());
+			productVO.setTotalReview(reviewService.totalReview(reviewVO));
+			Double d= reviewService.totalStar(reviewVO);
+			String total	=d.toString();
+			total=total.substring(0,3);
+			productVO.setTotalStar(Double.parseDouble(total));
+			
 			
 			
 		} catch (Exception e) {

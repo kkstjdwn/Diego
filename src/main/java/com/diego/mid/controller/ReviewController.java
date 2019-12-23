@@ -56,13 +56,18 @@ public class ReviewController {
 		
 		List<ProductVO>ar= reviewService.reviewList(pager);
 		for (ProductVO productVO : ar) {
-			reviewVO= new ReviewVO();
-			reviewVO.setPro_num(productVO.getPro_num());
-			productVO.setTotalReview(reviewService.totalReview(reviewVO));
-			Double d= reviewService.totalStar(reviewVO);
-			String total	=d.toString();
-			total=total.substring(0,3);
-			productVO.setTotalStar(Double.parseDouble(total));
+			try {
+				reviewVO= new ReviewVO();
+				reviewVO.setPro_num(productVO.getPro_num());
+				productVO.setTotalReview(reviewService.totalReview(reviewVO));
+				Double d= reviewService.totalStar(reviewVO);
+				String total	=d.toString();
+				total=total.substring(0,3);
+				productVO.setTotalStar(Double.parseDouble(total));
+				
+			} catch (Exception e) {
+				
+			}
 		}
 		
 		
