@@ -135,7 +135,7 @@
 	<!--count -->
 	<select id="productCount" resultType="Integer"
 		parameterType="Pager">
-		select count(pro_num) from product
+		select count(pro_num) from (select * from product where cat_ref like #{cat_ref})
 		<include refid="ps"></include>
 	</select>
 	

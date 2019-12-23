@@ -9,7 +9,7 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <meta charset="UTF-8">
-<title>FAQ List</title>
+<title>QNA List</title>
 </head>
 <body>
 	<c:import url="../layout/header.jsp" />
@@ -50,14 +50,14 @@
 										<div style="clear: both"></div>
 									</div>
 									<div class="subject2">
-									<c:if test="${qna.secret eq 'y' || 'Y'}">
+									<c:if test="${qna.secret eq 'Y'}">
 									<img src="../resources/images/button/ico_lock.gif" alt="비밀글" class="" />
 										</c:if>
 										<c:if test="${qna.depth ne 0}">
 											<img src="../resources/images/button/icon_rep0.png" alt="답변" class="ec-common-rwd-image" />
 										</c:if> 
 										<a href="../qna/qnaSelect?qna_num=${qna.qna_num}&pro_num=${qna.productVO.pro_num}">${qna.title}
-										<c:if test="${qna.secret eq 'y' || 'Y'}">
+										<c:if test="${qna.secret eq 'Y'}">
 										<img src="../resources/images/button/ico_lock.gif" alt="비밀글" class="" />
 										</c:if>
 										</a>

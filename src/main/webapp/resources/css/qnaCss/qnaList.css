@@ -250,3 +250,8 @@ button {
     font-weight: bold;
     letter-spacing: 0;
 }
+
+.thumb img{
+	width: 60px;
+	height: 80px;
+} 

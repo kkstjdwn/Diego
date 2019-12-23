@@ -99,6 +99,8 @@ public class ProductController {
 		
 		if(result==0) {
 			String [] kinds = {"선택하세요","all"};
+			System.out.println(kind);
+			model.addAttribute("qe", kind);
 			model.addAttribute("kind", kinds);
 			model.addAttribute("result", "");	
 		}

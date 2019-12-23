@@ -55,15 +55,17 @@
 					</thead>
 					<tbody class="center">
 					<c:forEach items="${productList}" var="product" varStatus="p">
-						<tr class="">
+						<tr class="product${p.index}">
 							<td class="thumb">
-								<img id="cInput" src="../resources/product/images/${product.pro_image}" alt="상품이미지" />
+								<img id="cInput${p.index}" src="/mid/resources/product/images/${product.pro_image}" alt="상품이미지" />
 							</td>
 							<td class="left">${product.pro_name} 
-								<input type="text" id="pricePro" value="${product.pro_price}" style="display: none;">
+								<input type="text" readonly="readonly" id="titlePro${p.index}"  value="${product.pro_name}" style="display: none;">
+								<input type="text" readonly="readonly" id="pricePro${p.index}"  value="${product.pro_price}" style="display: none;">
+								<input type="text" readonly="readonly" id="numPro${p.index}"  value="${product.pro_num}" style="display: none;">
 								<strong id="inputPrice" class="gBlank5 txtEm">${product.pro_price}</strong>
 							</td>
-							<td><input type="button" value="선택" onclick="setParentText(),window.close()"></td>
+							<td><input type="button" id="productbtn${p.index}" class="productbtn" value="선택" style="cursor: pointer;"></td>
 						</tr>
 					</c:forEach>
 					</tbody>
@@ -109,12 +111,24 @@
 		});
 		
 		//자식창에서 부모창으로 데이터 넘기기
+		for(var p=0; p<${productList.size()}; p++)
+		(function (p) {
+			var btn = document.getElementById('productbtn'+p)
+			btn.onclick = function() {
+				$("#sPrdPrice", opener.document).val($("#pricePro"+p).val());
+				$("#iPrdImg", opener.document).attr('src',$("#cInput"+p).attr('src'));
+				$("#sPrdName", opener.document).val($("#titlePro"+p).val());
+				$("#sProNum", opener.document).val($("#numPro"+p).val());
+				window.close();
+			}
 		
+		})(p);
 		
-		function setParentText(){
+	/* 	function setParentText(){
+		$("#pInput", opener.document).src($("#cInput"+p).attr('src'));
              opener.document.getElementById("pInput").value = document.getElementById("cInput").src
              opener.document.getElementById("sPrdPrice").value = document.getElementById("pricePro").value
-        }
+        } */ 
 
 	</script>
 	<script>

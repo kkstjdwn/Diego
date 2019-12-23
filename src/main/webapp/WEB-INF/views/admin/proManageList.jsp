@@ -18,7 +18,7 @@
 				<div class="">
 					<div class="titleArea">
 						<h2>
-							<font color="#555555">Product List</font>
+							<font color="555555"><a href="./proManageList" >Product List</a></font>
 						</h2>
 					</div> 
 				</div>
@@ -33,6 +33,7 @@
 					<div class="form-group" id="outcloth">
 
 						<select id="select1">
+							<option value="">선택하세요</option>
 							<option value="0">All</option>
 							<option value="100">Leather</option>
 							<option value="200">Cosmetic</option>
@@ -111,9 +112,7 @@
 						<tbody class="center">
 							<c:forEach items="${list}" var="dto" varStatus="st">
 								<tr class="warning">
-									<td><input type="checkbox"
-										class="productCheck product${st.index}" name="pro_num"
-										value="${dto.pro_num}"></td>
+									<td><input type="checkbox" class="productCheck product${st.index}" name="pro_num" value="${dto.pro_num}"></td>
 									<td class="th1">${dto.pro_num}</td>
 									<td class="th1">${dto.categoryVO.cat_name}</td>
 									<td class="th1"><img alt="메인이미지"
@@ -271,13 +270,6 @@
 			}  
 
 		});
-		$("#catat").click(function() {
-			console.log($("#kind select").val());
-		});
-		$("#kind select").click(function () {
-			console.log($(this).val());
-		});
-
 	</script>
 	<c:import url="../layout/footer.jsp" />
 </body>

@@ -68,4 +68,10 @@ public class DeliveryController {
 		
 		return "redirect:./deliveryList";
 	}
+	
+	//배송조회
+	@GetMapping("deliveryCheck")
+	public void deliveryCheck()throws Exception{
+		
+	}
 }

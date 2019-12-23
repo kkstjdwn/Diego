@@ -25,7 +25,6 @@
 						</h2>
 					</div>
 					<form id="boardWriteForm" name="" action="./qnaWrite" method="post" enctype="multipart/form-data">
-							 <input type="text" id="pInput">
 							<!-- 상품정보 -->
 							<div class="review_prd  ">
 								<div class="prdThumb">
@@ -35,12 +34,11 @@
 								</div>
 								<div class="prdInfo">
 									<p class="name">
-										<a href="/board/review/detail.html?product_no=0"
-											id="aPrdNameLink"><span id="sPrdName"></span></a>
+										<input type="text" readonly="readonly" id="sPrdName">
 									</p>
 									<p class="price">
 										<input type="text" id="sPrdPrice"  readonly="readonly">
-			
+										<input type="text" id="sProNum" name="pro_num" readonly="readonly" style="display: none;">
 									</p>
 									<div class="button">
 										<c:if test="${param.pro_num ne null}">
@@ -90,10 +88,10 @@
 										<tr class="">
 											<th scope="row">비밀글설정</th>
 											<td><input id="secure0" name="secret" fw-filter="isFill"
-												fw-label="비밀글설정" fw-msg="" value="Y" type="radio"
+												fw-label="비밀글설정" fw-msg="" value="N" type="radio"
 												checked="checked" /><label for="secure0">공개글</label> <input
-												id="secure1" name="secure" fw-filter="isFill"
-												fw-label="비밀글설정" fw-msg="" value="N" type="radio" /><label
+												id="secure1" name="secret" fw-filter="isFill"
+												fw-label="비밀글설정" fw-msg="" value="Y" type="radio" /><label
 												for="secure1">비밀글</label></td>
 										</tr>
 									</tbody>

@@ -14,8 +14,8 @@
 		</selectKey>
 
 		insert into
-		qna(writer,qna_num,pro_num,title,contents,qna_date,ref,step,depth)
-		values(#{writer},qna_seq.nextval,#{pro_num},#{title},#{contents},sysdate,qna_seq.currval,0,0)
+		qna(writer,qna_num,pro_num,title,contents,qna_date,ref,step,depth,secret,sec_num)
+		values(#{writer},qna_seq.nextval,#{pro_num},#{title},#{contents},sysdate,qna_seq.currval,0,0,#{secret},#{sec_num})
 	</insert>
 
 	<!--검색창 -->

@@ -1,71 +1,120 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
 <head>
+<link href="../resources/css/qnaCss/qnaSelect.css" rel="stylesheet">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<c:import url="../layout/bootStrap.jsp" />
+<title>qna Select</title>
 </head>
 <body>
-	<c:import url="../layout/nav.jsp" />
+	<c:import url="../layout/header.jsp" />
 
-	<div class="container">
-		<div class="jumbotron page-header">
-			<h1>QNA</h1>
+	<div id="listcontentWrap2">
+		<c:import url="../layout/leftList.jsp" />
+
+		<div id="listcontent2">
+			<div class="">
+				<div class="">
+					<div class="titleArea">
+						<h2>
+							<font color="333333">Q&A</font>
+						</h2>
+					</div>
+				</div>
+				<div class="ec-base-box typeProduct">
+					<p class="thumbnail">
+						<a href="/mid/product/productSelect?pro_num=${qna.pro_num}">
+						<img src="../resources/product/images/${images.pro_main}"
+							alt="" onerror="this.src='//img.echosting.cafe24.com/thumb/75x75.gif'" /></a>
+					</p>
+					<div class="information">
+						<h3>
+							<a href="/mid/product/productSelect?pro_num=${qna.pro_num}">${product.pro_name}</a>
+						</h3>
+						<p class="price">${product.pro_price} <span id="sPrdTaxText"></span>
+						</p>
+						<p class="button">
+							<a href="/mid/product/productSelect?pro_num=${qna.pro_num}" title="새창으로 이동"><img
+								src="//img.echosting.cafe24.com/skin/base_ko_KR/board/btn_prd_detail.gif"
+								alt="상품상세보기" /></a>
+						</p>
+					</div>
+				</div>
+				
+						<div class="ec-base-table typeWrite ">
+							<table border="1" summary="">
+								<caption>상품 게시판 상세</caption>
+								<colgroup>
+									<col style="width: 130px;" />
+									<col style="width: auto;" />
+								</colgroup>
+								<tbody>
+									<tr>
+										<th scope="row">제목</th>
+										<td>${qna.title}</td>
+									</tr>
+									<tr>
+										<th scope="row">작성자</th>
+										<td><div class="writer2"><c:set var="writerLength" value="${fn:length(qna.writer)}"/>
+											<c:choose>
+											<c:when test="${qna.depth ne 0}"><c:out value="${fn:substring(qna.writer,1+1, writerLength)}"/></c:when>
+											<c:otherwise>
+											<c:out value="${fn:substring(qna.writer,0,1)}"/>*<c:out value="${fn:substring(qna.writer,1+1, writerLength)}"/>
+											</c:otherwise>
+											</c:choose></div></td>
+									</tr>
+									<tr>
+										<td colspan="2">
+											<ul class="etcArea">
+												<li class=""><strong>작성일</strong> <span class="txtNum">${qna.qna_date}</span>
+												</li>
+											</ul>
+											<div class="detail">${qna.contents}</div>
+										</td>
+									</tr>
+									<tr class=" ">
+										<th scope="row">비밀번호</th>
+										<td><input id="password" name="password" fw-filter=""
+											fw-label="비밀번호" fw-msg=""
+											onkeydown="if (event.keyCode == 13 || event.which == 13) { return false; }"
+											value="" type="password" /> <span
+											class="ec-base-help txtInfo">삭제하려면 비밀번호를 입력하세요.</span></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<div class="ec-base-button ">
+							<span class="gLeft">
+							<a href="./gnaList">
+							<img src="//img.echosting.cafe24.com/skin/base_ko_KR/board/btn_list.gif" alt="목록" /></a>
+							</span> <span class="gRight"> <a href="#none"
+								onclick="BOARD_READ.article_delete('BoardDelForm','6');"
+								class="displaynone"><img src="//img.echosting.cafe24.com/skin/base_ko_KR/board/btn_delete.gif"
+									alt="삭제" /></a> 
+									<a href="" class="displaynone">
+									<img src="//img.echosting.cafe24.com/skin/base_ko_KR/board/btn_modify.gif"
+									alt="수정" /></a> 
+									<a href="" class="displaynone">
+									<img src="//img.echosting.cafe24.com/skin/base_ko_KR/board/btn_reply.gif"
+									alt="답변" /></a>
+							</span>
+						</div>
+					</div>
+			</div>
 
 		</div>
-		<div class="form-group">
-			<label for="pro_num">상품번호:</label> 
-			<b>${qna.pro_num}</b>
-		</div>
-		
-		<div class="form-group">
-			<label for="pro_name">상품명:</label> 
-			<b>${product.pro_name}</b>
-		</div>
-		
-		<div class="form-group">
-			<label for="pro_main">MAIN 이미지:</label> 
-		</div>
-				<img src="../resources/product/images/${images.pro_main}"style="width: 30%; height: 30%;"> 	
-		
-		
-		<div class="form-group">
-			<label for="title">제목:</label> <b>${qna.title}</b>
-		</div>
-
-		<div class="form-group">
-			<label for="writer">작성자:</label> <b>${qna.writer}</b>
-		</div>
-
-		<div class="form-group">
-			<label for="qna_date">작성일</label> <b>${qna.qna_date}</b>
-		</div>
-
-		<div class="form-group">
-			<label for="contents">내용</label> 
-			
-			<div class="well" id="contents">${qna.contents}</div>
-			
-		</div>
-
-		
-		
-
-
-		<a href="./qnaList?qna_num=${qna.qna_num}" class="btn btn-default">목록</a>
-		<a href="./qnaReply?qna_num=${qna.qna_num}&pro_num=${qna.pro_num}" class="btn btn-primary">답변</a>
-		<a href="./qnaDelete?qna_num=${qna.qna_num}" class="btn btn-danger">삭제</a>
-			<a href="./qnaUpdate?qna_num=${qna.qna_num}&pro_num=${qna.pro_num}" class="btn btn-warning">수정</a>
-	</div>
 
 
 
 
 
-
-
+	<c:import url="../layout/footer.jsp" />
 </body>
+
+
 </html>

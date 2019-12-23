@@ -255,3 +255,17 @@ button img{
     font-size: 13px;
     border: none;
 }
+
+#btngo {
+    background: #000;
+    color: #fff;
+    display: block;
+    text-align: center;
+    padding: 4px;
+    font-size: 13px;
+    border: none;
+}
+
+#trackCode{
+	padding: 3px;
+}

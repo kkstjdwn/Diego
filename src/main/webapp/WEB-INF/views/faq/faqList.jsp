@@ -20,7 +20,7 @@
 				<div class="ada">
 					<div class="title">
 						<h2>
-							<font color="#555555">FAQ</font>
+							<font color="333333"><a href="./faqList" >FAQ</a></font>
 						</h2>
 					</div>
 				</div>

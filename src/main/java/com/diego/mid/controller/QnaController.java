@@ -54,7 +54,7 @@ public class QnaController {
 			msg="Insert Success";
 		}
 		mv.addObject("msg", msg);
-		mv.addObject("path", "qnaList");
+		mv.addObject("path", "../admin/qnaList");
 		mv.setViewName("common/common_result");
 		return mv;
 	}
@@ -71,7 +71,7 @@ public class QnaController {
 		mv.addObject("qnaList", ar);
 		mv.addObject("pager", pager);
 		
-		mv.setViewName("qna/qnaList");
+		mv.setViewName("mid/admin/qnaList");
 		
 		return mv;
 		
