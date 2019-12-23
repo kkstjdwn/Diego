@@ -1079,14 +1079,15 @@ footer{
 }
 
 .cart-view-pro{
-	width: 272px;
+	width: 530px;
 }
 
 .cart-view-deli{
-	width: 304px;
+	width: 530px;
 }
 .cart-view-price{
-	width: 1027px;
+	width: 530px;
+	
 }
 
 .cart-view-table td{
@@ -1244,16 +1245,41 @@ footer{
 }
 
 
+/*ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ*/
 
+#kakao-pay-btn{
+	width: 200px;
+	height: 43px;
+	background: #555555;
+	color: white;
+	border: 1px solid #555555;
+	margin: 0 auto;
+	
+}
 
+#kakao-pay-btn:hover{
+	border: 3px solid #555555;
+	background: white;
+	color: #555555;
+	font-weight: bold;
+}
 
+#pay-check-del{
+	margin:5px 30px;
+	border: 1px solid #555555;
+	background: #555555;
+	color: white;
+	width:100px;
+	height: 30px;
+	font-size: 12px;
+	border-radius: 3px;
+}
 
-
-
-
-
-
-
-
+#pay-check-del:hover{
+	border: 3px solid #555555;
+	background: white;
+	color: #555555;
+	font-weight: bold;
+}
 
 

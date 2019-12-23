@@ -47,7 +47,9 @@ public class MemberManageService {
 	}
 	
 	public Orders orderInsert(Orders orders) throws Exception{
-		orders.setOrder_num(dao.getOrderNum());
+		if (orders.getOrder_num() != null) {			
+			orders.setOrder_num(dao.getOrderNum());
+		}
 		int result = dao.orderInsert(orders); 
 		if (result > 0) {
 			return orders;
@@ -55,6 +57,10 @@ public class MemberManageService {
 			
 		return null;
 		}
+	}
+	
+	public int getOrderNum() throws Exception{
+		return dao.getOrderNum();
 	}
 	
 	public Orders orderSelect(Orders orders) throws Exception{
@@ -107,6 +113,9 @@ public class MemberManageService {
 		return dao.orderSearchList(map);
 	}
 	
+	public Orders getLastOrder(Orders orders) throws Exception{
+		return dao.getLastOrder(orders);
+	}
 	
 	public int pointInsert(Point point) throws Exception{
 		if(point.getPoint_value()<0) {

@@ -112,6 +112,11 @@ public class MemberManegeDAO {
 		return sql.selectList(ORDER+"orderSearchList",map);
 	}
 	
+	public Orders getLastOrder(Orders orders) throws Exception{
+		return sql.selectOne(ORDER+"getLastOrder",orders);
+	}
+	
+	
 	public int pointInsert(Point point) throws Exception{
 		return sql.insert(POINT+"pointInsert",point);
 	}

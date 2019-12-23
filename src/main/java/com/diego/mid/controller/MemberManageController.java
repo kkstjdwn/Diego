@@ -1,15 +1,18 @@
 package com.diego.mid.controller;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.diego.mid.model.member.Cart;
@@ -22,6 +25,7 @@ import com.diego.mid.model.product.ProductVO;
 import com.diego.mid.service.MemberManageService;
 import com.diego.mid.service.MemberService;
 import com.diego.mid.service.ProductService;
+import com.diego.mid.util.KakaoPay;
 import com.diego.mid.util.MPager;
 import com.diego.mid.util.Pager;
 
@@ -753,6 +757,7 @@ public class MemberManageController {
 		Coupon coupon = new Coupon();
 		point.setId(vo.getId());
 		coupon.setId(vo.getId());
+		pager.setPerPager(10);
 		List<Cart> ar = service.cartList(cart,pager);
 		mv.addObject("point", service.pointSelect(point));
 		mv.addObject("coupon", service.couponMyList(coupon));
@@ -763,7 +768,7 @@ public class MemberManageController {
 	}
 	
 	@PostMapping("cartInsert")
-	public ModelAndView cartInsert(Cart cart) throws Exception{
+	public ModelAndView cartInsert(Cart cart,HttpSession session) throws Exception{
 		ModelAndView mv = new ModelAndView();
 		
 		int result = service.cartInsert(cart);
@@ -771,6 +776,8 @@ public class MemberManageController {
 		if (result > 0) {
 			msg = "1";
 		}
+		List<Integer> cr = service.cartOverlapCheck(cart);
+		session.setAttribute("cc", cr.size());
 		mv.addObject("msg", msg);
 		mv.setViewName("common/common_ajax_result");
 		
@@ -793,7 +800,7 @@ public class MemberManageController {
 	}
 	
 	@PostMapping("cartDelete")
-	public ModelAndView cartDelete(Cart cart,String[] num) throws Exception{
+	public ModelAndView cartDelete(Cart cart,String[] num,HttpSession session) throws Exception{
 		ModelAndView mv = new ModelAndView();
 		
 		int check = 0;
@@ -810,6 +817,8 @@ public class MemberManageController {
 			result = 1;
 		}
 		
+		List<Integer> cr = service.cartOverlapCheck(cart);
+		session.setAttribute("cc", cr.size());
 		mv.addObject("msg", result);
 		mv.setViewName("common/common_ajax_result");
 		
@@ -817,18 +826,20 @@ public class MemberManageController {
 	}
 	
 	@PostMapping("cartClean")
-	public ModelAndView cartClean(Cart cart) throws Exception{
+	public ModelAndView cartClean(Cart cart,HttpSession session) throws Exception{
 		ModelAndView mv = new ModelAndView();
 		
 		int result = service.cartClean(cart);
 		
+		List<Integer> cr = service.cartOverlapCheck(cart);
+		session.setAttribute("cc", cr.size());
 		mv.addObject("msg", result);
 		mv.setViewName("common/common_ajax_result");
 		return mv;
 	}
 	
 	@PostMapping("cartAjaxInsert")
-	public ModelAndView cartAjaxInsert(Cart cart,ProductVO productVO) throws Exception{
+	public ModelAndView cartAjaxInsert(Cart cart,ProductVO productVO,HttpSession session) throws Exception{
 		ModelAndView mv = new ModelAndView();
 		List<Integer> numCheck = service.cartOverlapCheck(cart);
 		int result = 0;
@@ -863,7 +874,8 @@ public class MemberManageController {
 			
 			
 		}
-		
+		List<Integer> cr = service.cartOverlapCheck(cart);
+		session.setAttribute("cc", cr.size());
 		mv.addObject("msg", result);
 		mv.setViewName("common/common_ajax_result");
 		
@@ -871,7 +883,7 @@ public class MemberManageController {
 	}
 	
 	@PostMapping("cartCheckInsert")
-	public ModelAndView cartCheckInsert(ProductVO productVO,Cart cart, String[] num)throws Exception{
+	public ModelAndView cartCheckInsert(ProductVO productVO,Cart cart, String[] num,HttpSession session)throws Exception{
 		ModelAndView mv = new ModelAndView();
 		int result = 0;
 		for (String string : num) {
@@ -915,13 +927,137 @@ public class MemberManageController {
 				result = service.cartInsert(cart);
 			}
 			
+			Thread.sleep(300);
 		}
 		
-		
+		List<Integer> cr = service.cartOverlapCheck(cart);
+		session.setAttribute("cc", cr.size());
 		mv.addObject("msg", result);
 		mv.setViewName("common/common_ajax_result");
 		return mv;
 	}
 	
 	//@@@@@@@@@@@@@CART@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+	
+//@@@@@@@@@@@@@PAY@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+	
+	
+	@GetMapping("payPage")
+	public ModelAndView payPage(HttpSession session,String[] num) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		List<ProductVO> ar = new ArrayList<ProductVO>();
+		for (String pNum : num) {
+			int getNum	= Integer.parseInt(pNum);
+			ProductVO vo = new ProductVO();
+			vo.setPro_num(getNum);
+			vo = proService.productGetInfo(vo);
+			ar.add(vo);
+		}
+		MemberVO memVO = (MemberVO)session.getAttribute("member"); 
+		Point point = new Point();
+		Coupon coupon = new Coupon();
+		point.setId(memVO.getId());
+		coupon.setId(memVO.getId());
+		mv.addObject("list", ar);
+		mv.addObject("point", service.pointSelect(point));
+		mv.addObject("coupon", service.couponMyList(coupon));
+		mv.setViewName("/member/memberManage/payPage");
+		
+		return mv;
+	}
+	
+	@Inject
+	private KakaoPay kakaoPay;
+	
+	@GetMapping("/kakaoPay")
+	public void kakaoPayGet() {
+		
+	}
+	
+	@PostMapping("kakaoPay")
+	public String kakaoPay(Orders orders,Point point,HttpSession session,Coupon coupon) throws Exception{
+		orders.setOrder_num(service.getOrderNum());
+		orders = service.orderInsert(orders);
+		point.setOrder_num(orders.getOrder_num());
+		point.setContents(orders.getPro_info());
+		
+		System.out.println("totalp = "+point.getTotal_point());
+		System.out.println("pointval = "+point.getPoint_value());
+		System.out.println("pointsav = "+point.getPoint_save());
+		
+		
+		int result = 0;
+		int pInsert = 0;
+		
+		if (point.getPoint_value() == 0) {
+			pInsert = service.pointSave(point);
+		}else {
+			pInsert=service.pointUse(point);			
+		}
+		
+		int cUse = 0;
+		if (coupon.getCoup_num() == 9999) {
+			cUse = 1;
+		}else {
+			cUse = service.couponUse(coupon);
+		}
+		
+		if (pInsert==1 && cUse == 1) {
+			result = 1;
+			MemberVO memberVO = (MemberVO)session.getAttribute("member");
+			int getPay = memService.getPay(memberVO);
+			memberVO.setTotal_pay(getPay+orders.getOrder_sum());
+			result = memService.setPay(memberVO);
+			
+		}else if(pInsert == 1 && cUse != 1) {
+			cUse = service.couponCancel(coupon);
+		}else if (pInsert != 1 && cUse == 1) {
+			point.setContents("주문실패");
+			pInsert = service.pointInsert(point);
+		}else {
+			cUse = service.couponCancel(coupon);
+			point.setContents("주문실패");
+			pInsert = service.pointUse(point);
+		}
+		return "redirect:" + kakaoPay.kakaoPayReady(orders);
+	}
+	
+	@GetMapping("kakaoPayCancel")
+	public ModelAndView kakaoPayCancel() throws Exception{
+		ModelAndView mv = new ModelAndView();
+		
+		mv.addObject("msg", "결제를 취소하셨습니다.");
+		mv.addObject("path", "/mid/member/memberManage/orderMyList");
+		mv.setViewName("common/common_msg");
+		return mv;
+	}
+	
+	@GetMapping("kakaoPaySuccess")
+	public ModelAndView kakaoPaySuccess(@RequestParam("pg_token") String pg_token, Model model,Orders orders,HttpSession session) throws Exception {
+        System.out.println("kakaoPaySuccess pg_token : " + pg_token);
+		ModelAndView mv = new ModelAndView();
+		MemberVO vo = (MemberVO)session.getAttribute("member");
+		orders.setId(vo.getId());
+		orders = service.getLastOrder(orders);
+		orders.setOrder_status("WD");
+		orders.setOrder_result(pg_token);
+		int result = service.orderUpdate(orders);
+		mv.addObject("msg", "결제가 승인됐습니다.");
+		mv.addObject("path", "/mid/member/memberManage/orderMyList");
+		mv.setViewName("common/common_msg");
+		return mv;
+	}
+	
+	@GetMapping("kakaoPayFail")
+	public ModelAndView kakaoPayFail() throws Exception{
+		ModelAndView mv = new ModelAndView();
+		
+		mv.addObject("msg", "결제를 실패하였습니다.");
+		mv.addObject("path", "/mid/member/memberManage/orderMyList");
+		mv.setViewName("common/common_msg");
+		return mv;
+	}
+	
+	
+	
 }

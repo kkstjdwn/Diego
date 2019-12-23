@@ -10,7 +10,7 @@
 </head>
 <body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<header></header>
+<c:import url="../../layout/header.jsp"/>
 <section>
 <div class="main" style="min-height: 700px;">
 <!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
@@ -229,6 +229,8 @@ $(".ws-ajax").on("click","#wish-del-check", function() {
 			},
 			success	: function(data) {
 				$(".ws-ajax").html(data);
+				all = 0;
+				size = ${wishList.size()};
 			}
 		});
 	});
@@ -314,8 +316,7 @@ $(".ws-ajax").on("click","#wish-del-check", function() {
 		
 	});
 	
-	
-	$("#wish-cart-check").click(function() {
+	$(".ws-ajax").on("click","#wish-cart-check", function() {
 		if (confirm("선택 상품을 장바구니에 담으시겠습니까?")) {
 			jQuery.ajaxSettings.traditional = true;
 			var goods = new Array();

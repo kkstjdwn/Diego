@@ -130,7 +130,8 @@
 						<!-- 장바구니 -->
 					<c:if test="${!empty member }">
 						<div id="topcarticon" class="cart2 ">
-							<img src="/mid/resources/images/cart_wh.png" /> 장바구니(${cc})
+							<img src="/mid/resources/images/cart_wh.png" />
+							<a href="/mid/member/memberManage/cartList">장바구니(${cc})</a>
 						</div>
 					</c:if>
 
@@ -179,8 +180,9 @@
 					</c:choose>
 					</div>
 					<c:if test="${!empty member }">
-					<div id="topcart">
-						<img src="/mid/resources/images/cart.png">장바구니(${cc })
+					<div id="topcart" class="cart1">
+						<img src="/mid/resources/images/cart.png">
+						<a href="/mid/member/memberManage/cartList">장바구니(${cc})</a>
 					</div>
 					</c:if>
 					<div class="myhsop">나의 쇼핑</div>

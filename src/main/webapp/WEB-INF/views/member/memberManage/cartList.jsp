@@ -10,7 +10,7 @@
 </head>
 <body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<header></header>
+<c:import url="../../layout/header.jsp"/>
 <section>
 <div class="main" style="min-height: 1325px;">
 <!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
@@ -517,6 +517,61 @@
 			var size = ${coupon.size()};
 			s.innerHTML = size;
 		}
+		
+		
+		$("#cart-order-all").click(function() {
+					jQuery.ajaxSettings.traditional = true;
+					var id = "${member.id}";
+					var size = ${cartList.size()};
+					var num = new Array();
+					
+			if (confirm("전체 상품을 주문하시겠습니까?")) {
+				
+				
+				
+// 					var name = $(".cart"+i).attr("name");
+					
+// 					//num[i] = name;
+// 					num.push(name);
+// 					console.log(num[i]+", "+i);
+
+					$(".cartCheck").each(function() {
+						var name = $(this).attr("name");
+						num.push(name);
+					});
+				
+				
+				
+				location.href="payPage?num="+num;
+			}
+		});
+		
+		$("#cart-order-check").click(function() {
+			jQuery.ajaxSettings.traditional = true;
+			var id = "${member.id}";
+			var size = ${cartList.size()};
+			var num = new Array();
+			if (viewCheck != 0) {
+				
+				if (confirm("선택하신 상품을 주문하시겠습니까?")) {
+					
+						$(".cartCheck").each(function() {
+							if ($(this).prop("checked")) {
+							var name = $(this).attr("name");
+							num.push(name);					
+							}
+						});
+			}		
+		
+		
+		
+				location.href="payPage?num="+num;
+		}else{
+			alert("주문하실 상품을 선택해주세요");
+		}
+			
+		});
+		
 		
 </script>
 </body>
