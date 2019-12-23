@@ -11,10 +11,8 @@ header{
 	top:0px;
 	height: 74px;
 	width: 100%;
-	background-color: green;
 }
 section{
-	background-color: silver;
 	padding-bottom: 350px;
 }
 .se-name{
@@ -25,7 +23,6 @@ section{
 .se-h1{
 	width: 240px;
 	padding-bottom: 50px;
-	background-color: gray;
 }
 /*ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ */
 
@@ -43,20 +40,17 @@ section{
 	float: left;
 	width : 24.25%;
 	min-height: 673.2px;
-	background-color: lime;
 	margin-right: 1%;
 }
 .pro-li-div_nm {
 	float: left;
 	width : 24.25%;
 	min-height: 673.2px;
-	background-color: lime;
 }
 
 .pro-li-div-a {
 	width: 100%;
 	height: 543.2px;
-	background-color: navy;
 	margin-bottom: 10px;
 	
 }
@@ -64,14 +58,12 @@ section{
 .pro-li-div-p {
 	width: 100%;
 	height: 25px;
-	background-color: maroon;
 	padding-top: 10px;
 	padding-bottom: 7px;
 }
 
 .pro-li-div-ul {
 	width: 372.67px;
-	background-color: olive;
 	padding-left: 0;
 }
 
@@ -114,7 +106,6 @@ section{
 .sps-gift{
 	width: 100%;
 	height: 500px;
-	background-color: maroon;
 }
 
 /*ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ */
@@ -123,6 +114,7 @@ section{
 	height: 682px;
 	width: 100%;
 	background-image: url("../images/main_collection.jpg");
+	background-size:100%;
 	overflow: visible;
 }
 .add-join-div{
@@ -130,7 +122,6 @@ section{
 	text-align: center;
 	width: 1540px;
 	height: 122px;
-	background-color: black;
 	position: relative;
 	left: 9.53%;
 	bottom: -600px;
@@ -142,7 +133,6 @@ section{
 	width: 1647px;
 	height: 300px;
 	margin: auto;
-	background-color: green;
 }
 .ctg-div-cl{
 	width: calc(98%/3);
@@ -169,7 +159,6 @@ section{
 	float: left;
 }
 .ctg-div-name{
-	background-color: blue;
 	width : 450px;
 	position: relative;
 	left: 50px;
