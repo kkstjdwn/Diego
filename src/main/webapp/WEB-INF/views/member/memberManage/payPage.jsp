@@ -8,6 +8,7 @@
 <title>주문 추가하기</title>
 <link href="../../resources/css/member.css" rel="stylesheet">
 </head>
+<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <body>
 <c:import url="../../layout/header.jsp"/>
