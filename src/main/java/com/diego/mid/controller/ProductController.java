@@ -134,6 +134,7 @@ public class ProductController {
 	//상품리스트
 	@RequestMapping(value = "productList", method = {RequestMethod.GET, RequestMethod.POST})
 	private ModelAndView productList(MPager pager)throws Exception {
+		pager.setPerPager(10);
 		List<ProductVO>ar= productService.productList(pager);
 		//System.out.println(ar.get(0).getPro_main()+"=proMain");
 		ModelAndView mv = new ModelAndView();

@@ -16,7 +16,7 @@
 					<nav>
 						<div class="container">
 							<ul class="menulist">
-								<li><a><span>신상품</span></a></li>
+								<li><a href="/mid/product/productList"><span>신상품</span></a></li>
 								<li><a><span>베스트</span></a></li>
 								<li><a><span>레더</span></a>
 									<ul>
@@ -59,7 +59,7 @@
 							src="/mid/resources/images/marciodiego_logo_fix.png" alt="마르시오디에고 로고" /></a>
 					</h1>
 					<ul class="menu_list gnb_menu">
-						<li><a href=""><span>신상품</span></a></li>
+						<li><a href="/mid/product/productList"><span>신상품</span></a></li>
 						<li><a href=""><span>베스트</span></a></li>
 						<li><a href=""><span>레더</span></a>
 							<ul class="menu_depth">
