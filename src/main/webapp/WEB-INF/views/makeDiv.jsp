@@ -24,7 +24,7 @@
 <!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
 
 <section>
-	<div style=" height: 1598px;class="se-name">
+	<div style=" height: 1598px;" class="se-name">
 		<h1 class="se-h1">BEST SELLER.</h1>
 		<ul class="pro">
 		
@@ -38,7 +38,7 @@
 				
 					<c:if test="${v.count % 4 eq 0  }">
 						<div class="pro-li-div_nm">
-							<p class="pro-li-div-a"><img src="resources/product/images/${p.sumnale}" height="543.2px"></p>
+							<p class="pro-li-div-a"><img src="resources/product/images/${p.sumnale}"></p>
 							<p class="pro-li-div-p">${p.pro_name }</p>
 							<ul class="pro-li-div-ul">
 								<li style="width: inherit; height: 36px; padding-bottom: 23px;">${p.contents}</li>
@@ -50,7 +50,7 @@
 				
 					<c:if test="${v.count % 4 ne 0 }">
 						<div class="pro-li-div">
-							<p class="pro-li-div-a"><img src="resources/product/images/${p.sumnale}" height="543.2px"></p>
+							<p class="pro-li-div-a"><img src="resources/product/images/${p.sumnale}"></p>
 							<p class="pro-li-div-p">${p.pro_name }</p>
 							<ul class="pro-li-div-ul">
 								<li style="width: inherit; height: 36px; padding-bottom: 23px;">${p.contents}</li>
@@ -123,7 +123,7 @@
 				<li class="pro-li">
 					<c:if test="${v.count % 4 eq 0  }">
 						<div class="pro-li-div_nm">
-							<p class="pro-li-div-a"><img src="resources/product/images/${np.sumnale}" width="543.2px"></p>
+							<p class="pro-li-div-a"><img src="resources/product/images/${np.sumnale}" ></p>
 							<p class="pro-li-div-p">${np.pro_name }</p>
 							<ul class="pro-li-div-ul">
 								<li style="width: inherit; height: 36px; padding-bottom: 23px;">${np.contents}</li>
@@ -134,7 +134,7 @@
 					</c:if> 
 					<c:if test="${v.count % 4 ne 0 }">
 						<div class="pro-li-div">
-							<p class="pro-li-div-a"><img src="resources/product/images/${np.sumnale}" width="543.2px"></p>
+							<p class="pro-li-div-a"><img src="resources/product/images/${np.sumnale}"></p>
 							<p class="pro-li-div-p">${np.pro_name }</p>
 							<ul class="pro-li-div-ul">
 								<li style="width: inherit; height: 36px; padding-bottom: 23px;">${np.contents}</li>

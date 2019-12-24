@@ -38,30 +38,38 @@ section{
 
 .pro-li-div {
 	float: left;
-	width : 24.25%;
+	width : 23.75%;
 	min-height: 673.2px;
-	margin-right: 1%;
+	margin-left:1%;
+	
+	
+	
 	font-family: Montserrat,Nanum Barun Gothic,sans-serif;
 	font-weight: bold;
 }
 .pro-li-div_nm {
 	float: left;
-	width : 24.25%;
+	width : 23.75%;
+	margin-left :1%;
 	min-height: 673.2px;
 	font-family: Montserrat,Nanum Barun Gothic,sans-serif;
 	font-weight: bold;
+	
 
 }
 
-.pro-li-div-a {
+.pro-li-div-a img {
 	width: 100%;
 	height: 543.2px;
 	margin-bottom: 10px;
-	
+	background-color: gray;
 }
 
+	
+
+
 .pro-li-div-p {
-	width: 100%;
+	width: 80%;
 	height: 25px;
 	padding-top: 10px;
 	padding-bottom: 7px;

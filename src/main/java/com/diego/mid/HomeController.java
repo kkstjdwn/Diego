@@ -64,7 +64,7 @@ public ModelAndView home(MPager pager, ReviewVO reviewVO) throws Exception {
 		pager.setPerPager(24);
 		List<ProductVO> ar2 = homeService.newProduct(pager);
 		for (ProductVO productVO : ar2) {
-//			System.out.println(ar2.get(0).getSumnale());
+//			
 			String before = String.valueOf(productVO.getPro_price()*1.4);
 			int last=before.lastIndexOf('.');
 		 	int bf =Integer.parseInt((before.substring(0,last)));
@@ -117,7 +117,7 @@ public ModelAndView home(MPager pager, ReviewVO reviewVO) throws Exception {
 	public ModelAndView makeDiv(MPager pager, ReviewVO reviewVO) throws Exception {
 		
 		ModelAndView mv= new ModelAndView();
-		pager.setPerPager(40);
+		pager.setPerPager(24);
 		List<ProductVO>ar= homeService.productList(pager);
 		for (ProductVO productVO : ar) {
 			String before = String.valueOf(productVO.getPro_price()*1.4);
@@ -129,7 +129,7 @@ public ModelAndView home(MPager pager, ReviewVO reviewVO) throws Exception {
 		pager.setPerPager(24);
 		List<ProductVO> ar2 = homeService.newProduct(pager);
 		for (ProductVO productVO : ar2) {
-//			System.out.println(ar2.get(0).getSumnale());
+
 			String before = String.valueOf(productVO.getPro_price()*1.4);
 			int last=before.lastIndexOf('.');
 		 	int bf =Integer.parseInt((before.substring(0,last)));
