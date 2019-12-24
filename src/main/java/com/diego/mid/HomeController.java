@@ -49,17 +49,63 @@ public class HomeController {
 	 * Simply selects the home view to render by returning its name.
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
+public ModelAndView home(MPager pager, ReviewVO reviewVO) throws Exception {
 		
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+		ModelAndView mv= new ModelAndView();
+		pager.setPerPager(40);
+		List<ProductVO>ar= homeService.productList(pager);
+		for (ProductVO productVO : ar) {
+			String before = String.valueOf(productVO.getPro_price()*1.4);
+			int last=before.lastIndexOf('.');
+		 	int bf =Integer.parseInt((before.substring(0,last)));
+			productVO.setBeforeSale(bf);
+		}
+		//System.out.println(ar.get(0).getPro_main()+"=proMain");
+		pager.setPerPager(24);
+		List<ProductVO> ar2 = homeService.newProduct(pager);
+		for (ProductVO productVO : ar2) {
+//			System.out.println(ar2.get(0).getSumnale());
+			String before = String.valueOf(productVO.getPro_price()*1.4);
+			int last=before.lastIndexOf('.');
+		 	int bf =Integer.parseInt((before.substring(0,last)));
+			productVO.setBeforeSale(bf);
+		}
+		pager.setPerPager(12);
+		List<ProductVO>ar3 = homeService.reviewList(pager);
+		for (ProductVO productVO : ar3) {
+			for(int i=0; i<ar.size();i++) {
+		try {
+			String name=productVO.getReviewVO().get(i).getName();
+			name=name.substring(0, 1)+"**";
+			//System.out.println(name);
+			productVO.setSec_name(name);
+			reviewVO= new ReviewVO();
+			reviewVO.setPro_num(productVO.getPro_num());
+			productVO.setTotalReview(reviewService.totalReview(reviewVO));
+			Double d= reviewService.totalStar(reviewVO);
+			String total	=d.toString();
+			total=total.substring(0,3);
+			productVO.setTotalStar(Double.parseDouble(total));
+			
+			
+			
+		} catch (Exception e) {
+			
+		}
+			
+	
+			
+			}
+		}
 		
-		String formattedDate = dateFormat.format(date);
+		mv.addObject("reviewList", ar3);
+		mv.addObject("newPro", ar2);
+		mv.addObject("productList", ar);
+		mv.addObject("pager", pager);
+		mv.setViewName("makeDiv");
 		
-		model.addAttribute("serverTime", formattedDate );
+		return mv;
 		
-		return "home";
 	}
 	
 	@GetMapping("/diego")
