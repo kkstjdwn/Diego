@@ -15,16 +15,18 @@
 	<c:import url="../layout/header.jsp" />
 	<div class="container">
 		<c:import url="../layout/leftList.jsp" />
-		<div class="jumbotron page-header">
+		
+		
+		<div class="page-header" style="margin-top: 100px">
 			<h1>Product List</h1>
 		</div>
 		
 		<table class="table"  >
 			<thead >
-				<tr class="info">
+				<tr>
 					
 					<th><input type="checkbox" id="checkAll"></th>
-					<th>Product Num</th>
+					<th>ProNum</th>
 					<th>Category</th>
 					<th>Image</th>
 					<th>Product Name</th>
@@ -45,7 +47,7 @@
 			<tbody>
 
 				<c:forEach items="${productList}" var="product" varStatus="p">
-					<tr class="warning">
+					<tr class=>
 						<td><input type="checkbox" class="productCheck product${p.index }" value="${product.pro_num }"></td>
 						<td>${product.pro_num}</td>
 						<td>${product.cat_ref}</td>
