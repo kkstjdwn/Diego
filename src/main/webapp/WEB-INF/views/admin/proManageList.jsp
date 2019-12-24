@@ -130,15 +130,15 @@
 							</c:forEach>
 						</tbody>
 					</table>
-				</div>
+				</div> 
 			</div>
-			<div class="typeBG">
-					<%-- <c:if test="${admin ne null}"> --%>
+			<%-- <div class="typeBG">
+					<c:if test="${admin ne null}">
 					<span class="gRight">
 						<button class="btn btn-primary"  onclick="location.href='../product/productInsert' ">상품 등록</button>
 						<button class="btn btn-danger" type="button" data-delete="${dto.pro_num}" id="pro_del">상품 삭제</button>
 					</span>
-					<%-- </c:if> --%>
+					</c:if>
 				</div>
 
 			<ul class="pagination paging">
@@ -159,7 +159,7 @@
 					class="list"><img alt="다음"
 						src="../resources/images/page_next.gif"></span></li>
 			</ul>
-
+ --%>
 		</div>
 	</div>
 		<script type="text/javascript">

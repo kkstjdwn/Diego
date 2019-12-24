@@ -27,29 +27,7 @@
 					<form id="boardWriteForm" name="" action="./qnaReply?qna_num=${qna.qna_num}&pro_num=${qna.pro_num}" method="post" enctype="multipart/form-data">
 							<!-- 상품정보 -->
 						<div class="review_prd  ">
-							<div class="ec-base-box typeProduct">
-								<p class="thumbnail">
-									<a href="/mid/product/productSelect?pro_num=${qna.pro_num}">
-										<img src="../resources/product/images/${images.pro_main}"
-										alt=""
-										onerror="this.src='//img.echosting.cafe24.com/thumb/75x75.gif'" />
-									</a>
-								</p>
-								<div class="information">
-									<h3>
-										<a href="/mid/product/productSelect?pro_num=${qna.pro_num}">${product.pro_name}</a>
-									</h3>
-									<p class="price">${product.pro_price}
-										<span id="sPrdTaxText"></span>
-									</p>
-									<p class="button">
-										<a href="/mid/product/productSelect?pro_num=${qna.pro_num}"
-											title="새창으로 이동"><img
-											src="//img.echosting.cafe24.com/skin/base_ko_KR/board/btn_prd_detail.gif"
-											alt="상품상세보기" /></a>
-									</p>
-								</div>
-							</div>
+							
 							<!-- 상품정보 -->
 							<div class="ec-base-table typeWrite ">
 								<table border="1" summary="">
@@ -62,10 +40,12 @@
 											<th scope="row">제목</th>
 											<td><input type="text" class="form-control" id="title" name="title" readonly="readonly" value="${qna.title}">td>
 										</tr>
-										<tr class="" style="display: none;">
+										<tr class="" >
 											<th scope="row">작성자</th>
 											<td><input type="text" class="form-control" id="writer"
-												name="writer" readonly="readonly" value="${admin.admin_id}"></td>
+												name="writer" readonly="readonly" value="${admin.admin_id}">
+												<input type="text" value="${qna.pro_num}" readonly="readonly" name="pro_num" style="display: none;">
+												</td>
 										</tr>
 										<tr>
 											<td colspan="2" class="clear"><textarea
@@ -80,17 +60,14 @@
 										<tr class="">
 											<th scope="row">비밀번호</th>
 											<td><input id="password" name="sec_num"
-												fw-filter="isFill" fw-label="비밀번호" fw-msg="" value=""
+												fw-filter="isFill" fw-label="비밀번호" readonly="readonly" fw-msg="" value="${qna.sec_num}"
 												type="password" /></td>
 										</tr>
 										<tr class="">
 											<th scope="row">비밀글설정</th>
-											<td><input id="secure0" name="secret" fw-filter="isFill"
-												fw-label="비밀글설정" fw-msg="" value="N" type="radio"
-												checked="checked" /><label for="secure0">공개글</label> <input
-												id="secure1" name="secret" fw-filter="isFill"
-												fw-label="비밀글설정" fw-msg="" value="Y" type="radio" /><label
-												for="secure1">비밀글</label></td>
+											<td>
+												<input type="text" name="secret" readonly="readonly" value="${qna.secret}" style="display: none;" >
+												</td>
 										</tr>
 									</tbody>
 								</table>
@@ -121,6 +98,8 @@
 	$("#contents").summernote({
 		height : 400,
 	});
+	
+	$("#contents").summernote('code','[ Original Message ]${qna.contents}');
 </script>
 
 
