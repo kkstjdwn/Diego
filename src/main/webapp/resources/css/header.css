@@ -76,6 +76,10 @@ header {
    		background-color: white;
 }
 
+.cart2 a{
+color: white !important;	
+}
+
 #topinner{
 	padding: 0 50px;
     margin: 0 auto;
@@ -195,7 +199,7 @@ nav{display: block;}
 
 
 .menu_list {
-    margin: 28px 0 0 380px;
+    margin: 28px 0 0 340px;
 }
 .menu_list li {
     display: inline-block;
