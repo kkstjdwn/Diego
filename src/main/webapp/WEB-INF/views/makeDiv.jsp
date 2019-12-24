@@ -192,44 +192,97 @@
 <!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
 
 
-<section style="margin: 0; padding: 0; height: 1000px;">
+	<section style="margin: 0; padding: 0; height: 1000px;" id="revSec">
+		<div>
+			<div class="rev">
+				<ul>
+					<c:forEach items="${reviewList}" var="review" varStatus="r">
+						<c:forEach items="${review.reviewVO}" var="rev" varStatus="f">
 
-	<div class="rev">
-	<ul>
-	<c:forEach items="${reviewList}" var="review" varStatus="r" >
-	<c:forEach items="${review.reviewVO}" var="rev" varStatus="f">
-	
-	<li class="rev-li">
-		
-	<p class="rev-li-img"><img src="resources/product/photoReview/${review.revFilesVO[f.index].fname}" style="width: 215px; height: 237px;"></p>
-		
-	<div class="rev-li-mem">
-		<div class="rev-li-mem-tt">${rev.rev_contents}</div>
-		<div class="rev-li-mem-nk">${review.sec_name}</div>
-	</div>
-	<div class="rev-li-info">
-		<div class="rev-li-info-img">
-			<p><img src="resources/product/images/${review.pro_main}" style="width: 33px; height: 33px;"></p>
-		</div>
-		<div class="rev-li-info-div">
-		<div class="rev-li-info-tt" >${review.pro_name}</div>
-		<div class="rev-li-info-fb">
-			<span>리뷰<strong class="st">${review.totalReview}</strong></span>
-			<span>평점<strong class="st">${review.totalStar}</strong></span>
-		</div>
-		</div>
-	</div>
-	</li>
-	
-	</c:forEach>
-	</c:forEach>
-	</ul>
-	</div>
-	<div class="rev-page">
-	</div>
-</section>
+							<li class="rev-li">
 
-<!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
+								<p class="rev-li-img">
+									<img
+										src="resources/product/photoReview/${review.revFilesVO[f.index].fname}"
+										style="width: 215px; height: 237px;">
+								</p>
+
+								<div class="rev-li-mem">
+									<div class="rev-li-mem-tt">${rev.rev_contents}</div>
+									<div class="rev-li-mem-nk">${review.sec_name}</div>
+								</div>
+								<div class="rev-li-info">
+									<div class="rev-li-info-img">
+										<p>
+											<img src="resources/product/images/${review.pro_main}"
+												style="width: 33px; height: 33px;">
+										</p>
+									</div>
+									<div class="rev-li-info-div">
+										<div class="rev-li-info-tt">${review.pro_name}</div>
+										<div class="rev-li-info-fb">
+											<span>리뷰<strong class="st">${review.totalReview}</strong></span>
+											<span>평점<strong class="st">${review.totalStar}</strong></span>
+										</div>
+									</div>
+								</div>
+							</li>
+
+						</c:forEach>
+					</c:forEach>
+				</ul>
+			</div>
+			<div class="rev-page"></div>
+
+			<div>
+				<div class="or-pager">
+					<c:if test="${pager.curBlock gt 1 }">
+						<button type="button" class="btn-pager" id="none-hover">
+							<<</button>
+					</c:if>
+					<c:if test="${pager.curBlock ne 1 }">
+						<button type="button" class="btn-pager" id="none-hover">
+							<</button>
+					</c:if>
+					<c:forEach begin="${pager.startNum }" end="${pager.lastNum}"
+						var="p">
+						<c:choose>
+							<c:when test="${pager.curPage eq p }">
+								<button type="button" style="color: black; font-weight: bold;"
+									title="${p }" class="btn-pager">${p }</button>
+							</c:when>
+							<c:otherwise>
+								<button type="button" title="${p }" class="btn-pager">
+									${p }</button>
+							</c:otherwise>
+						</c:choose>
+
+					</c:forEach>
+					<c:if test="${pager.curBlock lt pager.totalBlock }">
+						<button type="button" class="btn-pager" id="none-hover">
+							></button>
+						<c:if test="${pager.totalBlock gt pager.curBlock+1 }">
+							<button type="button" class="btn-pager" id="none-hover">
+								>></button>
+						</c:if>
+					</c:if>
+				</div>
+				
+			</div>
+
+		</div>
+	</section>
+
+	<script type="text/javascript">
+	$(".list").click(function() {
+	$("#curPage").val($(this).attr("id"));
+	$("#frm").submit();
+});
+	
+
+
+</script>
+	<!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
 
 
 

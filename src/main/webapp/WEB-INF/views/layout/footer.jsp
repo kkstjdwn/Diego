@@ -23,10 +23,10 @@
 				<div id="center" class="copypadding">
 					<div id="customer">
 						<ul>
-							<li>고객센터 전번</li>
-							<li>영업시간</li>
-							<li>브레이크타임</li>
-							<li>쉬는날</li>
+							<li>070-0000-0000</li>
+							<li>Opening hours. am10-pm5</li>
+							<li>Lunch break. pm12:30-pm2</li>
+							<li>Sat, Sun Off</li>
 						</ul>
 					</div>
 				</div>

@@ -272,4 +272,31 @@ section{
 }
 
 /*ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ */
+.or-pager{
+	margin: 30px 0;
+	height: 30px;
+	text-align: center;
+}
+.btn-pager{
+	border:none;
+	background: none;
+	color: #979797;
+	padding: 4px 7px;
+	font-size: 12px;
+	text-decoration: none;
+}
+.btn-pager:hover{
+	border:none;
+	background: none;
+	border-bottom: 1px solid black;
+	color: black;
+	font-weight: bold;
+}
+
+#none-hover{
+	border: none;
+	color: #979797;
+	padding : 4px 3px;
+	font-weight: normal;
+}
 

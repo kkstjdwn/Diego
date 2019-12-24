@@ -90,16 +90,16 @@
 						</div>
 						<div class="ec-base-button ">
 							<span class="gLeft">
-							<a href="./gnaList">
+							<a href="../admin/qnaList">
 							<img src="//img.echosting.cafe24.com/skin/base_ko_KR/board/btn_list.gif" alt="목록" /></a>
-							</span> <span class="gRight"> <a href="#none"
-								onclick="BOARD_READ.article_delete('BoardDelForm','6');"
-								class="displaynone"><img src="//img.echosting.cafe24.com/skin/base_ko_KR/board/btn_delete.gif"
+							</span> <span class="gRight"> 
+							<a href="./qnaDelete?qna_num=${qna.qna_num}" class="displaynone">
+							<img src="//img.echosting.cafe24.com/skin/base_ko_KR/board/btn_delete.gif"
 									alt="삭제" /></a> 
-									<a href="" class="displaynone">
+									<a href="./qnaUpdate?qna_num=${qna.qna_num}&pro_num=${qna.pro_num}" class="displaynone">
 									<img src="//img.echosting.cafe24.com/skin/base_ko_KR/board/btn_modify.gif"
 									alt="수정" /></a> 
-									<a href="" class="displaynone">
+									<a href="./qnaReply?qna_num=${qna.qna_num}&pro_num=${qna.pro_num}" class="">
 									<img src="//img.echosting.cafe24.com/skin/base_ko_KR/board/btn_reply.gif"
 									alt="답변" /></a>
 							</span>

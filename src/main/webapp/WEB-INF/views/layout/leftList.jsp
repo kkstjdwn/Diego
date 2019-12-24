@@ -19,17 +19,16 @@
 							<li class="sub"><a href="/mid/notice/noticeList">Notice</a></li>
 							<li class="sub"><a href="/mid/faq/faqList">FAQ</a></li>
 							<li class="sub"><a href="/mid/admin/qnaList">Q&A</a></li>
-							<li class="sub"><a href="">Photo review</a></li>
-							<li class="sub"><a href="/mid/qna/review/reviewList">Review</a></li>
+							<li class="sub"><a href="/mid/review/reviewList">Review</a></li>
 						</ul>
 						<ul>
 							<li class="title"><a href="">Event</a></li>
 						</ul>
 						<ul>
 							<li class="title">My page</li>
-							<li class="sub "><a href="">Order</a></li>
-							<li class="sub "><a href="">Wish list</a></li>
-							<li class="sub "><a href="">Mileage</a></li>
+							<li class="sub "><a href="/mid/member/memberManage/orderMyList">Order</a></li>
+							<li class="sub "><a href="/mid/member/memberManage/wishListSelectList">Wish list</a></li>
+							<li class="sub "><a href="/mid/member/memberManage/pointMyList">Mileage</a></li>
 							<li class="sub "><a href="">My board</a></li>
 							<li class="sub"><a href="#" style="cursor: pointer">Delivery</a></li>
 						</ul>
