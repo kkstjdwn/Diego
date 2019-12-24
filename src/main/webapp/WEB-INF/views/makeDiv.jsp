@@ -37,24 +37,24 @@
 				<li class="pro-li">
 				
 					<c:if test="${v.count % 4 eq 0  }">
-						<div class="pro-li-div_nm">
+						<div class="pro-li-div_nm" onclick="goProSel(${p.pro_num })">
 							<p class="pro-li-div-a"><img src="resources/product/images/${p.sumnale}"></p>
 							<p class="pro-li-div-p">${p.pro_name }</p>
 							<ul class="pro-li-div-ul">
 								<li style="width: inherit; height: 36px; padding-bottom: 23px;">${p.contents}</li>
-								<li style="height: 18px; display: inline-block;text-decoration: line-through;">${p.beforeSale}원</li>
+								<li style="color:#707070; height: 18px; display: inline-block;text-decoration: line-through;">${p.beforeSale}원</li>
 								<li style="height: 18px; display: inline-block;">${p.pro_price}원</li>
 							</ul>
 						</div>
 					</c:if> 
 				
 					<c:if test="${v.count % 4 ne 0 }">
-						<div class="pro-li-div">
+						<div class="pro-li-div" onclick="goProSel(${p.pro_num })">
 							<p class="pro-li-div-a"><img src="resources/product/images/${p.sumnale}"></p>
 							<p class="pro-li-div-p">${p.pro_name }</p>
 							<ul class="pro-li-div-ul">
 								<li style="width: inherit; height: 36px; padding-bottom: 23px;">${p.contents}</li>
-								<li style="height: 18px; display: inline-block;  text-decoration: line-through;">${p.beforeSale}원</li>
+								<li style="color:#707070; height: 18px; display: inline-block;  text-decoration: line-through;">${p.beforeSale}원</li>
 								<li style="height: 18px; display: inline-block; ">${p.pro_price}원</li>
 							</ul>
 						</div>
@@ -122,23 +122,23 @@
 			<c:forEach items="${newPro}" var="np" varStatus="v">
 				<li class="pro-li">
 					<c:if test="${v.count % 4 eq 0  }">
-						<div class="pro-li-div_nm">
+						<div class="pro-li-div_nm" onclick="goProSel(${np.pro_num })">
 							<p class="pro-li-div-a"><img src="resources/product/images/${np.sumnale}" ></p>
 							<p class="pro-li-div-p">${np.pro_name }</p>
 							<ul class="pro-li-div-ul">
 								<li style="width: inherit; height: 36px; padding-bottom: 23px;">${np.contents}</li>
-								<li style="height: 18px; display: inline-block; text-decoration: line-through;">${np.beforeSale}원</li>
+								<li style=" color:#707070; 18px; display: inline-block; text-decoration: line-through;">${np.beforeSale}원</li>
 								<li style="height: 18px; display: inline-block; ">${np.pro_price}원</li>
 							</ul> 
 						</div>
 					</c:if> 
 					<c:if test="${v.count % 4 ne 0 }">
-						<div class="pro-li-div">
+						<div class="pro-li-div"  onclick="goProSel(${np.pro_num })">
 							<p class="pro-li-div-a"><img src="resources/product/images/${np.sumnale}"></p>
 							<p class="pro-li-div-p">${np.pro_name }</p>
 							<ul class="pro-li-div-ul">
 								<li style="width: inherit; height: 36px; padding-bottom: 23px;">${np.contents}</li>
-								<li style="height: 18px; display: inline-block;  text-decoration: line-through;">${np.beforeSale}원</li>
+								<li style="color:#707070; height: 18px; display: inline-block;  text-decoration: line-through;">${np.beforeSale}원</li>
 								<li style="height: 18px; display: inline-block; ">${np.pro_price}원</li>
 							</ul>
 						</div>
@@ -277,7 +277,11 @@
 	$(".list").click(function() {
 	$("#curPage").val($(this).attr("id"));
 	$("#frm").submit();
-});
+	});
+	
+	function goProSel(d) {
+		location.href = "product/productSelect?pro_num="+d;
+	}
 	
 
 

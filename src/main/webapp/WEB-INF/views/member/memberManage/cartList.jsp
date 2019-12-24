@@ -98,7 +98,7 @@
 									<img alt="장바구니 사진" src="../../resources/product/images/${cart.pro_image }" height="116px" width="80px">
 								</td>
 								<td class="cart-pro_info" style="text-align: left;">
-									<a href="#" style="font-weight: bold; color: black; text-decoration: none; margin-left: 10px;">${cart.pro_info } </a>
+									<a href="../../product/productSelect?pro_num=${cart.pro_num }" style="font-weight: bold; color: black; text-decoration: none; margin-left: 10px;">${cart.pro_info } </a>
 								</td>
 								<td class="cart-price">
 									<input type="hidden" class="cart-pro_price${i.index }" value="${cart.pro_price }">

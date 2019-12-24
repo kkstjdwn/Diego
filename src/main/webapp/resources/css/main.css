@@ -24,6 +24,8 @@ section{
 	width: 240px;
 	padding-bottom: 50px;
 }
+
+
 /*ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ */
 
 .pro{
@@ -36,6 +38,9 @@ section{
 	margin: auto;
 }
 
+.pro-li *{
+	cursor: pointer;
+}
 .pro-li-div {
 	float: left;
 	width : 23.75%;

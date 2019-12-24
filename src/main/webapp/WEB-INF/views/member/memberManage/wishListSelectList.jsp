@@ -71,7 +71,7 @@
 						<img alt="위시리스트 사진" src="../../resources/product/images/${wish.image }" height="116px" width="80px">
 					</td>
 					<td class="ws-pro_info" style="text-align: left; padding-left: 10px;">
-						<a href="#" style="font-weight: bold; color: black; text-decoration: none;">${wish.pro_info } </a>
+						<a href="../../product/productSelect?pro_num=${wish.pro_num }" style="font-weight: bold; color: black; text-decoration: none;">${wish.pro_info } </a>
 					</td>
 					<td class="ws-pro_price">
 					<strong><fmt:formatNumber value="${wish.price }" type="number"></fmt:formatNumber>원</strong>

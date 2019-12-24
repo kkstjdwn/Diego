@@ -225,9 +225,9 @@
 		</p>
 		<div class="pro-btn-group">
 			<ul>
-				<li><button id="pro-order-btn">구매하기</button></li>
-				<li><button class="pro-btn" id="pro-cart-btn">장바구니</button></li>
-				<li><button class="pro-btn" id="pro-wish-btn">관심상품</button></li>
+				<li><button id="pro-order-btn" onclick="goKpay(${product.pro_num})">구매하기</button></li>
+				<li><button class="pro-btn" id="pro-cart-btn" value="${product.pro_num}">장바구니</button></li>
+				<li><button class="pro-btn" id="pro-wish-btn" value="${product.pro_num}">관심상품</button></li>
 			</ul>
 		</div>
 		
@@ -236,6 +236,75 @@
 </div>
 </div>
 </section>
+
+<script type="text/javascript">
+
+function addWish(d) {
+	var id = "${member.id}";
+	var pro_num = d;
+	
+	if (confirm("관심상품으로 등록하시겠습니까?")) {
+		$.ajax({
+			type	: "POST",
+			url		: "../member/memberManage/wishAjaxInsert",
+			data	: {
+				id : id,
+				pro_num	: pro_num
+			},
+			success	: function(d) {
+				d = d.trim();
+				if (d == 1) {
+					alert("추가되었습니다.");
+				}else{
+					alert("이미 추가된 상품입니다.");
+				}
+			}
+		});
+	}
+	
+}
+
+$("#pro-cart-btn").click(function() {
+	addCart($(this).val())
+});
+
+$("#pro-wish-btn").click(function() {
+	addWish($(this).val())
+});
+
+function addCart(d) {
+	var id = "${member.id}";
+	var pro_num = d;
+	
+	if (confirm("장바구니에 담으시겠습니까?")) {
+		$.ajax({
+			type	: "POST",
+			url		: "../member/memberManage/cartAjaxInsert",
+			data	: {
+				id		: id,
+				pro_num	: pro_num
+			},
+			success	: function(d) {
+				d = d.trim();
+				if (d == 1) {
+					if (confirm("장바구니에 담았습니다. 장바구니로 이동하시겠습니까?")) {
+						location.href = "../member/memberManage/cartList";
+					}else{
+						location.reload();
+					}
+				}else{
+					alert("이미 담겨 있습니다.");
+				}
+			}
+		});
+	}
+}
+function goKpay(d) {
+	location.href = "../member/memberManage/payPage?num="+d;
+}
+
+
+</script>
 <c:import url="../layout/footer.jsp" />
 </body>
 </html>
