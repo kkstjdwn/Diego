@@ -508,6 +508,17 @@
 			}
 		});
 	});
+  
+  function postNum() {
+		
+	    new daum.Postcode({
+	        oncomplete: function(data) {
+	        	$("#pn").prop("value", data.zonecode);
+	        	$("#ba").prop("value", data.roadAddress);
+	        }
+	    }).open();
+
+}
 </script>
 </body>
 </html>
