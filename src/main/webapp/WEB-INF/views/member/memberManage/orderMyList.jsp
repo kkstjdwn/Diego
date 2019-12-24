@@ -20,9 +20,9 @@
 	<div class="left-menu">
 		<ul class="left-list">
 			<li style="height: 30px; font-size: 13px; font-weight: bold; color: black;">Community</li>
-			<li ><a href="#">Notice</a></li> 
-			<li ><a href="#">FAQ</a></li> 
-			<li ><a href="#">Q&amp;A</a></li> 
+			<li ><a href="/mid/notice/noticeList">Notice</a></li> 
+			<li ><a href="/mid/faq/faqList">FAQ</a></li> 
+			<li ><a href="/mid/admin/qnaList">Q&amp;A</a></li> 
 			<li ><a href="#">Photo review</a></li> 
 			<li ><a href="#">Review</a></li> 
 		</ul>
