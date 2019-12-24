@@ -160,7 +160,7 @@ public class QnaController {
 		
 		mv.addObject("msg", msg);
 		mv.addObject("path", "qnaList");
-		mv.setViewName("common/common_result");
+		mv.setViewName("../admin/qnaList");
 		
 		return mv;
 	}
