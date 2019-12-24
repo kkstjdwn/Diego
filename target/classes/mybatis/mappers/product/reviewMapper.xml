@@ -21,14 +21,6 @@
 		</choose>
 	</sql>
 
-<!--리뷰첨부파일가져오기 잘안된다....-->
-<select id="photoReview" parameterType="Integer" resultType="RevFilesVO" >
-select * from revFiles where fnum = (select min(fnum) from revFiles group by rev_num having rev_num= #{rev_num})
-</select>
-
-<!-- 	select * from revFiles  -->
-
-	
 
 
   <!--(상품+이미지+리뷰+리뷰파일)리스트 -->
@@ -36,8 +28,12 @@ select * from revFiles where fnum = (select min(fnum) from revFiles group by rev
 	select C.*, F.fname ,F.fnum, F.oname from
   	(select P.*, rownum R from
   		( select * from
- ( select A.*,B.pro_main ,V.id, V.rev_num, V.star, V.rev_contents,V.name,V.help, V.rev_date from product A, images B, review V
-            where A.pro_num=B.pro_num and A.pro_num=V.pro_num)<include refid="bs"/> )P)C full outer join revfiles F on C.rev_num = F.rev_num where R between #{startRow} and #{lastRow}
+ 		( select A.*,B.pro_main ,V.id, V.rev_num, V.star, V.rev_contents,V.name,V.help, V.rev_date 
+ 			from product A, images B, review V
+            where A.pro_num=B.pro_num and A.pro_num=V.pro_num)<include refid="bs"/> 
+            )P
+            )C full outer join revfiles F on C.rev_num = F.rev_num 
+            where R between #{startRow} and #{lastRow}
             
   
   </select>
@@ -80,11 +76,6 @@ select * from revFiles where fnum = (select min(fnum) from revFiles group by rev
 	</resultMap>
    
   
-  <!--리뷰 카운트-->
-<!--   <select id="reviewCount" resultType="Integer" parameterType="Pager"> -->
-<!--   	select count(rev_num) from review -->
-<!--   	<include refid="bs"/> -->
-<!--   </select> -->
   
   <!-- 프로덕트 카운트  -->
   <select id="productCount" resultType="Integer" parameterType="PPager">

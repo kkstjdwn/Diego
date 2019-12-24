@@ -238,6 +238,64 @@
 </section>
 
 <script type="text/javascript">
+var filebox = $('#filebox').html();
+$('#filebox').empty();
+var count = 0;
+var index = 0;
+
+$('#add_file').click(function() {
+	if (count < 4) {
+		$('#filebox').append(filebox);
+		count++;
+	} else {
+		alert("리뷰 사진은 최대  4장까지 첨부가능합니다 ");
+
+	}
+
+});
+
+$("#filebox").on("click", ".del_file", function() {
+
+	$(this).parent().parent().remove();
+	count--;
+});
+
+//페이징리스트
+$(".list").click(function() {
+	$("#curPage").val($(this).attr("id"));
+	$("#frm").submit();
+});
+
+//----------------------------------------------------------------------------------------------------------------------------------		
+//리뷰삭제
+$(".rdel").click(function() {
+	if (confirm("삭제하시겠습니까?")) {
+		$.ajax({
+			type : "GET",
+			url : "reviewDelete",
+			data : {
+
+				rev_num : $("#rev_num").val()
+
+			},
+			success : function(data) {
+				data = data.trim();
+				if (data == 1) {
+					alert("저장된 리뷰가 완벽히 삭제되었습니다.")
+					location.reload();
+				} else {
+					alert("저장된 리뷰가 삭제되지 않았습니다.")
+
+				}
+
+			}
+
+		});
+	}
+});
+
+
+
 
 function addWish(d) {
 	var id = "${member.id}";
