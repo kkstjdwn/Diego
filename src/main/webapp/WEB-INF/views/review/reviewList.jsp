@@ -27,7 +27,7 @@
 	<c:import url="../layout/header.jsp" />
 	<div class="container">
 		<c:import url="../layout/leftList.jsp" />
-		<div class="jumbotron page-header">
+		<div class="page-header" style="margin-top: 100px">
 
 			<h1>Review List</h1>
 		</div>
