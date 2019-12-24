@@ -118,7 +118,7 @@
 						<!-- 로그인/로그아웃 메뉴 -->
 						<div id="log" class="gnb_on ">
 							<c:choose>
-								<c:when test="${!empty member }">
+								<c:when test="${!empty member or !empty admin}">
 									<span><a href="/mid/member/memberLogout">로그아웃</a></span> <span><a href="/mid/member/memberUpdate">나의 정보</a></span>
 								</c:when>
 								<c:otherwise>
@@ -128,7 +128,7 @@
 						</div>
 
 						<!-- 장바구니 -->
-					<c:if test="${!empty member }">
+					<c:if test="${!empty member or !empty admin}">
 						<div id="topcarticon" class="cart2 ">
 							<img src="/mid/resources/images/cart_wh.png" />
 							<a href="/mid/member/memberManage/cartList">장바구니(${cc})</a>
@@ -171,7 +171,7 @@
 				<div class="right_menu">
 					<div id="log">
 					<c:choose>
-						<c:when test="${!empty member }">
+						<c:when test="${!empty member or !empty admin}">
 							<span><a href="/mid/member/memberLogout">로그아웃</a></span> <span><a href="/mid/member/memberUpdate">나의 정보</a></span>
 						</c:when>
 						<c:otherwise>
@@ -179,7 +179,7 @@
 						</c:otherwise>
 					</c:choose>
 					</div>
-					<c:if test="${!empty member }">
+					<c:if test="${!empty member or !empty admin}">
 					<div id="topcart" class="cart1">
 						<img src="/mid/resources/images/cart.png">
 						<a href="/mid/member/memberManage/cartList">장바구니(${cc})</a>
